@@ -72,16 +72,38 @@
 				\item The GPS system cannot be switched off.
 				\item All cars are equipped with a Bluetooth system.
 				\item The Bluetooth system is always on.
-				\item When a user reserves a car, they always use it. %TODO move to requirements 
+				\item The user is always able to be located, either by GPS or by giving their position themselves.
 				\item The safe areas are predefined and within the municipality of Milan.
 				\item The payment of all services is always accepted. %We're assuming here that the credit card works and has credit, and also that the payment system never breaks. Too much?
 				\item The cars always ignite when they are charged %Again, too much? We're assuming the cars never break...
-				\item The cars cannot be reserved by more than one user at any given time. %TODO move to requirements
+				\item The cars cannot be reserved by more than one user at any given time. %FIXIT move to requirements
 				\item The system is always able to tell how many people occupy a car. 
 			\end{itemize}
 
 		\subsection{Glossary}
-			% TODO
+			\begin{description}
+				\item[User] We will refer to all people who are registered to the system as 'users'. All users have personal profiles which contain the following information:
+				\begin{itemize}
+					\item First name;
+					\item Family name;
+					\item Email;
+					\item Username;
+					\item Password;
+					\item Payment information; this in particular includes
+						\begin{itemize}
+							\item Credit card number;
+							\item Credit card expiration date;
+							\item CVV number. %is it called CVV or CCV? I can never remember
+						\end{itemize}
+					And, optionally:
+					\item Personal photo;
+					\item Telephone number.
+				\end{itemize}
+				
+				\item[Guest] We shall call 'guests' all people who are using the interface of the system without being registered or logged in. Guests can't access any functionality of \textit{PowerEnJoy} except for the registration process or the log in. 
+				
+				\item[Safe areas] are predefined parking slots within the municipality. 
+			\end{description}
 
 		\subsection{Assumptions}
 			% TODO
