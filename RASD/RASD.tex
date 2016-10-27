@@ -59,8 +59,8 @@
 
 				%% Poe's part %%
 				\item \textbf{G1} The system applies a 20\% discount on the standard price for the current ride if the car is returned by the user with less than 50\% of power charge.
-				\item \textbf{G2} If a user returns a car to a charging safe area and plugs it into the power grid once left, the system applies a 30\% discount on the standard price of his current ride.
-				\item \textbf{G3} The system applies a 30\% increase of the standard price for the current ride if the car is returned in a safe area at more than 3 Km from the nearest charging safe area. % FIXME not clear
+				\item \textbf{G2} If a user returns a car to a recharging area and plugs it into the power grid once left, the system applies a 30\% discount on the standard price of his current ride.
+				\item \textbf{G3} The system applies a 30\% increase of the standard price for the current ride if the car is returned in a parking area at more than 3 Km from the nearest recharging area. % FIXME not clear
 				\item \textbf{G4} The system applies a 30\% increase of the standard price for the current ride if the car is returned with less than 20\% of power charge. % FIXME with G1 means that I have 3 ranges: 0-20 bad; 20-50 good; 50-100 normal --> is this ok?
 				\item \textbf{G5} The system provides an option (\textit{money saving}) to get information about the best safe area where the user can leave the car. The system applies a ???\% increase of the standard price for the current ride if the car is returned in the suggested safe area. % FIXME
 			\end{itemize}
@@ -111,8 +111,8 @@
 				
 				\item[Guest] We shall call 'guests' all people who are using the interface of the system without being registered or logged in. Guests can't access any functionality of \textit{PowerEnJoy} except for the registration process or the log in. 
 				
-				\item[Safe areas] are predefined parking slots within the municipality.
-				\item[Recharging areas] are parking slots where the car can be recharged; safe areas and recharging areas do not always coincide: safe areas \textit{may} be recharging areas, while the contrary doesn't apply. %See and change assumptions whatever we decide.
+				\item[Parking areas] Also called \textit{Safe areas}, parking areas are predefined parking slots within the municipality that are reserved for the car–sharing system \textit{PowerEnJoy}.
+				\item[Special parking areas], or \textit{recharging areas} are parking slots where the car can be recharged; parking areas and recharging areas do not always coincide: parking areas \textit{may} be recharging areas, while the contrary doesn't apply. %See and change assumptions whatever we decide.
 				
 				
 				\item[Reservation] We will call 'reservation' the operation of booking a specific car for the sole use of the user who reserved it. Reservations allow the users to access the car, open it and drive it. 
@@ -130,7 +130,7 @@
 			The assignment document was unclear and ambiguous on some points of the specifications. Hence, we will make the following assumptions:
 			
 			\begin{itemize}
-				\item We assume that safe areas and recharging areas are two different things; however, common sense suggests that it isn't logical to charge users if they plug the car to the power grid in a recharging area but are not parked in a safe area. It neither makes sense to sanction them if they park it in a safe area that is 3km far from the power grid. Having the two areas separate would lead to the consequences above, so we decided that while a safe are may not be a recharging area, recharging areas are always safe areas. w
+				\item We assume that parking areas and special parking areas are two different things; however, common sense suggests that it isn't logical to charge users if they plug the car to the power grid in a recharging area but are not parked in a safe area. Neither it makes sense to sanction them if they park it in a safe area that is 3km far from the power grid. Having the two areas separate would lead to the consequences above, so we decided that while a safe are may not be a recharging area, recharging areas are always safe areas. 
 			\end{itemize}
 
 		\subsection{Constrains}
