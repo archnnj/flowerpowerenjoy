@@ -103,7 +103,9 @@
 							\item Credit card expiration date;
 							\item CVV number. %is it called CVV or CCV? I can never remember
 						\end{itemize}
-					And, optionally:
+				\end{itemize}
+				And, optionally:
+				\begin{itemize}		
 					\item Personal photo;
 					\item Telephone number.
 				\end{itemize}
@@ -130,7 +132,15 @@
 			The assignment document was unclear and ambiguous on some points of the specifications. Hence, we will make the following assumptions:
 			
 			\begin{itemize}
-				\item We assume that parking areas and special parking areas are two different things; however, common sense suggests that it isn't logical to charge users if they plug the car to the power grid in a recharging area but are not parked in a safe area. Neither it makes sense to sanction them if they park it in a safe area that is 3km far from the power grid. Having the two areas separate would lead to the consequences above, so we decided that while a safe are may not be a recharging area, recharging areas are always safe areas. 
+				\item Parking areas and special parking areas are two different things; however, common sense suggests that it isn't logical to charge users if they plug the car to the power grid in a recharging area but are not parked in a safe area. Neither it makes sense to sanction them if they park it in a safe area that is 3km far from the power grid. Having the two areas separate would lead to the consequences above, so we decided that while a safe are may not be a recharging area, recharging areas are always safe areas. 
+				
+				\item The system is completely autonomous and can manage emergencies (such as the car breaking down, or street accidents) without the need of an administrator. % we actually didn't talk about that..
+				
+				\item It wasn't clear from the assignments document whether the user would be able to reserve a specific car; we assume so. %FIXIT actually depends on how Pat decides to formulate her part of the goals
+				
+				\item There is a "manual" way to close and open the car, i.e. that the user is allowed to temporarily park the car – while still being charged –, get out, close the car, and then get back and open it again.
+				
+				\item Parking areas and special parking areas are allotted and private parking spaces owned by \textit{PowerEnJoy} and distributed throughout the urban area. %discuss.
 			\end{itemize}
 
 		\subsection{Constrains}
