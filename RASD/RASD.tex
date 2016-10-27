@@ -1,6 +1,7 @@
 \documentclass{article}
 
 \usepackage{graphicx} % to embed images
+\usepackage{hyperref} % to link the table of contents
 
 \title{RASD}
 \date{2016-11-13}
@@ -54,7 +55,7 @@
 				\item \textbf{G8} If the user has chosen to keep being charged, the system allows them to exit and close and re-open the car through a bluetooth system.
 				\item \textbf{G9} If the user has chosen to stop being charged, the system keeps a 10–minutes window of time when they are allowed to re-open the car if it has not already been reserved by someone else.
 				\item \textbf{G10} The set of safe parking areas is pre–defined by the management system.
-				\item \textbf{G11} The system allows the user to earn a 10\% discount on the current ride if there are at least two other passengers in the car.
+				\item \textbf{G11} The system allows the user to earn a 10\% discount on the standard price for the current ride if there are at least two other passengers in the car.
 
 				%% Poe's part %%
 				\item \textbf{G1} The system applies a 20\% discount on the standard price for the current ride if the car is returned by the user with less than 50\% of power charge.
@@ -107,18 +108,27 @@
 				
 				\item[Guest] We shall call 'guests' all people who are using the interface of the system without being registered or logged in. Guests can't access any functionality of \textit{PowerEnJoy} except for the registration process or the log in. 
 				
-				\item[Safe areas] are predefined parking slots within the municipality. 
-				\item[Recharging areas] are parking slots where the car can be recharged; safe areas and recharging areas do not always coincide %??????????????
+				\item[Safe areas] are predefined parking slots within the municipality.
+				\item[Recharging areas] are parking slots where the car can be recharged; safe areas and recharging areas do not always coincide: safe areas \textit{may} be recharging areas, while the contrary doesn't apply. %See and change assumptions whatever we decide.
 				
 				
 				\item[Reservation] We will call 'reservation' the operation of booking a specific car for the sole use of the user who reserved it. Reservations allow the users to access the car, open it and drive it. 
 				
-				\item[Power grid]
+				\item[Power grid] %TODO
+				
+				\item[Standard price] We shall call 'standard price' the price per minute charged to the user, without any discount or sanction applied. 
+				
+				\item[Discount] A discount always lowers the price per minute charged to a user. It is a negative percentage that is applied every time a user has a virtuous behaviour. 
+				\item[Sanction] A sanction always increases the price per minute charged to a user. It is a positive percentage that is applied every time a user has a wasteful or incorrect behaviour. 
 				
 			\end{description}
 
 		\subsection{Assumptions}
-			% TODO
+			The assignment document was unclear and ambiguous on some points of the specifications. Hence, we will make the following assumptions:
+			
+			\begin{itemize}
+				\item We assume that safe areas and recharging areas are two different things; however, common sense suggests that it isn't logical to charge users if they plug the car to the power grid in a recharging area but are not parked in a safe area. It neither makes sense to sanction them if they park it in a safe area that is 3km far from the power grid. Having the two areas separate would lead to the consequences above, so we decided that while a safe are may not be a recharging area, recharging areas are always safe areas. w
+			\end{itemize}
 
 		\subsection{Constrains}
 			% TODO
