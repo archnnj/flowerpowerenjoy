@@ -54,7 +54,7 @@
 				\item \textbf{G8} If the user has chosen to keep being charged, the system allows them to exit and close and re-open the car through a bluetooth system.
 				\item \textbf{G9} If the user has chosen to stop being charged, the system keeps a 10–minutes window of time when they are allowed to re-open the car if it has not already been reserved by someone else.
 				\item \textbf{G10} The set of safe parking areas is pre–defined by the management system.
-				\item \textbf{G11} The system allows the user to earn a 10\% discount on the current ride if there are at least two other passengers in the car.
+				\item \textbf{G11} The system allows the user to earn a 10\% discount on the standard price for the current ride if there are at least two other passengers in the car.
 
 				%% Poe's part %%
 				% TODO
@@ -103,18 +103,24 @@
 				
 				\item[Guest] We shall call 'guests' all people who are using the interface of the system without being registered or logged in. Guests can't access any functionality of \textit{PowerEnJoy} except for the registration process or the log in. 
 				
-				\item[Safe areas] are predefined parking slots within the municipality. 
-				\item[Recharging areas] are parking slots where the car can be recharged; safe areas and recharging areas do not always coincide %??????????????
+				\item[Safe areas] are predefined parking slots within the municipality.
+				\item[Recharging areas] are parking slots where the car can be recharged; safe areas and recharging areas do not always coincide: safe areas \textit{may} be recharging areas, while the contrary doesn't apply. %See and change assumptions whatever we decide.
 				
 				
 				\item[Reservation] We will call 'reservation' the operation of booking a specific car for the sole use of the user who reserved it. Reservations allow the users to access the car, open it and drive it. 
 				
-				\item[Power grid]
+				\item[Power grid] %TODO
+				
+				\item[Standard price] We shall call 'standard price' the price per minute charged to the user, without any discount or sanction applied. 
 				
 			\end{description}
 
 		\subsection{Assumptions}
-			% TODO
+			The assignment document was unclear and ambiguous on some points of the specifications. Hence, we will make the following assumptions:
+			
+			\begin{itemize}
+				\item Safe/recharging areas.
+			\end{itemize}
 
 		\subsection{Constrains}
 			% TODO
