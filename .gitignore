@@ -199,3 +199,7 @@ TSWLatexianTemp*
 ## OS X
 .DS_Store
 
+## Project related ##
+*.pdf
+!/deliveries/*.pdf
+
