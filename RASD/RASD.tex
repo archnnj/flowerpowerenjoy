@@ -44,7 +44,7 @@
 			% this should be adjusted and numbered as soon as everybody has made them
 			\begin{itemize}
 				%% Pat's part %%
-				\item \textbf{G1} The system registers guests. Each guest must fill a profile to become a user.
+				\item \textbf{G1} Guest are able to register to the System. Each guest must fill a profile to become a user.
 				\item \textbf{G2} To complete the procedure of registration the system sends password to the guest as an access key.
 				\item \textbf{G3} The system enables the registered user to find the locations of an available car within a certain distance from user's location or from specified address.
 				\item \textbf{G4} The system enables user to reserve a single available car in a certain geographical region for one hour before the user picks it up.
@@ -131,9 +131,9 @@
 				\item[Special parking areas], or \textit{recharging areas} are parking slots where the car can be recharged; parking areas and recharging areas do not always coincide: parking areas \textit{may} be recharging areas, while the contrary doesn't apply. %See and change assumptions whatever we decide.
 				
 				
-				\item[Reservation] We will call 'reservation' the operation of booking a specific car for the sole use of the user who reserved it. Reservations allow the users to access the car, open it and drive it. %FIXIT I would better say Reserved car
-				
-				\item [Available car] Car that is not reserved by other users.
+				%\item[Reservation] We will call 'reservation' the operation of booking a specific car for the sole use of the user who reserved it. Reservations allow the users to %access the car, open it and drive it. %FIXIT I would better say Reserved car
+				\item [Reserved car] We will call 'reserved car' a specific car that is booked by current user,not taken by other users, and is located in the same geographical region as him.
+				\item [Available car] is the car that is not reserved by other users.
 				
 				\item[Power grid] %TODO
 				
@@ -150,9 +150,9 @@
 			\begin{itemize}
 				\item Parking areas and special parking areas are two different things; however, common sense suggests that it isn't logical to charge users if they plug the car to the power grid in a recharging area but are not parked in a safe area. Neither it makes sense to sanction them if they park it in a safe area that is 3km far from the power grid. Having the two areas separate would lead to the consequences above, so we decided that while a safe are may not be a recharging area, recharging areas are always safe areas. 
 				
-				\item The system is completely autonomous and can manage emergencies (such as the car breaking down, or street accidents) without the need of an administrator. % we actually didn't talk about that..
+				\item The system is completely autonomous and can manage emergencies (such as the car breaking down, or street accidents) without the need of an administrator. %FIXIT we actually didn't talk about that..
 				
-				\item It wasn't clear from the assignments document whether the user would be able to reserve a specific car; we assume so. %FIXIT actually depends on how Pat decides to formulate her part of the goals
+				\item User is able to reserve available car from his geographical region. %It wasn't clear from the assignments document whether the user would be able to reserve a specific car; we assume so. %FIXIT actually depends on how Pat decides to formulate her part of the goals
 				
 				\item There is a "manual" way to close and open the car, i.e. that the user is allowed to temporarily park the car – while still being charged –, get out, close the car, and then get back and open it again.
 				
