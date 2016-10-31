@@ -193,11 +193,17 @@
 
 			\item[Guest] A potential user not registered in the system yet.
 		\end{description}
-		The following professional figures have also been identified inside \textit{PowerEnJoy} as needed by the system:
+		The following actors have also been identified inside \textit{PowerEnJoy} as needed by the system:
 		\begin{description}
 			\item[Admin] Back-office administrators, they have access to a control panel.
 
 			\item[Operator] Maintenance operators who provide field-based assistance and ensures cars are always ready to be used.
+
+			\item[Car] The car provided to users. It interacts with the system to be develop to provide information about usage and status and to receive commands.
+		\end{description}
+		The system has moreover to interact with the following external service provider:
+		\begin{description}
+			\item[Payment service] Provider of every service related to users payment management.
 		\end{description}
 
 	\newpage
@@ -211,7 +217,7 @@
 
 	\newpage
 	\section{UML models}
-		% TODO
+	\input{Subsections/uml.tex}
 
 	\newpage
 	\section{Alloy modeling}
