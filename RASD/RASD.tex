@@ -38,14 +38,29 @@
 	%%% introduction %%%
 	\section{Introduction}
 		\subsection{Description of the given problem}
-			The system we are going to develop is a car–sharing service called \textit{PowerEnJoy}. The system allows registered users to locate and reserve a car to use.
+			The system we are going to develop is a car–sharing service called \textit{PowerEnJoy}, based on mobile application and which has a website. The system allows users to locate and reserve a car to drive in their geographical region using mobile application. Geographical region is identified using GPS on user's smartphone, he can also insert it manually. User can drive a car only inside one chosen geographical region. 
+			People in the system are not considered as registered until they fill an online form on the website or on the main page of the mobile application and until their driving license are not checked by the system as valid ones.
+			
+			The main purpose of the system is to be efficient, reliable and easy to use to fulfill the will of users and the customer.  % TODO
+		\subsection{Actual system}
+			There is nothing created until now, and we suppose that we have to create the entire application, depending only on the problem given by the customer. 
+			
+		\subsection{Scope}
+		
+		\subsection{Actors}
+		
+		\begin{itemize}
+			\item Guest: all guests can only see the login page of the application or of the website, where they can complete the registration form to be able to login from mobile application as registered users.
+			
+			\item Registered User: after logging in to the system users can "use" (change this word) the application, where they can see map with available cars, reserve one and get notifications from the system and also can see their profile and make some changes in it.   
+		\end{itemize}  	
 
 		\subsection{Goals}
 			% this should be adjusted and numbered as soon as everybody has made them
 			\begin{itemize}
 				%% Pat's part %%
-				\item \textbf{G1} The system registers users with their credentials and payment information.
-				\item \textbf{G2} User receives password from the system as an access key.
+				\item \textbf{G1} Guest are able to register to the System. Each guest must fill a profile to become a user.
+				\item \textbf{G2} To complete the procedure of registration the system sends password to the guest as an access key.
 				\item \textbf{G3} The system enables the registered user to find the locations of an available car within a certain distance from user's location or from specified address.
 				\item \textbf{G4} The system enables user to reserve a single available car in a certain geographical region for one hour before the user picks it up.
 				\item \textbf{G5} If the reserved car is not picked up within one hour from the reservation time, the reservation expires and the system tag this car as available. The system charges user a fee of 1 EUR. 
@@ -61,37 +76,41 @@
 				\item \textbf{G8} If the user has chosen to keep being charged, the system allows them to exit and close and re-open the car through a bluetooth system.
 				\item \textbf{G9} If the user has chosen to stop being charged, the system keeps a 10–minutes window of time when they are allowed to re-open the car if it has not already been reserved by someone else.
 				\item \textbf{G10} The set of safe parking areas is pre–defined by the management system.
-				\item \textbf{G11} The system allows the user to earn a 10\% discount on the standard price for the current ride if there are at least two other passengers in the car.
+				\item \textbf{G11} The system allows the user to earn a 10\% discount for the current ride if there are at least two other passengers in the car.
 
 				%% Poe's part %%
-				\item \textbf{G1} The system applies a 20\% discount on the standard price for the current ride if the car is returned by the user with less than 50\% of power charge.
-				\item \textbf{G2} If a user returns a car to a recharging area and plugs it into the power grid once left, the system applies a 30\% discount on the standard price of his current ride.
-				\item \textbf{G3} The system applies a 30\% increase of the standard price for the current ride if the car is returned in a parking area at more than 3 Km from the nearest recharging area. % FIXME not clear
-				\item \textbf{G4} The system applies a 30\% increase of the standard price for the current ride if the car is returned with less than 20\% of power charge. % FIXME with G1 means that I have 3 ranges: 0-20 bad; 20-50 good; 50-100 normal --> is this ok?
-				\item \textbf{G5} The system provides an option (\textit{money saving}) to get information about the best safe area where the user can leave the car. The system applies a ???\% increase of the standard price for the current ride if the car is returned in the suggested safe area. % FIXME
+				\item \textbf{G1} The system applies a 20\% discount on the current ride if the car is returned by the user with more than 50\% of power charge.
+				\item \textbf{G2} If a user returns a car to a recharging safe area and plugs it into the power grid, the system applies a 30\% discount on his current ride.
+				\item \textbf{G3} The system applies a 30\% sanction on the current ride if the car is returned in a safe area at more than 3 km from the nearest recharging safe area.
+				\item \textbf{G4} The system applies a 30\% sanction on the current ride if the car is returned with less than 20\% of power charge.
+				\item \textbf{G5} The system provides an option (\textit{money saving}) to get information about the best safe area where the user can leave the car. The best safe area ensures a uniform distribution of cars among the city and takes into account the destination and the nature of the safe areas (recharging or not). % FIXME is it clear?
+				\item \textbf{G6} In \textit{money saving option}, the system applies a certain discount for the current ride if the car is returned in the suggested safe area. % FIXME "certain" is ok?
+				\item \textbf{G6} Cars returned with less then 20\% of power charge are recharged within 1 day. % to keep car used (probably need a maintenance guy)
+				% TODO don't know if goes here: if a car breaks or is left outside the boundaries, it is recovered.
 			\end{itemize}
 
 		\subsection{Domain properties}
-			% TODO
-			
 			We assume that the following properties hold in the analyzed world:			
 			
 			\begin{itemize}
 				% Madda's part (kinda -> whatever comes to mind)
-				\item All cars are equipped and located with a GPS system.
-				\item All the GPS always give the right position.
-				\item The GPS system cannot be switched off.
-				\item All cars are equipped with a Bluetooth system.
-				\item The Bluetooth system is always on.
-				\item The user is always able to be located, either by GPS or by giving their position themselves.
-				\item The safe areas are predefined and within the municipality of Milan.
-				\item The payment of all services is always accepted. %We're assuming here that the credit card works and has credit, and also that the payment system never breaks. Too much?
-				\item The cars always ignite when they are charged %Again, too much? We're assuming the cars never break...
-				\item The cars cannot be reserved by more than one user at any given time. %FIXIT move to requirements
+				\item A tablet is permanently installed in every car.
+				\item The tablet is alimented through the car and cannot be switched off.
+				\item All cars are equipped and located with a GPS system provided by the tablet.
+				\item All GPS systems always give the right position.
+				\item GPS tracking is always on.
+				\item All cars has sensors to detect the presence of passengers in each seat.
 				\item The system is always able to tell how many people occupy a car.
-
+				\item All cars are equipped with a Bluetooth system provided by the tablet.
+				\item The Bluetooth system is always on.
+				\item % TODO other sensors and FIXME on added  (accident detection, ...)
+				\item A user can always provide his location, either by GPS or by giving their position themselves.
+				\item The safe areas are predefined and within the municipality of Milan.
+				\item The payments of all services are managed by an external company, which guarantees fulfillment.
+				\item The cars always ignite when they have more than 3\% of power charge. % FIXME It was: The cars always ignite when they are charged % Again, too much? We're assuming the cars never break... - Poe: we may remove that
+				\item The cars cannot be reserved by more than one user at any given time. %FIXME move to requirements
 				% Poe's part
-				% TODO
+				% nothing to add, already added to Madda's part (to keep ordered by context)
 			\end{itemize}
 
 		\subsection{Glossary}
@@ -99,55 +118,58 @@
 				\item[User] We will refer to all people who are registered to the system as 'users'. All users have personal profiles which contain the following information:
 				\begin{itemize}
 					\item First name;
-					\item Family name;
+					\item Family name; %FIXIT can we change this to Last name; I think it's more convenient with First name - Poe agrees
 					\item Email;
 					\item Username;
 					\item Password;
-					\item Payment information; this in particular includes
+					\item Payment information; this in particular includes:
 						\begin{itemize}
+							% Card owner? We assume it must be personal?
 							\item Credit card number;
 							\item Credit card expiration date;
-							\item CVV number. %is it called CVV or CCV? I can never remember
+							\item CVV number.
 						\end{itemize}
+					\item Driving license information; this in particular includes:
+						\begin{itemize}
+							\item License number;
+							\item Issued date;
+							\item Expiration date;
+							\item Status. % what does this represent?
+						\end{itemize}
+						% TODO Ps: only for italian licenses? should state in assumption which kind of licences we accept I guess
 				\end{itemize}
 				And, optionally:
 				\begin{itemize}		
 					\item Personal photo;
-					\item Telephone number.
+					\item Telephone number. % I'd make this mandatory, for emergencies or important issues
 				\end{itemize}
-				Users should be able to locate, reserve and drive the cars offered by the service. 
+				Users should be able to locate, reserve and drive the cars offered by the service. % like without disabilities? 
 				
 				\item[Guest] We shall call 'guests' all people who are using the interface of the system without being registered or logged in. Guests can't access any functionality of \textit{PowerEnJoy} except for the registration process or the log in. 
 				
+				
 				\item[Parking areas] Also called \textit{Safe areas}, parking areas are predefined parking slots within the municipality that are reserved for the car–sharing system \textit{PowerEnJoy}.
-				\item[Special parking areas], or \textit{recharging areas} are parking slots where the car can be recharged; parking areas and recharging areas do not always coincide: parking areas \textit{may} be recharging areas, while the contrary doesn't apply. %See and change assumptions whatever we decide.
+				\item[Special parking areas], or \textit{recharging areas} are \textit{Parking areas} that provides a plug to recharge the car. Recharging parking areas are a subset of Parking areas (parking areas \textit{may} be recharging areas, while the contrary doesn't apply).
+				% was: are parking slots where the car can be recharged; parking areas and recharging areas do not always coincide: parking areas \textit{may} be recharging areas, while the contrary doesn't apply. %See and change assumptions whatever we decide.
 				
+				%\item[Reservation] We will call 'reservation' the operation of booking a specific car for the sole use of the user who reserved it. Reservations allow the users to %access the car, open it and drive it. %FIXIT I would better say Reserved car
+				\item [Reserved car] We will call 'reserved car' a specific car that is booked by current user,not taken by other users, and is located in the same geographical region as him.
 				
-				\item[Reservation] We will call 'reservation' the operation of booking a specific car for the sole use of the user who reserved it. Reservations allow the users to access the car, open it and drive it. 
+				\item [Available car] is the car that is not reserved by other users.
 				
 				\item[Power grid] %TODO
 				
 				\item[Standard price] We shall call 'standard price' the price per minute charged to the user, without any discount or sanction applied. 
 				
-				\item[Discount] A discount always lowers the price per minute charged to a user. It is a negative percentage that is applied every time a user has a virtuous behaviour. 
-				\item[Sanction] A sanction always increases the price per minute charged to a user. It is a positive percentage that is applied every time a user has a wasteful or incorrect behaviour. 
+				% FIXME check if these are now ok:
+				\item[Discount] A discount is a deduction of a given percentage from the standard price. It is applied every time a user has a virtuous behavior. % A discount always lowers the price per minute charged to a user. It is a negative percentage that is applied every time a user has a virtuous behaviour.
+				\item[Sanction] A sanction is an increase of a given percentage to the standard price. It is applied every time a user has a wasteful or incorrect behavior. % always increases the price per minute charged to a user. It is a positive percentage that is applied every time a user has a wasteful or incorrect behaviour.
 				
+				\item[Money saving option] An option offered to the users by the system. The user inputs their final destination and the system indicates them the best close station where to leave the car.
 			\end{description}
 
 		\subsection{Assumptions}
-			The assignment document was unclear and ambiguous on some points of the specifications. Hence, we will make the following assumptions:
-			
-			\begin{itemize}
-				\item Parking areas and special parking areas are two different things; however, common sense suggests that it isn't logical to charge users if they plug the car to the power grid in a recharging area but are not parked in a safe area. Neither it makes sense to sanction them if they park it in a safe area that is 3km far from the power grid. Having the two areas separate would lead to the consequences above, so we decided that while a safe are may not be a recharging area, recharging areas are always safe areas. 
-				
-				\item The system is completely autonomous and can manage emergencies (such as the car breaking down, or street accidents) without the need of an administrator. % we actually didn't talk about that..
-				
-				\item It wasn't clear from the assignments document whether the user would be able to reserve a specific car; we assume so. %FIXIT actually depends on how Pat decides to formulate her part of the goals
-				
-				\item There is a "manual" way to close and open the car, i.e. that the user is allowed to temporarily park the car – while still being charged –, get out, close the car, and then get back and open it again.
-				
-				\item Parking areas and special parking areas are allotted and private parking spaces owned by \textit{PowerEnJoy} and distributed throughout the urban area. %discuss.
-			\end{itemize}
+		\input{Subsections/assumptions.tex}
 
 		\subsection{Constrains}
 			% TODO
@@ -156,14 +178,33 @@
 			% TODO
 
 		\subsection{Identifying Stakeholders}
-			% TODO
+			Main stakeholders are the inhabitants of Milan willing to use an ecologic and comfortable mean of transport, without the need to buy and maintain a personal car.
+			The system can be adopted in any other city, so the inhabitants of other cities too can become stakeholders.
+			In Milan, the project is promoted and participated my the city council as minor investor.
 
 		\subsection{Reference documents}
 			% TODO
 
 	\newpage
 	\section{Actors Identifying}
-		% TODO
+		The system involves as main external actors:
+		\begin{description}
+			\item[User] The final target of the system. Once registered, they can reserve a car and use it in respect of the agreements established with \textit{PowerEnJoy}. They are charged for the usage of the car. It is expected
+
+			\item[Guest] A potential user not registered in the system yet.
+		\end{description}
+		The following actors have also been identified inside \textit{PowerEnJoy} as needed by the system:
+		\begin{description}
+			\item[Admin] Back-office administrators, they have access to a control panel.
+
+			\item[Operator] Maintenance operators who provide field-based assistance and ensures cars are always ready to be used.
+
+			\item[Car] The car provided to users. It interacts with the system to be develop to provide information about usage and status and to receive commands.
+		\end{description}
+		The system has moreover to interact with the following external service provider:
+		\begin{description}
+			\item[Payment service] Provider of every service related to users payment management.
+		\end{description}
 
 	\newpage
 	\section{Requirements}
@@ -176,7 +217,7 @@
 
 	\newpage
 	\section{UML models}
-		% TODO
+	\input{Subsections/uml.tex}
 
 	\newpage
 	\section{Alloy modeling}
@@ -192,10 +233,12 @@
 		For this assignment, we used the following tools:
 		
 		\begin{description}
+			\item [Alloy]
 			\item [LaTeX] The group used LaTeX to structure the final document and to help with versioning.
 			\item [Github] We leaned on Github for versioning and coordinating synchronized work.
 			\item [Toggl] We used toggl to keep track of work hours.
-			\item [Alloy]
+			\item [Slack]  
+			
 		\end{description}
 		
 		\subsection{Hours of work}
