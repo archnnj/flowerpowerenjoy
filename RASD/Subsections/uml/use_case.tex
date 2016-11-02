@@ -120,3 +120,36 @@
 			\end{itemize}
 			\item[Special Requirements] The user plugs in the car within 5 minutes from the moment they exits the car. Otherwise the discount is not applied.
 		\end{description}
+		
+	\subsection{Use case 5: Retrieving a car with user input}
+		\begin{description}
+			\item[Name] Retrieving a car
+			\item[Actors] \hfill
+			\begin{description}
+				\item[User] The user of the car.
+				\item[Operator] The field operator.
+			\end{description}
+			\item[Entry condition] The car doesn't work and the user has parked it safely somewhere on the road.
+			\item[Flow of events] \hfill
+			\begin{enumerate}
+				\item The user checks whether the system has already notified the breakdown.
+				\item The user enters the app from their smartphone and manually notifies the malfunction.
+				\item The system asks the user to fill a form with the information needed.
+				\item The system locates the car.
+				\item The system analyses the user's form and decides only one operator is needed.
+				\item The system notifies the operator of the car's location.
+				\item The operator drives the truck to the car's location.
+				\item The operator checks the car on site.
+				\item The operator loads the car on the truck.
+				\item The operator drives the car away to be repaired.
+				\item The system notifies the user of the annulment of all charges. %DISCUSS
+				\item The system asks the user if he wants to reserve another car.
+			\end{enumerate}
+			\item[Exit condition] The operator brings the car in to be repaired; the user doesn't pay anything and is offered another car.
+			\item[Exceptions] \hfill
+			\begin{itemize}
+				\item \textbf{Wrong information by the user} The user fills the form with wrong information.
+				\item \textbf{No other cars available} There is no other available car in a 1 km radius from the user's location.
+			\end{itemize}
+			\item[Special Requirements] None.
+		\end{description}
