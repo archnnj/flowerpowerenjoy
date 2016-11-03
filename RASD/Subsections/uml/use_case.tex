@@ -120,9 +120,7 @@
 			\end{itemize}
 			\item[Special Requirements] The user plugs in the car within 5 minutes from the moment they exits the car. Otherwise the discount is not applied.
 		\end{description}
-		
-		
-		
+
 	\subsubsection{Use case 5: Retrieving a car with user input}
 		\begin{description}
 			\item[Name] Retrieving a car
@@ -158,3 +156,40 @@
 			\end{itemize}
 			\item[Special Requirements] None.
 		\end{description}
+
+	\subsubsection{Use case 6: Manually assist a parked car}
+	\begin{description}
+		\item[Name] Manually assist a car
+		\item[Actors] \hfill
+			\begin{description}
+				\item[Admin] The administrator who sends the operator.
+				\item[Operator] The operator sent to recover the car.
+				\item[Car] The car in use.
+			\end{description}
+		\item[Entry condition] The administrator is notified by the system that a parked car needs manual assistance.
+		\item[Flow of events] \hfill
+			\begin{enumerate}
+				\item The admin checks the issue the system is displaying. It can be one of the following:
+					\begin{itemize}
+						\item the car is in a safe area without enough power charge to be used;
+						\item the car is in a recharging area without the plug inserted.
+					\end{itemize}
+				\item The admin assigns the maintenance work to an operator.
+				\item The operator accepts the assignment and the admin is notified of it.
+				\item When available, the operator performs the _maintenance operation_ (see below).
+				% FIXME should he notify also the beginning of the maintenance?
+				\item The operator checks the assignment as completed.
+			\end{enumerate}
+		\item[Exit condition] The maintenance activity has been performed and the admin is notified of the completion.
+		\item[Exceptions] \hfill
+			\begin{itemize}
+				\item \textbf{The operator cannot is not able to the maintenance.} The assignment is marked as _not completed_, the cause is inserted into the system. The admin will be notified of it and will either assign the problem to another operator or manage it without the help of the system. The assignment will be anyway closed at the end of this process.
+			\end{itemize}
+		\item[Special Requirements] The operator cannot refuse an assignment and always accept it within a working day. % FIXME this can't hold: what if he's sick?..
+		The operator always marks the assignment as either _completed_ or _not completed_ before the end of the workday.
+	\end{description}
+	In the previous use case we refer to _maintenance operation_ as to one of the following:
+	\begin{itemize}
+		\item \textbf{Issue}: the car is in a safe area without enough power charge to be used. \textbf{Maintenance operation}: the car is towed to a recharging area and plugged into the power grid once there.
+		\item \textbf{Issue}: the car is in a recharging area without the plug inserted. \textbf{Maintenance operation}: the car is plugged into the power grid.
+	\end{itemize}
