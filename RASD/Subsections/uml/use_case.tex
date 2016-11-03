@@ -123,9 +123,9 @@
 		
 		
 		
-	\subsubsection{Use case 5: Retrieving a car with user input}
+	\subsubsection{Use case 5: Retrieve a car with user input}
 		\begin{description}
-			\item[Name] Retrieving a car
+			\item[Name] Retrieve a car
 			\item[Actors] \hfill
 			\begin{description}
 				\item[User] The user of the car.
@@ -138,20 +138,19 @@
 				\item The user enters the app from their smartphone and manually notifies the malfunction.
 				\item The system asks the user to fill a form with the information needed.
 				\item The system locates the car.
-				\item The system analyses the user's form and decides only one operator is needed.
-				\item The system notifies the operator of the car's location.
-				\item The operator drives the truck to the car's location.
-				\item The operator checks the car on site.
-				\item The operator loads the car on the truck.
-				\item The operator drives the car away to be repaired.
-				\item The system notifies the user of the annulment of all charges. %DISCUSS
+				\item The system analyses the user's form and decides how many operatos are needed
+				\item The system notifies the operators of the car's location and asks them to retrieve the car.
+				\item The operators drive the truck to the car's location.
+				\item The operators check the car on site.
+				\item The operators loads the car on the truck and drives it away to be repaired.
+				\item The system notifies the user of the annulment of all charges.
 				\item The system asks the user if he wants to reserve another car.
 			\end{enumerate}
 			\item[Exit condition] The operator brings the car in to be repaired; the user doesn't pay anything and is offered another car.
 			\item[Exceptions] \hfill
 			\begin{itemize}
-				\item \textbf{Wrong information by the user} The user fills the form with wrong information.
-				\item \textbf{No other cars available} There is no other available car in a 1 km radius from the user's location.
+				\item \textbf{The user fills the form with wrong information} The field operators report this as soon as they arrive at the location and alert the system. The operators decide whether to have the user pay the fare anyway (if they inconvenienced the operators for naught) or not and notify the system. The system charges the user accordingly.
+				\item \textbf{There are no cars available nearby} The system alerts the user that there are no available cars in a 1km radius. The system then asks the user if they want to increase the radius of the search or to cancel it.
 				\item \textbf{System knows of the malfunction} The system already knows of the malfunction %FIXIT is this an exception???
 				\item \textbf{Not safely parked} The car is not safely parked.
 				\item \textbf{Car impossible to reach} The operator cannot reach the car in its location.
