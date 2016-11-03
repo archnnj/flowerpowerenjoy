@@ -149,11 +149,11 @@
 			\begin{itemize}
 				\item \textbf{The user fills the form with wrong information} The field operators report this as soon as they arrive at the location and alert the system. The operators decide whether to have the user pay the fare anyway (if they inconvenienced the operators for naught) or not and notify the system. The system charges the user accordingly.
 				\item \textbf{There are no cars available nearby} The system alerts the user that there are no available cars in a 1km radius. The system then asks the user if they want to increase the radius of the search or to cancel it.
-				\item \textbf{System knows of the malfunction} The system already knows of the malfunction %FIXIT is this an exception???
-				\item \textbf{Not safely parked} The car is not safely parked.
-				\item \textbf{Car impossible to reach} The operator cannot reach the car in its location.
+				\item \textbf{The system knows of the malfunction} The system already knows of the malfunction %FIXIT is this an exception???
+				\item \textbf{The car isn't safely parked} The user ticks a box in the form to inform the system of the unsafe parking. The system looks for a safe place to park nearby and notifies the operators. The operators park there and reach the car on foot to check on it. If the car needs to be transported, the operators alert the local police. 
+				\item \textbf{The car is impossible to reach} The operators cannot reach the car in its location. The operators notify the system. The system alerts the local police. 
 			\end{itemize}
-			\item[Special Requirements] None.
+			\item[Special Requirements] The operators must reach the car in 30 minutes time at most.
 		\end{description}
 
 	\subsubsection{Use case 6: Manually assist a parked car}
