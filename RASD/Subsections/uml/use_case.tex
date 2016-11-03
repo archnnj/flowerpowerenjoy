@@ -192,3 +192,41 @@
 		\item \textbf{Issue}: the car is in a safe area without enough power charge to be used. \textbf{Maintenance operation}: the car is towed to a recharging area and plugged into the power grid once there.
 		\item \textbf{Issue}: the car is in a recharging area without the plug inserted. \textbf{Maintenance operation}: the car is plugged into the power grid.
 	\end{itemize}
+	
+	
+	%FIXIT: draft
+	\subsubsection{Use case 7: Manage infractions}
+	\begin{description}
+		\item[Name] Manage infractions
+		\item[Actors] \hfill
+			\begin{description}
+				\item[Admin] The system administrator.
+				\item[Police] The local law enforcement.
+				\item[User] The user responsible for the infraction.
+			\end{description}
+		\item[Entry conditions] The company receives by mail the notification of the infraction.
+		\item[Flow of events] \hfill
+			\begin{enumerate}
+				\item The admin logs into the system and inserts the license plate and the time of the infraction to find the responsible user.
+				\item The system shows the name of the user.
+				\item The admin makes a copy of the infraction notice, and then forwards it to the user's address.
+				\item The admin notifies the police of the identity of the driver at the time the infraction was made and asks them to notify the company when the driver has paid the fine.
+				\item The admin decides whether the offense is considered \textit{severe} or not. Severe offenses are:
+					\begin{itemize}
+						\item Exceed the speed limit by more than 40 kmph.
+						\item Driving under the influence (DUI).
+						\item Causing accidents %?????
+					\end{itemize}
+					Everything else (i.e. parking tickets, speed tickets under the 40 kmph limit) is not considered a severe offense.
+				\item Based on the gravity of the offense, the admin either bans the user (if the infraction is severe) or notifies him of the infraction.
+				\item The user receives the notification of the infraction via physical mail and goes to the police station to accept responsibility for it.
+				\item The police notifies the company of the concluded procedure.
+			\end{enumerate}
+		\item[Exit conditions] The legal procedure has been closed and the user has taken full responsibility.
+		\item[Exceptions] \hfill
+			\begin{itemize} %TODO
+				\item \textbf{The user refuses to take responsibility}
+				\item \textbf{The address provided by the user is wrong}
+				\item \textbf{The infraction causes the user to lose their license}
+			\end{itemize}
+	\end{description}
