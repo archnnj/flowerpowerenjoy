@@ -157,76 +157,76 @@
 		\end{description}
 
 	\subsubsection{Use case 6: Manually assist a parked car}
-	\begin{description}
-		\item[Name] Manually assist a car
-		\item[Actors] \hfill
-			\begin{description}
-				\item[Admin] The administrator who sends the operator.
-				\item[Operator] The operator sent to recover the car.
-				\item[Car] The car in use.
-			\end{description}
-		\item[Entry condition] The administrator is notified by the system that a parked car needs manual assistance.
-		\item[Flow of events] \hfill
-			\begin{enumerate}
-				\item The admin checks the issue the system is displaying. It can be one of the following:
-					\begin{itemize}
-						\item the car is in a safe area without enough power charge to be used;
-						\item the car is in a recharging area without the plug inserted.
-					\end{itemize}
-				\item The admin assigns the maintenance work to an operator.
-				\item The operator accepts the assignment and the admin is notified of it.
-				\item When available, the operator performs the \textit{maintenance operation} (see below).
-				% FIXME should he notify also the beginning of the maintenance?
-				\item The operator checks the assignment as completed.
-			\end{enumerate}
-		\item[Exit condition] The maintenance activity has been performed and the admin is notified of the completion.
-		\item[Exceptions] \hfill
-			\begin{itemize}
-				\item \textbf{The operator cannot is not able to the maintenance.} The assignment is marked as \textit{not completed}, the cause is inserted into the system. The admin will be notified of it and will either assign the problem to another operator or manage it without the help of the system. The assignment will be anyway closed at the end of this process.
-			\end{itemize}
-		\item[Special Requirements] The operator cannot refuse an assignment and always accept it within a working day. % FIXME this can't hold: what if he's sick?..
-		The operator always marks the assignment as either \textit{completed} or \textit{not completed} before the end of the workday.
-	\end{description}
-		In the previous use case we refer to \textit{maintenance operation} as to one of the following:
-	\begin{itemize}
-		\item \textbf{Issue}: the car is in a safe area without enough power charge to be used. \textbf{Maintenance operation}: the car is towed to a recharging area and plugged into the power grid once there.
-		\item \textbf{Issue}: the car is in a recharging area without the plug inserted. \textbf{Maintenance operation}: the car is plugged into the power grid.
-	\end{itemize}
+		\begin{description}
+			\item[Name] Manually assist a car
+			\item[Actors] \hfill
+				\begin{description}
+					\item[Admin] The administrator who sends the operator.
+					\item[Operator] The operator sent to recover the car.
+					\item[Car] The car in use.
+				\end{description}
+			\item[Entry condition] The administrator is notified by the system that a parked car needs manual assistance.
+			\item[Flow of events] \hfill
+				\begin{enumerate}
+					\item The admin checks the issue the system is displaying. It can be one of the following:
+						\begin{itemize}
+							\item the car is in a safe area without enough power charge to be used;
+							\item the car is in a recharging area without the plug inserted.
+						\end{itemize}
+					\item The admin assigns the maintenance work to an operator.
+					\item The operator accepts the assignment and the admin is notified of it.
+					\item When available, the operator performs the \textit{maintenance operation} (see below).
+					% FIXME should he notify also the beginning of the maintenance?
+					\item The operator checks the assignment as completed.
+				\end{enumerate}
+			\item[Exit condition] The maintenance activity has been performed and the admin is notified of the completion.
+			\item[Exceptions] \hfill
+				\begin{itemize}
+					\item \textbf{The operator cannot is not able to the maintenance.} The assignment is marked as \textit{not completed}, the cause is inserted into the system. The admin will be notified of it and will either assign the problem to another operator or manage it without the help of the system. The assignment will be anyway closed at the end of this process.
+				\end{itemize}
+			\item[Special Requirements] The operator cannot refuse an assignment and always accept it within a working day. % FIXME this can't hold: what if he's sick?..
+			The operator always marks the assignment as either \textit{completed} or \textit{not completed} before the end of the workday.
+		\end{description}
+			In the previous use case we refer to \textit{maintenance operation} as to one of the following:
+		\begin{itemize}
+			\item \textbf{Issue}: the car is in a safe area without enough power charge to be used. \textbf{Maintenance operation}: the car is towed to a recharging area and plugged into the power grid once there.
+			\item \textbf{Issue}: the car is in a recharging area without the plug inserted. \textbf{Maintenance operation}: the car is plugged into the power grid.
+		\end{itemize}
 	
 	
 	%FIXIT: draft
 	\subsubsection{Use case 7: Manage infractions}
-	\begin{description}
-		\item[Name] Manage infractions
-		\item[Actors] \hfill
-			\begin{description}
-				\item[Admin] The system administrator.
-				\item[Police] The local law enforcement.
-				\item[User] The user responsible for the infraction.
-			\end{description}
-		\item[Entry conditions] The company receives by mail the notification of the infraction.
-		\item[Flow of events] \hfill
-			\begin{enumerate}
-				\item The admin logs into the system and inserts the license plate and the time of the infraction to find the responsible user.
-				\item The system shows the name of the user.
-				\item The admin makes a copy of the infraction notice, and then forwards it to the user's address.
-				\item The admin notifies the police of the identity of the driver at the time the infraction was made and asks them to notify the company when the driver has paid the fine.
-				\item The admin decides whether the offense is considered \textit{severe} or not. Severe offenses are:
-					\begin{itemize}
-						\item Exceed the speed limit by more than 40 kmph.
-						\item Driving under the influence (DUI).
-						\item Causing accidents %?????
-					\end{itemize}
-					Everything else (i.e. parking tickets, speed tickets under the 40 kmph limit) is not considered a severe offense.
-				\item Based on the gravity of the offense, the admin either bans the user (if the infraction is severe) or notifies him of the infraction.
-				\item The user receives the notification of the infraction via physical mail and goes to the police station to accept responsibility for it.
-				\item The police notifies the company of the concluded procedure.
-			\end{enumerate}
-		\item[Exit conditions] The legal procedure has been closed and the user has taken full responsibility.
-		\item[Exceptions] \hfill
-			\begin{itemize} %TODO
-				\item \textbf{The user refuses to take responsibility}
-				\item \textbf{The address provided by the user is wrong}
-				\item \textbf{The infraction causes the user to lose their license}
-			\end{itemize}
-	\end{description}
+		\begin{description}
+			\item[Name] Manage infractions
+			\item[Actors] \hfill
+				\begin{description}
+					\item[Admin] The system administrator.
+					\item[Police] The local law enforcement.
+					\item[User] The user responsible for the infraction.
+				\end{description}
+			\item[Entry conditions] The company receives by mail the notification of the infraction.
+			\item[Flow of events] \hfill
+				\begin{enumerate}
+					\item The admin logs into the system and inserts the license plate and the time of the infraction to find the responsible user.
+					\item The system shows the name of the user.
+					\item The admin makes a copy of the infraction notice, and then forwards it to the user's address.
+					\item The admin notifies the police of the identity of the driver at the time the infraction was made and asks them to notify the company when the driver has paid the fine.
+					\item The admin decides whether the offense is considered \textit{severe} or not. Severe offenses are:
+						\begin{itemize}
+							\item Exceed the speed limit by more than 40 kmph.
+							\item Driving under the influence (DUI).
+							\item Causing accidents %?????
+						\end{itemize}
+						Everything else (i.e. parking tickets, speed tickets under the 40 kmph limit) is not considered a severe offense.
+					\item Based on the gravity of the offense, the admin either bans the user (if the infraction is severe) or notifies him of the infraction.
+					\item The user receives the notification of the infraction via physical mail and goes to the police station to accept responsibility for it.
+					\item The police notifies the company of the concluded procedure.
+				\end{enumerate}
+			\item[Exit conditions] The legal procedure has been closed and the user has taken full responsibility.
+			\item[Exceptions] \hfill
+				\begin{itemize} %TODO
+					\item \textbf{The user refuses to take responsibility}
+					\item \textbf{The address provided by the user is wrong}
+					\item \textbf{The infraction causes the user to lose their license}
+				\end{itemize}
+		\end{description}
