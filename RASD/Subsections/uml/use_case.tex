@@ -10,12 +10,12 @@
 				\begin{description}
 					\item[User] The user who wants to reserve a car.
 				\end{description}
-			\item[Entry condition] The user decides to reserve a car to take in the next hour.
+			\item[Entry condition] The user decides to reserve a car to take within the next hour.
 			\item[Flow of events] \hfill
 				\begin{enumerate}
-					\item The user logs in into the mobile app and goes to the reservation section. \item The system automatically retrieves and displays the location of the user, but they can specify a different location if needed.
+					\item The user logs in into the mobile app and goes to the reservation section. \item The system automatically retrieves and displays the location of the user, but the user can specify a different location if needed.
 					\item The system displays the position of the available cars close to the selected location.
-					\item The user selects a car and confirm the reservation.
+					\item The user selects a car and confirms the reservation.
 				\end{enumerate}
 			\item[Exit condition] The system reserves the car for the user.
 			\item[Exceptions] \hfill
@@ -118,9 +118,10 @@
 			\begin{itemize}
 				\item \textbf{The user does not plug the car into the power grid.} The user is charged as if they parked in a safe area.
 			\end{itemize}
-			\item[Special Requirements] The user plugs in the car within 5 minutes from the moment they exits the car. Otherwise the discount is not applied.
+			\item[Special Requirements] The user plugs in the car within 10 minutes from the moment they exits the car. Otherwise the discount is not applied.
 		\end{description}	
 		
+	% FIXME in contrast with new policies and replicated by mistake by Use case 9 and 10 --> should we remove/merge it?
 	\subsubsection{Use case 5: Retrieve a car with user input}
 		\begin{description}
 			\item[Name] Retrieve a car
