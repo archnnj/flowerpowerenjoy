@@ -5,9 +5,39 @@ We assume that all domain properties stipulated in paragraph 1.6 hold. Thus we c
 For each goal, we derive the following requirements:
 
 \begin{itemize}
-	\item [G1]
+	\item [G1] Registration of a guest to the system.%\textbf{G1} Guest are able to register to the System. Each guest must fill a profile to become a user.
 		\begin{itemize}
-			\item goal
+			\item The system has to allow any person to sign up. %FIXME only from website: must say here?
+		\end{itemize}
+	\item [G2] Access to the system %\textbf{G2} To complete the procedure of registration the system sends a password to the guest as an access key.
+		\begin{itemize}
+			\item The system has to send a newly generated password to the user via email when prompted by the admin.
+			\item The system must be able to check whether a password is correct or not.
+			\item The system must let the user log in only if the password is correct. 
+		\end{itemize}
+	\item [G3] Finding cars % \item \textbf{G3} The system enables the registered user to find the locations of an available car within a certain distance from the user's location or from a specified address.
+		\begin{itemize}
+			\item The system must be able to locate the user through their smartphone's GPS.
+			\item The system must be able to find a specific address in its map. %FIXME horridly put.
+			\item The system must be able to find parking areas in a given area of the map. 
+			\item The system must be able to identify available cars inside parking areas.
+			\item The system must let users see whether there are available cars in a specified radius. 
+		\end{itemize}
+	\item [G4] Reservation of a car %The system enables user to reserve a single available car in a certain geographical region for one hour before the user picks it up.
+		\begin{itemize}
+			\item The system must allow users to reserve an available car.
+			\item The cars cannot be reserved by more than one user at any given time.
+			\item The system must keep the current reservation standing until the user has opened the car or an hour has passed.
+		\end{itemize}
+	\item [G5] Fine for not picking up a reserved car. % If the reserved car is not picked up within one hour from the reservation time, the reservation expires and the system tag this car as available. The system charges user a fee of 1 EUR. 
+		\begin{itemize}
+			\item The system must be able to cancel reservations.
+			%TODO others?????
+		\end{itemize}
+	\item [G6] Opening a car %When the user tells the system that he's near the reserved car, the system unlocks the car to let the user enter.  
+		\begin{itemize}
+			\item The system should be able to detect when a user is near a reserved car throught the car's Bluetooth system.
+			\item The system should be able to unlock a specific car.
 		\end{itemize}
 \end{itemize}
 
