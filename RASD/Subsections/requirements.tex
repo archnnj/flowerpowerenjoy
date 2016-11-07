@@ -4,6 +4,50 @@ We assume that all domain properties stipulated in paragraph 1.6 hold. Thus we c
 
 For each goal, we derive the following requirements:
 
+
+%VERY HIGH LEVEL
+
+\begin{itemize}
+	\item [G1] The system allows guests to register; to complete the registration procedure the system sends a password to the guest as an access key. 
+		\begin{itemize}
+			\item The system has to allow any person to sign up from the PowerEnJoy website.
+			\item The system has to send a newly generated password to the user via email when prompted by the admin.
+			\item The system must be able to check whether a password is correct or not.
+			\item The system must let the user log in only if the password is correct. 		
+		\end{itemize}
+	\item [G2] The system should enable a registered user to find the location of an available car near a given location, reserve it and use it for a predefined amount of money per minute. 
+		\begin{itemize}
+			\item The system must be able to locate the user through their smartphone's GPS.
+			\item The system must be able to find a specific address in its map. %FIXME horridly put.
+			\item The system must be able to find parking areas in a given area of the map. 
+			\item The system must be able to identify available cars inside parking areas.
+			\item The system must let users see whether there are available cars in a specified radius. 
+			\item The system must allow users to reserve an available car.
+			\item The cars cannot be reserved by more than one user at any given time.
+			\item The system must keep the current reservation standing until the user has opened the car or an hour has passed.
+			\item The system must be able to cancel reservations.
+			\item The system must fine a user a 1 EUR fee if they reserve a car and then they don't come and pick it up.
+			\item The system should be able to detect when a user is near a reserved car throught the car's Bluetooth system.
+			\item The system should be able to automatically unlock a specific car.
+			\item The system should be able to automatically lock a specific car once the driver (=user) has parked it in a safe area and has gotten out.
+			\item The system should allow the user exit, lock and unlock the car manually while still being charged.
+			%these are endless...
+		\end{itemize}
+	\item [G3] The system should encourage good user behaviour and discourage bad behaviour through the application of discounts and sanctions to the fee per minute. 
+	\item [G4] The system should aid the people working at PowerEnJoy in the execution of their jobs by keeping a channel of communication open between them and the users for emergencies and by keeping track of all activities of its cars.  
+\end{itemize}
+
+
+
+
+
+
+
+
+
+%VERY LOW LEVEL
+%not finished
+
 \begin{itemize}
 
 	%Pat's goals
