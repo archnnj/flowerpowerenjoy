@@ -39,6 +39,32 @@ For each goal, we derive the following requirements:
 			\item The system should be able to detect when a user is near a reserved car throught the car's Bluetooth system.
 			\item The system should be able to unlock a specific car.
 		\end{itemize}
+	\item [G7] Charging fees to the user %The system charges the user for a predefined amount of money per minute.
+		\begin{itemize}
+			\item The system must be able to calculate the fee to charge the user.
+			\item The system should notify the user of the fee per minute he's being charged.
+		\end{itemize}
+	\item [G8] Starting charging %The system starts charging the user as soon as the car ignites.
+		\begin{itemize}
+			\item The system must be able to tell when the car has ignited. 
+			\item The system should start counting the charges from the ignition onward. %FIXME horridly put and don't know if a requirement.
+		\end{itemize}
+	\item [G9] Ending charging %The system stops charging the user when the car is parked in a safe area and the user exits the car. The user must confirm the operation, otherwise the system keeps charging them. 
+		\begin{itemize}
+			\item The system must be able to tell when the car is parked in a safe area.
+			\item The system must be able to detect whether the driver is still in the car.
+			\item The system must ask the user whether they wish to end the ride or not; if they decide so, the system should stop charging them, otherwise it should keep doing so. 
+		\end{itemize}
+	\item [G10] Notification of the current charges %A screen on the car notifies the user of the current charges.
+		\begin{itemize}
+			\item The system must calculate the charges in real time and show them onscreen. %DAMMIT this is heinous. 
+		\end{itemize}
+	\item [G11] Locking a car %The system locks the car automatically when the user exits the car inside a safe area.
+		\begin{itemize}
+			\item The system should be able to lock a specific car without user input. %FIXME is "without user input" correct?
+			%all other points (inside safe area and user still inside) already written in [G9]
+		\end{itemize}
+	\item [G12] 
 \end{itemize}
 
 
