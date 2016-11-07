@@ -53,18 +53,33 @@ For each goal, we derive the following requirements:
 		\begin{itemize}
 			\item The system must be able to tell when the car is parked in a safe area.
 			\item The system must be able to detect whether the driver is still in the car.
-			\item The system must ask the user whether they wish to end the ride or not; if they decide so, the system should stop charging them, otherwise it should keep doing so. 
+			\item The system must ask the user whether they wish to end the ride or not as soon as they are parked in a safe area and have exited the car; if they decide so, the system should stop charging them, otherwise it should keep doing so. 
 		\end{itemize}
 	\item [G10] Notification of the current charges %A screen on the car notifies the user of the current charges.
 		\begin{itemize}
-			\item The system must calculate the charges in real time and show them onscreen. %DAMMIT this is heinous. 
+			\item The system must calculate the charges in real time. %DAMMIT this is heinous. 
+			\item The system should show the current charges onscreen. 
 		\end{itemize}
 	\item [G11] Locking a car %The system locks the car automatically when the user exits the car inside a safe area.
 		\begin{itemize}
 			\item The system should be able to lock a specific car without user input. %FIXME is "without user input" correct?
 			%all other points (inside safe area and user still inside) already written in [G9]
 		\end{itemize}
-	\item [G12] 
+	\item [G12] %not sure if a goal after all
+	\item [G13] Time window %If the user has chosen to stop being charged, the system keeps a 10–minutes window of time when they are allowed to re-open the car if it has not already been reserved by someone else.
+		\begin{itemize}
+			\item The system must allow the last user who has driven a car to unlock and open it within a 10-minutes window and if and only if the car has not already been reserved by someone else.
+			\item The system must not allow more than one user at a time to open a car.
+		\end{itemize}
+	\item [G14] Parking areas %The set of safe parking areas is pre–defined by the management system.
+		\begin{itemize}
+			\item The system must know the location of all parking areas at any given time. 
+		\end{itemize}
+	\item [G15] Passenger's discount %The system allows the user to earn a 10\% discount for the current ride if there are at least two other passengers in the car.
+		\begin{itemize}
+			\item The system must be able to detect how many passengers are in the car through specific sensors.
+			\item The system must be able to apply a discount to every ride where there are two or more passengers in the car.
+		\end{itemize}
 \end{itemize}
 
 
