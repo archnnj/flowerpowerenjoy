@@ -92,6 +92,16 @@ For each goal, we derive the following requirements:
 	%Poe's goals
 	
 	\item [G16] Discount for power charge %The system applies a 20\% discount on the current ride if the car is returned by the user with more than 50\% of power charge.
+		\begin{itemize}
+			\item The system must be able to apply a discount on every ride when the car has more than 50\% of power charge by the end of the ride. %FIXME horridly put
+			\item The system must be able to collect data about the power charge of any car.
+		\end{itemize}
+	\item [G17] Discount for plugging the car to the power grid %If a user returns a car to a recharging safe area and plugs it into the power grid, the system applies a 30\% discount on his current ride.
+		\begin{itemize}
+			\item The system must be able to discern whether a car is currently plugged in to the power grid and is being recharged.
+			\item The system must be able to apply a discount on every ride if the user plugs the car in the power grid as soon as they're finished. %FIXME: 10 minutes window? Change the goal? 
+		\end{itemize}
+	\item [G18] Sanction for distance %The system applies a 30\% sanction on the current ride if the car is returned in a safe area at more than 3 km from the nearest recharging safe area.
 \end{itemize}
 
 
