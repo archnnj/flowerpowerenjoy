@@ -152,8 +152,8 @@ For each goal, we derive the following requirements:
 
 \subsection{Non-functional requirements}
 	\subsubsection{User interface}
-	The interface of our application is thought to be used mainly via mobile app, with some content also displayed in a web page. The team reasoned that the main functionalities of the system (such as reserving and managing a car) make sense only in a \textit{movable} context (meaning, such that the user can do them anywhere they have an internet connection). Those functionalities are available on the mobile app. On the other hand, operations such as signing up are more easily managed in front of a computer, so the web page allows users to register, login and manage their profiles (which they can do also via mobile app anyway). \\
-	We pondered on the possibility of adding the possibility of reserving a car via web browser. However, upon consideration, we decided it is not a good mechanism: with that functionality, a user could very well be registered without having downloaded the app and reserving a car without being able to access it in any way. Hence, the reservation of \textit{PowerEnJoy} cars can be made only via mobile app. 
+	\paragraph{}The interface of our application is thought to be used mainly via mobile app, with some content also displayed in a web page. The team reasoned that the main functionalities of the system (such as reserving and managing a car) make sense only in a \textit{movable} context (meaning, such that the user can do them anywhere they have an internet connection). Those functionalities are available on the mobile app. On the other hand, operations such as signing up are more easily managed in front of a computer, so the web page allows users to register, login and manage their profiles (which they can do also via mobile app anyway).
+	\paragraph{}We pondered on the possibility of adding the possibility of reserving a car via web browser. However, upon consideration, we decided it is not a good mechanism: with that functionality, a user could very well be registered without having downloaded the app and reserving a car without being able to access it in any way. Hence, the reservation of \textit{PowerEnJoy} cars can be made only via mobile app. 
 	
 	\paragraph{Mobile app}\mbox{}\\
 	
@@ -174,4 +174,29 @@ For each goal, we derive the following requirements:
 		\label{fig:image1}
 	\end{figure}
 	
-	Image 1 shows the first page that is shown when entering the app. Picture 1.a is the guest view, who has only the possibility of either logging in or registering in the system. Picture 1.b shows the user view. The user has more functionalities: they can look for cars in their vicinity or near an address, see and edit their profile, and changing settings (notification and sound settings). 
+	\paragraph{} Figure 1 shows the first page that is shown when entering the app. Picture 1.a is the guest view, who has only the possibility of either logging in or registering in the system. Picture 1.b shows the user view. The user has more functionalities: they can look for cars in their vicinity or near an address, see and edit their profile, and changing settings (notification and sound settings). 
+	
+	\begin{figure}[h]
+ 
+		\begin{subfigure}{0.3\textwidth}
+			\includegraphics[scale=0.25]{img/mockups/User_reservation.png}
+			\caption{View for the reservation}
+			\label{fig:subim1}
+		\end{subfigure}
+		\begin{subfigure}{0.3\textwidth}
+			\includegraphics[scale=0.25]{img/mockups/User_parking_areas.png}
+			\caption{View after having selected a parking area}
+			\label{fig:subim2}
+		\end{subfigure}
+		\begin{subfigure}{0.3\textwidth}
+			\includegraphics[scale=0.25]{img/mockups/User_driving.png}
+			\caption{Display of the app while using a car}
+			\label{fig:subim2}
+		\end{subfigure}
+ 		
+		
+		\caption{Mobile app: main functionalities}
+		\label{fig:image1}
+	\end{figure}
+	
+	\paragraph{} Figure 2 shows the main functionalities of the \textit{PowerEnJoy}'s app: reserving a car (2.a and 2.b) and what you can do while using a car (2.c). 
