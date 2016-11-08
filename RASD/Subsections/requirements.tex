@@ -152,3 +152,24 @@ For each goal, we derive the following requirements:
 
 \subsection{Non-functional requirements}
 	\subsubsection{User interface}
+	The interface of our application is thought to be used mainly via mobile app, with some content also displayed in a web page. The team reasoned that the main functionalities of the system (such as reserving and managing a car) make sense only in a \textit{movable} context (meaning, such that the user can do them anywhere they have an internet connection). Those functionalities are available on the mobile app. On the other hand, operations such as signing up are more easily managed in front of a computer, so the web page allows users to register, login and manage their profiles (which they can do also via mobile app anyway). \\
+	We pondered on the possibility of adding the possibility of reserving a car via web browser. However, upon consideration, we decided it is not a good mechanism: with that functionality, a user could very well be registered without having downloaded the app and reserving a car without being able to access it in any way. Hence, the reservation of \textit{PowerEnJoy} cars can be made only via mobile app. 
+	
+	\paragraph{Mobile app}\mbox{}\\
+	
+	\begin{figure}[h]
+ 
+		\begin{subfigure}{0.5\textwidth}
+			\includegraphics[scale=0.35]{img/mockups/App_guest.png}
+			\caption{Guest view}
+			\label{fig:subim1}
+		\end{subfigure}
+		\begin{subfigure}{0.5\textwidth}
+			\includegraphics[scale=0.35]{img/mockups/App_user.png}
+			\caption{User view}
+			\label{fig:subim2}
+		\end{subfigure}
+ 
+		\caption{Mobile app: home page view}
+		\label{fig:image1}
+	\end{figure}
