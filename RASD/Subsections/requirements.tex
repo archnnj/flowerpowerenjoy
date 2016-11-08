@@ -1,41 +1,90 @@
 
 \subsection{Functional requirements}
-We assume that all domain properties stipulated in paragraph 1.6 hold. Thus we can derive the following functional requirements in order to fulfill the goals listed in paragraph 1.5.
+We assume that all domain properties stipulated in paragraph 1.6 hold. We decided to use a \textit{goal-driven} method to structure our requirements, meaning that we decomposed the high-level goals of paragraph 1.5 into low-level requirements.
+Some of these requirements stem directly from the requests of our clients, while others are born from the necessity to have a sound system.
 
 For each goal, we derive the following requirements:
 
 
-%VERY HIGH LEVEL
-
+%MEDIUM LEVEL
 \begin{itemize}
-	\item [G1] The system allows guests to register; to complete the registration procedure the system sends a password to the guest as an access key. 
-		\begin{itemize}
-			\item The system has to allow any person to sign up from the PowerEnJoy website.
-			\item The system has to send a newly generated password to the user via email when prompted by the admin.
-			\item The system must be able to check whether a password is correct or not.
-			\item The system must let the user log in only if the password is correct. 		
-		\end{itemize}
-	\item [G2] The system should enable a registered user to find the location of an available car near a given location, reserve it and use it for a predefined amount of money per minute. 
-		\begin{itemize}
-			\item The system must be able to locate the user through their smartphone's GPS.
-			\item The system must be able to find a specific address in its map. %FIXME horridly put.
-			\item The system must be able to find parking areas in a given area of the map. 
-			\item The system must be able to identify available cars inside parking areas.
-			\item The system must let users see whether there are available cars in a specified radius. 
-			\item The system must allow users to reserve an available car.
-			\item The cars cannot be reserved by more than one user at any given time.
-			\item The system must keep the current reservation standing until the user has opened the car or an hour has passed.
-			\item The system must be able to cancel reservations.
-			\item The system must fine a user a 1 EUR fee if they reserve a car and then they don't come and pick it up.
-			\item The system should be able to detect when a user is near a reserved car throught the car's Bluetooth system.
-			\item The system should be able to automatically unlock a specific car.
-			\item The system should be able to automatically lock a specific car once the driver (=user) has parked it in a safe area and has gotten out.
-			\item The system should allow the user exit, lock and unlock the car manually while still being charged.
-			%these are endless...
-		\end{itemize}
-	\item [G3] The system should encourage good user behaviour and discourage bad behaviour through the application of discounts and sanctions to the fee per minute. 
-	\item [G4] The system should aid the people working at PowerEnJoy in the execution of their jobs by keeping a channel of communication open between them and the users for emergencies and by keeping track of all activities of its cars.  
+
+
+				\item [G1] Registration procedure %The system allows guests to register; to complete the registration procedure the system sends a password to the guest as an access key.
+					\begin{itemize}
+						\item The system has to allow any person to sign up.
+						\item The system has to send a newly generated password to the user via email when prompted by the admin.
+						\item The system must be able to check whether a password is correct or not.
+						\item The system must let the user log in only if the password is correct. 
+					\end{itemize}
+				\item [G2] Localization %The system should be able to locate the users once they have given their permission.
+					\begin{itemize}
+						\item The system must be able to locate the user through their smartphone's GPS with sufficient precision.
+						\item The system must locate the user if and only if they have given their permission. 
+					\end{itemize}
+				\item [G3] Finding cars %The system should enable a registered user to find the location of an available car within a certain distance from the user's location or from a specified address.
+					\begin{itemize}
+						\item The system must be able to find any specific address on the city map. %FIXME horridly put.
+						\item The system must be able to find parking areas in a given area of the map. 
+						\item The system must be able to identify available cars inside parking areas.
+						\item The system must let users see whether there are available cars in a specified radius. 
+					\end{itemize}
+				\item [G4] Services provided %The system enables user to reserve a single available car in a certain geographical region for one hour before the user picks it up. If the car is not picked up by that time, the reservation expires, the system tags this car as available again and it charges the user a fine of 1 EUR.
+					\begin{itemize}
+						\item The system must allow users to reserve an available car.
+						\item The cars cannot be reserved by more than one user at any given time.
+						\item The system must keep the current reservation standing until the user has opened the car or an hour has passed.
+						\item The system must be able to autonomously cancel reservations.
+						%TODO others?
+					\end{itemize}
+				\item [G5] Knowledge of the cars %The system should keep track of every activity within the cars of PowerEnJoy, by means of sensors and tracking devices, i.e. location, battery charge, health status, number of passengers. 
+					\begin{itemize}
+						\item The system must be able to locate any car at any given time with sufficient precision.
+						\item The system must be able to detect whether there are passengers inside a car, and how many.
+						\item The system must be able to collect data about the power charge of any of its cars.
+						\item The system must be able to detect when a severe accident has occurred to a car. %too much?
+						\item The system must be able to detect when a user is near a car through the car's (and the user's mobile phone's) bluetooth system.
+						\item The system must be able to tell when a car is parked in a safe area.
+						\item The system must be able to detect when a car is plugged to the power grid.
+						\item The system must be able to detect whether the driver is still in the car.
+					\end{itemize}
+				\item [G6] Control of the cars %The system should be able to command remotely and automatically some of the features of the cars, for example locking and unlocking the doors. 
+					\begin{itemize}
+						\item The system must be able to automatically unlock a car when the user that has reserved it is nearby.
+						\item The system must be able to automatically lock a car when the user has exited it inside a safe area. 
+					\end{itemize}
+				\item [G7] Charges %The system charges the user for a predefined amount of money per minute. A screen on the car notifies the user of the current charges.
+					\begin{itemize}
+						\item The system must be able to calculate the fee to charge the user.
+						\item The system should notify the user of the fee per minute he's being charged through a screen inside the car.
+					\end{itemize}
+				\item [G8] Boundaries of charges %The system starts charging the user as soon as the car ignites. It stops charging them when the car is parked in a safe area and the user exits the car. The user must confirm the operation, otherwise the system keeps charging them. 
+					\begin{itemize}
+						\item The system must be able to tell when the car has ignited. 
+						\item The system should start counting the charges from the ignition onward. %FIXME horridly put and don't know if a requirement.
+						\item The system must ask the user whether they wish to end the ride or not as soon as they are parked in a safe area and have exited the car; if they decide so, the system should stop charging them, otherwise it should keep doing so. 
+					\end{itemize}
+				\item [G9] Discounts and sanctions %The system should encourage good user behaviour and discourage bad behaviour through the application of discounts and sanctions to the fee per minute. 
+					\begin{itemize}
+						\item The system must apply a discount every time a user brings two or more passengers in the car with them.
+						\item The system must apply a discount every time the car has more than 50\% of power charge by the end of the ride. %FIXME horridly put
+						\item The system must be able to apply a discount every time the user plugs the car in the power grid as soon as they're finished using the car. %FIXME: 10 minutes window here?
+						\item The system must apply a sanction every time a car is returned in a safe area at more than 3 km from the nearest recharging safe area.
+						\item The system must apply a sanction every time a car is returned with less than 20\% of power charge.
+						\item The system must provide an option (\textit{money saving}) to get information about the best safe area where the user can leave the car so that an uniform distribution of cars among the city is distributed. 
+						\item The system	 must be able to compute which is the best safe area for a user with \textit{money saving} activated according to their destination and the nature of the safe areas (recharging or not).	 %are the last two clear???			
+						\item The system must apply a discount every time the car is returned in the suggested safe area with the \textit{money saving} option.
+					\end{itemize}
+				\item [G10] Emergency management %The system keeps a channel of communication open between the users and the administrators of the system in case of emergencies. 
+					\begin{itemize}
+						\item The system must always allow a user to notify the back-end administrators if they have a problem with the car.
+						\item The system must be able to locate \textit{PowerEnJoy} operators in order to facilitate their quick dispatch.
+					\end{itemize}
+
 \end{itemize}
+
+
+
 
 
 
@@ -54,7 +103,7 @@ For each goal, we derive the following requirements:
 	
 	\item [G1] Registration of a guest to the system.%\textbf{G1} Guest are able to register to the System. Each guest must fill a profile to become a user.
 		\begin{itemize}
-			\item The system has to allow any person to sign up. %FIXME only from website: must say here?
+			\item The system has to allow any person to sign up. 
 		\end{itemize}
 	\item [G2] Access to the system %\textbf{G2} To complete the procedure of registration the system sends a password to the guest as an access key.
 		\begin{itemize}
