@@ -120,7 +120,7 @@ sig Sanction extends AppliablePercent{
 }
 
 sig Ride {
-	rStatus: one RequestStatus,
+	rStatus: one RideStatus,
 	firstLocation: one Location,
 	lastLocation: one Location,
 	car: one Car	,
@@ -143,6 +143,7 @@ sig Ride {
 sig Reservation {
 	car: one Car,
 	user: one User,
+	ride: one Ride
 	minutes: one Int
 }{
 	minutes>0,
@@ -190,8 +191,12 @@ fact oneWaitingRunningRidePerUser{
 }
 
 fact oneWaitingRunningRidePerCar{
-		no c: Car, r1, r2: Ride | (r1 != r2) and (r1.car = c) and (r2.car = c) and
+	no c: Car, r1, r2: Ride | (r1 != r2) and (r1.car = c) and (r2.car = c) and
 	((r1.rStatus = WAITING or r1.rStatus = RUNNING) and (r2.rStatus = WAITING or r2.rStatus = RUNNING) )
+}
+
+fact noActiveRideNoReservationForBannedUser{
+	all u: User | u.uStatus = BANNED => (no ri: Ride | ri.rStatus = ACTIVE and ri.user = u) and (no re: Reservation | re.user = u)
 }
 
 
