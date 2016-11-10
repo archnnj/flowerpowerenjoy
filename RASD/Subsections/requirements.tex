@@ -13,7 +13,7 @@ For each goal, we derive the following requirements:
 				\item [G1] Registration procedure %The system allows guests to register; to complete the registration procedure the system sends a password to the guest as an access key.
 					\begin{itemize}
 						\item The system has to allow any person to submit only one account request.
-						\item The account is created when an admin validates all the necessary data. %TODO add email with license to the domain properties
+						\item The account is created when an admin validates all the necessary data.
 						\item The system must be able to generate passwords.
 						\item The system has to send a newly generated password to the user via email when the account is created.
 						\item The system must be able to check whether a password is correct or not.
@@ -34,7 +34,7 @@ For each goal, we derive the following requirements:
 					\begin{itemize}
 						\item The system must allow users to reserve an available car.
 						\item The cars cannot be reserved by more than one user at any given time.
-						\item The system must keep the current reservation standing until the user has opened the car or an hour has passed.
+						\item The system must keep the current reservation standing until the user has opened the car or an hour has passed. %FIXME "An hour" -> a predefined time?? This is a parameter!!!
 						\item The system must be able to autonomously cancel reservations.
 						%TODO others?
 					\end{itemize}
@@ -67,6 +67,7 @@ For each goal, we derive the following requirements:
 						\item The system must be able to tell when the car has ignited. 
 						\item The system should start counting the charges from the ignition onward. %FIXME horridly put.
 						\item The system must ask the user whether they wish to end the ride or not as soon as they are parked in a safe area and have exited the car; if they decide so, the system should stop charging them, otherwise it should keep doing so. 
+						\item If the reservation has expired but the user is inside the car (without igniting it), the system must start charging them anyway an exceptional fee per minute. %cfr requirements for G11
 					\end{itemize}
 					
 				\item [G7] Discounts 
@@ -96,7 +97,20 @@ For each goal, we derive the following requirements:
 					\end{itemize}
 					
 				\item [G11] System back-end %The admin should be able to configure some parameters of the system.
-
+					\begin{itemize}
+						\item The system must allow the aministrators to modify parameters that influence the usage of cars. This parameters are:
+							\begin{enumerate}
+								\item The standard fee per minute
+								\item The exceptional fee per minute
+								\item The lost reservation fee
+								\item The fine for leaving an accident site %TODO shouldn't we explain our reasoning for accidents/incidents somewhere??
+								\item Discount percent values
+								\item Sanction percent values
+								\item Time window for reservation fee
+								\item Time window after ending the ride for reopening and pluggin the car.
+							\end{enumerate}
+						\item The system must notify every user when one or more of these parameters change, and the change should enter into force the day after the change. %FIXME is this a requirement?
+					\end{itemize}
 \end{itemize}
 
 
