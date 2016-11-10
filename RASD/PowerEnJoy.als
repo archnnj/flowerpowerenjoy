@@ -27,7 +27,7 @@ sig CreditCard{
 	expDate: one Date,
 	cvv: one Int
 }{
-	cardNumber>0,
+	cardNumber>0
 	cvv>0
 }
 
@@ -52,6 +52,9 @@ sig Admin{
 	controlPanel: one ControlPanel
 }
 
+sig ControlPanel{
+}
+
 sig License{
 	licenseNumber: one Int,
 	issueDate: one Date,
@@ -61,7 +64,7 @@ sig License{
 	issueDate!=expirationDate
 }
 
-sig GenealUser{}
+sig GeneralUser{}
 
 sig Guest extends GeneralUser{	
 }
@@ -85,14 +88,14 @@ sig Car {
 	cReservation: one Reservation,
 	emReport: lone EmergencyReport 
 }{
- 	battery>=0,
+ 	battery>=0
 	battery<=100
 }
 
 sig GeoZone {
 	city: set Location
 }{
-	city>=3
+	#city>=3
 }
 
 sig AppliablePercent{
@@ -117,29 +120,29 @@ sig Ride {
 	lastLocation: one Location,
 	car: one Car	,
 	user: one User,
-	passengers: one Int,
+	passenger: one Int,
 	durationInMins: one Int,
 	chargePerMinute: one Int,
 	moneySavingOption: one Bool,
 	discount: lone Discount,
 	sanction: lone Sanction,
 }{
-	firstLocation != lastLocation,
-	durationInMins>0,
-	chargePerMinute>0,
-	passengers>=0,
-	passenger<=3, 
-	rStatus = ACTIVE => discount = none and sanction = none 
-	rStatus = WAITING <=> one c: Car | c.available = FALSE and c.cRide = this
+	firstLocation != lastLocation
+	durationInMins>0
+	chargePerMinute>0
+	passenger>=0
+	passenger<=3
+	rStatus = RUNNING => discount = none and sanction = none 
+	rStatus = WAITING <=> one c: Car | c.available = False and c.cRide = this
 }
 
 sig Reservation {
 	car: one Car,
 	user: one User,
-	ride: one Ride
+	ride: one Ride,
 	minutes: one Int
 }{
-	minutes>0,
+	minutes>0
 	minutes<=60
 }
 
@@ -154,12 +157,12 @@ sig GeneralParkingArea{
 sig ParkingArea extends GeneralParkingArea{
 }
 
-sig ChargingArea extends ChargingArea{
+sig ChargingArea extends GeneralParkingArea{
 	pluggedCars: set Car
 }
 
 fact licenseAreUnique{
-	all l1, l2 : license | (l1 != l2) => l1.licenseNumber != l2.licenseNumber
+	all l1, l2 : License | (l1 != l2) => l1.licenseNumber != l2.licenseNumber
 }
 
 fact usernameAreUnique{
@@ -188,29 +191,30 @@ fact oneWaitingRunningRidePerCar{
 	((r1.rStatus = WAITING or r1.rStatus = RUNNING) and (r2.rStatus = WAITING or r2.rStatus = RUNNING) )
 }
 
-fact noActiveRideNoReservationForBannedUser{
-	all u: User | u.uStatus = BANNED => (no ri: Ride | ri.rStatus = ACTIVE and ri.user = u) and (no re: Reservation | re.user = u)
-}
-
-/* only one RUNNING ride per user
+/* only one RUNNING ride per car
 * if ride is running => car is not available
 * if car is not available => ride is running */
 fact carInUseNotAvailable{
-	all r: Ride, c: Car | (r.rStatus = RUNNING and r.user = c) => (c.available = FALSE)
-	all c: Car | c.available = FALSE => (one ri: Ride | ri.rStatus = RUNNING and (ri.user = u))
+	all r: Ride, c: Car | (r.rStatus = RUNNING and r.car = c) => (c.available = False)
+	all c: Car | c.available = False => (one ri: Ride | ri.rStatus = RUNNING and (ri.car = c))
 }
 
 fact userHasOnlyOneReservation{
-	no r1 & r2 : Reservation | r1.user = r2.user
+	no disjoint r1, r2 : Reservation | r1.user = r2.user
 }
 
 fact carHasOneReservation{
-	no r1 & r2: Reservation | r1.car=r2.car
+	no disjoint r1, r2: Reservation | r1.car=r2.car
 }
 
 fact noCarForBannedUser{
-	all u: User | u.uStatus = BANNED => (no r:Ride | (r.rStatus = ACTIVE or r.rStatus = WAITING) and r.user =u) and (no re: Reservation | re.user = u  )
+	all u: User | u.uStatus = BANNED => (no r:Ride | (r.rStatus = RUNNING or r.rStatus = WAITING) and r.user =u) and (no re: Reservation | re.user = u  )
 }
+
+pred show(){
+}
+
+run show for 4 but 8 Int 
 
 
 
