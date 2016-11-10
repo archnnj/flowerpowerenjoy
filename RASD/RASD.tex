@@ -1,45 +1,218 @@
 \documentclass{article}
 
+\usepackage[utf8]{inputenc}
 \usepackage{graphicx} % to embed images
+\usepackage{hyperref} % to link the table of contents
+\usepackage{subcaption} %complex images
+\usepackage{placeins} %floating
 
-\title{RASD}
+\title{Requirement Analysis and Specification Document}
 \date{2016-11-13}
 \author{
-	Maddalena Andreoli Andreoni
-	\and
 	Patricia Abbud
+	\and
+	Maddalena Andreoli Andreoni
 	\and
 	Paolo Cudrano
 }
 
 \begin{document}
+	%%% titlepage %%%
 	\begin{titlepage}
-	    \centering
-	    \includegraphics[width=5cm]{img/polimi_logo.png} % also works with logo.pdf
-	    \vfill
-	    {\bfseries\Large
-	        RASD\\
-	        \vskip4cm
-	        Maddalena Andreoli Andreoni\\
-					Patricia Abbud\\
-	        Paolo Cudrano\\
-	    }    
-	    \vfill
-	    \vfill
+		\centering
+		\includegraphics[width=5cm]{img/polimi_logo.png} % also works with logo.pdf
+		\vfill
+		{\bfseries\Large
+			Requirement Analysis and Specification Document\\
+			\vskip4cm
+			Patricia Abbud\\
+			Maddalena Andreoli Andreoni\\
+			Paolo Cudrano\\
+		}
+		\vfill
+		\vfill
 	\end{titlepage}
 
+	%%% table of contents %%%
 	\tableofcontents
-	\newpage	
-  
-  \section{Introduction}
-		\subsection{Description of the given problem}
-
-The system we are going to develop is a car-sharing service called \textit{PowerEnJoy}. The system allows registered users to locate and reserve a car to use.
-		
 	\newpage
-	\begin{appendix}
-	  \listoffigures
-	  \listoftables
-	\end{appendix}
+
+	%%% introduction %%%
+	\section{Introduction}
+		\subsection{Description of the given problem}
+			The system we are going to develop is a car–sharing service called \textit{PowerEnJoy}, based on mobile application and which has a website. The system allows users to locate and reserve a car to drive in their geographical region using mobile application. Geographical region is identified using GPS on user's smartphone, he can also insert it manually. User can drive a car only inside one chosen geographical region. 
+			People in the system are not considered as registered until they fill an online form on the website or on the main page of the mobile application and until their driving license are not checked by the system as valid ones.
+			
+			The main purpose of the system is to be efficient, reliable and easy to use to fulfill the will of users and the customer.  % TODO
+		\subsection{Actual system}
+			There is nothing created until now, and we suppose that we have to create the entire application, depending only on the problem given by the customer. 
+			
+		\subsection{Scope}
+		
+		\subsection{Actors}
+		
+		\begin{itemize}
+			\item Guest: all guests can only see the login page of the application or of the website, where they can complete the registration form to be able to login from mobile application as registered users.
+			
+			\item Registered User: after logging in to the system users can "use" (change this word) the application, where they can see map with available cars, reserve one and get notifications from the system and also can see their profile and make some changes in it.   
+		\end{itemize}  	
+
+		\subsection{Goals}
+		\input{Subsections/goals.tex}
+
+		\subsection{Domain properties}
+		\input{Subsections/domain_properties.tex}
+
+		\subsection{Glossary}
+			\begin{description}
+				\item[User] We will refer to all people who are registered to the system as 'users'. All users have personal profiles which contain the following information:
+				\begin{itemize}
+					\item First name;
+					\item Family name; %FIXIT can we change this to Last name; I think it's more convenient with First name - Poe agrees
+					\item Email;
+					\item Username;
+					\item Password;
+					\item Payment information; this in particular includes:
+						\begin{itemize}
+							% Card owner? We assume it must be personal?
+							\item Credit card number;
+							\item Credit card expiration date;
+							\item CVV number.
+						\end{itemize}
+					\item Driving license information; this in particular includes:
+						\begin{itemize}
+							\item License number;
+							\item Issued date;
+							\item Expiration date;
+							\item Status. % what does this represent?
+						\end{itemize}
+						% TODO Ps: only for italian licenses? should state in assumption which kind of licences we accept I guess
+				\end{itemize}
+				And, optionally:
+				\begin{itemize}		
+					\item Personal photo;
+					\item Telephone number. % I'd make this mandatory, for emergencies or important issues
+				\end{itemize}
+				Users should be able to locate, reserve and drive the cars offered by the service. % like without disabilities? 
+				
+				\item[Guest] We shall call 'guests' all people who are using the interface of the system without being registered or logged in. Guests can't access any functionality of \textit{PowerEnJoy} except for the registration process or the log in. 
+				
+				
+				\item[Parking areas] Also called \textit{Safe areas}, parking areas are predefined parking slots within the municipality that are reserved for the car–sharing system \textit{PowerEnJoy}.
+				\item[Special parking areas], or \textit{recharging areas} are \textit{Parking areas} that provides a plug to recharge the car. Recharging parking areas are a subset of Parking areas (parking areas \textit{may} be recharging areas, while the contrary doesn't apply).
+				% was: are parking slots where the car can be recharged; parking areas and recharging areas do not always coincide: parking areas \textit{may} be recharging areas, while the contrary doesn't apply. %See and change assumptions whatever we decide.
+				
+				%\item[Reservation] We will call 'reservation' the operation of booking a specific car for the sole use of the user who reserved it. Reservations allow the users to %access the car, open it and drive it. %FIXIT I would better say Reserved car
+				\item [Reserved car] We will call 'reserved car' a specific car that is booked by current user,not taken by other users, and is located in the same geographical region as him.
+				
+				\item [Available car] is the car that is not reserved by other users.
+				
+				\item[Power grid] %TODO
+				
+				\item[Standard price] We shall call 'standard price' the price per minute charged to the user, without any discount or sanction applied. 
+				
+				% FIXME check if these are now ok:
+				\item[Discount] A discount is a deduction of a given percentage from the standard price. It is applied every time a user has a virtuous behavior. % A discount always lowers the price per minute charged to a user. It is a negative percentage that is applied every time a user has a virtuous behaviour.
+				\item[Sanction] A sanction is an increase of a given percentage to the standard price. It is applied every time a user has a wasteful or incorrect behavior. % always increases the price per minute charged to a user. It is a positive percentage that is applied every time a user has a wasteful or incorrect behaviour.
+				
+				\item[Money saving option] An option offered to the users by the system. The user inputs their final destination and the system indicates them the best close station where to leave the car.
+				
+				\item[Time Window] %TODO
+			\end{description}
+
+		\subsection{Assumptions}
+		\input{Subsections/assumptions.tex}
+
+		\subsection{Constrains}
+			\subsubsection{Regulatory policies}
+				According to privacy law the system must require to User the permission to get his position and to acquire, store and process his personal data.
+			\subsubsection{Hardware limitations}
+				\begin{itemize}
+				\item Mobile application
+				\begin{itemize}
+				\item Space for app package (30MB)	
+				\item 3G connection
+				\item GPS
+				\end{itemize}
+				\item Website
+				\begin{itemize}
+					\item Modern browser
+				The Website of the service must work with all versions of Google Chrome, Opera, Firefox amd Internet Explorer released after 2010.	
+				\end{itemize}
+				\end{itemize}
+			\subsubsection{Interfaces to other applications}
+			\textit{PowerEnJoy}  has
+						
+				  	
+
+		\subsection{Proposed system}
+			% TODO
+
+		\subsection{Identifying Stakeholders}
+			Main stakeholders are the inhabitants of Milan willing to use an ecologic and comfortable mean of transport, without the need to buy and maintain a personal car.
+			The system can be adopted in any other city, so the inhabitants of other cities too can become stakeholders.
+			In Milan, the project is promoted and participated my the city council as minor investor.
+
+		\subsection{Reference documents}
+			% TODO
+
+	\newpage
+	\section{Actors Identifying}
+		The system involves as main external actors:
+		\begin{description}
+			\item[User] The final target of the system. Once registered, they can reserve a car and use it in respect of the agreements established with \textit{PowerEnJoy}. They are charged for the usage of the car. It is expected
+
+			\item[Guest] A potential user not registered in the system yet.
+		\end{description}
+		The following actors have also been identified inside \textit{PowerEnJoy} as needed by the system:
+		\begin{description}
+			\item[Admin] Back-office administrators, they have access to a control panel.
+
+			\item[Operator] Maintenance operators who provide field-based assistance and ensures cars are always ready to be used.
+
+			\item[Car] The car provided to users. It interacts with the system to be develop to provide information about usage and status and to receive commands.
+		\end{description}
+		The system has moreover to interact with the following external service provider:
+		\begin{description}
+			\item[Payment service] Provider of every service related to users payment management.
+			\item[Local police] Local law enforcement agencies such as \textit{Polizia locale} or \textit{Carabinieri} that interacts with the system for legal issues.
+		\end{description}
+
+	\newpage
+	\section{Requirements}
+	\input{Subsections/requirements.tex}
+
+	\newpage
+	\section{Scenario identifying}
+	\input{Subsections/scenarios.tex}
+		
+
+	\newpage
+	\section{UML models}
+	\input{Subsections/uml.tex}
+
+	\newpage
+	\section{Alloy modeling}
+		% TODO
+
+	\newpage
+	%%% appendix %%%
+	\section{Appendix}
+		\listoffigures
+		\listoftables
+		
+		\subsection{Used tools}
+		For this assignment, we used the following tools:
+		
+		\begin{description}
+			\item [Alloy]
+			\item [LaTeX] The group used LaTeX to structure the final document and to help with versioning.
+			\item [Github] We leaned on Github for versioning and coordinating synchronized work.
+			\item [Toggl] We used toggl to keep track of work hours.
+			\item [Slack]  
+			
+		\end{description}
+		
+		\subsection{Hours of work}
 
 \end{document}
