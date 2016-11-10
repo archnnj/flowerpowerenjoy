@@ -6,7 +6,7 @@ Some of these requirements stem directly from the requests of our clients, while
 For each goal, we derive the following requirements:
 
 
-%MEDIUM LEVEL
+
 \begin{itemize}
 
 
@@ -117,115 +117,6 @@ For each goal, we derive the following requirements:
 
 
 
-
-
-
-
-
-
-
-%VERY LOW LEVEL
-%not finished
-
-\begin{itemize}
-
-	%Pat's goals
-	
-	\item [G1] Registration of a guest to the system.%\textbf{G1} Guest are able to register to the System. Each guest must fill a profile to become a user.
-		\begin{itemize}
-			\item The system has to allow any person to sign up. 
-		\end{itemize}
-	\item [G2] Access to the system %\textbf{G2} To complete the procedure of registration the system sends a password to the guest as an access key.
-		\begin{itemize}
-			\item The system has to send a newly generated password to the user via email when prompted by the admin.
-			\item The system must be able to check whether a password is correct or not.
-			\item The system must let the user log in only if the password is correct. 
-		\end{itemize}
-	\item [G3] Finding cars % \item \textbf{G3} The system enables the registered user to find the locations of an available car within a certain distance from the user's location or from a specified address.
-		\begin{itemize}
-			\item The system must be able to locate the user through their smartphone's GPS.
-			\item The system must be able to find a specific address in its map. %FIXME horridly put.
-			\item The system must be able to find parking areas in a given area of the map. 
-			\item The system must be able to identify available cars inside parking areas.
-			\item The system must let users see whether there are available cars in a specified radius. 
-		\end{itemize}
-	\item [G4] Reservation of a car %The system enables user to reserve a single available car in a certain geographical region for one hour before the user picks it up.
-		\begin{itemize}
-			\item The system must allow users to reserve an available car.
-			\item The cars cannot be reserved by more than one user at any given time.
-			\item The system must keep the current reservation standing until the user has opened the car or an hour has passed.
-		\end{itemize}
-	\item [G5] Fine for not picking up a reserved car. % If the reserved car is not picked up within one hour from the reservation time, the reservation expires and the system tag this car as available. The system charges user a fee of 1 EUR. 
-		\begin{itemize}
-			\item The system must be able to cancel reservations.
-			%TODO others?????
-		\end{itemize}
-	\item [G6] Opening a car %When the user tells the system that he's near the reserved car, the system unlocks the car to let the user enter.  
-		\begin{itemize}
-			\item The system should be able to detect when a user is near a reserved car throught the car's Bluetooth system.
-			\item The system should be able to unlock a specific car.
-		\end{itemize}
-	
-	
-	%Mad's goals	
-	
-	\item [G7] Charging fees to the user %The system charges the user for a predefined amount of money per minute.
-		\begin{itemize}
-			\item The system must be able to calculate the fee to charge the user.
-			\item The system should notify the user of the fee per minute he's being charged.
-		\end{itemize}
-	\item [G8] Starting charging %The system starts charging the user as soon as the car ignites.
-		\begin{itemize}
-			\item The system must be able to tell when the car has ignited. 
-			\item The system should start counting the charges from the ignition onward. %FIXME horridly put and don't know if a requirement.
-		\end{itemize}
-	\item [G9] Ending charging %The system stops charging the user when the car is parked in a safe area and the user exits the car. The user must confirm the operation, otherwise the system keeps charging them. 
-		\begin{itemize}
-			\item The system must be able to tell when the car is parked in a safe area.
-			\item The system must be able to detect whether the driver is still in the car.
-			\item The system must ask the user whether they wish to end the ride or not as soon as they are parked in a safe area and have exited the car; if they decide so, the system should stop charging them, otherwise it should keep doing so. 
-		\end{itemize}
-	\item [G10] Notification of the current charges %A screen on the car notifies the user of the current charges.
-		\begin{itemize}
-			\item The system must calculate the charges in real time. %DAMMIT this is heinous. 
-			\item The system should show the current charges onscreen. 
-		\end{itemize}
-	\item [G11] Locking a car %The system locks the car automatically when the user exits the car inside a safe area.
-		\begin{itemize}
-			\item The system should be able to lock a specific car without user input. %FIXME is "without user input" correct?
-			%all other points (inside safe area and user still inside) already written in [G9]
-		\end{itemize}
-	\item [G12] %not sure if a goal after all
-	\item [G13] Time window %If the user has chosen to stop being charged, the system keeps a 10–minutes window of time when they are allowed to re-open the car if it has not already been reserved by someone else.
-		\begin{itemize}
-			\item The system must allow the last user who has driven a car to unlock and open it within a 10-minutes window and if and only if the car has not already been reserved by someone else.
-			\item The system must not allow more than one user at a time to open a car.
-		\end{itemize}
-	\item [G14] Parking areas %The set of safe parking areas is pre–defined by the management system.
-		\begin{itemize}
-			\item The system must know the location of all parking areas at any given time. 
-		\end{itemize}
-	\item [G15] Passenger's discount %The system allows the user to earn a 10\% discount for the current ride if there are at least two other passengers in the car.
-		\begin{itemize}
-			\item The system must be able to detect how many passengers are in the car through specific sensors.
-			\item The system must be able to apply a discount to every ride where there are two or more passengers in the car.
-		\end{itemize}
-	
-	
-	%Poe's goals
-	
-	\item [G16] Discount for power charge %The system applies a 20\% discount on the current ride if the car is returned by the user with more than 50\% of power charge.
-		\begin{itemize}
-			\item The system must be able to apply a discount on every ride when the car has more than 50\% of power charge by the end of the ride. %FIXME horridly put
-			\item The system must be able to collect data about the power charge of any car.
-		\end{itemize}
-	\item [G17] Discount for plugging the car to the power grid %If a user returns a car to a recharging safe area and plugs it into the power grid, the system applies a 30\% discount on his current ride.
-		\begin{itemize}
-			\item The system must be able to discern whether a car is currently plugged in to the power grid and is being recharged.
-			\item The system must be able to apply a discount on every ride if the user plugs the car in the power grid as soon as they're finished. %FIXME: 10 minutes window? Change the goal? 
-		\end{itemize}
-	\item [G18] Sanction for distance %The system applies a 30\% sanction on the current ride if the car is returned in a safe area at more than 3 km from the nearest recharging safe area.
-\end{itemize}
 
 
 
