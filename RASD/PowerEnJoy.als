@@ -98,6 +98,12 @@ sig GeoZone {
 	#city>=3
 }
 
+sig SystemCity{
+	user: some User,
+	car: some Car,
+	geozone: one GeoZone
+}
+
 sig AppliablePercent{
 	percent: one Int
 }{
@@ -195,8 +201,8 @@ fact oneWaitingRunningRidePerCar{
 * if ride is running => car is not available
 * if car is not available => ride is running */
 fact carInUseNotAvailable{
-	all r: Ride, c: Car | (r.rStatus = RUNNING and r.car = c) => (c.available = False)
-	all c: Car | c.available = False => (one ri: Ride | ri.rStatus = RUNNING and (ri.car = c))
+	all r: Ride, c: Car | ((r.rStatus = RUNNING or r.rStatus = WAITING) and r.car = c) => (c.available = False)
+	all c: Car | c.available = False => (one ri: Ride | (ri.rStatus = RUNNING or ri.rStatus = WAITING) and (ri.car = c))
 }
 
 fact userHasOnlyOneReservation{
@@ -210,6 +216,16 @@ fact carHasOneReservation{
 fact noCarForBannedUser{
 	all u: User | u.uStatus = BANNED => (no r:Ride | (r.rStatus = RUNNING or r.rStatus = WAITING) and r.user =u) and (no re: Reservation | re.user = u  )
 }
+
+fact everyUserIsInThisGeoZone{
+	#(User)=#(SystemCity.user)
+}
+
+fact everyCarIsInThisGeoZone{
+	#(Car)=#(SystemCity.car)	
+}
+
+
 
 pred show(){
 }
