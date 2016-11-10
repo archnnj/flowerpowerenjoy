@@ -29,6 +29,7 @@ For each goal, we derive the following requirements:
 						\item The system must be able to identify available cars inside parking areas.
 						\item The system must let users see whether there are available cars in a specified radius. %XXX
 					\end{itemize}
+					
 				\item [G3] Reservation %The system enables user to reserve a single available car in a certain geographical region for one hour before the user picks it up. If the car is not picked up by that time, the reservation expires, the system tags this car as available again and it charges the user a fine of 1 EUR.
 					\begin{itemize}
 						\item The system must allow users to reserve an available car.
@@ -37,8 +38,7 @@ For each goal, we derive the following requirements:
 						\item The system must be able to autonomously cancel reservations.
 						%TODO others?
 					\end{itemize}
-					
-					
+
 				\item [G4] Use of a car %The system should allow the user to employ a car in a proper and safe way. 
 					\begin{itemize}
 						\item The system must be able to locate any car at any given time with sufficient precision. %FIXME sufficient
@@ -68,26 +68,32 @@ For each goal, we derive the following requirements:
 						\item The system should start counting the charges from the ignition onward. %FIXME horridly put.
 						\item The system must ask the user whether they wish to end the ride or not as soon as they are parked in a safe area and have exited the car; if they decide so, the system should stop charging them, otherwise it should keep doing so. 
 					\end{itemize}
+					
 				\item [G7] Discounts 
 					\begin{itemize}
 						\item The system must apply a discount every time a user brings two or more passengers in the car with them.
 						\item The system must apply a discount every time the car has more than 50\% of power charge by the end of the ride. %FIXME horridly put
 						\item The system must be able to apply a discount every time the user plugs the car in the power grid while their time window is still open.
 					\end{itemize}
+					
 				\item [G8] Sanctions
 					\begin{itemize}
 						\item The system must apply a sanction every time a car is returned in a safe area at more than 3 km from the nearest recharging safe area.
 						\item The system must apply a sanction every time a car is returned with less than 20\% of power charge.
 					\end{itemize}
-				\item [G9] Money saving option
+					
+				\item [G9] Money saving option %The system should provide an alternative usage mode for cars called \textit{money saving option}. Besides aiding the user in saving money, this mode allows for a uniform distribution of cars throughout the city by suggesting the user where to park.
 					\begin{itemize}
 						\item The system must apply a discount every time the car is returned in the suggested safe area with the \textit{money saving} option.
 					\end{itemize}
-				\item [G9] Emergency management %The system keeps a channel of communication open between the users and the administrators of the system in case of emergencies. 
+					
+				\item [G10] Emergency management %The system allows the company to assist the users in case of need and take care of the cars.	
 					\begin{itemize}
 						\item The system must always allow a user to notify the back-end administrators if they have a problem with the car.
 						\item The system must be able to locate \textit{PowerEnJoy} operators in order to facilitate their quick dispatch.
 					\end{itemize}
+					
+				\item [G11] System back-end %The admin should be able to configure some parameters of the system.
 
 \end{itemize}
 
