@@ -1,22 +1,14 @@
 open util/boolean
 
-sig Date{	
-	day: one Int,
-	month: one Int,
-	year: one Int
-}{
-	day>0, day<=31,
-	month>0, month<=12,
-	year>1910
-}
+sig Date{}
 sig Location{}
 sig Time{}
 sig Slot{}
 
 /*enum CarStatus{
-	AVAILABLE,
-	RESERVED,
-	INUSE
+*	AVAILABLE,
+*	RESERVED,
+*	INUSE
 }*/
 
 enum UserStatus{
@@ -93,7 +85,7 @@ sig Car {
 	cReservation: one Reservation,
 	emReport: lone EmergencyReport 
 }{
-	battery>=0,
+ 	battery>=0,
 	battery<=100
 }
 
@@ -138,6 +130,7 @@ sig Ride {
 	passengers>=0,
 	passenger<=3, 
 	rStatus = ACTIVE => discount = none and sanction = none 
+	rStatus = WAITING <=> one c: Car | c.available = FALSE and c.cRide = this
 }
 
 sig Reservation {
@@ -197,6 +190,26 @@ fact oneWaitingRunningRidePerCar{
 
 fact noActiveRideNoReservationForBannedUser{
 	all u: User | u.uStatus = BANNED => (no ri: Ride | ri.rStatus = ACTIVE and ri.user = u) and (no re: Reservation | re.user = u)
+}
+
+/* only one RUNNING ride per user
+* if ride is running => car is not available
+* if car is not available => ride is running */
+fact carInUseNotAvailable{
+	all r: Ride, c: Car | (r.rStatus = RUNNING and r.user = c) => (c.available = FALSE)
+	all c: Car | c.available = FALSE => (one ri: Ride | ri.rStatus = RUNNING and (ri.user = u))
+}
+
+fact userHasOnlyOneReservation{
+	no r1 & r2 : Reservation | r1.user = r2.user
+}
+
+fact carHasOneReservation{
+	no r1 & r2: Reservation | r1.car=r2.car
+}
+
+fact noCarForBannedUser{
+	all u: User | u.uStatus = BANNED => (no r:Ride | (r.rStatus = ACTIVE or r.rStatus = WAITING) and r.user =u) and (no re: Reservation | re.user = u  )
 }
 
 
