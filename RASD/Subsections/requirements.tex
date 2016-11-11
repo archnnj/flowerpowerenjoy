@@ -41,7 +41,7 @@ For each goal, we derive the following requirements:
 
 				\item \textit{G[4]} The system should allow the user to employ a car in a proper and safe way. 
 					\begin{itemize}
-						\item The system must be able to locate any car at any given time with sufficient precision. %FIXME sufficient
+						\item The system must be able to locate any car at any given time. 
 						\item The system must be able to detect whether there are passengers inside a car, and how many.
 						\item The system must be able to collect data about the power charge of any of its cars.
 						\item The system must be able to detect when a severe accident has occurred to a car.
@@ -58,9 +58,10 @@ For each goal, we derive the following requirements:
 					
 				\item \textit{G[5]} The system charges the user for a predefined amount of money per minute. A screen on the car notifies the user of the current charges.
 					\begin{itemize}
-						\item The system must be able to calculate the fee to charge the user.
+						\item The system must be able to retrieve all data necessary to charge the user. This data is the duration of the ride and all the conditions for application of discounts and sanctions.
 						\item The system should notify the user of the fee per minute he's being charged through a screen inside the car.
 						\item The system must notify the final charges to the user after the time window for the ride has expired.
+						\item The system must invoice the user after the time window for the ride by communicating the charges to the external payment system. 
 						
 					\end{itemize}
 				
@@ -80,7 +81,7 @@ For each goal, we derive the following requirements:
 						\item The system must apply all discounts to the fee per minute.
 						\item If the conditions for a discount only count for a limited period of time during the ride, the discount should be applied only to that time period. %This basically only happens with the passengers & money saving option if you think abt that.
 						\item The system must apply a discount every time a user brings two or more passengers in the car with them.
-						\item The system must apply a discount every time the car has more than 50\% of power charge by the end of a normal ride. %FIXME horridly put
+						\item The system must apply a discount every time the car has more than 50\% of power charge by the end of a standard ride. %FIXME horridly put
 						\item The system must be able to apply a discount every time the user plugs the car in the power grid while their time window is still open.
 					\end{itemize}
 					
@@ -100,7 +101,9 @@ For each goal, we derive the following requirements:
 				\item \textit{G[10]} The system allows the company to assist the users in case of need and take care of the cars.	
 					\begin{itemize}
 						\item The system must always allow a user to notify the back-end administrators if they have a problem with the car.
-						\item The system must be able to locate \textit{PowerEnJoy} operators in order to facilitate their quick dispatch.
+						\item The system must always be able to locate \textit{PowerEnJoy} operators. 
+						\item The system must allow administrators to know the status of on-site operators and dispatch them if they are available.
+						\item The system must keep track of every car's battery and alert the admin when it lowers below 3\%. 
 					\end{itemize}
 					
 				\item \textit{G[11]} The admin should be able to configure some parameters of the system.
