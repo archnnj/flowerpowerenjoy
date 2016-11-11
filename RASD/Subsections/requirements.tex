@@ -10,7 +10,7 @@ For each goal, we derive the following requirements:
 \begin{itemize}
 
 
-				\item [G1] Registration procedure %The system allows guests to register; to complete the registration procedure the system sends a password to the guest as an access key.
+				\item \textit{G[1]} The system allows guests to register; to complete the registration procedure the system sends a password to the guest as an access key.
 					\begin{itemize}
 						\item The system has to allow any person to submit only one account request.
 						\item The account is created when an admin validates all the necessary data.
@@ -21,7 +21,7 @@ For each goal, we derive the following requirements:
 						\item The system has to generate a new password and send it via email if the user asks for it.
 					\end{itemize}
 
-				\item [G2] Finding cars %The system should enable a registered user to find the location of an available car within a certain distance from the user's location or from a specified address.
+				\item \textit{G[2]} The system should enable a registered user to find the location of an available car within a certain distance from the user's location or from a specified address.
 					\begin{itemize}
 						\item The system must have the ability to locate the user.
 						\item The system must be able to locate any valid address.
@@ -30,7 +30,7 @@ For each goal, we derive the following requirements:
 						\item The system must let users see whether there are available cars in a specified radius. %XXX
 					\end{itemize}
 					
-				\item [G3] Reservation %The system enables user to reserve a single available car in a certain geographical region for one hour before the user picks it up. If the car is not picked up by that time, the reservation expires, the system tags this car as available again and it charges the user a fine of 1 EUR.
+				\item \textit{G[3]} The system enables user to reserve a single available car in a certain geographical region for one hour before the user picks it up. If the car is not picked up by that time, the reservation expires, the system tags this car as available again and it charges the user a fine of 1 EUR.
 					\begin{itemize}
 						\item The system must allow users to reserve an available car.
 						\item The cars cannot be reserved by more than one user at any given time.
@@ -39,7 +39,7 @@ For each goal, we derive the following requirements:
 						%TODO others?
 					\end{itemize}
 
-				\item [G4] Use of a car %The system should allow the user to employ a car in a proper and safe way. 
+				\item \textit{G[4]} The system should allow the user to employ a car in a proper and safe way. 
 					\begin{itemize}
 						\item The system must be able to locate any car at any given time with sufficient precision. %FIXME sufficient
 						\item The system must be able to detect whether there are passengers inside a car, and how many.
@@ -56,7 +56,7 @@ For each goal, we derive the following requirements:
 						\item The system must allow the user to re-enter the car while the time window is still open. 
 					\end{itemize}
 					
-				\item [G5] Charges %The system charges the user for a predefined amount of money per minute. A screen on the car notifies the user of the current charges.
+				\item \textit{G[5]} The system charges the user for a predefined amount of money per minute. A screen on the car notifies the user of the current charges.
 					\begin{itemize}
 						\item The system must be able to calculate the fee to charge the user.
 						\item The system should notify the user of the fee per minute he's being charged through a screen inside the car.
@@ -64,7 +64,7 @@ For each goal, we derive the following requirements:
 						
 					\end{itemize}
 				
-				\item [G6] Boundaries of charges %The system starts charging the user as soon as the car ignites. It stops charging them when the car is parked in a safe area and the user exits the car. The user must confirm the operation, otherwise the system keeps charging them. 
+				\item \textit{G[6]} The system starts charging the user as soon as the car ignites. It stops charging them when the car is parked in a safe area and the user exits the car. The user must confirm the operation, otherwise the system keeps charging them. 
 					\begin{itemize}
 						\item The system must charge the user with a fee per minute.
 						\item The system must be able to tell when the car has ignited. 
@@ -75,7 +75,7 @@ For each goal, we derive the following requirements:
 						\item If the reservation has expired but the user is inside the car (without igniting it), the system must start charging them anyway an exceptional fee per minute. %cfr requirements for G11
 					\end{itemize}
 					
-				\item [G7] Discounts 
+				\item \textit{G[7]} The system should encourage good user behaviour through the application of discounts to the fee per minute. 
 					\begin{itemize}
 						\item The system must apply all discounts to the fee per minute.
 						\item If the conditions for a discount only count for a limited period of time during the ride, the discount should be applied only to that time period. %This basically only happens with the passengers & money saving option if you think abt that.
@@ -84,26 +84,26 @@ For each goal, we derive the following requirements:
 						\item The system must be able to apply a discount every time the user plugs the car in the power grid while their time window is still open.
 					\end{itemize}
 					
-				\item [G8] Sanctions
+				\item \textit{G[8]} The system should discourage bad behaviour through the application of sanctions to the fee per minute.
 					\begin{itemize}
 						\item The system must apply a sanction every time a car is returned in a safe area at more than 3 km from the nearest recharging safe area.
 						\item The system must apply a sanction every time a car is returned with less than 20\% of power charge.
 					\end{itemize}
 					
-				\item [G9] Money saving option %The system should provide an alternative usage mode for cars called \textit{money saving option}. Besides aiding the user in saving money, this mode allows for a uniform distribution of cars throughout the city by suggesting the user where to park.
+				\item \textit{G[9]} The system should provide an alternative usage mode for cars called \textit{money saving option}. Besides aiding the user in saving money, this mode allows for a uniform distribution of cars throughout the city by suggesting the user where to park.
 					\begin{itemize}
 						\item The system must always allow a user to select the \textit{money saving option} at any point during their ride. 
 						\item The system must apply a discount every time the car is returned in the suggested safe area with the \textit{money saving} option.
 						\item The system must select the safe area suggested to the user based on consideration of availability of power plugs and of distribution of the cars. This safe area must be as close as possible to the user's destination. %FIXME rewrite; too generic
 					\end{itemize}
 					
-				\item [G10] Emergency management %The system allows the company to assist the users in case of need and take care of the cars.	
+				\item \textit{G[10]} The system allows the company to assist the users in case of need and take care of the cars.	
 					\begin{itemize}
 						\item The system must always allow a user to notify the back-end administrators if they have a problem with the car.
 						\item The system must be able to locate \textit{PowerEnJoy} operators in order to facilitate their quick dispatch.
 					\end{itemize}
 					
-				\item [G11] System back-end %The admin should be able to configure some parameters of the system.
+				\item \textit{G[11]} The admin should be able to configure some parameters of the system.
 					\begin{itemize}
 						\item The system must allow the aministrators to modify parameters that influence the usage of cars. This parameters are:
 							\begin{enumerate}
