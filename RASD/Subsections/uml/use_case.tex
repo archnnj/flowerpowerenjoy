@@ -270,11 +270,11 @@
 			\item[Exceptions] \hfill
 			\begin{itemize}
 				\item \textbf{The Operator decides that the reparation can't be done on-site.} The use case \textit{Assist a user with a not on-site reparation} is invoked.
-				\item \textbf{The User leaves the site before the reparation ends.} The Operator report it to the system. At the end of the reparation, the User is not assigned to the car anymore and is invoiced for the ride (until the breakdown occurred). The Operator notifies the Admin that the car must be taken to a parking area and leaves the site. The Admin dispatches an Operator with a tow truck. The Operator takes the car to the closest available parking area.
+				\item \textbf{The User leaves the site before the reparation ends.} The Operator reports it to the system. At the end of the reparation, the User is not assigned to the car anymore and is invoiced for the ride (until the breakdown occurred). The Operator notifies the Admin that the car must be taken to a parking area and leaves the site. The Admin dispatches an Operator with a tow truck. The Operator takes the car to the closest available parking area.
 				\item \textbf{The Operator asserts that there is no need for intervention and the User is still on site.} The User is fined (parameter). The car is assigned to the User again and the charges start again.
 				\item \textbf{The Operator asserts that there is no need for intervention and the User has gone from the site.} The User is fined (parameter, higher than in previous exception). The Operator notifies the Admin that the car must be taken to a parking area and leaves the site. The Admin dispatches an Operator with a tow truck. The Operator takes the car to the closest available parking area.
 			\end{itemize}
-			\item[Special Requirements] The Operator cannot refuse an assignment if he is online and always accept it within 10 minutes. An Operator is always online when at work. % TODO req: an operator can't end his shift if he is in the middle of an intervention
+			\item[Special Requirements] The Operator cannot refuse an assignment if he is online and always accept it within 10 minutes. An Operator is always online when at work. %TODO req: an operator can't end his shift if he is in the middle of an intervention
 		\end{description}
 
 	\subsubsection{Use case 10: Assist a user with a not on-site reparation}
