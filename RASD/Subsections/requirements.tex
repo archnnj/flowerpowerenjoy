@@ -1,99 +1,215 @@
 
-\subsection{Functional Requirements}
-We assume that all domain properties stipulated in paragraph 1.6 hold. Thus we can derive the following functional requirements in order to fulfill the goals listed in paragraph 1.5.
+\subsection{Functional requirements}
+We assume that all domain properties stipulated in paragraph 1.6 hold. We decided to use a \textit{goal-driven} method to structure our requirements, meaning that we decomposed the high-level goals of paragraph 1.5 into low-level requirements.
+Some of these requirements stem directly from the requests of our clients, while others are born from the necessity to have a sound system.
 
 For each goal, we derive the following requirements:
 
+
+
 \begin{itemize}
 
-	%Pat's goals
-	
-	\item [G1] Registration of a guest to the system.%\textbf{G1} Guest are able to register to the System. Each guest must fill a profile to become a user.
-		\begin{itemize}
-			\item The system has to allow any person to sign up. %FIXME only from website: must say here?
-		\end{itemize}
-	\item [G2] Access to the system %\textbf{G2} To complete the procedure of registration the system sends a password to the guest as an access key.
-		\begin{itemize}
-			\item The system has to send a newly generated password to the user via email when prompted by the admin.
-			\item The system must be able to check whether a password is correct or not.
-			\item The system must let the user log in only if the password is correct. 
-		\end{itemize}
-	\item [G3] Finding cars % \item \textbf{G3} The system enables the registered user to find the locations of an available car within a certain distance from the user's location or from a specified address.
-		\begin{itemize}
-			\item The system must be able to locate the user through their smartphone's GPS.
-			\item The system must be able to find a specific address in its map. %FIXME horridly put.
-			\item The system must be able to find parking areas in a given area of the map. 
-			\item The system must be able to identify available cars inside parking areas.
-			\item The system must let users see whether there are available cars in a specified radius. 
-		\end{itemize}
-	\item [G4] Reservation of a car %The system enables user to reserve a single available car in a certain geographical region for one hour before the user picks it up.
-		\begin{itemize}
-			\item The system must allow users to reserve an available car.
-			\item The cars cannot be reserved by more than one user at any given time.
-			\item The system must keep the current reservation standing until the user has opened the car or an hour has passed.
-		\end{itemize}
-	\item [G5] Fine for not picking up a reserved car. % If the reserved car is not picked up within one hour from the reservation time, the reservation expires and the system tag this car as available. The system charges user a fee of 1 EUR. 
-		\begin{itemize}
-			\item The system must be able to cancel reservations.
-			%TODO others?????
-		\end{itemize}
-	\item [G6] Opening a car %When the user tells the system that he's near the reserved car, the system unlocks the car to let the user enter.  
-		\begin{itemize}
-			\item The system should be able to detect when a user is near a reserved car throught the car's Bluetooth system.
-			\item The system should be able to unlock a specific car.
-		\end{itemize}
-	
-	
-	%Mad's goals	
-	
-	\item [G7] Charging fees to the user %The system charges the user for a predefined amount of money per minute.
-		\begin{itemize}
-			\item The system must be able to calculate the fee to charge the user.
-			\item The system should notify the user of the fee per minute he's being charged.
-		\end{itemize}
-	\item [G8] Starting charging %The system starts charging the user as soon as the car ignites.
-		\begin{itemize}
-			\item The system must be able to tell when the car has ignited. 
-			\item The system should start counting the charges from the ignition onward. %FIXME horridly put and don't know if a requirement.
-		\end{itemize}
-	\item [G9] Ending charging %The system stops charging the user when the car is parked in a safe area and the user exits the car. The user must confirm the operation, otherwise the system keeps charging them. 
-		\begin{itemize}
-			\item The system must be able to tell when the car is parked in a safe area.
-			\item The system must be able to detect whether the driver is still in the car.
-			\item The system must ask the user whether they wish to end the ride or not as soon as they are parked in a safe area and have exited the car; if they decide so, the system should stop charging them, otherwise it should keep doing so. 
-		\end{itemize}
-	\item [G10] Notification of the current charges %A screen on the car notifies the user of the current charges.
-		\begin{itemize}
-			\item The system must calculate the charges in real time. %DAMMIT this is heinous. 
-			\item The system should show the current charges onscreen. 
-		\end{itemize}
-	\item [G11] Locking a car %The system locks the car automatically when the user exits the car inside a safe area.
-		\begin{itemize}
-			\item The system should be able to lock a specific car without user input. %FIXME is "without user input" correct?
-			%all other points (inside safe area and user still inside) already written in [G9]
-		\end{itemize}
-	\item [G12] %not sure if a goal after all
-	\item [G13] Time window %If the user has chosen to stop being charged, the system keeps a 10–minutes window of time when they are allowed to re-open the car if it has not already been reserved by someone else.
-		\begin{itemize}
-			\item The system must allow the last user who has driven a car to unlock and open it within a 10-minutes window and if and only if the car has not already been reserved by someone else.
-			\item The system must not allow more than one user at a time to open a car.
-		\end{itemize}
-	\item [G14] Parking areas %The set of safe parking areas is pre–defined by the management system.
-		\begin{itemize}
-			\item The system must know the location of all parking areas at any given time. 
-		\end{itemize}
-	\item [G15] Passenger's discount %The system allows the user to earn a 10\% discount for the current ride if there are at least two other passengers in the car.
-		\begin{itemize}
-			\item The system must be able to detect how many passengers are in the car through specific sensors.
-			\item The system must be able to apply a discount to every ride where there are two or more passengers in the car.
-		\end{itemize}
-	
-	
-	%Poe's goals
-	
-	\item [G16] Discount for power charge %The system applies a 20\% discount on the current ride if the car is returned by the user with more than 50\% of power charge.
+
+				\item \textit{G[1]} The system allows guests to register; to complete the registration procedure the system sends a password to the guest as an access key.
+					\begin{itemize}
+						\item The system has to allow any person to submit only one account request.
+						\item The account is created when an admin validates all the necessary data.
+						\item The system must be able to generate passwords.
+						\item The system has to send a newly generated password to the user via email when the account is created.
+						\item The system must be able to check whether a password is correct or not.
+						\item The system must let the user log in only if the password is correct. 
+						\item The system has to generate a new password and send it via email if the user asks for it.
+					\end{itemize}
+
+				\item \textit{G[2]} The system should enable a registered user to find the location of an available car within a certain distance from the user's location or from a specified address.
+					\begin{itemize}
+						\item The system must have the ability to locate the user.
+						\item The system must be able to locate any valid address.
+						\item The system must be able to find any of the parking areas of the company. 
+						\item The system must be able to identify available cars inside parking areas.
+						\item The system must let users see whether there are available cars in a specified radius. %XXX
+					\end{itemize}
+					
+				\item \textit{G[3]} The system enables user to reserve a single available car in a certain geographical region for one hour before the user picks it up. If the car is not picked up by that time, the reservation expires, the system tags this car as available again and it charges the user a fine of 1 EUR.
+					\begin{itemize}
+						\item The system must allow users to reserve an available car.
+						\item The cars cannot be reserved by more than one user at any given time.
+						\item The system must keep the current reservation standing until the user has opened the car or an hour has passed. %FIXME "An hour" -> a predefined time?? This is a parameter!!!
+						\item The system must be able to autonomously cancel reservations.
+						
+						\item The system must impede any user with an expired license to reserve a car.
+						\item The system must impede any banned user to reserve a car.
+						%TODO others?
+					\end{itemize}
+
+				\item \textit{G[4]} The system should allow the user to employ a car in a proper and safe way. 
+					\begin{itemize}
+						\item The system must be able to locate any car at any given time. 
+						\item The system must be able to detect whether there are passengers inside a car, and how many.
+						\item The system must be able to collect data about the power charge of any of its cars.
+						\item The system must be able to detect when a severe accident has occurred to a car.
+						\item The system must be able to detect when a user is near a car.
+						\item The system must be able to tell when a car is parked in a safe area.
+						\item The system must be able to detect when a car is plugged to the power grid.
+						\item The system must be able to detect whether the driver is still in the car.
+						\item The system must be able to automatically unlock a car when the user that has reserved is nearby. %NOTE attention to alloy for inconsistency!!!
+						\item The system must be able to automatically lock a car when the user has exited it inside a safe area. 
+						\item The system must allow the user to lock and unlock their car manually when outside a safe area.
+						\item The system must provide a finite time window that begins when the user exits the car inside a safe area. The time window must either end when the allotted time is finished or when another user reserves the same car.
+						\item The system must allow the user to re-enter the car while the time window is still open. 
+					\end{itemize}
+					
+				\item \textit{G[5]} The system charges the user for a predefined amount of money per minute. A screen on the car notifies the user of the current charges.
+					\begin{itemize}
+						\item The system must be able to retrieve all data necessary to charge the user. This data is the duration of the ride and all the conditions for application of discounts and sanctions.
+						\item The system should notify the user of the fee per minute he's being charged through a screen inside the car.
+						\item The system must notify the final charges to the user after the time window for the ride has expired.
+						\item The system must invoice the user after the time window for the ride by communicating the charges to the external payment system. 
+						
+					\end{itemize}
+				
+				\item \textit{G[6]} The system starts charging the user as soon as the car ignites. It stops charging them when the car is parked in a safe area and the user exits the car. The user must confirm the operation, otherwise the system keeps charging them. 
+					\begin{itemize}
+						\item The system must charge the user with a fee per minute.
+						\item The system must be able to tell when the car has ignited. 
+						\item The system should start counting the charges from the ignition onward. %FIXME horridly put.
+						\item The system must ask the user whether they wish to end the ride or not as soon as they are parked in a safe area and have exited the car.
+						\item If a user has chosen to end the ride, the charges must be counted until the beginning of the time window for that ride. 
+						\item If a user keeps using the car, the time window is included in the charged time.
+						\item If the reservation has expired but the user is inside the car (without igniting it), the system must start charging them anyway an exceptional fee per minute. %cfr requirements for G11
+					\end{itemize}
+					
+				\item \textit{G[7]} The system should encourage good user behaviour through the application of discounts to the fee per minute. 
+					\begin{itemize}
+						\item The system must apply all discounts to the fee per minute.
+						\item If the conditions for a discount only count for a limited period of time during the ride, the discount should be applied only to that time period. %This basically only happens with the passengers & money saving option if you think abt that.
+						\item The system must apply a discount every time a user brings two or more passengers in the car with them.
+						\item The system must apply a discount every time the car has more than 50\% of power charge by the end of a standard ride. %FIXME horridly put
+						\item The system must be able to apply a discount every time the user plugs the car in the power grid while their time window is still open.
+					\end{itemize}
+					
+				\item \textit{G[8]} The system should discourage bad behaviour through the application of sanctions to the fee per minute.
+					\begin{itemize}
+						\item The system must apply a sanction every time a car is returned in a safe area at more than 3 km from the nearest recharging safe area.
+						\item The system must apply a sanction every time a car is returned with less than 20\% of power charge.
+					\end{itemize}
+					
+				\item \textit{G[9]} The system should provide an alternative usage mode for cars called \textit{money saving option}. Besides aiding the user in saving money, this mode allows for a uniform distribution of cars throughout the city by suggesting the user where to park.
+					\begin{itemize}
+						\item The system must always allow a user to select the \textit{money saving option} at any point during their ride. 
+						\item The system must apply a discount every time the car is returned in the suggested safe area with the \textit{money saving} option.
+						\item The system must select the safe area suggested to the user based on consideration of availability of power plugs and of distribution of the cars. This safe area must be as close as possible to the user's destination. %FIXME rewrite; too generic
+					\end{itemize}
+					
+				\item \textit{G[10]} The system allows the company to assist the users in case of need and take care of the cars.	
+					\begin{itemize}
+						\item The system must always allow a user to notify the back-end administrators if they have a problem with the car.
+						\item The system must always be able to locate \textit{PowerEnJoy} operators. 
+						\item The system must allow administrators to know the status of on-site operators and dispatch them if they are available.
+						\item The system must keep track of every car's battery and alert the admin when it lowers below 3\%. 
+					\end{itemize}
+					
+				\item \textit{G[11]} The admin should be able to configure some parameters of the system.
+					\begin{itemize}
+						\item The system must allow the aministrators to modify parameters that influence the usage of cars. This parameters are:
+							\begin{enumerate}
+								\item The standard fee per minute
+								\item The exceptional fee per minute
+								\item The lost reservation fee
+								\item The fine for leaving an accident site %TODO shouldn't we explain our reasoning for accidents/incidents somewhere??
+								\item Discount percent values
+								\item Sanction percent values
+								\item Time window for reservation fee
+								\item Time window after ending the ride for reopening and pluggin the car.
+							\end{enumerate}
+					\end{itemize}
 \end{itemize}
 
 
 
-\subsection{Non-functional Requirements}
+
+
+\subsection{Non-functional requirements}
+	\subsubsection{User interface}
+	\paragraph{}The interface of our application is thought to be used mainly via mobile app, with some content also displayed in a web page. The team reasoned that the main functionalities of the system (such as reserving and managing a car) make sense only in a \textit{movable} context (meaning, such that the user can do them anywhere they have an internet connection). Those functionalities are available on the mobile app. On the other hand, operations such as signing up are more easily managed in front of a computer, so the web page allows users to register, login and manage their profiles (which they can do also via mobile app anyway).
+	\paragraph{}We pondered on the possibility of adding the possibility of reserving a car via web browser. However, upon consideration, we decided it is not a good mechanism: with that functionality, a user could very well be registered without having downloaded the app and reserving a car without being able to access it in any way. Hence, the reservation of \textit{PowerEnJoy} cars can be made only via mobile app. 
+	
+	\paragraph{Mobile app}\mbox{}\\
+	
+	\begin{figure}[h]
+ 
+		\begin{subfigure}{0.5\textwidth}
+			\includegraphics[scale=0.35]{img/mockups/App_guest.png}
+			\caption{Guest view}
+			\label{fig:subim1}
+		\end{subfigure}
+		\begin{subfigure}{0.5\textwidth}
+			\includegraphics[scale=0.35]{img/mockups/App_user.png}
+			\caption{User view}
+			\label{fig:subim2}
+		\end{subfigure}
+ 
+		\caption{Mobile app: home page view}
+		\label{fig:image1}
+	\end{figure}
+	
+	\paragraph{} Figure 1 shows the first page that is shown when entering the app. Picture 1.a is the guest view, who has only the possibility of either logging in or registering in the system. Picture 1.b shows the user view. The user has more functionalities: they can look for cars in their vicinity or near an address, see and edit their profile, and changing settings (notification and sound settings). 
+	
+	\begin{figure}[h]
+ 
+		\begin{subfigure}{0.3\paperwidth}
+			\centering
+			\includegraphics[scale=0.35]{img/mockups/User_reservation.png}
+			\caption{View for the reservation}
+			\label{fig:subim1}
+		\end{subfigure}
+		\begin{subfigure}{0.3\paperwidth}
+			\centering
+			\includegraphics[scale=0.35]{img/mockups/User_parking_areas.png}
+			\caption{View after having selected a parking area}
+			\label{fig:subim2}
+		\end{subfigure}
+		\begin{subfigure}{0.3\paperwidth}
+			\centering
+			\includegraphics[scale=0.35]{img/mockups/User_driving.png}
+			\caption{Display of the app while using a car}
+			\label{fig:subim3}
+		\end{subfigure}
+ 		
+		
+		\caption{Mobile app: main functionalities}
+		\label{fig:image2}
+	\end{figure}
+	
+	\paragraph{} Figure 2 shows the main functionalities of the \textit{PowerEnJoy}'s app: reserving a car (2.a and 2.b) and what you can do while using a car (2.c). 
+	
+	\begin{figure}
+		\begin{subfigure}{1\textwidth}
+			\includegraphics[scale=0.50]{img/mockups/Website.png}
+			\caption{Website homepage}
+			\label{fig:subim1}
+		\end{subfigure}
+		\begin{subfigure}{1\textwidth}
+			\includegraphics[scale=0.50]{img/mockups/Sign_up.png}
+			\caption{Sign up on website}
+			\label{fig:subim2}
+		\end{subfigure}
+		
+		\caption{Website}
+		\label{fig:image3}
+	\end{figure}
+
+	\paragraph{} Figure 3.a and 3.b shows, respectively, the website homepage from the standpoint of a guest and the sign up page. We haven't drawn the website mockup from the standpoint of a registered user since there are no more functionalities than those already present in the mobile app, as said above.
+
+\FloatBarrier %to forbid images to enter the scenario chapter.
+
+	\paragraph{Documentation}
+	\paragraph{} In order to keep track of all phases of the development process and the overall structure of the system, the team will release the following documents:
+		\begin{description}
+			\item[RASD], Requirement Analysis and Specification Document, which provides a thorough description of the system, the requirements and the specification thanks to the use of UML models.
+			\item[DD], Design Document, which contains a more in-depth description of the functionalities of the system.
+			\item[ITPD], Integration Test Plan Document, which describes integration tests and the team's intended plan to accomplish them.
+			\item[PP], Project Plan, which defines a planning for the development project.
+			
+			%do we need those last two??? 
+		\end{description}

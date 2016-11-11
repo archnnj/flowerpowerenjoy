@@ -1,36 +1,17 @@
-% this should be adjusted and numbered as soon as everybody has made them
-			\begin{itemize}
-				%% Pat's part %%
-				\item \textbf{G1} Guest are able to register to the System. Each guest must fill a profile to become a user. %FIXME delete last sentence?
-				\item \textbf{G2} To complete the procedure of registration the system sends a password to the guest as an access key. %FIXME plus the user must be able to log into the system with this password?
-				\item \textbf{G3} The system should enable a registered user to find the location of an available car within a certain distance from the user's location or from a specified address.
-				\item \textbf{G4} The system enables user to reserve a single available car in a certain geographical region for one hour before the user picks it up.
-				\item \textbf{G5} If the reserved car is not picked up within one hour from the reservation time, the reservation expires and the system tag this car as available. The system charges user a fee of 1 EUR. 
-				\item \textbf{G6} When the user tells the system that he's near the reserved car, the system unlocks the car to let the user enter.  
 
-				%% Madda's part %%
-				\item \textbf{G7} The system charges the user for a predefined amount of money per minute.
-				\item \textbf{G8} The system starts charging the user as soon as the car ignites.
-				\item \textbf{G9} The system stops charging the user when the car is parked in a safe area and the user exits the car. The user must confirm the operation, otherwise the system keeps charging them. 
-				\item \textbf{G10} A screen on the car notifies the user of the current charges.
-				\item \textbf{G11} The system locks the car automatically when the user exits the car inside a safe area.  
-				\item \textbf{G12} If the user has chosen to keep being charged, the system allows them to exit and close and re-open the car through a bluetooth system. %FIXME is this a goal????
-				\item \textbf{G13} If the user has chosen to stop being charged, the system keeps a 10–minutes window of time when they are allowed to re-open the car if it has not already been reserved by someone else.
-				\item \textbf{G14} The set of safe parking areas is pre–defined by the management system.
-				\item \textbf{G15} The system allows the user to earn a 10\% discount for the current ride if there are at least two other passengers in the car.
-
-				%% Poe's part %%
-				\item \textbf{G16} The system applies a 20\% discount on the current ride if the car is returned by the user with more than 50\% of power charge.
-				\item \textbf{G17} If a user returns a car to a recharging safe area and plugs it into the power grid, the system applies a 30\% discount on his current ride.
-				\item \textbf{G18} The system applies a 30\% sanction on the current ride if the car is returned in a safe area at more than 3 km from the nearest recharging safe area.
-				\item \textbf{G19} The system applies a 30\% sanction on the current ride if the car is returned with less than 20\% of power charge.
-				\item \textbf{G20} The system provides an option (\textit{money saving}) to get information about the best safe area where the user can leave the car. The best safe area ensures a uniform distribution of cars among the city and takes into account the destination and the nature of the safe areas (recharging or not). % FIXME is it clear?
-				\item \textbf{G21} In \textit{money saving option}, the system applies a certain discount for the current ride if the car is returned in the suggested safe area. % FIXME "certain" is ok?
-				\item \textbf{G22} Cars returned with less then 20\% of power charge are recharged within 1 day. % to keep car used (probably need a maintenance guy)
-				% TODO don't know if goes here: if a car breaks or is left outside the boundaries, it is recovered.
+			
+			\begin{enumerate}
+				\item The system allows guests to register; to complete the registration procedure the system sends a password to the guest as an access key.
+				\item The system should enable a registered user to find the location of an available car within a certain distance from the user's location or from a specified address.
+				\item The system enables user to reserve a single available car in a certain geographical region for one hour before the user picks it up. If the car is not picked up by that time, the reservation expires, the system tags this car as available again and it charges the user a fine of 1 EUR.
 				
-				
-				%Additional goals
-				\item \textbf{G1} The system notifies the user of the final charges on their smartphone as soon as 10 minutes passes or another user reserves a car. %not sure of formulation
-				%TODO add how to lock/unlock car when outside safe area?
-			\end{itemize}
+				\item The system should allow the user to employ a car in a proper and safe way. 				
+								
+				\item The system charges the user for a predefined amount of money per minute. A screen on the car notifies the user of the current charges.
+				\item The system starts charging the user as soon as the car ignites. It stops charging them when the car is parked in a safe area and the user exits the car. The user must confirm the operation, otherwise the system keeps charging them. 
+				\item The system should encourage good user behaviour through the application of discounts to the fee per minute. 
+				\item The system should discourage bad behaviour through the application of sanctions to the fee per minute. 
+				\item The system should provide an alternative usage mode for cars called \textit{money saving option}. Besides aiding the user in saving money, this mode allows for a uniform distribution of cars throughout the city by suggesting the user where to park.
+				\item The system allows the company to assist the users in case of need and take care of the cars.				
+				\item The admin should be able to configure some parameters of the system.
+			\end{enumerate}	

@@ -3,8 +3,10 @@
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx} % to embed images
 \usepackage{hyperref} % to link the table of contents
+\usepackage{subcaption} %complex images
+\usepackage{placeins} %floating
 
-\title{RASD}
+\title{Requirement Analysis and Specification Document}
 \date{2016-11-13}
 \author{
 	Patricia Abbud
@@ -21,7 +23,7 @@
 		\includegraphics[width=5cm]{img/polimi_logo.png} % also works with logo.pdf
 		\vfill
 		{\bfseries\Large
-			RASD\\
+			Requirement Analysis and Specification Document\\
 			\vskip4cm
 			Patricia Abbud\\
 			Maddalena Andreoli Andreoni\\
@@ -37,15 +39,21 @@
 
 	%%% introduction %%%
 	\section{Introduction}
-		\subsection{Description of the given problem}
-			The system we are going to develop is a car–sharing service called \textit{PowerEnJoy}, based on mobile application and which has a website. The system allows users to locate and reserve a car to drive in their geographical region using mobile application. Geographical region is identified using GPS on user's smartphone, he can also insert it manually. User can drive a car only inside one chosen geographical region. 
-			People in the system are not considered as registered until they fill an online form on the website or on the main page of the mobile application and until their driving license are not checked by the system as valid ones.
+		\subsection{Purpose}
+			The document you're approaching to read is the \textit{Requirement Analysis and Specification Document} (from now on RASD) for the information system \textit{PowerEnJoy}. The purpose of this document is to describe, with varying degrees of depth and detail, the system we're going to implement. The system will be described firstly by listing the needs of our stakeholders (Goals section). From these goals we'll derive the functional and nonfunctional requirements (requirements section) needed to describe the system, and we'll also underline the constraints (constraints section) and limits of the software given by the world in which it operates (domain properties section). We'll then proceed to describe a series of scenarios and use cases that will probably occur after deployment.  
 			
-			The main purpose of the system is to be efficient, reliable and easy to use to fulfill the will of users and the customer.  % TODO
 		\subsection{Actual system}
 			There is nothing created until now, and we suppose that we have to create the entire application, depending only on the problem given by the customer. 
-			
+		
 		\subsection{Scope}
+			The system we are going to develop is a car–sharing service called \textit{PowerEnJoy}, based on mobile application and which has a website. 
+			The main functionality of the system will be to allow its users to locate and reserve a car to drive in the municipality of Milan and its surroundings using the mobile application. The users may choose to either search for cars in their whereabouts or near a given address, and can drive it inside the geographical boundaries set by the company. 
+			Furthermore, the system will be developed such that the users will be encouraged in their good behaviours with discounts and sanctions to the fare per minute.
+			Naturally, the system must also allow the registration of new users; for the registration the system requests both personal and payment information. Then, to complete registration, any guest must send a pdf with driving license and personal ID to the company's email to be validated. 
+			All back-end operations are managed by one or more system administrators, who can dispatch on-site operators for emergencies, validate registrations, ban users. The administrators also have the possibility to choose some of the parameters of the system. 
+			
+			%TODO the actual purpose of the system is...?
+			
 		
 		\subsection{Actors}
 		
@@ -114,6 +122,10 @@
 				\item[Sanction] A sanction is an increase of a given percentage to the standard price. It is applied every time a user has a wasteful or incorrect behavior. % always increases the price per minute charged to a user. It is a positive percentage that is applied every time a user has a wasteful or incorrect behaviour.
 				
 				\item[Money saving option] An option offered to the users by the system. The user inputs their final destination and the system indicates them the best close station where to leave the car.
+				
+				\item[Time Window] %TODO
+				
+				\item[Standard ride] We define as \textit{standard ride} every ride that finishes with the car being parked in a safe area and where no emergency has occurred.
 			\end{description}
 
 		\subsection{Assumptions}
@@ -144,7 +156,7 @@
 		\subsection{Proposed system}
 			% TODO
 
-		\subsection{Identifying Stakeholders}
+		\subsection{Identifying stakeholders}
 			Main stakeholders are the inhabitants of Milan willing to use an ecologic and comfortable mean of transport, without the need to buy and maintain a personal car.
 			The system can be adopted in any other city, so the inhabitants of other cities too can become stakeholders.
 			In Milan, the project is promoted and participated my the city council as minor investor.
@@ -153,7 +165,7 @@
 			% TODO
 
 	\newpage
-	\section{Actors Identifying}
+	\section{Actors identifying}
 		The system involves as main external actors:
 		\begin{description}
 			\item[User] The final target of the system. Once registered, they can reserve a car and use it in respect of the agreements established with \textit{PowerEnJoy}. They are charged for the usage of the car. It is expected

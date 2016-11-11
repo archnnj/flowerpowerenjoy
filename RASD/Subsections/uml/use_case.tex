@@ -121,43 +121,8 @@
 			\item[Special Requirements] The user plugs in the car within 10 minutes from the moment they exits the car. Otherwise the discount is not applied.
 		\end{description}	
 		
-	% FIXME in contrast with new policies and replicated by mistake by Use case 9 and 10 --> should we remove/merge it?
-	\subsubsection{Use case 5: Retrieve a car with user input}
-		\begin{description}
-			\item[Name] Retrieve a car
-			\item[Actors] \hfill
-			\begin{description}
-				\item[User] The user of the car.
-				\item[Operator] The field operator.
-			\end{description}
-			\item[Entry condition] The car doesn't work and the user has parked it safely somewhere on the road.
-			\item[Flow of events] \hfill
-			\begin{enumerate}
-				\item The user checks whether the system has already notified the breakdown.
-				\item The user enters the app from their smartphone and manually notifies the malfunction.
-				\item The system asks the user to fill a form with the information needed.
-				\item The system locates the car.
-				\item The system analyses the user's form and decides how many operatos are needed
-				\item The system notifies the operators of the car's location and asks them to retrieve the car.
-				\item The operators drive the truck to the car's location.
-				\item The operators check the car on site.
-				\item The operators loads the car on the truck and drives it away to be repaired.
-				\item The system notifies the user of the annulment of all charges.
-				\item The system asks the user if he wants to reserve another car.
-			\end{enumerate}
-			\item[Exit condition] The operator brings the car in to be repaired; the user doesn't pay anything and is offered another car.
-			\item[Exceptions] \hfill
-			\begin{itemize}
-				\item \textbf{The user fills the form with wrong information} The field operators report this as soon as they arrive at the location and alert the system. The operators decide whether to have the user pay the fare anyway (if they inconvenienced the operators for naught) or not and notify the system. The system charges the user accordingly.
-				\item \textbf{There are no cars available nearby} The system alerts the user that there are no available cars in a 1km radius. The system then asks the user if they want to increase the radius of the search or to cancel it.
-				\item \textbf{The system knows of the malfunction} The system already knows of the malfunction %FIXIT is this an exception???
-				\item \textbf{The car isn't safely parked} The user ticks a box in the form to inform the system of the unsafe parking. The system looks for a safe place to park nearby and notifies the operators. The operators park there and reach the car on foot to check on it. If the car needs to be transported, the operators alert the local police. 
-				\item \textbf{The car is impossible to reach} The operators cannot reach the car in its location. The operators notify the system. The system alerts the local police. 
-			\end{itemize}
-			\item[Special Requirements] The operators must reach the car in 30 minutes time at most.
-		\end{description}
 
-	\subsubsection{Use case 6: Manually assist a parked car}
+	\subsubsection{Use case 5: Manually assist a parked car}
 		\begin{description}
 			\item[Name] Manually assist a car
 			\item[Actors] \hfill
@@ -195,7 +160,7 @@
 		\end{itemize}
 	
 	%FIXIT: draft
-	\subsubsection{Use case 7: Manage infractions}
+	\subsubsection{Use case 6: Manage infractions}
 		\begin{description}
 			\item[Name] Manage infractions
 			\item[Actors] \hfill
@@ -219,7 +184,7 @@
 				\end{itemize}
 		\end{description}
 
-	\subsubsection{Use case 8: Assist user after an accident}
+	\subsubsection{Use case 7: Assist user after an accident}
 		\begin{description}
 			\item[Name] Assist user after an accident
 			\item[Actors] \hfill
@@ -248,7 +213,7 @@
 			The Accident Detection System always detects an accident when the User is unconscious. In this cases, it also notifies the emergency services.
 		\end{description}
 
-	\subsubsection{Use case 9: Assist a user on-site after a car breakdown}
+	\subsubsection{Use case 8: Assist a user on-site after a car breakdown}
 		\begin{description}
 			\item[Name] Assist user after a car breakdown
 			\item[Actors] \hfill
@@ -270,14 +235,14 @@
 			\item[Exceptions] \hfill
 			\begin{itemize}
 				\item \textbf{The Operator decides that the reparation can't be done on-site.} The use case \textit{Assist a user with a not on-site reparation} is invoked.
-				\item \textbf{The User leaves the site before the reparation ends.} The Operator report it to the system. At the end of the reparation, the User is not assigned to the car anymore and is invoiced for the ride (until the breakdown occurred). The Operator notifies the Admin that the car must be taken to a parking area and leaves the site. The Admin dispatches an Operator with a tow truck. The Operator takes the car to the closest available parking area.
+				\item \textbf{The User leaves the site before the reparation ends.} The Operator reports it to the system. At the end of the reparation, the User is not assigned to the car anymore and is invoiced for the ride (until the breakdown occurred). The Operator notifies the Admin that the car must be taken to a parking area and leaves the site. The Admin dispatches an Operator with a tow truck. The Operator takes the car to the closest available parking area.
 				\item \textbf{The Operator asserts that there is no need for intervention and the User is still on site.} The User is fined (parameter). The car is assigned to the User again and the charges start again.
 				\item \textbf{The Operator asserts that there is no need for intervention and the User has gone from the site.} The User is fined (parameter, higher than in previous exception). The Operator notifies the Admin that the car must be taken to a parking area and leaves the site. The Admin dispatches an Operator with a tow truck. The Operator takes the car to the closest available parking area.
 			\end{itemize}
-			\item[Special Requirements] The Operator cannot refuse an assignment if he is online and always accept it within 10 minutes. An Operator is always online when at work. % TODO req: an operator can't end his shift if he is in the middle of an intervention
+			\item[Special Requirements] The Operator cannot refuse an assignment if he is online and always accept it within 10 minutes. An Operator is always online when at work. %TODO req: an operator can't end his shift if he is in the middle of an intervention
 		\end{description}
 
-	\subsubsection{Use case 10: Assist a user with a not on-site reparation}
+	\subsubsection{Use case 9: Assist a user with a not on-site reparation}
 		\begin{description}
 			\item[Name] Assist a user with a not on-site reparation
 			\item[Actors] \hfill
