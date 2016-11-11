@@ -85,7 +85,7 @@ For each goal, we derive the following requirements:
 						\item If the conditions for a discount only count for a limited period of time during the ride, the discount should be applied only to that time period. %This basically only happens with the passengers & money saving option if you think abt that.
 						\item The system must apply a discount every time a user brings two or more passengers in the car with them.
 						\item The system must apply a discount every time the car has more than 50\% of power charge by the end of a standard ride. %FIXME horridly put
-						\item The system must be able to apply a discount every time the user plugs the car in the power grid while their time window is still open.
+						\item The system must be able to apply a discount to a ride every time the car for that ride is plugged to the power grid at the end of the time window. 
 					\end{itemize}
 					
 				\item \textit{G[8]} The system should discourage bad behaviour through the application of sanctions to the fee per minute.
@@ -107,6 +107,9 @@ For each goal, we derive the following requirements:
 						\item The system must always be able to locate \textit{PowerEnJoy} operators. 
 						\item The system must allow administrators to know the status of on-site operators and dispatch them if they are available.
 						\item The system must keep track of every car's battery and alert the admin when it lowers below 3\%. 
+						\item The system must always notify the admin when it detects that an accident occurred. 
+						\item If the system has already notified the admin of an accident, then it must prevent the user from notifying it again.
+						\item If the system has already notified the admin of an accident, then it must notify the user of this fact.
 					\end{itemize}
 					
 				\item \textit{G[11]} The admin should be able to configure some parameters of the system.
