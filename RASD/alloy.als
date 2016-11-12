@@ -24,12 +24,17 @@ enum BatteryStatus {
 	BatteryLow, BatteryHigh
 }
 
-/* Emergency report */
+/* Emergency report enums */
 enum ERStatus { // remove if not needed
 	EROpen, ERDispatched, ERWip, ERClosed, ERCantClose // FIXME give a check here
 }
 enum ERType { // remove if not needed
 	ERAccident, EROnsite, ERNotOnsite // FIXME give a check here
+}
+
+/* Car status */
+enum CarStatus {
+	Available, Reserved, InUse, OutOfOrder
 }
 
 /* User */
@@ -51,6 +56,7 @@ abstract sig GeneralParkingArea {
 	cars: set Car
 } {
 //	#car <= #slot
+	capacity > 0
 	#cars <= capacity
 	// TODO slots cannot be shared by parking areas! --> remove Slots!
 }
@@ -61,15 +67,14 @@ sig ChargingArea extends GeneralParkingArea {
 
 /* Car */
 sig Car {
-	reserved: one Bool,
-	inUse: one Bool,
 	battery: one BatteryStatus,
 	parkedIn: lone GeneralParkingArea,
-	isCharging: one Bool
+	isCharging: one Bool,
+	status: one CarStatus
 } {
-	isCharging = True => ( parkedIn != none and parkedIn in ChargingArea)
-	inUse = True <=> parkedIn = none // car either parked or in use
-	reserved = True => parkedIn != none
+	isCharging = True => ( parkedIn != none and parkedIn in ChargingArea) // isCharging only if in charging area
+	parkedIn = none <=> ( status = InUse or status = OutOfOrder ) // car not parked can either be in use or out of order
+	status = Reserved => parkedIn != none // reserved only if parked
 }
 
 /* User interactions*/
@@ -97,14 +102,15 @@ sig EmergencyReport {
 /** Facts **/
 
 /* Structural constraints */
+
 fact AttrbutePairings {
 	Car<:parkedIn = ~(GeneralParkingArea<:cars) // Car::parkedIn = transpose of GeneralParkingArea::cars
 
 	no disjoint u1, u2 : User | u1.license = u2.license // license is personal
 	User.license = License // not consider licenses of people outside the system
 
-	all c : Car | ( c.reserved = True <=> (some r : Reservation | c = r.car) )
-	all c : Car | ( c.inUse = True <=> (some r : Ride | c = r.car) )
+	all c : Car | ( c.status = Reserved <=> (some r : Reservation | c = r.car) )
+	all c : Car | ( c.status = InUse <=> (some r : Ride | c = r.car) )
 }
 
 fact CarUsageExclusivity {
