@@ -61,29 +61,26 @@ For each goal, we derive the following requirements:
 					
 				\item \textit{G[5]} The system charges the user for a predefined amount of money per minute. A screen on the car notifies the user of the current charges.
 					\begin{itemize}
-						\item The system must be able to retrieve all data necessary to charge the user. This data is the duration of the ride and all the conditions for application of discounts and sanctions.
+						\item The system must be able to retrieve all data necessary to charge the user. This data is the duration of the ride and all the conditions for the eventual application of discounts and sanctions.
 						\item The system should notify the user of the fee per minute he's being charged through a screen inside the car.
 						\item The system must notify the final charges to the user after the time window for the ride has expired.
 						\item The system must invoice the user after the time window for the ride by communicating the charges to the external payment system. 
 						
 					\end{itemize}
 				
-				\item \textit{G[6]} The system starts charging the user as soon as the car ignites. It stops charging them when the car is parked in a safe area and the user exits the car. The user must confirm the operation, otherwise the system keeps charging them. 
+				\item \textit{G[6]} The system starts charging the user as soon as the car ignites. It stops charging them when the car is parked in a safe area and the user exits the car.
 					\begin{itemize}
 						\item The system must charge the user with a fee per minute.
 						\item The system must be able to tell when the car has ignited. 
 						\item The system should start counting the charges from the ignition onward. %FIXME horridly put.
-						\item The system must ask the user whether they wish to end the ride or not as soon as they are parked in a safe area and have exited the car.
-						\item If a user has chosen to end the ride, the charges must be counted until the beginning of the time window for that ride. 
-						\item If a user keeps using the car, the time window is included in the charged time.
+						\item The system must stop counting the charges when the user exits the car while inside a safe area.
 						\item If the reservation has expired but the user is inside the car (without igniting it), the system must start charging them anyway an exceptional fee per minute. %cfr requirements for G11
-						\item If a user has parked in a recharging area and plugged the car to the power grid, then the system must stop considering the car as theirs, regardless of how they chose to employ the car. 
 					\end{itemize}
 					
 				\item \textit{G[7]} The system should encourage good user behaviour through the application of discounts to the fee per minute. 
 					\begin{itemize}
 						\item The system must apply all discounts to the fee per minute.
-						\item If the conditions for a discount only count for a limited period of time during the ride, the discount should be applied only to that time period. %This basically only happens with the passengers & money saving option if you think abt that.
+						\item If the conditions for a discount are satisfied only for a limited period of time during the ride, the discount should be applied only to that time period. %This basically only happens with the passengers & money saving option if you think abt that.
 						\item The system must apply a discount every time a user brings two or more passengers in the car with them.
 						\item The system must apply a discount every time the car has more than 50\% of power charge by the end of a standard ride. %FIXME horridly put
 						\item The system must be able to apply a discount to a ride every time the car for that ride is plugged to the power grid at the end of the time window. 
