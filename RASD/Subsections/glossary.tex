@@ -2,13 +2,14 @@
 				\item[User] We will refer to all people who are registered to the system as 'users'. All users have personal profiles which contain the following information:
 				\begin{itemize}
 					\item First name;
-					\item Family name; %FIXIT can we change this to Last name; I think it's more convenient with First name - Poe agrees
+					\item Last name; 
 					\item Email;
+					\item Telephone number;
 					\item Username;
 					\item Password;
 					\item Payment information; this in particular includes:
 						\begin{itemize}
-							% Card owner? We assume it must be personal?
+							\item Credit card owner;
 							\item Credit card number;
 							\item Credit card expiration date;
 							\item CVV number.
@@ -18,16 +19,13 @@
 							\item License number;
 							\item Issued date;
 							\item Expiration date;
-							\item Status. % what does this represent?
 						\end{itemize}
-						% TODO Ps: only for italian licenses? should state in assumption which kind of licences we accept I guess
 				\end{itemize}
 				And, optionally:
 				\begin{itemize}		
 					\item Personal photo;
-					\item Telephone number. % I'd make this mandatory, for emergencies or important issues
 				\end{itemize}
-				Users should be able to locate, reserve and drive the cars offered by the service. % like without disabilities? 
+
 				
 				\item[Guest] We shall call 'guests' all people who are using the interface of the system without being registered or logged in. Guests can't access any functionality of \textit{PowerEnJoy} except for the registration process or the log in. 
 				
@@ -51,7 +49,7 @@
 				
 				\item[Money saving option] An option offered to the users by the system. The user inputs their final destination and the system indicates them the best close station where to leave the car.
 				
-				\item[Time Window] %TODO
+				\item[Time Window] %TODO %TODO remember to add that the time window finished also if someone else reserves the car!
 				
 				\item[Standard ride] We define as \textit{standard ride} every ride that finishes with the car being parked in a safe area and where no emergency has occurred.
 				
