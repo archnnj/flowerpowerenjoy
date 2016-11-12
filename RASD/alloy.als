@@ -67,9 +67,9 @@ sig Car {
 	parkedIn: lone GeneralParkingArea,
 	isCharging: one Bool
 } {
-	reserved = True <=> (some r : Reservation | this = r.car)
-	inUse = True <=> (some r : Ride | this = r.car)
-	isCharging = True => parkedIn in ChargingArea
+	isCharging = True => ( parkedIn != none and parkedIn in ChargingArea)
+	inUse = True <=> parkedIn = none // car either parked or in use
+	reserved = True => parkedIn != none
 }
 
 /* User interactions*/
@@ -94,19 +94,27 @@ sig EmergencyReport {
 	assignedOp = none <=> status = EROpen // assignedOp empty iff status is EROpen
 }
 
+/** Facts **/
+
+/* Structural constraints */
 fact AttrbutePairings {
 	Car<:parkedIn = ~(GeneralParkingArea<:cars) // Car::parkedIn = transpose of GeneralParkingArea::cars
 
 	no disjoint u1, u2 : User | u1.license = u2.license // license is personal
 	User.license = License // not consider licenses of people outside the system
 
+	all c : Car | ( c.reserved = True <=> (some r : Reservation | c = r.car) )
+	all c : Car | ( c.inUse = True <=> (some r : Ride | c = r.car) )
 }
 
-// TODO fact ride-reserv mutually exclusive per user
-// TODO ride, reserve no more than 1 per car
-// TODO ride, reserve no more than 1 per user
-// TODO no disjoint u1,u2 : User | u1.license = tu2.license
-// TODO other contraints
+fact CarUsageExclusivity {
+	all c : Car | ( lone res : Reservation | res.car = c ) // every car is in 0..1 reservation
+	all c : Car | ( lone ride : Ride | ride.car = c ) // every car is in 0..1 ride
+	Reservation.car & Ride.car = none // no car both reserved and in ride
+	all u : User | ( lone res : Reservation | res.user = u ) // every user has 0..1 reservation
+	all u : User | ( lone ride : Ride | ride.user = u ) // every user has 0..1 ride
+	Reservation.user & Ride.user = none // no user with both a reservation and a current ride
+}
 
 pred show { }
 run show
