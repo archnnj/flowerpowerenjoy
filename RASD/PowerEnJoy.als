@@ -1,5 +1,6 @@
 open util/boolean
 
+/* Atomic signatures */
 sig Date{}
 sig Location{}
 sig Time{}
@@ -98,12 +99,6 @@ sig GeoZone {
 	#city>=3
 }
 
-sig SystemCity{
-	user: some User,
-	car: some Car,
-	geozone: one GeoZone
-}
-
 sig AppliablePercent{
 	percent: one Int
 }{
@@ -138,7 +133,7 @@ sig Ride {
 	chargePerMinute>0
 	passenger>=0
 	passenger<=3
-	rStatus = RUNNING => discount = none and sanction = none 
+	rStatus = RUNNING => discount = none and sanction = none // ???
 	rStatus = WAITING <=> one c: Car | c.available = False and c.cRide = this
 }
 
@@ -166,6 +161,8 @@ sig ParkingArea extends GeneralParkingArea{
 sig ChargingArea extends GeneralParkingArea{
 	pluggedCars: set Car
 }
+
+/** Facts **/
 
 fact licenseAreUnique{
 	all l1, l2 : License | (l1 != l2) => l1.licenseNumber != l2.licenseNumber
@@ -201,8 +198,8 @@ fact oneWaitingRunningRidePerCar{
 * if ride is running => car is not available
 * if car is not available => ride is running */
 fact carInUseNotAvailable{
-	all r: Ride, c: Car | ((r.rStatus = RUNNING or r.rStatus = WAITING) and r.car = c) => (c.available = False)
-	all c: Car | c.available = False => (one ri: Ride | (ri.rStatus = RUNNING or ri.rStatus = WAITING) and (ri.car = c))
+	all r: Ride, c: Car | (r.rStatus = RUNNING and r.car = c) => (c.available = False)
+	all c: Car | c.available = False => (one ri: Ride | ri.rStatus = RUNNING and (ri.car = c))
 }
 
 fact userHasOnlyOneReservation{
@@ -216,16 +213,6 @@ fact carHasOneReservation{
 fact noCarForBannedUser{
 	all u: User | u.uStatus = BANNED => (no r:Ride | (r.rStatus = RUNNING or r.rStatus = WAITING) and r.user =u) and (no re: Reservation | re.user = u  )
 }
-
-fact everyUserIsInThisGeoZone{
-	#(User)=#(SystemCity.user)
-}
-
-fact everyCarIsInThisGeoZone{
-	#(Car)=#(SystemCity.car)	
-}
-
-
 
 pred show(){
 }
