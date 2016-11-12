@@ -43,7 +43,7 @@
 			The document you're approaching to read is the \textit{Requirement Analysis and Specification Document} (from now on RASD) for the information system \textit{PowerEnJoy}. The purpose of this document is to describe, with varying degrees of depth and detail, the system we're going to implement. The system will be described firstly by listing the needs of our stakeholders (Goals section). From these goals we'll derive the functional and nonfunctional requirements (requirements section) needed to describe the system, and we'll also underline the constraints (constraints section) and limits of the software given by the world in which it operates (domain properties section). We'll then proceed to describe a series of scenarios and use cases that will probably occur after deployment.  
 			
 		\subsection{Actual system}
-			There is nothing created until now, and we suppose that we have to create the entire application, depending only on the problem given by the customer. 
+			The team has been asked to develop the system for a car sharing service. We suppose that nothing has been create until now and that we do not have to modify or expand any pre-existing application. We will have instead to create the entire system.
 		
 		\subsection{Scope}
 			The system we are going to develop is a car–sharing service called \textit{PowerEnJoy}, based on mobile application and which has a website. 
@@ -57,11 +57,15 @@
 		
 		\subsection{Actors}
 		
-		\begin{itemize}
-			\item Guest: all guests can only see the login page of the application or of the website, where they can complete the registration form to be able to login from mobile application as registered users.
+		\begin{description}
+			\item[Guest] All guests can only see the login page of the application or of the website, where they can complete the registration form to be able to login from mobile application as registered users.
 			
-			\item Registered User: after logging in to the system users can "use" (change this word) the application, where they can see map with available cars, reserve one and get notifications from the system and also can see their profile and make some changes in it.   
-		\end{itemize}  	
+			\item[Registered User] Registered users are those who have both submitted a registration and had their license checked and approved. They can find available cars, reserve them and drive them. They can also manage their profile. 
+			
+			\item[Administrator] Administrators (admin in short) are employees of the company that control all back-end notification and management. They can dispatch operators, change parameters of the system, and keep track of the information provided by the system. %FIXME
+			
+			\item[Operator] On-site operators are employees of the company. They are dispatched by the admin to physically check on cars, move them or fix them.
+		\end{description}  	
 
 		\subsection{Goals}
 		\input{Subsections/goals.tex}
@@ -134,6 +138,7 @@
 		\subsection{Constrains}
 			\subsubsection{Regulatory policies}
 				According to privacy law the system must require to User the permission to get his position and to acquire, store and process his personal data.
+			
 			\subsubsection{Hardware limitations}
 				\begin{itemize}
 				\item Mobile application
@@ -145,7 +150,7 @@
 				\item Website
 				\begin{itemize}
 					\item Modern browser
-				The Website of the service must work with all versions of Google Chrome, Opera, Firefox amd Internet Explorer released after 2010.	
+				The Website of the service must work with all versions of Google Chrome, Opera, Firefox and Internet Explorer released after 2010.	
 				\end{itemize}
 				\end{itemize}
 			\subsubsection{Interfaces to other applications}
