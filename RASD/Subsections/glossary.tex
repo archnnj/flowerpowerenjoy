@@ -27,31 +27,29 @@
 				\end{itemize}
 
 				
-				\item[Guest] We shall call 'guests' all people who are using the interface of the system without being registered or logged in. Guests can't access any functionality of \textit{PowerEnJoy} except for the registration process or the log in. 
+				\item[Guest] We shall call 'guests' all people who are using the interface of the system without being registered or logged in. Guests can't access any functionality of \textit{PowerEnJoy} except for the registration process and the log in. 
 				
 				
 				\item[Parking areas] Also called \textit{Safe areas}, parking areas are predefined parking slots within the municipality that are reserved for the car–sharing system \textit{PowerEnJoy}.
 				\item[Special parking areas], or \textit{recharging areas} are \textit{Parking areas} that provides a plug to recharge the car. Recharging parking areas are a subset of Parking areas (parking areas \textit{may} be recharging areas, while the contrary doesn't apply).
-				% was: are parking slots where the car can be recharged; parking areas and recharging areas do not always coincide: parking areas \textit{may} be recharging areas, while the contrary doesn't apply. %See and change assumptions whatever we decide.
 				
-				%\item[Reservation] We will call 'reservation' the operation of booking a specific car for the sole use of the user who reserved it. Reservations allow the users to %access the car, open it and drive it. %FIXIT I would better say Reserved car
-				\item [Reserved car] We will call 'reserved car' a specific car that is booked by current user,not taken by other users, and is located in the same geographical region as him.
+				\item [Reserved car] We will call 'reserved car' a specific car that is booked by a user, who still has to reach and open it, and not taken by other users.
 				
-				\item [Available car] is the car that is not reserved by other users.
+				\item [Available car] An avalable car is a car that is not reserved by any user.
 				
-				\item[Power grid] %TODO
+				\item[Power grid] We shall call power grid the system of electrical distribution that covers all recharging areas and is privately owned by the company \textit{PowerEnJoy}. The thus defined power grid is linked with the public power grid from which it takes the needed electricity.
 				
 				\item[Standard price] We shall call 'standard price' the price per minute charged to the user, without any discount or sanction applied. 
 				
 				% FIXME check if these are now ok:
-				\item[Discount] A discount is a deduction of a given percentage from the standard price. It is applied every time a user has a virtuous behavior. % A discount always lowers the price per minute charged to a user. It is a negative percentage that is applied every time a user has a virtuous behaviour.
-				\item[Sanction] A sanction is an increase of a given percentage to the standard price. It is applied every time a user has a wasteful or incorrect behavior. % always increases the price per minute charged to a user. It is a positive percentage that is applied every time a user has a wasteful or incorrect behaviour.
+				\item[Discount] A discount always lowers the price per minute charged to a user. It is a negative percentage that is applied every time a user has a virtuous behaviour.
+				\item[Sanction] A sanction always increases the price per minute charged to a user. It is a positive percentage that is applied every time a user has a wasteful or incorrect behaviour.
 				
 				\item[Money saving option] An option offered to the users by the system. The user inputs their final destination and the system indicates them the best close station where to leave the car.
 				
-				\item[Time Window] %TODO %TODO remember to add that the time window finished also if someone else reserves the car!
+				\item[Time Window] A time window is a period of time allotted after every ride when the user can still operate with the car, i.e. open it and plug it to the power grid, even if the car is no longer reserved to them. The charges are invoiced after the time window finishes. The time window finished either after a fixed amount of time or when another user reserves the car before then.
 				
 				\item[Standard ride] We define as \textit{standard ride} every ride that finishes with the car being parked in a safe area and where no emergency has occurred.
 				
-				\item[Uniform distribution] %TODO
+				\item[Uniform distribution] We shall call distribution the number of cars parked at a given point in time in all the parking areas of \textit{PowerEnJoy}. An uniform distribution is a particular distribution calculated through an algorithm provided by the customers, that satisfies a series of constraints.
 			\end{description}
