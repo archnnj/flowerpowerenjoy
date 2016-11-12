@@ -77,6 +77,7 @@ For each goal, we derive the following requirements:
 						\item If a user has chosen to end the ride, the charges must be counted until the beginning of the time window for that ride. 
 						\item If a user keeps using the car, the time window is included in the charged time.
 						\item If the reservation has expired but the user is inside the car (without igniting it), the system must start charging them anyway an exceptional fee per minute. %cfr requirements for G11
+						\item If a user has parked in a recharging area and plugged the car to the power grid, then the system must stop considering the car as theirs, regardless of how they chose to employ the car. 
 					\end{itemize}
 					
 				\item \textit{G[7]} The system should encourage good user behaviour through the application of discounts to the fee per minute. 
