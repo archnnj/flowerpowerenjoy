@@ -1,0 +1,59 @@
+\begin{description}
+				\item[User] We will refer to all people who are registered to the system as 'users'. All users have personal profiles which contain the following information:
+				\begin{itemize}
+					\item First name;
+					\item Family name; %FIXIT can we change this to Last name; I think it's more convenient with First name - Poe agrees
+					\item Email;
+					\item Username;
+					\item Password;
+					\item Payment information; this in particular includes:
+						\begin{itemize}
+							% Card owner? We assume it must be personal?
+							\item Credit card number;
+							\item Credit card expiration date;
+							\item CVV number.
+						\end{itemize}
+					\item Driving license information; this in particular includes:
+						\begin{itemize}
+							\item License number;
+							\item Issued date;
+							\item Expiration date;
+							\item Status. % what does this represent?
+						\end{itemize}
+						% TODO Ps: only for italian licenses? should state in assumption which kind of licences we accept I guess
+				\end{itemize}
+				And, optionally:
+				\begin{itemize}		
+					\item Personal photo;
+					\item Telephone number. % I'd make this mandatory, for emergencies or important issues
+				\end{itemize}
+				Users should be able to locate, reserve and drive the cars offered by the service. % like without disabilities? 
+				
+				\item[Guest] We shall call 'guests' all people who are using the interface of the system without being registered or logged in. Guests can't access any functionality of \textit{PowerEnJoy} except for the registration process or the log in. 
+				
+				
+				\item[Parking areas] Also called \textit{Safe areas}, parking areas are predefined parking slots within the municipality that are reserved for the car–sharing system \textit{PowerEnJoy}.
+				\item[Special parking areas], or \textit{recharging areas} are \textit{Parking areas} that provides a plug to recharge the car. Recharging parking areas are a subset of Parking areas (parking areas \textit{may} be recharging areas, while the contrary doesn't apply).
+				% was: are parking slots where the car can be recharged; parking areas and recharging areas do not always coincide: parking areas \textit{may} be recharging areas, while the contrary doesn't apply. %See and change assumptions whatever we decide.
+				
+				%\item[Reservation] We will call 'reservation' the operation of booking a specific car for the sole use of the user who reserved it. Reservations allow the users to %access the car, open it and drive it. %FIXIT I would better say Reserved car
+				\item [Reserved car] We will call 'reserved car' a specific car that is booked by current user,not taken by other users, and is located in the same geographical region as him.
+				
+				\item [Available car] is the car that is not reserved by other users.
+				
+				\item[Power grid] %TODO
+				
+				\item[Standard price] We shall call 'standard price' the price per minute charged to the user, without any discount or sanction applied. 
+				
+				% FIXME check if these are now ok:
+				\item[Discount] A discount is a deduction of a given percentage from the standard price. It is applied every time a user has a virtuous behavior. % A discount always lowers the price per minute charged to a user. It is a negative percentage that is applied every time a user has a virtuous behaviour.
+				\item[Sanction] A sanction is an increase of a given percentage to the standard price. It is applied every time a user has a wasteful or incorrect behavior. % always increases the price per minute charged to a user. It is a positive percentage that is applied every time a user has a wasteful or incorrect behaviour.
+				
+				\item[Money saving option] An option offered to the users by the system. The user inputs their final destination and the system indicates them the best close station where to leave the car.
+				
+				\item[Time Window] %TODO
+				
+				\item[Standard ride] We define as \textit{standard ride} every ride that finishes with the car being parked in a safe area and where no emergency has occurred.
+				
+				\item[Uniform distribution] %TODO
+			\end{description}
