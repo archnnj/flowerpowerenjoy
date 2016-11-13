@@ -167,19 +167,20 @@ fact LocalizationRequirements {
 
 // G[3] The system enables user to reserve a single available car in a certain geographical region for one hour before the user picks it up. If the car is not picked up by that time, the reservation expires, the system tags this car as available again and it charges the user a fine of 1 EUR.
 fact ReservationRequirements {
-	no userWithRes : Reservation.user | userWithRes.license.isExpired = True // reservation only for user with valid license
-	no userWithRes : Reservation.user | userWithRes.banned = True // no banned user can reserve a car
+	// R[3.5] reservation only for user with valid license
+	no userWithRes : Reservation.user | userWithRes.license.isExpired = True
+	// R[3.6] no banned user can reserve a car
+	no userWithRes : Reservation.user | userWithRes.banned = True
 }
 
 // G[4] The system should allow the user to employ a car in a proper and safe way.
 fact RideRequirements {
-	// car unlocked only if user with reservation or which is using it is near it
+	// R[4.9] car unlocked only if user with reservation or which is using it is near it
 	all c : Car |
 		c.locked = False =>
 			( some u : User , r : Reservation | r.user = u and r.car = c and c in u.near ) or
 			( some u : User , r : Ride | r.user = u and r.car = c and c in u.near )
-
-	// car locked if user has exited it inside a safe area
+	// R[4.10] car locked if user has exited it inside a safe area
 	all c : Car |
 		(
 			c.parkedIn != none and
@@ -188,8 +189,7 @@ fact RideRequirements {
 			=>
 			c.locked = True
 		)
-
-	// time window definition
+	// R[4.12] time window definition (partial coverage of the requirement)
 	all r : Ride | let c = r.car | r.timeWindowActive = True => c.parkedIn != none // time window only if car in parking area
 }
 
@@ -200,15 +200,21 @@ fact ChargesRequirements {
 
 // G[6] The system starts charging the user as soon as the car ignites. It stops charging them when the car is parked in a safe area and the user exits the car.
 fact ChargingRequirements {
+	// general requirement
 	all r : Ride | let c = r.car | ( c.status = InUse and c.engineOn = True ) => r.chargesRunning = True
-	all r : Ride | let c = r.car | ( c.parkedIn != none and c.driverInside = False ) => r.chargesRunning = False // charges stops when user exits the car in a safe area (or haven't entered yet)
-	all r : Ride | r.timeWindowActive = True => r.chargesRunning = False // no charges in time window
+	// general requirement
+	all r : Ride | r.timeWindowActive = True => r.chargesRunning = False
+	// R[6.4] charges stops when user exits the car in a safe area (or haven't entered yet)
+	all r : Ride | let c = r.car | ( c.parkedIn != none and c.driverInside = False ) => r.chargesRunning = False
 }
 
 // G[7] The system should encourage good user behaviour through the application of discounts to the fee per minute.
 fact DiscountsRequirements {
-	all r : Ride | PassengersDiscount in r.discSanctApplicableNow <=> #r.passengers >= 2 and r.car.engineOn = True // R[7.3] discount for rides with two or more passengers
-	all r : Ride | HighBatteryDiscount in r.discSanctApplicableRide <=> r.timeWindowActive = True and r.car.battery = BatteryHigh and r.isStandard = True // R[7.4] discount if more than 50% battery at end of a standard ride
+	// R[7.3] discount for rides with two or more passengers
+	all r : Ride | PassengersDiscount in r.discSanctApplicableNow <=> #r.passengers >= 2 and r.car.engineOn = True
+	// R[7.4] discount if more than 50% battery at end of a standard ride
+	all r : Ride | HighBatteryDiscount in r.discSanctApplicableRide <=> r.timeWindowActive = True and r.car.battery = BatteryHigh and r.isStandard = True
+	// R[7.5] discount if car plugged in at the end of the time window (approximation)
 	all r : Ride | PlugInDiscount in r.discSanctApplicableRide <=> r.timeWindowActive = True and r.car.isCharging = True
 	// NB: for simplicity here the ride is considered end when the time window is active. This does not affect the model.
 }
@@ -220,12 +226,12 @@ fact SanctionsRequirements {
 		FarChargingAreaSanction in r.discSanctApplicableRide
 		<=>
 		r.timeWindowActive = True and r.car.parkedIn in ParkingArea and r.car.parkedIn.distanceChargingArea = Far
-
 	// R[8.2] sanction if car left with less than 20% of battery
 	all r : Ride |
 		 LowBatterySanction in r.discSanctApplicableRide
 		<=>
 		r.timeWindowActive = True and r.car.battery = BatteryLow
+	// NB: for simplicity here the ride is considered end when the time window is active. This does not affect the model.
 }
 
 // G[9] The system should provide an alternative usage mode for cars called money saving option. Besides aiding the user in saving money, this mode allows for a uniform distribution of cars throughout the city by suggesting the user where to park.
