@@ -134,12 +134,12 @@ fact CarUsageExclusivity {
 
 // G[1] The system allows guests to register; to complete the registration procedure the system sends a password to the guest as an access key.
 fact RegistrationRequirements {
-	// TODO or delete
+	// none
 }
 
 // G[2] The system should enable a registered user to find the location of an available car within a certain distance from the user’s location or from a specified address.
 fact LocalizationRequirements {
-	// TODO or delete
+	// none
 }
 
 // G[3] The system enables user to reserve a single available car in a certain geographical region for one hour before the user picks it up. If the car is not picked up by that time, the reservation expires, the system tags this car as available again and it charges the user a fine of 1 EUR.
@@ -168,6 +168,11 @@ fact RideRequirements {
 
 	// time window definition
 	all r : Ride | let c = r.car | r.timeWindowActive = True => c.parkedIn != none // time window only if car in parking area
+}
+
+// G[5] The system charges the user for a predefined amount of money per minute. A screen on the car notifies the user of the current charges.
+fact ChargesRequirements {
+	// none
 }
 
 assert DriverNeverTrapped {
