@@ -111,8 +111,8 @@ sig Ride {
 	passengers: set Passenger,
 	timeWindowActive: one Bool,
 	chargesRunning: one Bool,
-	discSanctApplicableNow: set DiscountSanction,
-	discSanctApplicableRide: set DiscountSanction,
+	discSanctApplicableNow: set DiscountSanctionPerMinute,
+	discSanctApplicableRide: set DiscountSanctionWholeRide,
 	isStandard: one Bool // finishes with the car being parked in a safe area and no emergency has occurred
 } {
 	#passengers < 4 // capacity of cars (1 driver + 3 passengers)
@@ -152,6 +152,8 @@ fact exclusivity {
 	Reservation.user & Ride.user = none // no user with both a reservation and a current ride
 
 	all disjoint r1, r2 : Ride | r1.passengers & r2.passengers = none
+
+	all disjoint e1, e2 : EmergencyReport | e1.assignedOp & e2.assignedOp = none
 }
 
 /* Requirements */
