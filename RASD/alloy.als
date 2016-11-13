@@ -17,11 +17,8 @@ sig Operator {
 }
 
 /* Battery status */
-// abstract sig BatteryStatus {}
-// one sig BatteryLow extends BatteryStatus {} // below 20% ?
-// one sig BatteryHigh extends BatteryStatus {} // above 50% ?
 enum BatteryStatus {
-	BatteryLow, BatteryHigh
+	BatteryLow, BatteryMedium, BatteryHigh // BatteryHigh: more than 50%; BatteryLow: less than 20%; BatteryMedium otherwise
 }
 
 /* Emergency report enums */
@@ -37,13 +34,19 @@ enum CarStatus {
 	Available, Reserved, InUse, OutOfOrder
 }
 
-/* Discounts and Sanctions */
+enum DistanceFromChargingArea {
+	Far, Near // Far: more than 3km; Near otherwise
+}
+
+/* Discounts and Sanctions types */
 abstract sig DiscountSanction { }
 abstract sig DiscountSanctionPerMinute extends DiscountSanction { }
 sig PassengersDiscount extends DiscountSanctionPerMinute { }
 abstract sig DiscountSanctionWholeRide extends DiscountSanction {}
 sig HighBatteryDiscount extends DiscountSanctionWholeRide { }
 sig PlugInDiscount extends DiscountSanctionWholeRide { }
+sig FarChargingAreaSanction extends DiscountSanctionWholeRide { }
+sig LowBatterySanction extends DiscountSanctionWholeRide { }
 
 /* User */
 abstract sig GeneralUser {}
@@ -68,7 +71,9 @@ abstract sig GeneralParkingArea {
 	#cars <= capacity
 	// TODO slots cannot be shared by parking areas! --> remove Slots!
 }
-sig ParkingArea extends GeneralParkingArea {}
+sig ParkingArea extends GeneralParkingArea {
+	distanceChargingArea: one DistanceFromChargingArea
+}
 sig ChargingArea extends GeneralParkingArea {
 	// TODO sth here?
 }
@@ -201,6 +206,21 @@ fact DiscountsRequirements {
 	all r : Ride | HighBatteryDiscount in r.discSanctApplicableRide <=> r.timeWindowActive = True and r.car.battery = BatteryHigh // R[7.4] discount if more than 50% battery at end of the ride
 	all r : Ride | PlugInDiscount in r.discSanctApplicableRide <=> r.timeWindowActive = True and r.car.isCharging = True
 	// NB: for simplicity here the ride is considered end when the time window is active. This does not affect the model.
+}
+
+// G[8] The system should discourage bad behaviour through the application of sanctions to the fee per minute.
+fact SanctionsRequirements {
+	// R[8.1] sanction when car left at more than 3km from a charging area
+	all r : Ride |
+		FarChargingAreaSanction in r.discSanctApplicableRide
+		<=>
+		r.timeWindowActive = True and r.car.parkedIn in ParkingArea and r.car.parkedIn.distanceChargingArea = Far
+
+	// R[8.2] sanction if car left with less than 20% of battery
+	all r : Ride |
+		 LowBatterySanction in r.discSanctApplicableRide
+		<=>
+		r.timeWindowActive = True and r.car.battery = BatteryLow
 }
 
 assert DriverNeverTrapped {
