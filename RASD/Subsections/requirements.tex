@@ -40,7 +40,6 @@ For each goal, we derive the following requirements:
 						
 						\item R[3.5] The system must impede any user with an expired license to reserve a car.
 						\item R[3.6] The system must impede any banned user to reserve a car.
-						%TODO others?
 					\end{itemize}
 
 				\item \textit{G[4]} The system should allow the user to employ a car in a proper and safe way. 
@@ -125,8 +124,8 @@ For each goal, we derive the following requirements:
 								\item The standard fee per minute
 								\item The lost reservation fee (starting value = 1EUR)
 								\item The time before considering a reservation lost (starting value = 1 hour)
-								\item The fine for leaving an accident site %TODO shouldn't we explain our reasoning for accidents/incidents somewhere??
-								\item Discount percent values:
+								\item The fine for leaving an accident site
+								\item Discount percent   values:
 									\begin{itemize}
 										\item Passengers discount (starting value = 10%)
 										\item Residual battery discount (starting value = 20%)
@@ -150,6 +149,15 @@ For each goal, we derive the following requirements:
 
 
 \subsection{Non-functional requirements}
+	Even thought our clients did not explicitly state any non-functional requirement for the system to be implemented, after some consideration we thought that the following requirements should be included:
+	
+	\begin{enumerate}
+		\item[Integrity] Data in the system must not be exposed to accidental or malicious modification or destruction.
+		\item[Confidentiality] The system must be so it is difficult to breach the privacy of all users, above all because of the sensitive information we store (i.e. credit card information).
+		\item[Robustness] We want the system to be able to process and cope with wrong input from the users. In particular, this property must hold for the system's relationship with the localization services provider. 
+		\item[Performance] The system should ensure a short response time for all computations, and must be able to sustain a high number of simultaneous requests.
+	\end{enumerate}
+
 	\subsubsection{User interface}
 	\paragraph{}The interface of our application is thought to be used mainly via mobile app, with some content also displayed in a web page. The team reasoned that the main functionalities of the system (such as reserving and managing a car) make sense only in a \textit{movable} context (meaning, such that the user can do them anywhere they have an internet connection). Those functionalities are available on the mobile app. On the other hand, operations such as signing up are more easily managed in front of a computer, so the web page allows users to register, login and manage their profiles (which they can do also via mobile app anyway).
 	\paragraph{}We pondered on the possibility of adding the possibility of reserving a car via web browser. However, upon consideration, we decided it is not a good mechanism: with that functionality, a user could very well be registered without having downloaded the app and reserving a car without being able to access it in any way. Hence, the reservation of \textit{PowerEnJoy} cars can be made only via mobile app. 
