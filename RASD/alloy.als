@@ -3,17 +3,14 @@ open util/boolean
 /** Signatures **/
 
 /* Atomic */
-// sig CreditCard {}
 sig License{
 	isExpired: one Bool
 }
 sig Passenger {}
 
 /* Internal actors */
-sig Admin {} // needed?
-sig Operator {
-	// location?
-}
+sig Admin {}
+sig Operator {}
 
 /* Battery status */
 enum BatteryStatus {
@@ -24,11 +21,11 @@ enum BatteryStatus {
 }
 
 /* Emergency report enums */
-enum ERStatus { // remove if not needed
-	EROpen, ERDispatched, ERWip, ERClosed, ERCantClose // FIXME give a check here
+enum ERStatus {
+	EROpen, ERDispatched, ERWip, ERClosed, ERCantClose
 }
-enum ERType { // remove if not needed
-	ERAccident, EROnsite, ERNotOnsite // FIXME give a check here
+enum ERType {
+	ERAccident, EROnsite, ERNotOnsite
 }
 
 /* Car status */
@@ -37,14 +34,14 @@ enum CarStatus {
 }
 
 enum DistanceFromChargingArea {
-	Far, Near // Far: more than 3km; Near otherwise
+	Far, Near // Far: more than 3km; Near: otherwise
 }
 
 /* Discounts and Sanctions types */
 abstract sig DiscountSanction { }
 abstract sig DiscountSanctionPerMinute extends DiscountSanction { }
 sig PassengersDiscount extends DiscountSanctionPerMinute { }
-abstract sig DiscountSanctionWholeRide extends DiscountSanction {}
+abstract sig DiscountSanctionWholeRide extends DiscountSanction { }
 sig HighBatteryDiscount extends DiscountSanctionWholeRide { }
 sig PlugInDiscount extends DiscountSanctionWholeRide { }
 sig MoneySavingOptionDiscount extends DiscountSanctionWholeRide { }
@@ -74,9 +71,7 @@ abstract sig GeneralParkingArea {
 sig ParkingArea extends GeneralParkingArea {
 	distanceChargingArea: one DistanceFromChargingArea
 }
-sig ChargingArea extends GeneralParkingArea {
-	// TODO sth here?
-}
+sig ChargingArea extends GeneralParkingArea { }
 
 /* Car */
 sig Car {
@@ -100,8 +95,7 @@ sig Car {
 /* User interactions*/
 sig Reservation {
 	user: one User,
-	car: one Car,
-	// beginning, etc --> can't describe it in static model!! :S
+	car: one Car
 }
 sig Ride {
 	user: one User,
@@ -113,7 +107,7 @@ sig Ride {
 	chargesRunning: one Bool,
 	discSanctApplicableNow: set DiscountSanctionPerMinute,
 	discSanctApplicableRide: set DiscountSanctionWholeRide,
-	isStandard: one Bool // finishes with the car being parked in a safe area and no emergency has occurred
+	isStandard: one Bool // ride finishes with the car being parked in a safe area and no emergency has occurred
 } {
 	#passengers < 4 // capacity of cars (1 driver + 3 passengers)
 	moneySavingOptionSuggestion != none <=> moneySavingOption = True
@@ -124,7 +118,7 @@ sig EmergencyReport {
 	assignedOp: lone Operator,
 	car: one Car,
 	status: one ERStatus,
-	type: one ERType // needed?
+	type: one ERType
 } {
 	assignedOp = none <=> status = EROpen // assignedOp empty iff status is EROpen
 }
@@ -151,9 +145,9 @@ fact exclusivity {
 	all u : User | ( lone ride : Ride | ride.user = u ) // every user has 0..1 ride
 	Reservation.user & Ride.user = none // no user with both a reservation and a current ride
 
-	all disjoint r1, r2 : Ride | r1.passengers & r2.passengers = none
+	all disjoint r1, r2 : Ride | r1.passengers & r2.passengers = none // passengers no in more ride at the same time
 
-	all disjoint e1, e2 : EmergencyReport | e1.assignedOp & e2.assignedOp = none
+	all disjoint e1, e2 : EmergencyReport | e1.assignedOp & e2.assignedOp = none // operator can be assigned to one emergency report at a time
 }
 
 /* Requirements */
@@ -261,10 +255,12 @@ check goals
 
 /* Additional checks */
 
+// Car assigned or reserved to the input User
 fun carRelatedTo [u : User] : set Car {
 	(( Ride<:user ).u ).car + (( Reservation<:user ).u ).car // (set of cars related through Ride or Res for u)
 }
 
+// 1 if the driver is inside the car; 0 otherwise
 fun driverCountInCarCapacity [c : Car] : one Int {
 	c.driverInside = True =>1 else 0
 }
@@ -277,16 +273,19 @@ assert carToSingleUser {
 check carToSingleUser
 
 assert noReservationWithEmptyBatteryCar {
+	// no car reserved with empty battery
 	all r : Reservation | r.car.battery != EmptyBattery
 }
 check noReservationWithEmptyBatteryCar
 
 assert driverNeverTrapped {
+	// driver can't be inside a car if the car is not assigned to him
 	no c : Car | c.status != InUse and c.driverInside = True
 }
 check driverNeverTrapped
 
 assert carMaxCapacity {
+	// car can't have more than 4 person inside
 	all r : Ride | r.car.driverCountInCarCapacity + #r.passengers <= 4
 }
 check carMaxCapacity
@@ -295,7 +294,7 @@ check carMaxCapacity
 
 /* Domain assumptions */
 pred DA {
-	// everything has been represented with the model itself
+	// everything has been represented in the model itself
 }
 
 pred show {
