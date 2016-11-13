@@ -47,7 +47,7 @@ sig User extends GeneralUser {
 	active: one Bool, // commodity - true if not banned and license not exipred
 	near: set Car
 } {
-	active = True <=> (banned = True or license.isExpired = True)
+	active = False <=> (banned = True or license.isExpired = True)
 }
 
 /* Parking area */
