@@ -120,10 +120,21 @@ For each goal, we derive the following requirements:
 							\begin{enumerate}
 								\item The standard fee per minute
 								\item The exceptional fee per minute
-								\item The lost reservation fee
+								\item The lost reservation fee (starting value = 1EUR)
+								\item The time before considering a reservation lost (starting value = 1 hour)
 								\item The fine for leaving an accident site %TODO shouldn't we explain our reasoning for accidents/incidents somewhere??
-								\item Discount percent values
-								\item Sanction percent values
+								\item Discount percent values:
+									\begin{itemize}
+										\item Passengers discount (starting value = 10%)
+										\item Residual battery discount (starting value = 20%)
+										\item Plugged car (starting value = 30%)
+										\item Money saving option (starting value not defined)
+									\end{itemize}
+								\item Sanction percent values:
+									\begin{itemize}
+										\item Residual battery sanction (starting value = 30%)
+										\item Distance from power grid sanction (starting value = 30%)
+									\end{itemize}
 								\item Time window for reservation fee
 								\item Time window after ending the ride for reopening and pluggin the car.
 							\end{enumerate}
