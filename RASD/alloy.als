@@ -158,12 +158,12 @@ fact exclusivity {
 
 // G[1] The system allows guests to register; to complete the registration procedure the system sends a password to the guest as an access key.
 fact RegistrationRequirements {
-	// none // TODO ?
+	// none
 }
 
 // G[2] The system should enable a registered user to find the location of an available car within a certain distance from the user’s location or from a specified address.
 fact LocalizationRequirements {
-	// none // TODO ?
+	// none
 }
 
 // G[3] The system enables user to reserve a single available car in a certain geographical region for one hour before the user picks it up. If the car is not picked up by that time, the reservation expires, the system tags this car as available again and it charges the user a fine of 1 EUR.
@@ -241,7 +241,12 @@ fact MoneySavingOptionRequirements {
 	all r : Ride |
 		MoneySavingOptionDiscount in r.discSanctApplicableRide
 		<=>
-		/*r.timeWindowActive = True and */ r.car.parkedIn = r.moneySavingOptionSuggestion
+		r.car.parkedIn = r.moneySavingOptionSuggestion
+}
+
+// G[10] The system allows the company to assist the users in case of need and take care of the cars.
+fact AssistanceMaintenanceRequirements {
+	// none
 }
 
 /** Assertions **/
@@ -259,32 +264,15 @@ assert driverNeverTrapped {
 }
 check driverNeverTrapped
 
-assert test {
-//	all r : Ride | DiscountSanctionWholeRide in r.discSanctApplicableRide => r.timeWindowActive = True
-}
-//check test
-
 /** Predicates **/
 
 /* Domain assumptions */
 pred DA {
-
-}
-
-/* Others contraints */
-pred otherConstr {
-//	(Car<:status).Available != none
-//	(Car<:status).Reserved != none
-//	(Car<:status).OutOfOrder != none
-//	(Car<:status).InUse != none
-//	Car.isCharging not in False
-//	User.active = True
-//	some r : Ride | r.timeWindowActive = True
-//	some disj r1, r2 : Ride | #r1.passengers >= 2 and #r2.passengers >= 2
+	// everything has been represented with the model itself
 }
 
 pred show {
-	DA and otherConstr // verify consistency with this constraints
+	DA
 }
 
 run show
