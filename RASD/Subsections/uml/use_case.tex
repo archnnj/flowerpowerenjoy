@@ -199,13 +199,32 @@
 				\begin{itemize}
 					\item \textbf{The user never returns the car.} %TODO ?????
 				\end{itemize}
-			\item[Special requirements]
+			\item[Special requirements] None. %TODO are we sure?
 		\end{description}		
 
-
+	\subsubsection{Use case 8: Passengers onboard}
+		\begin{description}
+			\item[Name] Passengers onboard
+			\item[Actors]\hfill
+				\begin{description}
+					\item[User] The user who is driving the car.
+				\end{description}
+			\item[Entry condition] The user picks two or more passengers up at any moment during the ride (it may also be at the beginning of it).
+			\item[Flow of events]\hfill
+				\begin{enumerate}
+					\item The system detects there are two (or more) passengers in the car.
+					\item The system starts charging the user the discounted fee for having passengers inside.
+					\item The passengers get out of the car at any point during the ride (it may also be at the end of it). 
+					\item The system detects there are less than two passengers in the car (may also be one passenger only). 
+					\item The system reverts to charging the user the standard fee.
+				\end{enumerate}
+			\item[Exit condition] At the end of the ride, the user will be charged with the fee discounted only for the time the passengers were inside the car.
+			\item[Exceptions] None.
+			\item[Special requirements] None.
+		\end{description}
 	
 	%FIXME generalise?
-	\subsubsection{Use case 8: Manually assist a parked car}
+	\subsubsection{Use case 9: Manually assist a parked car}
 		\begin{description}
 			\item[Name] Manually assist a car
 			\item[Actors] \hfill
@@ -241,7 +260,7 @@
 		\end{itemize}
 	
 
-	\subsubsection{Use case 9: Manage infractions}
+	\subsubsection{Use case 10: Manage infractions}
 		\begin{description}
 			\item[Name] Manage infractions
 			\item[Actors] \hfill
@@ -266,7 +285,7 @@
 			\item[Special requirements] None.
 		\end{description}
 
-	\subsubsection{Use case 10: Assist user after an accident}
+	\subsubsection{Use case 11: Assist user after an accident}
 		\begin{description}
 			\item[Name] Assist user after an accident
 			\item[Actors] \hfill
@@ -295,7 +314,7 @@
 			The Accident Detection System always detects an accident when the User is unconscious. If the accident detection system detects an accident and the user is conscious, it is the detection system who alerts the system of the accident. The system then prevents the user to send another notification. 
 		\end{description}
 
-	\subsubsection{Use case 11: Assist a user on-site after a car breakdown}
+	\subsubsection{Use case 12: Assist a user on-site after a car breakdown}
 		\begin{description}
 			\item[Name] Assist user after a car breakdown
 			\item[Actors] \hfill
@@ -324,7 +343,7 @@
 			\item[Special Requirements] The Operator cannot refuse an assignment if he is online and always accept it within 10 minutes. An Operator is always online when at work.
 		\end{description}
 
-	\subsubsection{Use case 12: Assist a user with a not on-site reparation}
+	\subsubsection{Use case 13: Assist a user with a not on-site reparation}
 		\begin{description}
 			\item[Name] Assist a user with a not on-site reparation
 			\item[Actors] \hfill
