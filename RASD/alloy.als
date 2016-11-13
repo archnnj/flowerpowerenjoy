@@ -8,7 +8,6 @@ sig Slot {}
 sig License{
 	isExpired: one Bool
 }
-sig DiscountSanction {}
 sig Passenger {}
 
 /* Internal actors */
@@ -37,6 +36,14 @@ enum ERType { // remove if not needed
 enum CarStatus {
 	Available, Reserved, InUse, OutOfOrder
 }
+
+/* Discounts and Sanctions */
+abstract sig DiscountSanction { }
+abstract sig DiscountSanctionPerMinute extends DiscountSanction { }
+sig PassengersDiscount extends DiscountSanctionPerMinute { }
+abstract sig DiscountSanctionWholeRide extends DiscountSanction {}
+sig HighBatteryDiscount extends DiscountSanctionWholeRide { }
+sig PlugInDiscount extends DiscountSanctionWholeRide { }
 
 /* User */
 abstract sig GeneralUser {}
@@ -74,11 +81,13 @@ sig Car {
 	status: one CarStatus,
 	driverInside: one Bool,
 	locked: one Bool, // doors locked/unlocked
+	engineOn : one Bool
 } {
 	isCharging = True => ( parkedIn != none and parkedIn in ChargingArea) // isCharging only if in charging area
 	parkedIn = none <=> ( status = OutOfOrder or ( status = InUse and this[Ride<:car].timeWindowActive = False ) ) // car not parked can either be out of order or in use (exluded during time window)
 	status = Reserved => parkedIn != none // reserved only if parked
 	status in (Available + Reserved + OutOfOrder) => driverInside = False // no driver inside if the car is not in use
+	engineOn = True => status in (InUse + OutOfOrder)
 }
 
 /* User interactions*/
@@ -94,7 +103,8 @@ sig Ride {
 	passengers: set Passenger,
 	timeWindowActive: one Bool,
 	chargesRunning: one Bool,
-	discSanctApplicable: set DiscountSanction
+	discSanctApplicableNow: set DiscountSanction,
+	discSanctApplicableRide: set DiscountSanction
 } {
 	#passengers < 4 // capacity of cars (1 driver + 3 passengers)
 }
@@ -180,14 +190,23 @@ fact ChargesRequirements {
 
 // G[6] The system starts charging the user as soon as the car ignites. It stops charging them when the car is parked in a safe area and the user exits the car.
 fact ChargingRequirements {
-	all r : Ride | let c = r.car | c.parkedIn != none and c.driverInside = False => r.chargesRunning = False // charges stops when user exits the car in a safe area (or haven't entered yet)
-	timeWindowActive = True => chargesRunning = False // no charges in time window
+	all r : Ride | let c = r.car | ( c.status = InUse and c.engineOn = True ) => r.chargesRunning = True
+	all r : Ride | let c = r.car | ( c.parkedIn != none and c.driverInside = False ) => r.chargesRunning = False // charges stops when user exits the car in a safe area (or haven't entered yet)
+	all r : Ride | r.timeWindowActive = True => r.chargesRunning = False // no charges in time window
+}
+
+// G[7] The system should encourage good user behaviour through the application of discounts to the fee per minute.
+fact DiscountsRequirements {
+	all r : Ride | PassengersDiscount in r.discSanctApplicableNow <=> #r.passengers >= 2 and r.car.engineOn = True // R[7.3] discount for rides with two or more passengers
+	all r : Ride | HighBatteryDiscount in r.discSanctApplicableRide <=> r.timeWindowActive = True and r.car.battery = BatteryHigh // R[7.4] discount if more than 50% battery at end of the ride
+	all r : Ride | PlugInDiscount in r.discSanctApplicableRide <=> r.timeWindowActive = True and r.car.isCharging = True
+	// NB: for simplicity here the ride is considered end when the time window is active. This does not affect the model.
 }
 
 assert DriverNeverTrapped {
 	no c : Car | c.status != InUse and c.driverInside = True
 }
-check DriverNeverTrapped
+// check DriverNeverTrapped
 
 pred show {
 //	(Car<:status).Available != none
@@ -195,7 +214,8 @@ pred show {
 //	(Car<:status).OutOfOrder != none
 //	(Car<:status).InUse != none
 //	Car.isCharging not in False
-	User.active = True
-	some r : Ride | r.timeWindowActive = True
+//	User.active = True
+//	some r : Ride | r.timeWindowActive = True
+//	some disj r1, r2 : Ride | #r1.passengers >= 2 and #r2.passengers >= 2xs
 }
-run show for 5 but exactly 5 User
+run show
