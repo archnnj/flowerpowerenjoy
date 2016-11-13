@@ -24,7 +24,7 @@ For each goal, we derive the following requirements:
 
 				\item \textit{G[2]} The system should enable a registered user to find the location of an available car within a certain distance from the user's location or from a specified address.
 					\begin{itemize}
-						\item R[2.1] The system must have the ability to locate the user %if the user's GPS is on. --> w/ domain propriety about "gps always give the right position" should be ok.
+						\item R[2.1] The system must have the ability to locate the user if the user's GPS is on.
 						\item R[2.2] The system is able to locate any valid address.
 						\item R[2.3] The system is able to find any of the parking areas of the company. 
 						\item R[2.4] The system is able to identify available cars inside parking areas.
@@ -35,8 +35,8 @@ For each goal, we derive the following requirements:
 					\begin{itemize}
 						\item R[3.1] The system allows users to reserve an available car.
 						\item R[3.2] The cars cannot be reserved by more than one user at any given time.
-						\item R[3.3] The system keeps the current reservation standing until the user has opened the car or an hour has passed. %FIXME "An hour" -> a predefined time?? This is a parameter!!!
-						\item R[3.4] The system autonomously cancels a reservation if the user who has reservet it hasn't picked it up after one hour.
+						\item R[3.3] The system keeps the current reservation standing until the user has opened the car or an hour has passed.
+						\item R[3.4] The system autonomously cancels a reservation if the user who has reserved it hasn't picked it up after one hour.
 						
 						\item R[3.5] The system must impede any user with an expired license to reserve a car.
 						\item R[3.6] The system must impede any banned user to reserve a car.
@@ -73,18 +73,17 @@ For each goal, we derive the following requirements:
 					\begin{itemize}
 						\item R[6.1] The system charges the user with a fee per minute.
 						\item R[6.2] The system can tell when the car has ignited. 
-						\item R[6.3] The system starts counting the charges from the ignition onward. %FIXME horridly put
-						\item R[6.4] The system stops counting the charges when the user exits the car while inside a safe area.
-						\item R[6.5] If the reservation has expired but the user is inside the car (without igniting it), the system must start charging them anyway an exceptional fee per minute. %cfr requirements for G11
+						\item R[6.3] The system stops counting the charges for a standard ride when the user exits the car while inside a safe area.
+						\item R[6.4] The system starts charging the user when the car ignites or when the reservation expires while the user is inside the car.
 					\end{itemize}
 					
 				\item \textit{G[7]} The system should encourage good user behaviour through the application of discounts to the fee per minute. 
 					\begin{itemize}
 						\item R[7.1] The system applies all discounts to the fee per minute.
 						\item R[7.2] If the conditions for a discount are satisfied only for a limited period of time during the ride, the discount is applied only to that time period. %This basically only happens with the passengers & money saving option if you think abt that.
-						\item R[7.3] The system applies a discount every time a user brings two or more passengers in the car with them.
-						\item R[7.4] The system applies a discount every time the car has more than 50\% of power charge by the end of a standard ride. %FIXME horridly put
-						\item R[7.5] The system applies a discount to a ride every time the car for that ride is plugged to the power grid at the end of the time window. 
+						\item R[7.3] The system applies a discount every time a user brings two or more passengers in the car with them and the car is on.
+						\item R[7.4] The system applies a discount to the total fee for the ride when the car has more than 50\% of power charge by the end of a standard ride.
+						\item R[7.5] The system applies a discount to the total fee for the ride every time the car for that ride is plugged to the power grid at the end of the time window. 
 						\item R[7.6] The system calculates the total discount as the sum of the singular discounts applied to the ride. If this sum exceeds 100\%, then it is considered simply as 100\%.
 					\end{itemize}
 					
@@ -98,20 +97,25 @@ For each goal, we derive the following requirements:
 					\begin{itemize}
 						\item R[9.1] The system allows a user to select the \textit{money saving option} at any point during their ride. 
 						\item R[9.2] The system applies a discount every time the car is returned in the suggested safe area with the \textit{money saving} option.
-						\item R[9.3] The system selects the safe area suggested to the user based on consideration of availability of power plugs and of distribution of the cars. This safe area must be as close as possible to the user's destination. %FIXME rewrite; too generic
+						\item R[9.3] The system selects the safe area suggested to the user through the available algorithm. (see text assumptions)
 					\end{itemize}
 					
 				\item \textit{G[10]} The system allows the company to assist the users in case of need and take care of the cars.	
 					\begin{itemize}
 						\item R[10.1] The system allows a user to notify the back-end administrators if they have a problem with the car.
-						\item R[10.2] The system can locate \textit{PowerEnJoy} operators. 
-						\item R[10.3] The system allows administrators to know the status of on-site operators and dispatch them if they are available.
-						\item R[10.4] The system keeps track of every car's battery and alerts the admin when it lowers below 3\%. 
-						\item R[10.5] The system notifies the admin when it detects that an accident occurred. 
-						\item R[10.6] If the system has already notified the admin of an accident, then it must prevent the user from notifying it again.
-						\item R[10.7] If the system has already notified the admin of an accident, then it must notify the user of this fact.
-						\item R[10.8] The system considers all interventions to a car as on-site at first.
-						\item R[10.9] The system allows operators to change the status of the intervention from on-site to not on-site if necessary.
+						\item R[10.2] The user must specify whether this problem is an accident or a reparation.
+						\item R[10.3] The system can locate \textit{PowerEnJoy} operators. 
+						\item R[10.4] The system allows administrators to know the status of on-site operators and dispatch them if they are available.
+						\item R[10.5] The system keeps track of every car's battery and alerts the admin when it lowers below 3\%. 
+						\item R[10.6] The system notifies the admin when it detects that an accident occurred. 
+						\item R[10.7] If the system has already notified the admin of an accident, then it must prevent the user from notifying it again.
+						\item R[10.8] If the system has already notified the admin of an accident, then it must notify the user of this fact.
+						\item R[10.9] Every time the system detects or a user notifies a problem, an emergency report is opened.
+						\item R[10.10] Operators can change an emergency report status only when they are assigned to it.
+						\item R[10.11] The system considers all type of emergency reports related to a reparation as on-site at first.
+						\item R[10.12] The system allows operators to change the type of emergency reports related to a reparation from on-site to not on-site.
+						\item R[10.13] Operators can change the type of emergency report from accident to reparation or vice versa only if they are assigned to it.
+
 					\end{itemize}
 					
 				\item \textit{G[11]} The admin should be able to configure some parameters of the system.
@@ -119,7 +123,6 @@ For each goal, we derive the following requirements:
 						\item R[11.1] The system allows the aministrators to modify parameters that influence the usage of cars. This parameters are:
 							\begin{enumerate}
 								\item The standard fee per minute
-								\item The exceptional fee per minute
 								\item The lost reservation fee (starting value = 1EUR)
 								\item The time before considering a reservation lost (starting value = 1 hour)
 								\item The fine for leaving an accident site %TODO shouldn't we explain our reasoning for accidents/incidents somewhere??
