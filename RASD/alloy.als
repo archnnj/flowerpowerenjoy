@@ -90,10 +90,11 @@ sig Reservation {
 sig Ride {
 	user: one User,
 	car: one Car,
-	chargeChanges: set DiscountSanction,
 	moneySavingOption: one Bool,
 	passengers: set Passenger,
-	timeWindowActive: one Bool
+	timeWindowActive: one Bool,
+	chargesRunning: one Bool,
+	discSanctApplicable: set DiscountSanction
 } {
 	#passengers < 4 // capacity of cars (1 driver + 3 passengers)
 }
@@ -173,6 +174,12 @@ fact RideRequirements {
 // G[5] The system charges the user for a predefined amount of money per minute. A screen on the car notifies the user of the current charges.
 fact ChargesRequirements {
 	// none
+}
+
+// G[6] The system starts charging the user as soon as the car ignites. It stops charging them when the car is parked in a safe area and the user exits the car.
+fact ChargingRequirements {
+	all r : Ride | let c = r.car | c.parkedIn != none and c.driverInside = False => r.chargesRunning = False // charges stops when user exits the car in a safe area (or haven't entered yet)
+	timeWindowActive = True => chargesRunning = False // no charges in time window
 }
 
 assert DriverNeverTrapped {
