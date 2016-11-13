@@ -3,7 +3,6 @@ open util/boolean
 /** Signatures **/
 
 /* Atomic */
-sig Slot {}
 // sig CreditCard {}
 sig License{
 	isExpired: one Bool
@@ -18,7 +17,10 @@ sig Operator {
 
 /* Battery status */
 enum BatteryStatus {
-	BatteryLow, BatteryMedium, BatteryHigh // BatteryHigh: more than 50%; BatteryLow: less than 20%; BatteryMedium otherwise
+	EmptyBattery, // < 3%
+	BatteryLow, // 3% - 20%
+	BatteryMedium, // 20% - 50%
+	BatteryHigh // > 50%
 }
 
 /* Emergency report enums */
@@ -63,14 +65,11 @@ sig User extends GeneralUser {
 
 /* Parking area */
 abstract sig GeneralParkingArea {
-//	slot: set Slot,
 	capacity: one Int,
 	cars: set Car
 } {
-//	#car <= #slot
 	capacity > 0
 	#cars <= capacity
-	// TODO slots cannot be shared by parking areas! --> remove Slots!
 }
 sig ParkingArea extends GeneralParkingArea {
 	distanceChargingArea: one DistanceFromChargingArea
@@ -94,6 +93,8 @@ sig Car {
 	status = Reserved => parkedIn != none // reserved only if parked
 	status in (Available + Reserved + OutOfOrder) => driverInside = False // no driver inside if the car is not in use
 	engineOn = True => status in (InUse + OutOfOrder)
+	battery = EmptyBattery => engineOn = False
+	battery = EmptyBattery => status not in (Available + Reserved)
 }
 
 /* User interactions*/
@@ -243,17 +244,35 @@ fact MoneySavingOptionRequirements {
 		/*r.timeWindowActive = True and */ r.car.parkedIn = r.moneySavingOptionSuggestion
 }
 
+/** Assertions **/
+
+/* Goals */
+assert goals {
+
+}
+check goals
+
+/* Additional checks */
+
 assert driverNeverTrapped {
 	no c : Car | c.status != InUse and c.driverInside = True
 }
-// check DriverNeverTrapped
+check driverNeverTrapped
 
 assert test {
 //	all r : Ride | DiscountSanctionWholeRide in r.discSanctApplicableRide => r.timeWindowActive = True
 }
 //check test
 
-pred show {
+/** Predicates **/
+
+/* Domain assumptions */
+pred DA {
+
+}
+
+/* Others contraints */
+pred otherConstr {
 //	(Car<:status).Available != none
 //	(Car<:status).Reserved != none
 //	(Car<:status).OutOfOrder != none
@@ -261,6 +280,11 @@ pred show {
 //	Car.isCharging not in False
 //	User.active = True
 //	some r : Ride | r.timeWindowActive = True
-//	some disj r1, r2 : Ride | #r1.passengers >= 2 and #r2.passengers >= 2xs
+//	some disj r1, r2 : Ride | #r1.passengers >= 2 and #r2.passengers >= 2
 }
+
+pred show {
+	DA and otherConstr // verify consistency with this constraints
+}
+
 run show
