@@ -122,13 +122,15 @@ fact AttrbutePairings {
 	all c : Car | ( c.status = InUse <=> (some r : Ride | c = r.car) )
 }
 
-fact CarUsageExclusivity {
+fact exclusivity {
 	all c : Car | ( lone res : Reservation | res.car = c ) // every car is in 0..1 reservation
 	all c : Car | ( lone ride : Ride | ride.car = c ) // every car is in 0..1 ride
 	Reservation.car & Ride.car = none // no car both reserved and in ride
 	all u : User | ( lone res : Reservation | res.user = u ) // every user has 0..1 reservation
 	all u : User | ( lone ride : Ride | ride.user = u ) // every user has 0..1 ride
 	Reservation.user & Ride.user = none // no user with both a reservation and a current ride
+
+	all disjoint r1, r2 : Ride | r1.passengers & r2.passengers = none
 }
 
 /* Requirements */
