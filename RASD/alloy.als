@@ -9,7 +9,6 @@ sig License{
 sig Passenger {}
 
 /* Internal actors */
-sig Admin {}
 sig Operator {}
 
 /* Battery status */
@@ -247,14 +246,6 @@ fact AssistanceMaintenanceRequirements {
 
 /** Assertions **/
 
-/* Goals */
-assert goals {
-
-}
-check goals
-
-/* Additional checks */
-
 // Car assigned or reserved to the input User
 fun carRelatedTo [u : User] : set Car {
 	(( Ride<:user ).u ).car + (( Reservation<:user ).u ).car // (set of cars related through Ride or Res for u)
@@ -294,7 +285,7 @@ check carMaxCapacity
 
 /* Domain assumptions */
 pred DA {
-	// everything has been represented in the model itself
+	// everything has already been represented with the model itself
 }
 
 pred show {
