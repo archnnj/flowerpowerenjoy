@@ -261,10 +261,35 @@ check goals
 
 /* Additional checks */
 
+fun carRelatedTo [u : User] : set Car {
+	(( Ride<:user ).u ).car + (( Reservation<:user ).u ).car // (set of cars related through Ride or Res for u)
+}
+
+fun driverCountInCarCapacity [c : Car] : one Int {
+	c.driverInside = True =>1 else 0
+}
+
+assert carToSingleUser {
+	// no car assigned to more than one user
+	all disjoint u1, u2 : User |
+		( u1.carRelatedTo & u2.carRelatedTo ) != none => u1.carRelatedTo != u2.carRelatedTo // if not both empty, then different)
+}
+check carToSingleUser
+
+assert noReservationWithEmptyBatteryCar {
+	all r : Reservation | r.car.battery != EmptyBattery
+}
+check noReservationWithEmptyBatteryCar
+
 assert driverNeverTrapped {
 	no c : Car | c.status != InUse and c.driverInside = True
 }
 check driverNeverTrapped
+
+assert carMaxCapacity {
+	all r : Ride | r.car.driverCountInCarCapacity + #r.passengers <= 4
+}
+check carMaxCapacity
 
 /** Predicates **/
 
