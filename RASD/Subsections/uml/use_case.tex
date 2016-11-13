@@ -24,6 +24,7 @@
 					\item \textbf{The system is not able to find a position inserted manually.} The user is informed and the operation is aborted.
 					\item \textbf{There are no available cars.} The user is informed and the operation is aborted.
 					\item \textbf{The user cancels the operation before confirming.} The reservation process is not completed and the car remains available to other users.
+					\item \textbf{The user doesn't come get the car before one hour.} The user is notified of the lost reservation. The car becomes available again.
 				\end{itemize}
 			\item[Special Requirements] None.
 		\end{description}
@@ -41,8 +42,6 @@
 				\begin{enumerate}
 					\item The safe area is free and the user parks in it.
 					\item As the car is turned off, the system detects it is in a safe area.
-					\item The system asks the user if he wants to keep the car or to end the ride.
-					\item The user selects to end the ride.
 					\item The user exits the car.
 					\item The system closes the car.
 					\item The system charges the user for the ride.
