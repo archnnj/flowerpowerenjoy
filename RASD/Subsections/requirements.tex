@@ -85,6 +85,7 @@ For each goal, we derive the following requirements:
 						\item R[7.3] The system must apply a discount every time a user brings two or more passengers in the car with them.
 						\item R[7.4] The system must apply a discount every time the car has more than 50\% of power charge by the end of a standard ride. %FIXME horridly put
 						\item R[7.5] The system must be able to apply a discount to a ride every time the car for that ride is plugged to the power grid at the end of the time window. 
+						\item R[7.6] The system must calculate the total discount as the sum of the singular discounts applied to the ride. If this sum exceeds 100\%, then it is considered simply as 100\%.
 					\end{itemize}
 					
 				\item \textit{G[8]} The system should discourage bad behaviour through the application of sanctions to the fee per minute.
@@ -109,6 +110,8 @@ For each goal, we derive the following requirements:
 						\item R[10.5] The system must always notify the admin when it detects that an accident occurred. 
 						\item R[10.6] If the system has already notified the admin of an accident, then it must prevent the user from notifying it again.
 						\item R[10.7] If the system has already notified the admin of an accident, then it must notify the user of this fact.
+						\item R[10.8] The system must always consider all interventions to a car as on-site at first.
+						\item R[10.9] The system must allow operators to change the status of the intervention from on-site to not on-site if necessary.
 					\end{itemize}
 					
 				\item \textit{G[11]} The admin should be able to configure some parameters of the system.
