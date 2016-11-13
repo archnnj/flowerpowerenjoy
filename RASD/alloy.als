@@ -71,11 +71,14 @@ sig Car {
 	battery: one BatteryStatus,
 	parkedIn: lone GeneralParkingArea,
 	isCharging: one Bool,
-	status: one CarStatus
+	status: one CarStatus,
+	driverInside: one Bool,
+	locked: one Bool, // doors locked/unlocked
 } {
 	isCharging = True => ( parkedIn != none and parkedIn in ChargingArea) // isCharging only if in charging area
-	parkedIn = none <=> ( status = InUse or status = OutOfOrder ) // car not parked can either be in use or out of order
+	parkedIn = none <=> ( status = OutOfOrder or ( status = InUse and this[Ride<:car].timeWindowActive = False ) ) // car not parked can either be out of order or in use (exluded during time window)
 	status = Reserved => parkedIn != none // reserved only if parked
+	status in (Available + Reserved + OutOfOrder) => driverInside = False // no driver inside if the car is not in use
 }
 
 /* User interactions*/
@@ -89,7 +92,8 @@ sig Ride {
 	car: one Car,
 	chargeChanges: set DiscountSanction,
 	moneySavingOption: one Bool,
-	passengers: set Passenger
+	passengers: set Passenger,
+	timeWindowActive: one Bool
 } {
 	#passengers < 4 // capacity of cars (1 driver + 3 passengers)
 }
@@ -144,5 +148,40 @@ fact ReservationRequirements {
 	no userWithRes : Reservation.user | userWithRes.banned = True // no banned user can reserve a car
 }
 
-pred show { }
-run show
+// G[4] The system should allow the user to employ a car in a proper and safe way.
+fact RideRequirements {
+	// car unlocked only if user with reservation or which is using it is near it
+	all c : Car |
+		c.locked = False =>
+			( some u : User , r : Reservation | r.user = u and r.car = c and c in u.near ) or
+			( some u : User , r : Ride | r.user = u and r.car = c and c in u.near )
+
+	// car locked if user has exited it inside a safe area
+	all c : Car |
+		(
+			c.parkedIn != none and
+			c.driverInside = False and
+			( c in Ride.car => #( ((Ride<:car).c).passengers ) = 0 )  // c has no passengers (if it is in a ride, otherwise this is not considered)
+			=>
+			c.locked = True
+		)
+
+	// time window definition
+	all r : Ride | let c = r.car | r.timeWindowActive = True => c.parkedIn != none // time window only if car in parking area
+}
+
+assert DriverNeverTrapped {
+	no c : Car | c.status != InUse and c.driverInside = True
+}
+check DriverNeverTrapped
+
+pred show {
+//	(Car<:status).Available != none
+//	(Car<:status).Reserved != none
+//	(Car<:status).OutOfOrder != none
+//	(Car<:status).InUse != none
+//	Car.isCharging not in False
+	User.active = True
+	some r : Ride | r.timeWindowActive = True
+}
+run show for 5 but exactly 5 User
