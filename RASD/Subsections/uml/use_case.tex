@@ -13,18 +13,19 @@
 			\item[Entry condition] The user decides to reserve a car to take within the next hour.
 			\item[Flow of events] \hfill
 				\begin{enumerate}
-					\item The user logs in into the mobile app and goes to the reservation section. \item The system automatically retrieves and displays the location of the user, but the user can specify a different location if needed.
+					\item The user logs in into the mobile app and goes to the reservation section. 
+					\item The system automatically retrieves and displays the location of the user, but the user can specify a different location if needed.
 					\item The system displays the position of the available cars close to the selected location.
 					\item The user selects a car and confirms the reservation.
 				\end{enumerate}
 			\item[Exit condition] The system reserves the car for the user.
 			\item[Exceptions] \hfill
 				\begin{itemize}
-					\item \textbf{The system is not able to locate the user automatically.} The user is required to insert a position manually.
+					% \item \textbf{The system is not able to locate the user automatically.} The user is required to insert a position manually.
 					\item \textbf{The system is not able to find a position inserted manually.} The user is informed and the operation is aborted.
 					\item \textbf{There are no available cars.} The user is informed and the operation is aborted.
 					\item \textbf{The user cancels the operation before confirming.} The reservation process is not completed and the car remains available to other users.
-					\item \textbf{The user doesn't come get the car before one hour.} The user is notified of the lost reservation. The car becomes available again.
+					\item \textbf{The user doesn't come get the car before one hour.} The user is notified of the lost reservation. The system charges them the lost reservation fee. The car becomes available again.
 				\end{itemize}
 			\item[Special Requirements] None.
 		\end{description}
@@ -43,15 +44,15 @@
 					\item The safe area is free and the user parks in it.
 					\item As the car is turned off, the system detects it is in a safe area.
 					\item The user exits the car.
+					\item The time windows starts.
 					\item The system closes the car.
+					\item The time window ends.
 					\item The system charges the user for the ride.
 				\end{enumerate}
 			\item[Exit condition] The user leaves the car and the car becomes available to other users.
 			\item[Exceptions] \hfill
 				\begin{itemize}
 					\item \textbf{The safe area is taken.} The user can't end their ride and this operation is aborted.
-					\item \textbf{The car is badly parked.} ??? % TODO
-					\item \textbf{The user selects to keep the car when prompted.} The user keeps being charged and the car is not made available for other users.
 				\end{itemize}
 			\item[Special Requirements] None. % TODO are there any?
 		\end{description}
@@ -71,21 +72,21 @@
 				\item The user parks in the suggested safe area.
 				% from here, same as Use case 2:
 				\item As the car is turned off, the system detects it is in a safe area.
-				\item The system asks the user if he wants to keep the car or to end the ride.
-				\item The user selects to end the ride.
 				\item The user exits the car.
+				\item The time window starts.
 				\item The system closes the car.
+				\item The time window ends.
 				\item The system charges the user for the ride. A discount is applied for using the \textit{money saving option}.
 			\end{enumerate}
 			\item[Exit condition] The user leaves the car and the car becomes available to other users.
 			\item[Exceptions] \hfill
 			\begin{itemize}
 				\item \textbf{The suggested safe area becomes taken while the user is driving.} The system selects another safe area and notifies the user of the new suggestion.
-				\item \textbf{The user parks in another safe area.} The system notifies the user that they will not receive a discount. If the user decides to end the ride anyway, the system charges them without applying the \textit{money saving option} discount.
+				\item \textbf{The user parks in another safe area.} The system notifies the user that they will not receive a discount. If the user decides to end the ride anyway and exits the car, the system charges them without applying the \textit{money saving option} discount.
 				\item \textbf{The destination of the user changes.} The user selects a new destination and the system indicates another suggestion.
 				\item \textbf{The user disables the \textit{money saving option} while driving.} The suggested safe area stops being displayed and the ride continues as normal.
 			\end{itemize}
-			\item[Special Requirements] The \textit{money saving option} must be selected before stopping the car in a parking area. % FIXME necessary?
+			\item[Special Requirements] The \textit{money saving option} must be selected before stopping the car in a parking area.
 		\end{description}
 
 	\subsubsection{Use case 4: Park in a recharging area}
@@ -102,25 +103,26 @@
 				\item The user parks the car in the recharging area.
 				% same as parking in safe area
 				\item As the car is turned off, the system detects it is in a safe area.
-				\item The system asks the user if he wants to keep the car or to end the ride.
-				\item The user selects to end the ride.
 				\item The user exits the car.
+				\item The time window starts.
 				\item The system closes the car.
-				\item The system charges the user for the ride.
-				% /same as parking in safe area
+				% same as parking in safe area
 				\item The user plugs the car into the power grid through the supply point installed in the parking space.
 				\item The system detects the car is recharging.
+				\item The time window ends.
 				\item The system modifies the charge applied to the user for the ride. A 30\% discount is applied to promote virtuous behaviors.
+				\item The system charges the user for the ride.
 			\end{enumerate}
 			\item[Exit condition] The user leaves the car and the car becomes available to other users.
 			\item[Exceptions] \hfill
 			\begin{itemize}
 				\item \textbf{The user does not plug the car into the power grid.} The user is charged as if they parked in a safe area.
+				\item \textbf{The user plugs the car into the power grid after the time window has closed.} The user is invoiced the moment the time window closes. The user is charged as if they parked in a safe area.
 			\end{itemize}
-			\item[Special Requirements] The user plugs in the car within 10 minutes from the moment they exits the car. Otherwise the discount is not applied.
+			\item[Special Requirements] The user plugs in the car during the time window after the ride. Otherwise the discount is not applied.
 		\end{description}	
 		
-
+	%FIXME generalise?
 	\subsubsection{Use case 5: Manually assist a parked car}
 		\begin{description}
 			\item[Name] Manually assist a car
@@ -128,7 +130,6 @@
 				\begin{description}
 					\item[Admin] The administrator who sends the operator.
 					\item[Operator] The operator sent to recover the car.
-					\item[Car] The car in use.
 				\end{description}
 			\item[Entry condition] The administrator is notified by the system that a parked car needs manual assistance.
 			\item[Flow of events] \hfill
@@ -141,7 +142,6 @@
 					\item The admin assigns the maintenance work to an operator.
 					\item The operator accepts the assignment and the admin is notified of it.
 					\item When available, the operator performs the \textit{maintenance operation} (see below).
-					% FIXME should he notify also the beginning of the maintenance?
 					\item The operator checks the assignment as completed.
 				\end{enumerate}
 			\item[Exit condition] The maintenance activity has been performed and the admin is notified of the completion.
@@ -158,7 +158,7 @@
 			\item \textbf{Issue}: the car is in a recharging area without the plug inserted. \textbf{Maintenance operation}: the car is plugged into the power grid.
 		\end{itemize}
 	
-	%FIXIT: draft
+
 	\subsubsection{Use case 6: Manage infractions}
 		\begin{description}
 			\item[Name] Manage infractions
@@ -178,9 +178,10 @@
 				\end{enumerate}
 			\item[Exit conditions] The legal procedure has been closed and the user has paid the fine.
 			\item[Exceptions] \hfill
-				\begin{itemize} %TODO
-					\item \textbf{The infraction causes the user to lose their license} %???
+				\begin{itemize}
+					\item \textbf{The infraction causes the user to lose their license} The admin temporarily bans the user. The user won't be able to reserve a car anymore until they send another valid license via email to the admin.
 				\end{itemize}
+			\item[Special requirements] None.
 		\end{description}
 
 	\subsubsection{Use case 7: Assist user after an accident}
@@ -208,8 +209,8 @@
 				\item \textbf{The User leaves the site before the removal of the car.} The Operator can report it to the system, and the user will be charged of an extra. If the User is penally implied in the accident, the Operator provides their personal details to the law enforcement.
 				\item \textbf{The insurance asserts that the accident is fault of the User and doesn't take responsibility for it.} The User is fully charged of the reparation costs.
 			\end{itemize}
-			\item[Special Requirements] The Operator cannot refuse to be assigned to an accident if he is online and always accept it within 10 minutes. An Operator is always online when at work. % TODO req: an operator can't end his shift if he is in the middle of an intervention
-			The Accident Detection System always detects an accident when the User is unconscious. In this cases, it also notifies the emergency services.
+			\item[Special Requirements] The Operator cannot refuse to be assigned to an accident if he is online and always accept it within 10 minutes. An Operator is always online when at work.
+			The Accident Detection System always detects an accident when the User is unconscious. If the accident detection system detects an accident and the user is conscious, it is the detection system who alerts the system of the accident. The system then prevents the user to send another notification. 
 		\end{description}
 
 	\subsubsection{Use case 8: Assist a user on-site after a car breakdown}
@@ -225,7 +226,7 @@
 			\item[Flow of events] \hfill
 			\begin{enumerate}
 				\item The User notifies the Admin that a breakdown has happened. After the notification, the User waits for an Operator to arrive. The charges for the User are suspended.
-				\item The Admin dispatches an Operator for an \textit{on-site reparation}.
+				\item The Admin dispatches an Operator.
 				\item The Operator arrives on site.
 				\item The Operator repairs the car.
 				\item Once the reparation has ended, the User is assigned again to the car and the charges start again.
@@ -234,11 +235,11 @@
 			\item[Exceptions] \hfill
 			\begin{itemize}
 				\item \textbf{The Operator decides that the reparation can't be done on-site.} The use case \textit{Assist a user with a not on-site reparation} is invoked.
-				\item \textbf{The User leaves the site before the reparation ends.} The Operator reports it to the system. At the end of the reparation, the User is not assigned to the car anymore and is invoiced for the ride (until the breakdown occurred). The Operator notifies the Admin that the car must be taken to a parking area and leaves the site. The Admin dispatches an Operator with a tow truck. The Operator takes the car to the closest available parking area.
-				\item \textbf{The Operator asserts that there is no need for intervention and the User is still on site.} The User is fined (parameter). The car is assigned to the User again and the charges start again.
-				\item \textbf{The Operator asserts that there is no need for intervention and the User has gone from the site.} The User is fined (parameter, higher than in previous exception). The Operator notifies the Admin that the car must be taken to a parking area and leaves the site. The Admin dispatches an Operator with a tow truck. The Operator takes the car to the closest available parking area.
+				\item \textbf{The User leaves the site before the reparation ends.} The Operator reports it to the system. At the end of the reparation, the User is not assigned to the car anymore and is invoiced for the ride (until the breakdown occurred). The Operator notifies the Admin that the car must be taken to a parking area and leaves the site. The Admin dispatches an Operator with a tow truck. The new Operator takes the car to the closest available parking area.
+				\item \textbf{The Operator asserts that there is no need for intervention and the User is still on site.} The User is fined. The car is assigned to the User again and the charges start again.
+				\item \textbf{The Operator asserts that there is no need for intervention and the User has gone from the site.} The User is fined. The Operator notifies the Admin that the car must be taken to a parking area and leaves the site. The Admin dispatches an Operator with a tow truck. The new Operator takes the car to the closest available parking area.
 			\end{itemize}
-			\item[Special Requirements] The Operator cannot refuse an assignment if he is online and always accept it within 10 minutes. An Operator is always online when at work. %TODO req: an operator can't end his shift if he is in the middle of an intervention
+			\item[Special Requirements] The Operator cannot refuse an assignment if he is online and always accept it within 10 minutes. An Operator is always online when at work.
 		\end{description}
 
 	\subsubsection{Use case 9: Assist a user with a not on-site reparation}
@@ -263,5 +264,5 @@
 			\begin{itemize}
 				\item \textbf{The insurance asserts that the accident is fault of the User and doesn't take responsibility for it.} The User is fully charged of the reparation costs.
 			\end{itemize}
-			\item[Special Requirements] The new Operator cannot refuse the assignment if he is online and always accept it within 10 minutes. An Operator is always online when at work. % TODO req: an operator can't end his shift if he is in the middle of an intervention
+			\item[Special Requirements] The new Operator cannot refuse the assignment if he is online and always accept it within 10 minutes. An Operator is always online when at work.
 		\end{description}
