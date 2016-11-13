@@ -115,7 +115,7 @@ sig Ride {
 } {
 	#passengers < 4 // capacity of cars (1 driver + 3 passengers)
 	moneySavingOptionSuggestion != none <=> moneySavingOption = True
-	isStandard = True <=> some er : EmergencyReport | er.user = user and er.car = car
+	isStandard = False <=> some er : EmergencyReport | er.user = user and er.car = car
 }
 sig EmergencyReport {
 	ride : one Ride,
