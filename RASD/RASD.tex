@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[12pt, a4paper]{article}
 
 \usepackage[utf8]{inputenc}
 \usepackage{graphicx} % to embed images
@@ -6,7 +6,7 @@
 \usepackage{subcaption} %complex images
 \usepackage{placeins} %floating
 \usepackage{lscape} %to allow single pages in landscape mode
-\usepackage{verbatim} % include raw text file (for Alloy)
+\usepackage[top=1.25in, bottom=1.25in, left=1in, right=1in]{geometry}
 
 \title{Requirement Analysis and Specification Document}
 \date{2016-11-13}
@@ -132,7 +132,7 @@
 
 	\newpage
 	\section{Alloy modeling}
-		\verbatiminput{alloy.als}
+		% TODO
 
 	\newpage
 	%%% appendix %%%
