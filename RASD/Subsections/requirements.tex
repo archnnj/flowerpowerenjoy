@@ -127,15 +127,15 @@ For each goal, we derive the following requirements:
 								\item The fine for leaving an accident site
 								\item Discount percent   values:
 									\begin{itemize}
-										\item Passengers discount (starting value = 10%)
-										\item Residual battery discount (starting value = 20%)
-										\item Plugged car (starting value = 30%)
+										\item Passengers discount (starting value = 10\%)
+										\item Residual battery discount (starting value = 20\%)
+										\item Plugged car (starting value = 30\%)
 										\item Money saving option (starting value not defined)
 									\end{itemize}
 								\item Sanction percent values:
 									\begin{itemize}
-										\item Residual battery sanction (starting value = 30%)
-										\item Distance from power grid sanction (starting value = 30%)
+										\item Residual battery sanction (starting value = 30\%)
+										\item Distance from power grid sanction (starting value = 30\%)
 									\end{itemize}
 								\item Time window for reservation fee
 								\item Time window after ending the ride for reopening and pluggin the car.
@@ -151,15 +151,13 @@ For each goal, we derive the following requirements:
 \subsection{Non-functional requirements}
 	Even thought our clients did not explicitly state any non-functional requirement for the system to be implemented, after some consideration we thought that the following requirements should be included:
 	
-	\begin{enumerate}
+	\begin{description}
 		\item[Integrity] Data in the system must not be exposed to accidental or malicious modification or destruction.
 		\item[Confidentiality] The system must be so it is difficult to breach the privacy of all users, above all because of the sensitive information we store (i.e. credit card information).
 		\item[Robustness] We want the system to be able to process and cope with wrong input from the users. In particular, this property must hold for the system's relationship with the localization services provider. 
 		\item[Performance] The system should ensure a short response time for all computations, and must be able to sustain a high number of simultaneous requests.
 		\item[Flexibility] The system must be flexible to expansions in functionalities, i.e. it must be possible to easily integrate new functionalities in the system without losing in robustness and reliability.
-		
-		
-	\end{enumerate}
+	\end{description}
 
 	\subsubsection{User interface}
 	\paragraph{}The interface of our application is thought to be used mainly via mobile app, with some content also displayed in a web page. The team reasoned that the main functionalities of the system (such as reserving and managing a car) make sense only in a \textit{movable} context (meaning, such that the user can do them anywhere they have an internet connection). Those functionalities are available on the mobile app. On the other hand, operations such as signing up are more easily managed in front of a computer, so the web page allows users to register, login and manage their profiles (which they can do also via mobile app anyway).
