@@ -37,10 +37,9 @@ enum DistanceFromChargingArea {
 }
 
 /* Discounts and Sanctions types */
-abstract sig DiscountSanction { }
-abstract sig DiscountSanctionPerMinute extends DiscountSanction { }
+abstract sig DiscountSanctionPerMinute { }
 sig PassengersDiscount extends DiscountSanctionPerMinute { }
-abstract sig DiscountSanctionWholeRide extends DiscountSanction { }
+abstract sig DiscountSanctionWholeRide { }
 sig HighBatteryDiscount extends DiscountSanctionWholeRide { }
 sig PlugInDiscount extends DiscountSanctionWholeRide { }
 sig MoneySavingOptionDiscount extends DiscountSanctionWholeRide { }
