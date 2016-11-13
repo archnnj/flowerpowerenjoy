@@ -32,7 +32,7 @@
 				\end{itemize}
 		\end{description}			
 	
-	\subsubsection{Use case 1: Reserve a car}
+	\subsubsection{Use case 2: Reserve a car}
 		\begin{description}
 			\item[Name] Reserve a car
 			\item[Actors] \hfill
@@ -59,7 +59,7 @@
 			\item[Special Requirements] None.
 		\end{description}
 
-	\subsubsection{Use case 2: Park in known safe area}
+	\subsubsection{Use case 3: Park in known safe area}
 		\begin{description}
 			\item[Name] Park in known safe area
 			\item[Actors] \hfill
@@ -86,7 +86,7 @@
 			\item[Special Requirements] None. % TODO are there any?
 		\end{description}
 
-	\subsubsection{Use case 3: Park with money saving option}
+	\subsubsection{Use case 4: Park with money saving option}
 		\begin{description}
 			\item[Name] Park with money saving option
 			\item[Actors] \hfill
@@ -118,7 +118,7 @@
 			\item[Special Requirements] The \textit{money saving option} must be selected before stopping the car in a parking area.
 		\end{description}
 
-	\subsubsection{Use case 4: Park in a recharging area}
+	\subsubsection{Use case 5: Park in a recharging area}
 		\begin{description}
 			\item[Name] Park in a recharging area
 			\item[Actors] \hfill
@@ -149,10 +149,63 @@
 				\item \textbf{The user plugs the car into the power grid after the time window has closed.} The user is invoiced the moment the time window closes. The user is charged as if they parked in a safe area.
 			\end{itemize}
 			\item[Special Requirements] The user plugs in the car during the time window after the ride. Otherwise the discount is not applied.
-		\end{description}	
-		
+		\end{description}
+	
+	\subsubsection{Use case 6: Application of several discounts}
+		\begin{description}
+			\item[Name] Application of several discounts
+			\item[Actors] \hfill
+				\begin{description}
+					\item[User] The user who is driving the car.
+				\end{description}
+			\item[Entry condition] The user has parked in a safe area. Multiple discounts apply to their ride.
+			\item[Flow of events]
+				\begin{enumerate}
+					\item The user exits the car.
+					\item The time window starts.
+					\item The system closes the car.
+					\item By the end of the time window, the user has done several things that earn him discounts.
+					\item The system calculates the sum of all percent values of the appliable discounts.
+					\item The sum of all discounts is applied to the fee.
+					\item The user is notified and charged the final fee. 
+				\end{enumerate}
+			\item[Exit condition] The user leaves the car and the car becomes available to other users.
+			\item[Exceptions]
+				\begin{itemize}
+					\item \textbf{The sum of discounts exceeds 100\%} The sum is counted as 100\% and the user is notified that he doesn't have to pay for the ride. 
+				\end{itemize}
+			\item[Special requirements] None.
+		\end{description}
+	
+	\subsubsection{Use case 7: Parking outside safe areas}
+		\begin{description}
+			\item[Name] Application of several discounts
+			\item[Actors] \hfill
+				\begin{description}
+					\item[User] The user who is driving the car.
+				\end{description}
+			\item[Entry condition] The car is turned off outside a safe area.
+			\item[Flow of events]
+				\begin{enumerate}
+					\item The system detects the car is outside a safe area.
+					\item The system notifies the user that they'll keep being charged until they park inside a safe area.
+					\item The user exits the car.
+					\item The user closes the car manually through the mobile application.
+					\item The user comes back after a while and opens the car manually.
+					\item The user reignites the car and keeps driving.
+				\end{enumerate}
+			\item[Exit condition] Eventually the user parks in a safe area. The use case \textit{Park in known safe area} is invoked.
+			\item[Exceptions]
+				\begin{itemize}
+					\item \textbf{The user never returns the car.} %TODO ?????
+				\end{itemize}
+			\item[Special requirements]
+		\end{description}		
+
+
+	
 	%FIXME generalise?
-	\subsubsection{Use case 5: Manually assist a parked car}
+	\subsubsection{Use case 6: Manually assist a parked car}
 		\begin{description}
 			\item[Name] Manually assist a car
 			\item[Actors] \hfill
@@ -188,7 +241,7 @@
 		\end{itemize}
 	
 
-	\subsubsection{Use case 6: Manage infractions}
+	\subsubsection{Use case 7: Manage infractions}
 		\begin{description}
 			\item[Name] Manage infractions
 			\item[Actors] \hfill
@@ -213,7 +266,7 @@
 			\item[Special requirements] None.
 		\end{description}
 
-	\subsubsection{Use case 7: Assist user after an accident}
+	\subsubsection{Use case 8: Assist user after an accident}
 		\begin{description}
 			\item[Name] Assist user after an accident
 			\item[Actors] \hfill
@@ -242,7 +295,7 @@
 			The Accident Detection System always detects an accident when the User is unconscious. If the accident detection system detects an accident and the user is conscious, it is the detection system who alerts the system of the accident. The system then prevents the user to send another notification. 
 		\end{description}
 
-	\subsubsection{Use case 8: Assist a user on-site after a car breakdown}
+	\subsubsection{Use case 9: Assist a user on-site after a car breakdown}
 		\begin{description}
 			\item[Name] Assist user after a car breakdown
 			\item[Actors] \hfill
@@ -271,7 +324,7 @@
 			\item[Special Requirements] The Operator cannot refuse an assignment if he is online and always accept it within 10 minutes. An Operator is always online when at work.
 		\end{description}
 
-	\subsubsection{Use case 9: Assist a user with a not on-site reparation}
+	\subsubsection{Use case 10: Assist a user with a not on-site reparation}
 		\begin{description}
 			\item[Name] Assist a user with a not on-site reparation
 			\item[Actors] \hfill
