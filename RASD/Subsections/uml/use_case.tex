@@ -2,7 +2,36 @@
 	A global picture of the system interaction with actors is provided here by means of use case diagrams. Following, an analysis of the most interesting use case situations derived from scenarios is presented.
 
 	\includegraphics[width=\textwidth]{img/use_case.png}
-
+	
+	\subsection{Use case 1: Register in the system}
+		\begin{description}
+			\item[Name] Register in the system
+			\item[Actors] \hfill
+				\begin{description}
+					\item[Guest] The guest who wants to register in the system.
+					\item[Admin] The system administrator.
+				\end{description}
+			\item[Entry condition] The guest decide to register to the system from the website or from the app.
+			\item[Flow of events] \hfill
+				\begin{enumerate}
+					\item The guest fills the form with their personal information.
+					\item The guest fills the form with their payment information. 
+					\item The guest reads and accepts privacy policies and agreements from the company.
+					\item The guest sends the registration requests.
+					\item The system notifies them that to complete the request the guest will need to send an email with personal ID and driving license in pdf attached.
+					\item The guest sends the necessary documents.
+					\item The admin receives the email and checks with the DMV (Department of Motor Vehicles) the correctness of the information.
+					\item The admin accepts the registration request.
+					\item The system sends the user via email a password to enter the system.
+				\end{enumerate}
+			\item[Exit condition] The guest has a new profile and has become a user. They can now reserve car and use all functionalities of the system.
+			\item[Exceptions] \hfill
+				\begin{itemize}
+					\item \textbf{The credit card owner's name doesn't coincide with the guest's name.} The system trivially checks for equality of the two fields. If they are different, it notifies the guest of the discrepancy and the company policy (i.e. that the payment method must belong to the user themselves and not to third parties). The operation is aborted.
+					\item \textbf{The license is not valid}. The admin notifies user via email. The registration request is cancelled.
+				\end{itemize}
+		\end{description}			
+	
 	\subsubsection{Use case 1: Reserve a car}
 		\begin{description}
 			\item[Name] Reserve a car
