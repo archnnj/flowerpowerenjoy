@@ -143,6 +143,8 @@ fact AttrbutePairings {
 
 	all c : Car | ( c.status = Reserved <=> (some r : Reservation | c = r.car) )
 	all c : Car | ( c.status = InUse <=> (some r : Ride | c = r.car) )
+
+	all r : Ride | let u = r.user, c = r.car | ( c.driverInside  = True ) => ( u.near = c )
 }
 
 fact exclusivity {
