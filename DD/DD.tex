@@ -1,0 +1,44 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % to embed images
+\usepackage{hyperref} % to link the table of contents
+\usepackage{subcaption} %complex images
+\usepackage{placeins} %floating
+\usepackage{pdflscape} %to allow single pages in landscape mode
+\usepackage[top=1.25in, bottom=1.25in, left=1in, right=1in]{geometry}
+\usepackage{verbatim} % include raw text file (for Alloy)
+\usepackage[export]{adjustbox}
+
+\title{Design Document}
+\date{2016-12-11}
+\author{
+	Patricia Abbud
+	\and
+	Maddalena Andreoli Andreoni
+	\and
+	Paolo Cudrano
+}
+
+\begin{document}
+	%%% titlepage %%%
+	\begin{titlepage}
+		\centering
+		\includegraphics[width=5cm]{img/polimi_logo.png} % also works with logo.pdf
+		\vfill
+		{\bfseries\Large
+			Design Document\\
+			\vskip4cm
+			Patricia Abbud\\
+			Maddalena Andreoli Andreoni\\
+			Paolo Cudrano\\
+		}
+		\vfill
+		\vfill
+	\end{titlepage}
+
+	%%% table of contents %%%
+	\tableofcontents
+	\newpage
+
+\end{document}
