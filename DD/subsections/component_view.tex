@@ -1,5 +1,7 @@
 The Component Diagram shown below describes the logical components of the system we are to develop, from a very high-level description on to a more detailed one. This diagram does not take into account the deployment phase, hence it doesn't describe the logical layer of the system in terms of the physical tiers where it is deployed. It also does not show the interfaces between the logical layer and the end users or the database, for simplicity %TODO do we have to add them?
 
+%TODO CHECK ALL SINGULAR IMAGES APPARENTLY THEY DIDN'T UPDATE SOMEHOW.
+
 	\subsubsection{High level components}
 		\paragraph{} We shall show below the high level view of the logical components of the system and their interactions. Following the UML 1 notation, the dashed arrows represent dependencies between components, with the tail end component depending on the point end component (e.g. if \textit{A -> B}, then A \textit{depends on} B). 
 
@@ -40,3 +42,11 @@ The Component Diagram shown below describes the logical components of the system
 			
 		\paragraph{} The Car Employment Manager is one of the most important component of the system in terms of its core functionalities. It's composed of three processes: the first one, the Reservation Handler, has the task of dealing with reservations from a user and for an individual car. It blocks all other possible operations to that car until the user starts using it or the reservation expires. To keep track of the time, the Reservation Handler needs to interface with the Time Manager. This process is tasked with keeping track of the time periods necessary for the services to be offered: the expiration time for a reservation, the duration of a ride, the time window after a ride has finished. 
 		The Ride Handler on the other hand depends on the Reservation Handler in that a car can be used only after a reservation. The Ride Handler is associated to a particular car and a particular user. It depends on the Time Manager to keep track of the duration of the ride. 
+		
+		
+		\paragraph{Localization Manager}
+			\begin{figure}[h]
+				\includegraphics[scale=0.4, center]{img/component_diagrams/05_localization_manager.png}
+			\end{figure}
+			
+		\paragraph{} The Localization Manager handles all the localization issues of the system. Its three components, the User Location Handler, the Car Location Handler and the Operator Location Handler (that track, respectively, users, cars and operators) all work independently from each other and interface with the respective handlers from other components. The Localization Manager also interfaces with the external Map Services Provider, that provides the information for the localization.
