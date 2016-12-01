@@ -89,3 +89,12 @@ The Component Diagram shown below describes the logical components of the system
 			\end{figure}
 			
 		\paragraph{} Through the Payment Manager, the system keeps track of the fare of each ride and the extraordinary fees (i.e. the fines), the discounts and the sanctions to charge the user. The Payment Handler is arguably the most important process since it's the one that is tasked with keeping track of the total cost for a ride. To do that, it needs to interface with the Ride Handler, and also with the Discounts and Sanctions Handler, to be able to consider them in its calculations. The Exceptional Payment Handler manages the exceptional fees, such as fines for expired reservations or for damages to the car. All of them are needed by the Invoice Manager, that takes the final charge from them and notifies the external Payment Services Provider, such that it may invoice the user of their charges.
+		
+		
+		
+		\paragraph{Money Saving Option Manager}
+			\begin{figure}[h]
+				\includegraphics[scale=0.4, center]{img/component_diagrams/09_money_saving_option_manager.png}
+			\end{figure}
+		
+		\paragraph{} We decided to dedicate an entire component for the sole purpose of managing the Money Saving Option (MSO), because of its complexity. The Discounts and Sanctions Handler also depends on this component to provide the information on whether to apply the relative discount or not. It has two processes, which are the Parking Distribution Handler and the MSO Handler. The Parking Distribution Handler takes the brunt of the computing complexity since its task is to calculate the optimal distribution of cars with an heuristic algorithm. On the other hand, the MSO Handler gets the necessary information from the Parking Distribution Handler and decides which Parking Area to notify the user given the destination of the ride.
