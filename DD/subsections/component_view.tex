@@ -10,6 +10,8 @@ The Component Diagram shown below describes the logical components of the system
 			\includegraphics[scale=0.24]{img/component_diagrams/01_high_level_component_view.png}
 		\end{figure}
 
+
+
 	\subsubsection{Component view}
 	
 	
@@ -98,3 +100,22 @@ The Component Diagram shown below describes the logical components of the system
 			\end{figure}
 		
 		\paragraph{} We decided to dedicate an entire component for the sole purpose of managing the Money Saving Option (MSO), because of its complexity. The Discounts and Sanctions Handler also depends on this component to provide the information on whether to apply the relative discount or not. It has two processes, which are the Parking Distribution Handler and the MSO Handler. The Parking Distribution Handler takes the brunt of the computing complexity since its task is to calculate the optimal distribution of cars with an heuristic algorithm. On the other hand, the MSO Handler gets the necessary information from the Parking Distribution Handler and decides which Parking Area to notify the user given the destination of the ride.
+		%FIXIT TMI?
+		
+		
+		\paragraph{Parking Manager}
+			%FIXIT no image? do we need it?
+		
+		\paragraph{} The Parking Manager keeps tabs on where (and if) a car is parked, and for how long. Thanks to the Car Location Manager and the Car Sensors, it locates cars and decides whether they are parked inside a Safe Area or not; it also depends on the Time Manager to calculate the window of time after the end of a ride when a user is still allowed to plug the car into the power grid or open it.
+		%FIXIT change direction of arrow between time manager and parking manager?
+		
+	\subsubsection{Complete component view}
+	
+	The following figure shows the complete component diagram for the system, with all the dependencies as shown. 
+	%do we need to say something else?
+	
+		\begin{figure}[h]
+				\includegraphics[scale=0.1, center]{img/component_diagrams/10_complete_component_view.png}
+			\end{figure}
+			
+			%TODO add the reservation --> user and reservation --> car dependencies
