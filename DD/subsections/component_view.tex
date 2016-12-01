@@ -54,7 +54,16 @@ The Component Diagram shown below describes the logical components of the system
 		
 		\paragraph{Maintenance Manager}
 			\begin{figure}[h]
-				\includegraphics[scale=0.4, center]{img/component_diagrams/05_localization_manager.png}
+				\includegraphics[scale=0.4, center]{img/component_diagrams/06_maintenance_manager.png}
 			\end{figure}
 		
 		\paragraph{} The Maintenance Manager deals with emergencies and daily maintenance of the cars. For this purpose, it has an interface with the operators, the Operator Handler; the operators are dispatched by the admins and are associated to some emergency report. The Dispatcher Manager handles the availability and the tasks associated with each operator; the Emergency Report Handler on the other hand manages the emergency reports, associating them with a user, a car and an operator, and keeping track of their status thanks to the Report Status Handler.
+		
+		\paragraph{Backend Manager}
+			\begin{figure}[h]
+				\includegraphics[scale=0.4, center]{img/component_diagrams/11_backend_manager.png}
+			\end{figure}
+			
+		\paragraph{} The Backend Manager oversees all operations entrusted to the administrators. The Admin Handler is the interface between the admins and the system, and keeps track of each administrator's activities and identification. The Parameters Manager deals with all changes done to the parameters of the system (their validity within fixed boundaries, their actual deployment); it depends on the Admin Handler since every change to the parameters is done by an admin. %FIXIT actual deployment??
+		
+		
