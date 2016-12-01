@@ -52,12 +52,16 @@ The Component Diagram shown below describes the logical components of the system
 		\paragraph{} The Localization Manager handles all the localization issues of the system. Its three components, the User Location Handler, the Car Location Handler and the Operator Location Handler (that track, respectively, users, cars and operators) all work independently from each other and interface with the respective handlers from other components. The Localization Manager also interfaces with the external Map Services Provider, that provides the information for the localization.
 		
 		
+		
 		\paragraph{Maintenance Manager}
 			\begin{figure}[h]
 				\includegraphics[scale=0.4, center]{img/component_diagrams/06_maintenance_manager.png}
 			\end{figure}
 		
 		\paragraph{} The Maintenance Manager deals with emergencies and daily maintenance of the cars. For this purpose, it has an interface with the operators, the Operator Handler; the operators are dispatched by the admins and are associated to some emergency report. The Dispatcher Manager handles the availability and the tasks associated with each operator; the Emergency Report Handler on the other hand manages the emergency reports, associating them with a user, a car and an operator, and keeping track of their status thanks to the Report Status Handler.
+		
+		
+		
 		
 		\paragraph{Backend Manager}
 			\begin{figure}[h]
@@ -67,3 +71,21 @@ The Component Diagram shown below describes the logical components of the system
 		\paragraph{} The Backend Manager oversees all operations entrusted to the administrators. The Admin Handler is the interface between the admins and the system, and keeps track of each administrator's activities and identification. The Parameters Manager deals with all changes done to the parameters of the system (their validity within fixed boundaries, their actual deployment); it depends on the Admin Handler since every change to the parameters is done by an admin. %FIXIT actual deployment??
 		
 		
+		
+		
+		\paragraph{Car Manager}
+			\begin{figure}[h]
+				\includegraphics[scale=0.4, center]{img/component_diagrams/07_car_manager.png}
+			\end{figure}
+		
+		\paragraph{} %TODO how to write it so that it doesn't look like the cars are actors of our system?
+		
+		
+		
+		
+		\paragraph{Payment Manager}
+			\begin{figure}[h]
+				\includegraphics[scale=0.4, center]{img/component_diagrams/08_payment_manager.png}
+			\end{figure}
+			
+		\paragraph{} Through the Payment Manager, the system keeps track of the fare of each ride and the extraordinary fees (i.e. the fines), the discounts and the sanctions to charge the user. The Payment Handler is arguably the most important process since it's the one that is tasked with keeping track of the total cost for a ride. To do that, it needs to interface with the Ride Handler, and also with the Discounts and Sanctions Handler, to be able to consider them in its calculations. The Exceptional Payment Handler manages the exceptional fees, such as fines for expired reservations or for damages to the car. All of them are needed by the Invoice Manager, that takes the final charge from them and notifies the external Payment Services Provider, such that it may invoice the user of their charges.
