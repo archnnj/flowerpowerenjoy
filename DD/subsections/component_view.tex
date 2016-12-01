@@ -1,4 +1,4 @@
-The Component Diagram shown below describes the logical components of the system we are to develop, from a very high-level description on to a more detailed one. This diagram does not take into account the deployment phase, hence it doesn't describe the logical layer of the system in terms of the physical tiers where it is deployed. It also does not show the interfaces between the logical layer and the end users or the database, for simplicity %TODO do we have to add them?
+The Component Diagram shown below describes the logical components of the system we are to develop, from a very high-level description on to a more detailed one. This diagram does not take into account the deployment phase, hence it doesn't describe the logical layer of the system in terms of the physical tiers where it is deployed. It also does not show the interfaces between the logical layer and the end users or the database, for simplicity and readability. %TODO do we have to add them?
 
 %TODO CHECK ALL SINGULAR IMAGES APPARENTLY THEY DIDN'T UPDATE SOMEHOW.
 
@@ -50,3 +50,11 @@ The Component Diagram shown below describes the logical components of the system
 			\end{figure}
 			
 		\paragraph{} The Localization Manager handles all the localization issues of the system. Its three components, the User Location Handler, the Car Location Handler and the Operator Location Handler (that track, respectively, users, cars and operators) all work independently from each other and interface with the respective handlers from other components. The Localization Manager also interfaces with the external Map Services Provider, that provides the information for the localization.
+		
+		
+		\paragraph{Maintenance Manager}
+			\begin{figure}[h]
+				\includegraphics[scale=0.4, center]{img/component_diagrams/05_localization_manager.png}
+			\end{figure}
+		
+		\paragraph{} The Maintenance Manager deals with emergencies and daily maintenance of the cars. For this purpose, it has an interface with the operators, the Operator Handler; the operators are dispatched by the admins and are associated to some emergency report. The Dispatcher Manager handles the availability and the tasks associated with each operator; the Emergency Report Handler on the other hand manages the emergency reports, associating them with a user, a car and an operator, and keeping track of their status thanks to the Report Status Handler.
