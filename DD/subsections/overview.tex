@@ -4,16 +4,16 @@ The system is structured on a \textbf{three-tier architecture}, with tiers divid
 	\begin{itemize}
 		\item{User web browser.} A website, mainly used as showcase, provides a section for the management of registration and the visualization of already registered accounts.
 		\item{User mobie app.} A mobile application allows registered users to employ the services provided by \textit{PowerEnJoy}.
-		\item{Car client.} The cars runs a custom application on their on-board tablet to inform the users and interact with them about the ride in progress. This application is also responsible to keep the car connected with the rest of the system.
-		\item{Operator mobile app.} Every operator is equipped with a mobile device running a custom application. This application allows them to perform their assistance task and be connected with the Administrators.
-		\item{Admin app.} The administrators of the system can control the system parameters and manage the operators dispatching by means of a specific application running on their desktop devices.
+		\item{Car client.} The cars run a custom application on their on-board tablet to inform the users and interact with them about the ride in progress. This application is also responsible to keep the car connected to the rest of the system.
+		\item{Operator mobile app.} Every operator is equipped with a mobile device running a custom application. This application allows them to perform their assistance tasks and keep the connection with the administrators.
+		\item{Admin app.} The administrators can control the system parameters and manage the operators dispatching by means of a specific application running on their desktop devices.
 	\end{itemize}
-	\item{App server.} A business logic server is designed to expose services to the clients. It is built under a DMZ to guarantee an higher degree of security.
+	\item{App server.} A business logic server is designed to expose services to the clients. It is placed inside a DMZ to guarantee a higher degree of security.
 	\item{Database server.} All the relevant data for the system are stored on a designated server, protected by a double layer of firewalls from outside attacks.
 \end{itemize}
 To this structure, an addition is made to fulfill all the requirements:
 	\begin{itemize}
-		\item{Web server.} A specific server is used to store the website static pages, becoming a parallel tier of the app server.
+		\item{Web server.} A specific server is used to store the website static pages, becoming a parallel tier with respect to the app server.
 	\end{itemize}
 
 \begin{figure}[h]
@@ -23,7 +23,7 @@ To this structure, an addition is made to fulfill all the requirements:
 \FloatBarrier
 
 \subsubsection{Layers vs Tiers}
-	From a logical point of view, the clients mentioned above display significant differences depending on the functionalities provided. For this reason, the allocation of the layers (Presentation, Application and Data) to these three tiers becomes dependent on the nature of the client involved in this process.
+	From a logical point of view, the clients mentioned above provide significantly different functionalities. For this reason, the allocation of the layers (Presentation, Application and Data) to these three tiers becomes dependent on the nature of the client involved in this process.
 
 	\paragraph{User web browser, Admin app.} These applications provide a very limited set of functionalities, relieving them from the need of logical computation client-side. For this reason, the clients provide only the presentation, whereas the application layer is entirely managed by the application server. Finally, the database server is left responsible for the data layer.
 		\begin{figure}[h]
