@@ -17,8 +17,10 @@ To this structure, an addition is made to fulfill all the requirements:
 	\end{itemize}
 
 \begin{figure}[h]
-	\includegraphics[width=350pt, center]{img/tiers.png} % FIXME labels in image
+	\includegraphics[width=350pt, center]{img/tiers.png} % FIXME labels in image\\
+	\caption{Three-tier architecture}
 \end{figure}
+\FloatBarrier
 
 \subsubsection{Layers vs Tiers}
 	From a logical point of view, the clients mentioned above display significant differences depending on the functionalities provided. For this reason, the allocation of the layers (Presentation, Application and Data) to these three tiers becomes dependent on the nature of the client involved in this process.
@@ -26,9 +28,12 @@ To this structure, an addition is made to fulfill all the requirements:
 	\paragraph{User web browser, Admin app.} These applications provide a very limited set of functionalities, relieving them from the need of logical computation client-side. For this reason, the clients provide only the presentation, whereas the application layer is entirely managed by the application server. Finally, the database server is left responsible for the data layer.
 		\begin{figure}[h]
 			\includegraphics[width=250pt, center]{img/tier_layer_mapping_thinclient.png}
+			\caption{Layers allocation in clients: User web browser, Admin app}
 		\end{figure}
 
 	\paragraph{User mobile app, Car client, Operator mobile app.} For these applications, responsible for more complex functionalities, it is necessary to delegate part of the computations to the clients. Therefore, in this case the application layer is divided between the client app and the application server. As for the others, the presentation layer is assigned to the clients, while the data are managed by the database server.
-			\begin{figure}[h]
-				\includegraphics[width=250pt, center]{img/tier_layer_mapping.png}
-			\end{figure}
+		\begin{figure}[h]
+			\includegraphics[width=250pt, center]{img/tier_layer_mapping.png}
+			\caption{Layers allocation in clients: User mobile app, Car client, Operator mobile app}
+		\end{figure}
+\FloatBarrier
