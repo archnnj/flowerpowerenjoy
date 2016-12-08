@@ -1,0 +1,32 @@
+Sub money_saving_option()
+	
+	destination ← get destination from user
+	d_location ← LocationServices.search_location(destination)
+	curr_location ← LocationServices.search_location(car)
+	distance ← LocationServices.calculate_distance (d_location, curr_location)
+
+	starting_battery ← getBattery(car)
+	final_battery_estimate ← estimate(distance, starting_battery)
+
+	battery_weight ← call on battery_importance_algorithm(final_battery_estimate)
+
+	list solutions(solution, delta) ← NULL
+	list areas ← LocationServices.get(all parking areas withing a 5km radius from d_location)
+
+	Forall area in areas
+		add car to area
+		delta_availability ← call on calculate_solution_quality_algorithm(areas)
+
+		If(area is recharging_area) then
+			delta_availability ← delta_availability * battery_weight
+		End If
+
+		solutions ← insertByOrderedDelta(area, delta_availability);
+
+		remove car from area
+	Next area
+
+	best_solution ← solutions.getFirst
+	
+	notify_car(best_solution)
+End Sub

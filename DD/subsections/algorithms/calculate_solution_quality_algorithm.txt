@@ -1,0 +1,19 @@
+double Sub calculate_solution_quality(list areas)
+	
+	highest_availability ← call on calculate_availability(areas.get(1))
+	lowest_availability ← highest_availability
+
+	For i=2 to size of areas
+
+		availability ← call on calculate_availability(areas.get(i))
+		If availability >= highest_availability Then highest_availability ← availability
+		End If
+		If availability <= lowest_availability Then lowest_availability ← availability
+		End If
+
+	Next i
+
+	delta ← highest_availability - lowest_availability
+	
+	return delta
+End Sub

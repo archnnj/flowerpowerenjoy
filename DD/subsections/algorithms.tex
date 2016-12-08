@@ -1,0 +1,99 @@
+
+
+\begin{algorithm}[H]
+	\KwData{the destination given by the user}
+	\KwResult{the area where to park to gain the money saving option discount}
+	initialization\;
+	
+	$d\_location \leftarrow LocationServices.search\_location(destination)$\;
+	$curr\_location \leftarrow LocationServices.searc\_location(car)$\;
+	$distance \leftarrow LocationServices.calculate\_distance (d\_location, curr\_location)$\;
+	
+	$starting\_battery \leftarrow getBattery(car)$\;
+	$final\_battery\_estimate \leftarrow estimate(distance, starting\_battery)$\;
+	
+	$battery\_weight \leftarrow call on battery\_importance\_algorithm(final\_battery\_estimate)$\;
+	
+	$list solutions(solution, delta) \leftarrow NULL$\;
+	$list areas \leftarrow LocationServices.get(all parking areas within a 5km radius from d\_location)$\;
+	
+	\ForAll{area in areas}{
+		add car to area\;
+		$delta\_availability \leftarrow call on calculate\_solution\_quality\_algorithm(areas)$\;
+		\If{area is $recharging\_area$}{$delta\_availability \leftarrow delta\_availability * battery_weight$\;}
+		$solutions \leftarrow insertByOrderedDelta(area, delta\_availability)$\;
+		remove car from area\;
+	}
+	
+	$best\_solution \leftarrow solutions.getFirst$\;
+	$notify\_car(best\_solution)$\;
+	
+	\caption{Money Saving Option}
+\end{algorithm}
+
+
+
+\begin{algorithm}
+	\KwData{list of areas}
+	\KwResult{a double value describing the quality of the solution}
+	initialization\;
+	$highest\_availability \leftarrow call on calculate\_availability(areas.get(1))$\;
+	$lowest\_availability \leftarrow highest\_availability$\;
+	
+	\For{i=2 to size of areas}{
+		$availability \leftarrow call on calculate\_availability(areas.get(i))$\;	
+		\If{$availability >= highest\_availability$}{$highest\_availability \leftarrow availability$\;}
+		\If{$availability >= lowest\_availability$}{$lowest\_availability \leftarrow availability$\;}
+	}
+	$delta \leftarrow highest\_availability - lowest\_availability$\;
+	
+	return{delta}\;
+	\caption{Calculate Solution Quality}
+\end{algorithm}
+
+
+
+\begin{verbatim}
+FUNCTION_BLOCK
+
+VAR_INPUT
+    Battery      REAL; (* RANGE(0 .. 1) *) 
+END_VAR
+
+VAR_OUTPUT
+    PlugImportance      REAL; (* RANGE(0,8 .. 1,5) *) 
+END_VAR
+
+FUZZIFY Battery
+    TERM Very_Low := (0, 0) (0, 1) (0.2, 0) ;
+    TERM Low := (0, 0) (0.2, 1) (0.5, 0) ;
+    TERM Medium := (0.2, 0) (0.5, 1) (0.8, 0) ;
+    TERM High := (0.5, 0) (0.8, 1) (1, 0) ;
+    TERM Very_High := (0.8, 0) (1, 1) (1, 0) ;
+END_FUZZIFY
+
+FUZZUFY PlugImportance
+    TERM Not_Important := 0.8;
+    TERM Indifferent := 1;
+    TERM Important := 1.2;
+    TERM Very_Important := 1.4;
+    TERM Fundamental := 1.5;
+END_FUZZIFY
+
+
+DEFUZZIFY valve 
+    METHOD: MoM;
+END_DEFUZZIFY
+
+RULEBLOCK batteryWeight
+    ACCUM:MAX;
+
+    RULE 0: IF (Battery IS Very_High) THEN (PlugImportance IS Not_Important);
+    RULE 1: IF (Battery IS High) THEN (PlugImportance IS Indifferent);
+    RULE 2: IF (Battery IS Medium) THEN (PlugImportance IS Important);
+    RULE 3: IF (Battery IS Low) THEN (PlugImportance IS Very_Important);
+    RULE 4: IF (Battery IS Very_Low) THEN (PlugImportance IS Fundamental);
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
+\end{verbatim}

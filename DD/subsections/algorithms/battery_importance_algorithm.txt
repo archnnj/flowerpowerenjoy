@@ -1,0 +1,42 @@
+FUNCTION_BLOCK
+
+VAR_INPUT
+    Battery		REAL; (* RANGE(0 .. 1) *) 
+END_VAR
+
+VAR_OUTPUT
+    PlugImportance REAL; (* RANGE(0,8 .. 1,5) *) 
+END_VAR
+
+FUZZIFY Battery
+	TERM Very_Low := (0, 0) (0, 1) (0.2, 0) ;
+	TERM Low := (0, 0) (0.2, 1) (0.5, 0) ;
+	TERM Medium := (0.2, 0) (0.5, 1) (0.8, 0) ;
+	TERM High := (0.5, 0) (0.8, 1) (1, 0) ;
+	TERM Very_High := (0.8, 0) (1, 1) (1, 0) ;
+END_FUZZIFY
+
+FUZZUFY PlugImportance
+	TERM Not_Important := 0.8;
+	TERM Indifferent := 1;
+	TERM Important := 1.2;
+	TERM Very_Important := 1.4;
+	TERM Fundamental := 1.5;
+END_FUZZIFY
+
+
+DEFUZZIFY valve 
+    METHOD: MoM;
+END_DEFUZZIFY
+
+RULEBLOCK batteryWeight
+    ACCUM:MAX;
+
+    RULE 0: IF (Battery IS Very_High) THEN (PlugImportance IS Not_Important);
+    RULE 1: IF (Battery IS High) THEN (PlugImportance IS Indifferent);
+    RULE 2: IF (Battery IS Medium) THEN (PlugImportance IS Important);
+    RULE 3: IF (Battery IS Low) THEN (PlugImportance IS Very_Important);
+    RULE 4: IF (Battery IS Very_Low) THEN (PlugImportance IS Fundamental);
+END_RULEBLOCK
+
+END_FUNCTION_BLOCK
