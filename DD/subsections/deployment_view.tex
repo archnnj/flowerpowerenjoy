@@ -30,19 +30,19 @@ The web server provides static web pages and the logic necessary to the browser 
 				\item[iOS] Objective-C, with support for iOS 6+.
 				\item[Windows Phone] C\#, with support for Windows 10 mobile.
 			\end{itemize}
-		The choice of covering the 3 most important OS on the market fulfils the \textit{design for portability} pattern. To address this pattern and be able to release the system in shorter time, some non-native options have been taken in consideration (e.g. Apache Cordova). However, this solutions showed to provide limited access to native functionalities such as the GPS system and the Bluetooth, which are instead very important for the system-to-be. Therefore, native solutions have been preferred, to have full control of the device. This choice guarantees also a better user experience.
+		The choice of covering the 3 most important OS on the market fulfils the \textit{design for portability} pattern. To address this pattern and be able to release the system in shorter time, some non-native options have been taken in consideration (e.g. Apache Cordova). However, this solutions showed to provide limited access to native functionalities such as the GPS system and the Bluetooth, which are instead very important for the system-to-be (i.e. localization, communication with the car). Therefore, native solutions have been preferred, to have full control of the device. This choice guarantees also a better user experience.
 
-		\item[Operator mobile app client.] % TODO
+		\item[Operator mobile app client.] This internal application helps the operators to track their activity during the interventions. The company provides them with an Android tablet, so the application is to be compatible with it. Moreover, to provide more usability, this application is designed to be deployed on both tablet and smartphones, managing a responsive layout. The company choice of the Android platform addresses the need of inexpensive but efficient devices to run mainly the application. As for the \textit{User mobile app client}, the application is to be developed in native language (Java for Android, with support for Android 4.4+) to exploit some system-level functionalities.
 
-		\item[Car client.] % TODO
+		\item[Car client.] The system managing the whole car is running on the Android tablet installed. It is connected to the control unit of the car and communicates with the rest of the system though the APIs provided by the app server. It also exposes some APIs of its own, to be accessed by the app server (i.e. request of status information, sending of commands). Besides, a Bluetooth listener receives the requests from near users to unlock the car (if a reservation has been made.
 
-		\item[Admin app client.] % TODO
+		\item[Admin app client.] An internal desktop application is developed to provide access to the admin to the parameter manager and the operator dispatching area. To avoid restrictions in the future equipment of the admins, the application is planned to be developed in Java, ensuring portability on every desktop and laptop OS. In addition, given the configuration of the app server (see later), Java EE is required, to guarantee uniformity with the back-end system and simplify the development.
 
-		\item[App server.] This server is to be developed using the Java EE platform. This will help to provide the elasticity required and simplify the connections with the database through JPA. It exposes the APIs required by the clients as RESTful web services.
+		\item[App server.] This server is to be developed using the Java EE platform. This framework will help to provide the elasticity required and simplify the connections with the database through JPA. The app server exposes the APIs required by the clients as RESTful web services.
 
 		\item[Web server.] The web server simply hosts a very limited website with information about the service and an account management section. Given the simple functionalities, it is not worth the effort of building a Java EE system; instead, the most basic set of web technologies are to be used: HTML5, CSS3 and JS client-side and PHP7 server-side. The choice of PHP over other languages is due to the previous knowledge of the language by the team; in addition, it is a well spread language and can be easily maintained by other developers of the company in the future. For the account management section, the JS script communicates with the application server by means of AJAX calls to the web services.
 
-		\item[Database server.] % TODO
+		\item[Database server.] A distributed MySQL database, running on a set of Ubuntu servers, manages all the data needed by the application.
 	\end{description}
 
 % TODO provide physical diagram with distribution and platforms
