@@ -8,18 +8,41 @@ The web server provides static web pages and the logic necessary to the browser 
 	\includegraphics[width=\hsize, center]{img/deployment_diagrams/global.png}
 \end{sidewaysfigure}
 
-	\subsubsection{Non functional requirements}
-		The architectural structure proposed addresses the non-functional requirements of \textit{integrity} and \textit{confidentiality} (see RASD) introducing a DMZ which separates with a firewall the app server, accessible from the outside network, from the database server. To avoid intrusions on the app server, another firewall is provided, with less restricting rules to allow outside clients to access. This way, even if an attack is performed to the app server, a more impenetrable layer of security still divides the intruders from the sensitive data. The structure just described is a standard pattern in the design of three-layer architectures.
+\subsubsection{Non-functional requirements choices}
+	The architectural structure proposed addresses the non-functional requirements of \textit{integrity} and \textit{confidentiality} (see RASD) introducing a DMZ which separates with a firewall the app server, accessible from the outside network, from the database server. To avoid intrusions on the app server, another firewall is provided, with less restricting rules to allow outside clients to access. This way, even if an attack is performed to the app server, a more impenetrable layer of security still divides the intruders from the sensitive data. The structure just described is a standard pattern in the design of three-layer architectures.
 
-		The app server is designed as a distributed system completely replicated in at least another physical machine, to fulfil the requirement of \textit{availabilty} and partially address the requirement of \textit{performance} (see RASD). A load balancer is expected to redirect the workload to the appropriate physical server. The number of servers can be increased in future if the workload requires it. This structure, along with a proper firewall configuration, helps to reduce the risk of failure for DOS attacks.
+	The app server is designed as a distributed system completely replicated in at least another physical machine, to fulfil the requirement of \textit{availabilty} and partially address the requirement of \textit{performance} (see RASD). A load balancer is expected to redirect the workload to the appropriate physical server. The number of servers can be increased in future if the workload requires it. This structure, along with a proper firewall configuration, helps to reduce the risk of failure for DOS attacks.
 
-		Internally, each physical server is implemented following the \textit{elasticity pattern}, to fulfil the requirement of \textit{performance} (see RASD) while maintaining the number of allocated resources low. Thus, the components are to be instantiated according to the present load of clients' requests. An \textit{elastic load balancer} is used to manage the scaling process.
+	Internally, each physical server is implemented following the \textit{elasticity pattern}, to fulfil the requirement of \textit{performance} (see RASD) while maintaining the number of allocated resources low. Thus, the components are to be instantiated according to the present load of clients' requests. An \textit{elastic load balancer} is used to manage the scaling process.
 
-		To address the requirement of \textit{robustness} (see RASD) a simple error handling in the client application is enough. However, given the importance of failure management to avoid damages or theft to be performed to the cars, the data layer is chosen to be distributed.
+	To address the requirement of \textit{robustness} (see RASD) a simple error handling in the client application is enough. However, given the importance of failure management to avoid damages or theft to be performed to the cars, the data layer is chosen to be distributed.
 
-		Lastly, the modularization of components and the possibility for the administrators to modify the core parameters of the system through the \textit{Parameters Manager} is conform to the \textit{design for flexibility} principle and satisfies the non-functional requirement of \textit{flexibility} (see RASD).
+	Lastly, the modularization of components and the possibility for the administrators to modify the core parameters of the system through the \textit{Parameters Manager} is conform to the \textit{design for flexibility} principle and satisfies the non-functional requirement of \textit{flexibility} (see RASD).
 \FloatBarrier
 
-% TODO talk about technological choices for APIs, app server, db server, mobile apps, desktop apps, browser, ...
+\subsubsection{Technological choices}
+	% TODO talk about technological choices for APIs, app server, db server, mobile apps, desktop apps, browser, ...
+	From a technological point of view, the implementation of the system relies on the following choices.
+	\begin{description}
+		\item[User mobile app client.] The mobile app is to be developed with native technologies according to the mobile OS running on the device. In particular:
+			\begin{itemize}
+				\item[Android] Java for Android, with support for Android 4.4+.
+				\item[iOS] Objective-C, with support for iOS 6+.
+				\item[Windows Phone] C\#, with support for Windows 10 mobile.
+			\end{itemize}
+		The choice of covering the 3 most important OS on the market fulfils the \textit{design for portability} pattern. To address this pattern and be able to release the system in shorter time, some non-native options have been taken in consideration (e.g. Apache Cordova). However, this solutions showed to provide limited access to native functionalities such as the GPS system and the Bluetooth, which are instead very important for the system-to-be. Therefore, native solutions have been preferred, to have full control of the device. This choice guarantees also a better user experience.
+
+		\item[Operator mobile app client.] % TODO
+
+		\item[Car client.] % TODO
+
+		\item[Admin app client.] % TODO
+
+		\item[App server.] This server is to be developed using the Java EE platform. This will help to provide the elasticity required and simplify the connections with the database through JPA. It exposes the APIs required by the clients as RESTful web services.
+
+		\item[Web server.] The web server simply hosts a very limited website with information about the service and an account management section. Given the simple functionalities, it is not worth the effort of building a Java EE system; instead, the most basic set of web technologies are to be used: HTML5, CSS3 and JS client-side and PHP7 server-side. The choice of PHP over other languages is due to the previous knowledge of the language by the team; in addition, it is a well spread language and can be easily maintained by other developers of the company in the future. For the account management section, the JS script communicates with the application server by means of AJAX calls to the web services.
+
+		\item[Database server.] % TODO
+	\end{description}
 
 % TODO provide physical diagram with distribution and platforms
