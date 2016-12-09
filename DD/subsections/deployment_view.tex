@@ -6,6 +6,7 @@ The web server provides static web pages and the logic necessary to the browser 
 
 \begin{sidewaysfigure}
 	\includegraphics[width=\hsize, center]{img/deployment_diagrams/global.png}
+	\caption{Logical deployment diagram: component allocation.}
 \end{sidewaysfigure}
 
 \subsubsection{Non-functional requirements choices}
@@ -45,4 +46,9 @@ The web server provides static web pages and the logic necessary to the browser 
 		\item[Database server.] A distributed MySQL database, running on a set of Ubuntu servers, manages all the data needed by the application.
 	\end{description}
 
-% TODO provide physical diagram with distribution and platforms
+\begin{sidewaysfigure}
+	\includegraphics[width=\hsize, center]{img/deployment_diagrams/physical_deployment.png}
+	\caption{Physical deployment diagram: technology choices and system distribution.}
+\end{sidewaysfigure}
+
+\FloatBarrier
