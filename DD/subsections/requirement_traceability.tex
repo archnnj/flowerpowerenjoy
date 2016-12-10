@@ -1,0 +1,225 @@
+What follows is a list of the requirements for the system defined in the RASD and an explanation about how the design exposed in this document fulfils them. The explanation will be in italics, following the points it is referring at.
+
+\begin{itemize}
+\item \textit{G[1]} The system allows guests to register; to complete the registration procedure the system sends a password to the guest as an access key.
+
+	\textit{The website and the mobile application allow any guest to register into the system.}
+
+	\begin{itemize}
+		\item R[1.1] The system has to allow any person to submit only one account request.
+		\item R[1.2] The system must accept an account request only if the credit card owner's name and the user's name coincide.
+		\item R[1.3] The account is created when an admin validates all the necessary data.
+
+			\textit{The uniqueness of the accounts are granted by the manual check performed by the admin before confirming a user's registration (see RASD for further explanations). They also validate the inserted data, included the credit card information.}
+
+		\item R[1.4] The system must be able to generate passwords.
+		\item R[1.5] The system has to send a newly generated password to the user via email when the account is created.
+		\item R[1.6] The system must be able to check whether a password is correct or not.
+		\item R[1.7] The system must let the user log in only if the password is correct. 
+		\item R[1.8] The system has to generate a new password and send it via email if the user asks for it.
+
+			\textit{All the previous operations are managed by the Access Manager component.}
+	\end{itemize}
+
+\item \textit{G[2]} The system should enable a registered user to find the location of an available car within a certain distance from the user's location or from a specified address.
+
+	\textit{One section of the mobile application is dedicated to the lookup of cars near the current location or an address. The Localization Manager component takes care of the location retrieval and management, while the Parking Manager and the Car Manager are responsible for finding the available cars.}
+
+	\begin{itemize}
+		\item R[2.1] The system must have the ability to locate the user if the user's GPS is on.
+		\item R[2.2] The system is able to locate any valid address.
+		\item R[2.3] The system is able to find any of the parking areas of the company.
+		\item R[2.4] The system is able to identify available cars inside parking areas. % XXX is it done by gps or some strange technology we haven't named anywhere? in latter case, this may be said, here and somewhere else
+
+			\textit{The Location Service Provider assures to be able to locate any valid address inside the city. Besides, the addresses of every parking area are known by the system and used to localize them.}
+
+		\item R[2.5] The system lets users see whether there are available cars in a specified radius.
+
+			\textit{The cooperation of the components previously mentioned allows the system to display the available cars in a map, setting a distance constraint.}
+	\end{itemize}
+	
+\item \textit{G[3]} The system enables user to reserve a single available car in a certain geographical region for one hour before the user picks it up. If the car is not picked up by that time, the reservation expires, the system tags this car as available again and it charges the user a fine of 1 EUR.
+
+	\textit{The Reservation Manager is responsible for managing the reservation of a car. Cooperating with the Time Manager for the time tracking activities, it also communicates any possible expiration to the Exceptional Payment Manager component to apply an appropriate fee to the user.}
+
+	\begin{itemize}
+		\item R[3.1] The system allows users to reserve an available car.
+
+			\textit{This is the main functionality of the Reservation Manager.}
+		
+		\item R[3.2] The cars cannot be reserved by more than one user at any given time.
+
+			\textit{The database structure does not allow a reservation of a car by more than one user in the same moment.}
+
+		\item R[3.3] The system keeps the current reservation standing until the user has opened the car or an hour has passed.
+		\item R[3.4] The system autonomously cancels a reservation if the user who has reserved it hasn't picked it up after one hour.
+
+			\textit{The Time Manager is able to keep track of the time passed and inform the Reservation Manager of the expiration. If the user opens the car within the hour, the Time Manager is informed and the count stops. The expiration triggers the additional fees on one side, and the reservation annulment on the other.}
+
+		\item R[3.5] The system must impede any user with an expired license to reserve a car.
+		\item R[3.6] The system must impede any banned user to reserve a car.
+
+			\textit{The Reservation Manager performs this checks before confirming the operation.}
+	\end{itemize}
+
+\item \textit{G[4]} The system should allow the user to employ a car in a proper and safe way. 
+
+	\textit{The mobile application and tablet installed on the car keep the user informed about the current ride and are able to provide him additional information when needed. The Car Employment is the component most responsible for these operations.}
+
+	\begin{itemize}
+		\item R[4.1] The system must be able to locate any car at any given time. 
+		\item R[4.2] The system detects whether there are passengers inside a car, and how many.
+		\item R[4.3] The system must be able to collect data about the power charge of any of its cars.
+		\item R[4.4] The system detects when a severe accident has occurred to a car.
+		\item R[4.5] The system must be able to detect when a user is near a car.
+		\item R[4.6] The system must be able to tell when a car is parked in a safe area.
+		\item R[4.7] The system must be able to detect when a car is plugged to the power grid.
+		\item R[4.8] The system must be able to detect whether the driver is still in the car.
+
+			\textit{All the previous requirements are satisfied by the construction of the car and its sensors equipment (see RASD).}
+
+		\item R[4.9] The system automatically unlocks a car when the user that has reserved is nearby.
+		\item R[4.10] The system automatically locks a car when the user has exited it inside a safe area. 
+		\item R[4.11] The system allows the user to lock and unlock their car manually when outside a safe area.
+
+			\textit{The interaction between the Car Manager and the User Manager leads this operations to be put into effect. Notice that a car can notice the proximity of a user using its Bluetooth equipment, given that the user allows it to do so from the mobile application.}
+
+		\item R[4.12] The system provides a finite time window that begins when the user exits the car inside a safe area. The time window must either end when the allotted time is finished or when another user reserves the same car.
+		\item R[4.13] The system allows the user to re-enter the car if the time window is still open and the user tries to manually open it.
+
+			\textit{The Time Manager deals with the time windows, while the rest of the Car Employment component covers what is left.}
+	\end{itemize}
+	
+\item \textit{G[5]} The system charges the user for a predefined amount of money per minute. A screen on the car notifies the user of the current charges.
+
+	\textit{Both the car tablet and the mobile application provide information about the current ride, including the current charges. The charges are computed by the Payment Manager component and sent to the Payment Service Provider to be made effective.}
+
+	\begin{itemize}
+		\item R[5.1] The system is able to retrieve all data necessary to charge the user. This data is the duration of the ride and all the conditions for the eventual application of discounts and sanctions.
+		\item R[5.2] The system notifies the user of the fee per minute he's being charged through a screen inside the car.
+		\item R[5.3] The system notifies the final charges to the user after the time window for the ride has expired.
+		\item R[5.4] The system invoices the user after the time window for the ride by communicating the charges to the external payment system. 
+		
+	\end{itemize}
+
+\item \textit{G[6]} The system starts charging the user as soon as the car ignites. It stops charging them when the car is parked in a safe area and the user exits the car.
+
+	\textit{The Car Employment component addresses this requirement communicating mainly with the Car Manager, to retrieve information about the sensors and the car status.}
+
+	\begin{itemize}
+		\item R[6.1] The system charges the user with a fee per minute.
+		\item R[6.2] The system can tell when the car has ignited. 
+		\item R[6.3] The system stops counting the charges for a standard ride when the user exits the car while inside a safe area.
+		\item R[6.4] The system starts charging the user when the car ignites or when the reservation expires while the user is inside the car.
+	\end{itemize}
+	
+\item \textit{G[7]} The system should encourage good user behaviour through the application of discounts to the fee per minute.
+
+	\textit{The Discount and Sanction Handler is responsible for this computation.}
+
+	\begin{itemize}
+		\item R[7.1] The system applies all discounts to the fee per minute.
+		\item R[7.2] If the conditions for a discount are satisfied only for a limited period of time during the ride, the discount is applied only to that time period.
+		\item R[7.3] The system applies a discount every time a user brings two or more passengers in the car with them and the car is on.
+		\item R[7.4] The system applies a discount to the total fee for the ride when the car has more than 50\% of power charge by the end of a standard ride.
+		\item R[7.5] The system applies a discount to the total fee for the ride every time the car for that ride is plugged to the power grid at the end of the time window. 
+		\item R[7.6] The system calculates the total discount as the sum of the singular discounts applied to the ride. If this sum exceeds 100\%, then it is considered simply as 100\%.
+
+			\textit{Notice that to accomplish these tasks some information from the car is required, and it is actually retrieved by the Ride Handler component, directly connected with the Discount and Sanction Handler. }
+	\end{itemize}
+	
+\item \textit{G[8]} The system should discourage bad behaviour through the application of sanctions to the fee per minute.
+
+	\textit{The Discount and Sanction Handler is responsible for this computation.}
+
+	\begin{itemize}
+		\item R[8.1] The system applies a sanction every time a car is returned in a safe area at more than 3 km from the nearest recharging safe area.
+		\item R[8.2] The system applies a sanction every time a car is returned with less than 20\% of power charge.
+
+			\textit{Notice that, as for G[7], to accomplish these tasks some information from the car is required, and it is actually retrieved by the Ride Handler component, directly connected with the Discount and Sanction Handler. }
+	\end{itemize}
+	
+\item \textit{G[9]} The system provides an alternative usage mode for cars called \textit{money saving option}. Besides aiding the user in saving money, this mode allows for a uniform distribution of cars throughout the city by suggesting the user where to park.
+
+	\textit{An apposite component (Money Saving Option Manager) is reserved for these computations.}
+
+	\begin{itemize}
+		\item R[9.1] The system allows a user to select the \textit{money saving option} at any point during their ride.
+
+			\textit{The money saving option can be activated from the mobile application and from the car tablet, as shown in \autoref{sec:user_interface_design}.}
+
+		\item R[9.2] The system applies a discount every time the car is returned in the suggested safe area with the \textit{money saving} option.
+
+			\textit{This is addressed by the Payment Manager component, interacting with the Car Employment component.}
+
+		\item R[9.3] The system selects the safe area suggested to the user through the available algorithm. (see text assumptions)
+
+			\textit{The algorithm proposed in \autoref{sec:algorithm_design} has been designed to achieve a uniform distribution and a dependence from the presence of power plugs, as requested by the clients and expressed in the RASD.}
+
+	\end{itemize}
+	
+\item \textit{G[10]} The system allows the company to assist the users in case of need and take care of the cars.
+
+	\textit{The position of operator has been introduced to provide assistance to the users. They are equipped with a tablet and the operator's mobile application has been designed to help them.}
+
+	\begin{itemize}
+		\item R[10.1] The system allows a user to notify the back-end administrators if they have a problem with the car.
+		\item R[10.2] The user must specify whether this problem is an accident or a reparation.
+
+			\textit{The mobile application and the car tablet application allow the user to open an emergency report, specifying the type of emergency and adding a short description, as shown in \autoref{sec:user_interface_design}.}
+
+		\item R[10.3] The system can locate \textit{PowerEnJoy} operators. 
+		\item R[10.4] The system allows administrators to know the status of on-site operators and dispatch them if they are available.
+
+			\textit{Every operator is equipped with a tablet running an apposite application. This allows them to communicate with the administrators and to be located. The admin application is provided with a section for the emergency reports management (see \autoref{sec:user_interface_design}), which main functionality is the dispatch of operators.}
+
+		\item R[10.5] The system keeps track of every car's battery and alerts the admin when it lowers below 3\%. 
+		\item R[10.6] The system notifies the admin when it detects that an accident occurred.
+
+			\textit{The car system is equipped by construction to achieve this purposes by means of its sensors. The car tablet collects the information and sends it to the app server.}
+
+		\item R[10.7] If the system has already notified the admin of an accident, then it must prevent the user from notifying it again.
+		\item R[10.8] If the system has already notified the admin of an accident, then it must notify the user of this fact.
+		\item R[10.9] Every time the system detects or a user notifies a problem, an emergency report is opened.
+
+			\textit{The database structure helps managing the uniqueness of the reports. Moreover, the application server manages the notifications to the users.}
+
+		\item R[10.10] Operators can change an emergency report status only when they are assigned to it.
+		\item R[10.11] The system considers all type of emergency reports related to a reparation as on-site at first.
+		\item R[10.12] The system allows operators to change the type of emergency reports related to a reparation from on-site to not on-site.
+		\item R[10.13] Operators can change the type of emergency report from accident to reparation or vice versa only if they are assigned to it.
+
+			\textit{Using the designated mobile application, operators can modify the status of an intervention and communicate it to the administrators. The constraints on the status and type of the emergency reports are managed by the Maintenance Manager, as well as the logic related to them.}
+	\end{itemize}
+	
+\item \textit{G[11]} The admin should be able to configure some parameters of the system.
+
+	\textit{The admin application addresses this goal providing a section for the configuration of the main parameters of the system.}
+
+	\begin{itemize}
+		\item R[11.1] The system allows the aministrators to modify parameters that influence the usage of cars. This parameters are:
+			\begin{enumerate}
+				\item The standard fee per minute
+				\item The lost reservation fee (starting value = 1EUR)
+				\item The time before considering a reservation lost (starting value = 1 hour)
+				\item The fine for leaving an accident site
+				\item Discount percent   values:
+					\begin{itemize}
+						\item Passengers discount (starting value = 10\%)
+						\item Residual battery discount (starting value = 20\%)
+						\item Plugged car (starting value = 30\%)
+						\item Money saving option (starting value not defined)
+					\end{itemize}
+				\item Sanction percent values:
+					\begin{itemize}
+						\item Residual battery sanction (starting value = 30\%)
+						\item Distance from power grid sanction (starting value = 30\%)
+					\end{itemize}
+				\item Time window for reservation fee
+				\item Time window after ending the ride for reopening and pluggin the car.
+				\item The fine for unnecessary emergency request.
+			\end{enumerate}
+	\end{itemize}
+\end{itemize}
+
+% TODO add non-funct req explaination (maybe refer to deployment section)
