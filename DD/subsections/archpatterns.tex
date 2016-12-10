@@ -1,10 +1,6 @@
 	
 	\paragraph{} We decided that the architecture of our system has three tiers: the Presentation, that is provided by the interaction between the client and the Web Server, the Business Logic part is provided by the Server and the Persistence is provided by the Database that interacts with the Server.  	
 	
-		\begin{figure}[h]
-			\includegraphics[scale=0.24]{img/tiers.png}
-		\end{figure}
-		
-	\paragraph{} Our systems is designed as an application and clients must be able to interact through the Internet, for this reason we used Client-Server architecture  ...
+	 In order to design and build our system we used several different strategies and patterns. Our systems is designed as an application and clients must be able to interact through the Internet, for this reason we used Client-Server architecture. Server can be achieved by several clients, it has easy maintenance, can be quickly replaced, repaired and upgraded, what's more, it has good security, where only authorized clients can access or manipulate data in the system. We also used the MVC pattern, where database acts as model, mobile application as view and the server as controller.  As it was mentioned before, another design logic we implemented is  cloud pattern (elasticity pattern), in order for the components to be instantiated according to current load of clients' requests. 
 	
 		
