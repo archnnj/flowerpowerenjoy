@@ -96,11 +96,11 @@ VAR_OUTPUT
 END_VAR
 
 FUZZIFY Battery
-    TERM Very_Low := (0, 0) (0, 1) (0.2, 0) ;
-    TERM Low := (0, 0) (0.2, 1) (0.5, 0) ;
-    TERM Medium := (0.2, 0) (0.5, 1) (0.8, 0) ;
-    TERM High := (0.5, 0) (0.8, 1) (1, 0) ;
-    TERM Very_High := (0.8, 0) (1, 1) (1, 0) ;
+    TERM Very_Low := (0, 0) (0, 1) (0.1, 0) ;
+    TERM Low := (0, 0) (0.1, 1) (0.3, 0) ;
+    TERM Medium := (0.1, 0) (0.3, 1) (0.5, 0) ;
+    TERM High := (0.3, 0) (0.5, 1) (0.7, 1) (0.8, 0) ;
+    TERM Very_High := (0.7, 0) (0.8, 1) (1, 1) (1, 0) ;
 END_FUZZIFY
 
 FUZZUFY PlugImportance
@@ -132,3 +132,24 @@ END_FUNCTION_BLOCK
 \paragraph{} Fuzzy models are based on the idea that objects not necessarily belong completely inside a set or outside of it; hence, fuzzy logic does not assign a boolean value to the membership function of an element (i.e. if an element is a member of a set) but instead a real value between 0 and 1. In our case, we thought simplicistic to think of the battery either as "empty" (boolean value 0) or "full" (boolean value 1) if above or below 50\%, so we decided to describe it with a fuzzy variable called Battery. This input variable has range $[0, 1]$ and five labels that describe it: very low, low, medium, high, very high. The same reasoning is applied to the variable PlugImportance, which will later be returned to the caller as the $battery\_weight$. Notice that the variable PlugImportance has discrete values between 0.8 and 1.5: colloquially, if the battery is not important then its weight is 0.8 (less than 1) and the quality of a solution where the car is parked in a recharging area lessens. On the other extreme of the spectrum, if the battery is very important (i.e. there's no charge left) then it's fundamental to put the car in a recharging area, thus the quality of a solution where the car is parked in a recharging area increases by 1.5.
 This informal reasoning is formalized in the block of code called \textit{RULEBLOCK}: these rules represent the relationship between the input value and the output. 
 The defuzzyfying method is CoG, i.e. Center of Gravity (Centroid), which calculates the center of the area of the fuzzy set and uses the value at which this occurs as the defuzzified output.
+The following images show input and output membership functions, and the function between the two of them as plotted with Matlab. 
+\begin{figure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=1\textwidth]{img/Fuzzy/Battery.PNG}
+		\caption{Input: Battery}
+		\label{fig:subim1}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=1\textwidth]{img/Fuzzy/PlugImportance.PNG}
+		\caption{Output: PlugImportance}
+		\label{fig:subim2}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+		\includegraphics[width=1\textwidth]{img/Fuzzy/output.PNG}
+		\caption{Function plane}
+		\label{fig:subim3}
+	\end{subfigure}
+	
+	\caption{Matlab plotting}
+	\label{fig:image1}
+\end{figure}
