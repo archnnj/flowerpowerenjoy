@@ -155,7 +155,7 @@ For each goal, we derive the following requirements:
 		\item[Integrity] Data in the system must not be exposed to accidental or malicious modification or destruction.
 		\item[Confidentiality] The system must be so it is difficult to breach the privacy of all users, above all because of the sensitive information we store (i.e. credit card information).
 		\item[Robustness] We want the system to be able to process and cope with wrong input from the users. In particular, this property must hold for the system's relationship with the localization services provider. 
-		\item[Performance] The system should ensure a short response time for all computations, and must be able to sustain a high number of simultaneous requests.
+		\item[Performance] The system should ensure a short response time (between 0.1 and 2 seconds) for all computations, and must be able to sustain a high number of simultaneous requests: more precisely, around 30 requests per second on average, and at most 100 per second.
 		\item[Flexibility] The system must be flexible to expansions in functionalities, i.e. it must be possible to easily integrate new functionalities in the system without losing in robustness and reliability.
 		\item[Availability] The system must provide an availability of at least 99.9\% for what concerns the most sensible components, and must prevent car theft or damages to the users during the downtimes.
 	\end{description}
