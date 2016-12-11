@@ -38,13 +38,13 @@ enum DistanceFromChargingArea {
 
 /* Discounts and Sanctions types */
 abstract sig DiscountSanctionPerMinute { }
-sig PassengersDiscount extends DiscountSanctionPerMinute { }
+one sig PassengersDiscount extends DiscountSanctionPerMinute { }
 abstract sig DiscountSanctionWholeRide { }
-sig HighBatteryDiscount extends DiscountSanctionWholeRide { }
-sig PlugInDiscount extends DiscountSanctionWholeRide { }
-sig MoneySavingOptionDiscount extends DiscountSanctionWholeRide { }
-sig FarChargingAreaSanction extends DiscountSanctionWholeRide { }
-sig LowBatterySanction extends DiscountSanctionWholeRide { }
+one sig HighBatteryDiscount extends DiscountSanctionWholeRide { }
+one sig PlugInDiscount extends DiscountSanctionWholeRide { }
+one sig MoneySavingOptionDiscount extends DiscountSanctionWholeRide { }
+one sig FarChargingAreaSanction extends DiscountSanctionWholeRide { }
+one sig LowBatterySanction extends DiscountSanctionWholeRide { }
 
 /* User */
 abstract sig GeneralUser {}
@@ -83,11 +83,11 @@ sig Car {
 } {
 	isCharging = True => ( parkedIn != none and parkedIn in ChargingArea) 
 		// isCharging only if in charging area
-	parkedIn = none <=> ( status = OutOfOrder or 
-		( status = InUse and this[Ride<:car].timeWindowActive = False ) ) 
+	parkedIn = none => ( status = OutOfOrder or
+		( status = InUse and this[Ride<:car].timeWindowActive = False ) )
 		// car not parked can either be out of order or in use (exluded during time window)
 	status = Reserved => parkedIn != none // reserved only if parked
-	status in (Available + Reserved + OutOfOrder) => driverInside = False 
+	status in (Available + Reserved) => driverInside = False
 		// no driver inside if the car is not in use
 	engineOn = True => status in (InUse + OutOfOrder)
 	battery = EmptyBattery => engineOn = False
@@ -169,6 +169,9 @@ fact exclusivity {
 
 	all disjoint e1, e2 : EmergencyReport | e1.assignedOp & e2.assignedOp = none 
 		// operator can be assigned to one emergency report at a time
+
+	all r : Ride | let c = r.car | c.isCharging = True => r.timeWindowActive = True
+		// car in ride can be charged only during the time window
 }
 
 /* Requirements */
@@ -209,9 +212,10 @@ fact RideRequirements {
 	all c : Car |
 		(
 			c.parkedIn != none and
+			c.status != OutOfOrder and
 			c.driverInside = False and
 			( c in Ride.car => #( ((Ride<:car).c).passengers ) = 0 )  
-		// c has no passengers (if it is in a ride, otherwise this is not considered)
+				// c has no passengers (if it is in a ride, otherwise this is not considered)
 			=>
 			c.locked = True
 		)
@@ -274,8 +278,8 @@ fact SanctionsRequirements {
 		 LowBatterySanction in r.discSanctApplicableRide
 		<=>
 		r.timeWindowActive = True and r.car.battery = BatteryLow
-	// NB: for simplicity here the ride is considered end when the time window 
-	// is active. This does not affect the model.
+		// NB: for simplicity here the ride is considered end when the time window
+		// is active. This does not affect the model.
 }
 
 // G[9] The system should provide an alternative usage mode for cars called 
@@ -326,7 +330,7 @@ check noReservationWithEmptyBatteryCar
 
 assert driverNeverTrapped {
 	// driver can't be inside a car if the car is not assigned to him
-	no c : Car | c.status != InUse and c.driverInside = True
+	no c : Car | c.status not in (InUse + OutOfOrder) and c.driverInside = True
 }
 check driverNeverTrapped
 
