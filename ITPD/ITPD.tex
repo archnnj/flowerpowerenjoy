@@ -1,0 +1,82 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % to embed images
+\usepackage{rotating}
+\usepackage{hyperref} % to link the table of contents
+\usepackage{subcaption} %complex images
+\usepackage{placeins} %floating
+\usepackage{pdflscape} %to allow single pages in landscape mode
+\usepackage[top=1.25in, bottom=1.25in, left=1in, right=1in]{geometry}
+\usepackage{verbatim} % include raw text file (for Alloy)
+\usepackage[ruled, vlined]{algorithm2e} % algorithms
+\usepackage[export]{adjustbox}
+
+\title{Integration Test Plan Document}
+\date{2017-01-15}
+\author{
+	Patricia Abbud
+	\and
+	Maddalena Andreoli Andreoni
+	\and
+	Paolo Cudrano
+}
+
+\begin{document}
+	%%% titlepage %%%
+	\begin{titlepage}
+		\centering
+		\includegraphics[width=5cm]{img/polimi_logo.png} % also works with logo.pdf
+		\vfill
+		{\bfseries\Large
+			PowerEnJoy\\
+			Integration Test Plan Document\\
+			\vskip4cm
+			Patricia Abbud\\
+			Maddalena Andreoli Andreoni\\
+			Paolo Cudrano\\
+		}
+		\vfill
+		\vfill
+	\end{titlepage}
+
+	%%% table of contents %%%
+	\tableofcontents
+	\newpage
+
+	\section{Introduction}
+		\input{subsections/introduction.tex}
+
+	\newpage
+	\section{Integration strategy}
+		\input{subsections/integration_strategy.tex}
+
+	\newpage
+	\section{Individual Steps and Test Description}
+%		\input{subsections/individual_steps.tex}
+		% TODO
+
+	\newpage
+	\section{Tools and Test Equipment Required}
+%		\input{subsections/tools.tex}
+		% TODO
+
+	\newpage
+	\section{Program Stubs and Test Data Required}
+%		\input{subsections/program_stubs.tex}
+		% TODO
+
+	\newpage
+	\section{Effort spent}
+		% TODO
+%		\begin{description}
+%			\item[Abbud, Patricia] around XX hours of work;
+%			\item[Andreoli Andreoni, Maddalena] around XX hours of work;
+%			\item[Cudrano, Paolo] around XX hours of work.
+%		\end{description}
+
+	\newpage
+	\section{Appendix}
+	\listoffigures
+
+\end{document}
