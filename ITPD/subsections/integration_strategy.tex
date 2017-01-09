@@ -1,5 +1,12 @@
 \subsection{Entry criteria}
-	% TODO
+	In order for the integration process to be performed, a set of preconditions must be met. In particular, for every application layer, the following must hold.
+	\begin{description}
+		\item[Database] The complete schema provided by the DD must be implemented and tested. The database access system must be at 100\% of its development, and the database must be fully accessible.
+		\item[Application logic] Referencing to the components designed in section \textit{2.2 - Component view} of the DD, they must all be unit tested before their integration starts. In addition, their development completion ratio must be so that all the functionalities needed for the integration are already fully developed. 
+		% TODO? This approximately translates in the following completion thresholds: <list>
+		\item[View] No constraints are set on the view layer, since most of the integration effort will be addressed to the application logic. The view will be united tested during its development, and since its interaction takes place only with one application logic component, it's integration is straightforward and won't need a delicate testing. The view functioning will be however tested during the general system testing phase. % FIXME
+	\end{description}
+	Once begun, the integration testing follows and guides the development, as explained in \textit{section 2.4}. % FIXME check correctness and add link
 
 \subsection{Elements to be integrated}
 	% TODO
