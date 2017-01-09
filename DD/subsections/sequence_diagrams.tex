@@ -10,9 +10,9 @@
 		
 		\paragraph{} This sequence diagram represents the User login. 
 		The Guest has to fill the form on the Login page with his credential information and press Login as he's finished. 
-		Then the Access Manager is notified that the Guest filled the form and wishes to log in, Access Manager sends this request to System Model to check the data from the form and find it in the database. When the System Model finishes the control of the data, there is to alternative scenarios of what will happen. 
-		If the Guest has entered wrong data the Login form, the System Model will send back to Access Manager a message, notifying that the given information was not found in the database, the error message will be displayed on the Login page. 
-		If the Guest filled the form with right credentials, then the System Model will confirm the Access Manager the correctness of the information, and the success message will be displayed on the Login Page, after which the Guest will redirected to User view.           
+		Then the Access Manager is notified that the Guest filled the form and wishes to log in, Access Manager sends this request to ProfileManagerl to check the data from the form and find it in the database. When the ProfileManager finishes the control of the data, there is to alternative scenarios of what will happen. 
+		If the Guest has entered wrong data the Login form, the ProfileManager will send back to Access Manager a message, notifying that the given information was not found in the database, the error message will be displayed on the Login page. 
+		If the Guest filled the form with right credentials, then the ProfileManager will confirm the Access Manager the correctness of the information, and the success message will be displayed on the Login Page, after which the Guest will redirected to User view.           
 			
 	\newpage
 	\subsubsection{Car Employment}	
@@ -32,17 +32,17 @@
 		
 		After this procedure User has choice to pick up the reserved car or not.
 		
-		If by the expiration time the User will not pick up the car, the  Reservation Handler will send the request to Car Handler to change the state of the car back to Available, after the Car Handler gives confirmation of change of the state, it also notifies the Payment manager to set the payment (fee), Payment Manager gives back the invoice to Car Handler, that will send this information to UserManager's interface, where it will be displayed as a message.   
+		If by the expiration time the User will not pick up the car, the  Reservation Handler will send the request to Car Handler to change the state of the car back to Available, after the Car Handler gives confirmation of change of the state, it also notifies the Payment manager to set the payment (fee), Payment Manager gives back the invoice to Car Handler, then the user will be notified about the payment.   
 		
 		If the User picks up the reserved car on time, the request to pick up the car is sent to Reservation Handler, that checks the correctness of the reservation and sends the request to Car Handler to unlock the car and then to change the state of the car to In use, Car Handler confirms back both operations, this information is displayed on the UserManager's interface as success message.
 		
-		While the user rides the car, Ride Handler always keep in track with the location by sending the request to Localization Manager, that Check if the location is still in selected zone. 
+		While the user rides the car, Ride Handler always keep in track with the location by sending the request to Localization Manager, that Check if the location is still in selected zone (if the car is still inside the city's boundaries). 
 		
 		If the User left the selected zone, Localization Manager reports the error to Car Handler, that passes it to Maintenance Manager, which replies back the error message, that goes to Localization Manager, Ride Handler and is displayed on the UserManager's interface.
 		
 		If the User is in the selected zone, then Localization Manager answers the Ride Handler with a success message.  
 		
-		The User ends the ride, this requests passes from UserManager's interface to Ride Handler, that sends request to Car Handler in order to check the car,   it confirms back with the information about the car. Car Handler sends the Payment Manager request to set the payment. Payment Manager calculates the basic fare, applies the discounts (if there are any) to the payment and sends invoice to Car Handler, the payment information passes directly to the UserManager's interface. 
+		The User ends the ride, this requests passes from UserManager's interface to Ride Handler, that sends request to Car Handler in order to check the car,   it confirms back with the information about the car. Car Handler sends the Payment Manager request to set the payment. Payment Manager calculates the basic fare, applies the discounts (if there are any) to the payment and sends invoice to Car Handler, the payment information notifies the User about the payment. 
 		
 		
 		User Lock the car, this request is sent from UserManager's interface to Reservation Handler, that sends it to Car Handler and the car answers back with an confirmation. Reservation Handler sends request to Car Handler to change the state of the car to available, Car Handler answers back with confirmation that the state is changed, this information is displayed as success message.    
