@@ -2325,7 +2325,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": true,
-											"text": "User Localization Handler",
+											"text": "User Location Handler",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -2496,7 +2496,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": true,
-											"text": "Car Localization Handler",
+											"text": "Car Location Handler",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -2838,7 +2838,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": true,
-											"text": "Operator Localization Manager",
+											"text": "Operator Location Manager",
 											"horizontalAlignment": 2,
 											"verticalAlignment": 5
 										},
@@ -6692,7 +6692,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFYpsgVwNpjCrQ="
 							},
-							"name": "User Localization Handler",
+							"name": "User Location Handler",
 							"visibility": "public"
 						},
 						{
@@ -6809,7 +6809,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFYptW17N7cpYg="
 							},
-							"name": "Car Localization Handler",
+							"name": "Car Location Handler",
 							"visibility": "public"
 						},
 						{
@@ -6882,7 +6882,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFYptgExeFkoT4="
 							},
-							"name": "Operator Localization Manager",
+							"name": "Operator Location Manager",
 							"visibility": "public"
 						},
 						{
