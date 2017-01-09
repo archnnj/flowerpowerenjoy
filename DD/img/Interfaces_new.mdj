@@ -646,7 +646,7 @@
 											"height": 13,
 											"autoResize": false,
 											"underline": false,
-											"text": "+SetExpirationTime(time: TimeInfo, reservation: Reservation)",
+											"text": "+SetExpirationTime(time: Time, reservation: Reservation)",
 											"horizontalAlignment": 0,
 											"verticalAlignment": 5
 										},
@@ -7101,7 +7101,7 @@
 									"visibility": "public",
 									"isStatic": false,
 									"isLeaf": false,
-									"type": "TimeInfo",
+									"type": "Time",
 									"isReadOnly": false,
 									"isOrdered": false,
 									"isUnique": false,
