@@ -1,4 +1,82 @@
 	This section contains a detailed description of the tests to be performed on each pair of components that need to be integrated. Those pairs will be identified by a $< caller, called >$ coupled notation that will contain every method called by the $< caller >$ on the $< called >$. 
 %	We will follow the bottom-up approach (with partial critical-first approach) as we mentioned in the integration strategy.
 
-	\subsection{•}
+	\subsubsection{Employment}
+		
+		%TODO Parking manager, car location & sensors manager intra sections, so left for later
+		%TODO HOW DO WE DIVIDE THE INTRA-SECTIONS DEPENDENCIES?
+		
+		\paragraph{Time Manager, Parking Manager}
+		%TODO fix latex syntax to allow first table to go to a new line for god's sake
+		
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{IsPluggingAllowed(timewindow: Time, curtime: Time, car: Car): bool}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				One or more null parameters & A NullArgumentException is raised\\ \hline
+				$curtime > timewindow$ & False\\ \hline
+				$curtime <= timewindow$ & True\\ \hline
+			\end{tabular}
+			\\
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{IsParked(car: Car, area: ParkingArea): bool}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				One or more null parameters & A NullArgumentException is raised\\ \hline
+				Car is parked in that safe area & True\\ \hline
+				Car is not parked in that safe area & False\\ \hline
+			\end{tabular}
+			\\
+			%TODO parking distribution handler, parking manager
+			
+		
+		
+		\paragraph{Ride Handler, Time Manager}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{Duration(ride: Ride): Time}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter & The time duration of the ride at the time of the request\\ \hline
+			\end{tabular}
+			\\
+		
+		
+		
+		\paragraph{Reservation Handler, Time Manager}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{SetExpirationTime(time: Time, reservation: Reservation)}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				One or more null parameters & A NullArgumentException is raised\\ \hline
+				The reservation already has an existing expiration time 0& A IllegalArgumentException is raised \\ \hline %FIXIT should it be another exception?
+				The reservation doesn't have an expiration time & The expiration time of the reservation is set as $time$\\ \hline
+			\end{tabular}
+			\\
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{CheckExpirationTime(reservation: Reservation): bool}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				The expiration time for the reservation is still running & True\\ \hline
+				The expiration time for the reservation has finished & False\\ \hline
+			\end{tabular}
+			\\
+		
+		
+		
+		\paragraph{Ride Handler, Reservation Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{CheckReservation(): bool}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				The reservation is still standing & True\\ \hline
+				The reservation is expired & False\\ \hline
+			\end{tabular}
+			\\
