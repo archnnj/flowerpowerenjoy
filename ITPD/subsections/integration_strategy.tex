@@ -13,9 +13,54 @@
 	As explained in the DD, the three layers in which the system is divided are characterized as follows.
 	\begin{description}
 		\item[Data] A database holds and give access to all the data needed by the application. As anticipated in \autoref{sec:entry_criteria}, this layer do not participate actively in the integration process. Indeed, since its development isn't particularly demanding in terms of resources, it is assumed to be already completed once the integration begins. This way, every logic component will be able to access the data layer during the unit testing phase, and integrate with it as a prerequisite for the proper integration phase.
-		\item[Application logic] The components on which most of the integration effort will be spent are those intensively described in section \textit{2.2 - Component view} of the DD. These represent the main software components of the system and are responsible to provide the functionalities required by the system. In particular, the integration will focus on the macro-components, assuming most of the internal sub-components integration is completed during the unit testing phase. % FIXME correct integration mostly on macro-components?
+		\item[Application logic] The components on which most of the integration effort will be spent are those intensively described in section \textit{2.2 - Component view} of the DD. These represent the main software components of the system and are responsible to provide the functionalities required by the system. In particular, the integration will focus on the macro-components, assuming most of the internal sub-components integration is completed during the unit testing phase. A distinction will be done in any case for the macro-components with sub-components residing on different machines (e.g.: server and client). % FIXME correct integration mostly on macro-components?
 		\item[View] The view layer won't be affected by the integration process. It will be united tested during its development, and since its interactions take place only with a single application logic component, its integration is straightforward and won't need a delicate testing. The view functioning will be however tested during the more general \textit{system testing} phase. % FIXME ok? Old notes: view unit tested, integration done at the end??, but then why not tested? / main focus on application logic, view just unit tested because dumbly integrated to the rest.
 	\end{description}
+
+	As a result, the set of components to be considered for the integration testing become definite:
+	\begin{itemize}
+		\item User Location Handler
+		\item User Management server-side, formed of the subcomponents:
+			\begin{itemize}
+				\item Profile Manager
+				\item License Manager
+			\end{itemize}
+		\item User Management client-side, formed of the subcomponent:
+			\begin{itemize}
+				\item User Handler
+			\end{itemize}
+		\item Access Manager
+		\item Car Location Handler
+		\item Car Manager server-side, formed of the subcomponents:
+			\begin{itemize}
+				\item Sensor Manager
+				\item Car Handler
+			\end{itemize}
+		\item Parking Manager
+		\item Car Employment Manager
+		\item Backend Manager client-side, formed of the subcomponent:
+			\begin{itemize}
+				\item Admin Handler
+			\end{itemize}
+		\item Backend Manager server-side, formed of the subcomponent:
+			\begin{itemize}
+				\item Backend Manager
+			\end{itemize}
+		\item Operator Location Handler
+		\item Maintenance Manager client-side, formed of the subcomponent:
+			\begin{itemize}
+				\item Operator Handler
+			\end{itemize}
+		\item Maintenance Manager server-side, formed of the subcomponents:
+			\begin{itemize}
+				\item Emergency Report Handler
+				\item Report Status Handler
+				\item Dispatch Manager
+			\end{itemize}
+		\item Money Saving Option Manager
+		\item Payment Manager
+	\end{itemize}
+	
 
 \subsection{Integration testing strategy}
 	% TODO
