@@ -80,3 +80,29 @@
 				The reservation is expired & False\\ \hline
 			\end{tabular}
 			\\
+	
+	\subsubsection{Money Saving Option}
+	
+		\subsubsection*{Parking Distribution Handler, Parking Manager}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{GetCars(parkingArea: ParkingArea): List$<Cars>$}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid input & The list of cars parked in parkingArea\\ \hline
+			\end{tabular}
+			\\
+		
+		\subsubsection*{MSO Handler, Parking Distribution Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{GetAreas(destination: Location, radius: float): List$<ParkingAreas>$}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				One or more null parameters & A NullArgumentException is raised\\ \hline
+				$radius \leq 0$ & A IllegalArgumentException is raised\\ \hline
+				Destination outside city boundaries & A IllegalArgumentException is raised\\ \hline
+				Valid input & The list of parking areas in a radius around the destination\\ \hline
+			\end{tabular}
+			\\
