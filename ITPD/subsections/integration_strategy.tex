@@ -37,7 +37,25 @@
 	
 
 \subsection{Integration testing strategy}
-	% TODO
+	%A restructuring of the components diagram with the aim of better highlighting the dependency structure allowed for the definition of 
+	The integration of the system will be guided by a bottom-up approach. This strictly comes from an analysis of the dependency structure of the components diagram provided in the DD, here restructured to better highlight the key subsystems and their connections.
+
+	% TODO add unravelled image (of macrocomponents for now?)
+
+	This strategy allows for a close interaction between the development phase and the proper testing phase, with a benefit for the quality of the software-to-be as well as for the project management. The goal set with this choice is to make development and testing actually going in parallel during standard operating periods. %% a regime, come si dice!!
+	- sth more about it
+	- for each subsystem, different approach (nested bottom-up or critical-first) according to criticality
+	The approach used to integrate the different subcomponents inside a single component is instead selected according to the level of criticality of that particular component; in particular, the choice revolves around a "nested" bottom-up approach on one hand, and a more complex critical-first approach on the other.
+	The criticality analysis underlines the following critical components. %provides the following results:
+	\begin{itemize}
+		\item \textbf{Car Manager.} The integration of the car system software with the underlying hardware and the sensors it is managing involves a number of uncontrollable variables and introduces with them a certain amount of risk. In fact, it is the only point of contact with the actual car, thus becoming the communication point between two rather complex systems.
+		\item \textbf{Money Saving Option Manager.} Even if not crucial for the basic functioning of the system, this component is responsible for a large amount of computations, carried on by means of complex algorithms, which must be tested as soon as possible in order to obtain the desired results. In addition, the main algorithm provided by the \textit{Parking Distribution Handler} is designed to be implemented with the not-so-common paradigm of fuzzy logic (see DD \textit{section 3}), and as any not-well-spread development tool, this may suffer for less stability and minor flaws which must be discovered and managed as soon as possible.
+		\item \textbf{Payment Manager.} The payment handling is known to be one of the most critical activities since it must deal with amounts of money. In particular, since the system relies on an external company for the actual payment realizations, its most critical subcomponent is the Invoice Manager, responsible for the interactions with the external \textit{Payment Services Provider}.
+	\end{itemize}
+	As a result, when the said components are to be developed, their integration will follow a critical-first approach. This increases the chances that any significant problem is found as soon as possible, and therefore should provide benefits in the project management (rescheduling of tasks, reallocation of resources, etc.) aside from the integration process itself.
+	% TODO should say here which is the order for these? or in section 2.4?
+
+	The rest of the components, given their less risky nature, will be internally developed following a bottom-up strategy, where the subcomponents are considered all equally-critical and only the "need" dependencies drive the process.
 
 \subsection{Sequence of component/function integration}
 	% see assignment pdf for a non mandatory guide on the structure of this subsection
