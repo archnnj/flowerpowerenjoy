@@ -6,14 +6,14 @@
 		\item[Application logic] Referencing to the components designed in section \textit{2.2 - Component view} of the DD, they must all be unit tested before their integration starts. In addition, their development completion ratio must be so that all the functionalities needed for the integration are already fully developed. 
 		% TODO? This approximately translates in the following completion thresholds: <list>
 	\end{description}
-	Once begun, the integration testing follows and guides the development, as explained in \textit{section 2.4}. % FIXME check correctness and add link
+	Once begun, the integration testing follows and guides the development, as explained in \autoref{sec:integration_testing_strategy}. % FIXME check correctness and add link
 
 \subsection{Elements to be integrated}
 	As explained in the DD, the three layers in which the system is divided are characterized as follows.
 	\begin{description}
 		\item[Data] A database holds and give access to all the data needed by the application. As anticipated in \autoref{sec:entry_criteria}, this layer do not participate actively in the integration process. Indeed, since its development isn't particularly demanding in terms of resources, it is assumed to be already completed once the integration begins. This way, every logic component will be able to access the data layer during the unit testing phase, and integrate with it as a prerequisite for the proper integration phase.
-		\item[Application logic] The components on which most of the integration effort will be spent are those intensively described in section \textit{2.2 - Component view} of the DD. These represent the main software components of the system and are responsible to provide the functionalities required by the system. In particular, the integration will focus on the macro-components, assuming most of the internal sub-components integration is completed during the unit testing phase. A distinction will be done in any case for the macro-components with sub-components residing on different machines (e.g.: server and client). % FIXME correct integration mostly on macro-components?
-		\item[View] The view layer won't be affected by the integration process. It will be united tested during its development, and since its interactions take place only with a single application logic component, its integration is straightforward and won't need a delicate testing. The view functioning will be however tested during the more general \textit{system testing} phase. % FIXME ok? Old notes: view unit tested, integration done at the end??, but then why not tested? / main focus on application logic, view just unit tested because dumbly integrated to the rest.
+		\item[Application logic] The components on which most of the integration effort will be spent are those intensively described in section \textit{2.2 - Component view} of the DD. These represent the main software components of the system and are responsible to provide the functionalities required by it. In particular, the integration will focus on the macro-components, assuming most of the internal sub-components integration has been completed during the unit testing phase. A distinction will be done in any case for the macro-components with sub-components residing on different machines (e.g.: server and client). % FIXME correct integration mostly on macro-components? --> no!
+		\item[View] The view layer won't be affected by the integration process. It will be unit tested during its development, and since its interactions takes place only with a single application logic component, it will be straightforward and won't need a delicate testing. The view functioning will be however tested during the more general \textit{system testing} phase. % FIXME ok? Old notes: view unit tested, integration done at the end??, but then why not tested? / main focus on application logic, view just unit tested because dumbly integrated to the rest.
 	\end{description}
 
 	As a result, the set of components to be considered for the integration testing become definite:
@@ -37,16 +37,15 @@
 	
 
 \subsection{Integration testing strategy}
-	%A restructuring of the components diagram with the aim of better highlighting the dependency structure allowed for the definition of 
+\label{sec:integration_testing_strategy}
 	The integration of the system will be guided by a bottom-up approach. This strictly comes from an analysis of the dependency structure of the components diagram provided in the DD, here restructured to better highlight the key subsystems and their connections.
 
 	% TODO add unravelled image (of macrocomponents for now?)
 
 	This strategy allows for a close interaction between the development phase and the proper testing phase, with a benefit for the quality of the software-to-be as well as for the project management. The goal set with this choice is to make development and testing actually going in parallel during standard operating periods. %% a regime, come si dice!!
-	- sth more about it
-	- for each subsystem, different approach (nested bottom-up or critical-first) according to criticality
-	The approach used to integrate the different subcomponents inside a single component is instead selected according to the level of criticality of that particular component; in particular, the choice revolves around a "nested" bottom-up approach on one hand, and a more complex critical-first approach on the other.
-	The criticality analysis underlines the following critical components. %provides the following results:
+	% TODO sth more about it?
+	The approach used to integrate the different subcomponents inside a single component is instead selected according to its level of criticality; in particular, the choice revolves around a "nested" bottom-up approach on one hand, and a more complex critical-first approach on the other.
+	A criticality analysis underlines the following critical components.
 	\begin{itemize}
 		\item \textbf{Car Manager.} The integration of the car system software with the underlying hardware and the sensors it is managing involves a number of uncontrollable variables and introduces with them a certain amount of risk. In fact, it is the only point of contact with the actual car, thus becoming the communication point between two rather complex systems.
 		\item \textbf{Money Saving Option Manager.} Even if not crucial for the basic functioning of the system, this component is responsible for a large amount of computations, carried on by means of complex algorithms, which must be tested as soon as possible in order to obtain the desired results. In addition, the main algorithm provided by the \textit{Parking Distribution Handler} is designed to be implemented with the not-so-common paradigm of fuzzy logic (see DD \textit{section 3}), and as any not-well-spread development tool, this may suffer for less stability and minor flaws which must be discovered and managed as soon as possible.
@@ -55,7 +54,7 @@
 	As a result, when the said components are to be developed, their integration will follow a critical-first approach. This increases the chances that any significant problem is found as soon as possible, and therefore should provide benefits in the project management (rescheduling of tasks, reallocation of resources, etc.) aside from the integration process itself.
 	% TODO should say here which is the order for these? or in section 2.4?
 
-	The rest of the components, given their less risky nature, will be internally developed following a bottom-up strategy, where the subcomponents are considered all equally-critical and only the "need" dependencies drive the process.
+	The rest of the components, given their less risky nature, will be internally developed following a bottom-up strategy, where the subcomponents are considered all equally-critical and only the "need" dependencies will drive the process.
 
 \subsection{Sequence of component/function integration}
 	% see assignment pdf for a non mandatory guide on the structure of this subsection
