@@ -86,7 +86,7 @@ The Component Diagram shown below describes the logical components of the system
 		\subsubsection*{Backend Manager}
 			
 			
-		\paragraph{} The Backend Manager oversees all operations entrusted to the administrators. The Admin Handler is the interface between the admins and the system, and keeps track of each administrator's activities and identification. The Parameters Manager deals with all changes done to the parameters of the system (their validity within fixed boundaries, their actual deployment); it depends on the Admin Handler since every change to the parameters is done by an admin. %FIXIT actual deployment??
+		\paragraph{} The Backend Manager oversees all operations entrusted to the administrators. The Admin Handler is the interface between the admins and the system, and keeps track of each administrator's activities and identification. The Parameters Manager deals with all changes done to the parameters of the system (their validity within fixed boundaries, their actual deployment); the Admin Handler depends on it since every change to the parameters is done by an admin. %FIXIT actual deployment??
 		\begin{figure}[h]
 				\includegraphics[scale=0.4, center]{img/component_diagrams/11_backend_manager.png}
 				\caption{Component Backend Manager}
