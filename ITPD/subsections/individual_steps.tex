@@ -7,7 +7,6 @@
 		%TODO HOW DO WE DIVIDE THE INTRA-SECTIONS DEPENDENCIES?
 		
 		\subsubsection*{Manager, Parking Manager}
-		%TODO fix latex syntax to allow first table to go to a new line for god's sake
 		
 			\begin{tabular}{ |l|l| }
 				\hline
@@ -28,9 +27,8 @@
 				Car is parked in that safe area & True\\ \hline
 				Car is not parked in that safe area & False\\ \hline
 			\end{tabular}
-			\\
-			%TODO parking distribution handler, parking manager
-			
+			\\			
+		
 		
 		
 		\subsubsection*{Ride Handler, Time Manager}
@@ -80,13 +78,38 @@
 				The reservation is expired & False\\ \hline
 			\end{tabular}
 			\\
-	
-	\subsubsection{Money Saving Option}
-	
+		%TODO not sure this is right: it's not input, there's nothing in input! (also in Exceptional Payment Handler, Reservation Handler)
+		
+		
+		
+		\subsubsection*{Discount and Sanctions Handler, Ride Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{GetRideInfo(): Ride}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				Nothing & All the information about the ride\\ \hline
+			\end{tabular}
+			\\
+		
+		
+		
+		\subsubsection*{Payment Handler, Ride Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{GetRideInfo(): Ride}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				Nothing & All the information about the ride\\ \hline
+			\end{tabular}
+			\\
+		
+		
+		
 		\subsubsection*{Parking Distribution Handler, Parking Manager}
 			\begin{tabular}{ |l|l| }
 				\hline
-				\multicolumn{2}{|c|}{GetCars(parkingArea: ParkingArea): List$<Cars>$}\\
+				\multicolumn{2}{|c|}{GetCars(parkingArea: ParkingArea): List$<Car>$}\\
 				\hline
 				\textit{Input} & \textit{Effect}\\ \hline
 				Null parameter & A NullArgumentException is raised\\ \hline
@@ -94,10 +117,29 @@
 			\end{tabular}
 			\\
 		
+		
+		
+		\subsubsection*{ExceptionalPaymentHandler, ReservationHandler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{CheckReservation(reservation: Reservation): bool}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				The reservation is still standing & True\\ \hline
+				The reservation is expired & False\\ \hline
+			\end{tabular}
+			\\
+	
+	
+	
+	\subsubsection{Money Saving Option}
+		
+		
+			
 		\subsubsection*{MSO Handler, Parking Distribution Handler}
 			\begin{tabular}{ |l|l| }
 				\hline
-				\multicolumn{2}{|c|}{GetAreas(destination: Location, radius: float): List$<ParkingAreas>$}\\
+				\multicolumn{2}{|c|}{GetAreas(destination: Location, radius: float): List$<ParkingArea>$}\\
 				\hline
 				\textit{Input} & \textit{Effect}\\ \hline
 				One or more null parameters & A NullArgumentException is raised\\ \hline
@@ -106,3 +148,19 @@
 				Valid input & The list of parking areas in a radius around the destination\\ \hline
 			\end{tabular}
 			\\
+		
+		
+		
+		\subsubsection*{Discount and Sanctions Handler, MSO Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{CalculateSolution(destination: Location): ParkingArea}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Destination outside city boundaries & A IllegalArgumentException is raised\\ \hline
+				Valid input & The parking area where the user should park\\ \hline
+			\end{tabular}
+			\\
+		
+		
