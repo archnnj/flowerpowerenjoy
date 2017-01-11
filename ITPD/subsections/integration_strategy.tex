@@ -73,6 +73,23 @@
 	\label{sec:software_integration_sequence}
 		% TODO
 		% - paragraph for each subsystem (macro component) --> list of images and description (without separations) for the steps, from 2 subcomponents to the whole completed subsystem.
+		\paragraphnewline{Localization Manager}
+			This component does not require internal integration and will only function as an helper for other components.
+
+		\paragraphnewline{User Manager}
+			\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+				\item \textit{Internal integration strategy:} bottom-up.
+				\item \textit{Integration order:}
+					\begin{itemize}[noitemsep]
+						\item Profile Manager
+						\item License Manager
+						\item User Handler
+					\end{itemize}
+			\end{itemize}
+			\begin{figure}[h]
+				\includegraphics[width=250pt, center]{img/integration_strategy/subcomponents/user_manager.png}
+			\end{figure}
+		\FloatBarrier
 
 	\subsubsection{Subsystem  integration  sequence}
 	\label{sec:subsystem_integration_sequence}
