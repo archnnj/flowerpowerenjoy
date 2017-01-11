@@ -39,8 +39,15 @@
 \subsection{Integration testing strategy}
 \label{sec:integration_testing_strategy}
 	The integration of the system will be guided by a bottom-up approach. This strictly comes from an analysis of the dependency structure of the components diagram provided in the DD, here restructured to better highlight the key subsystems and their connections.
-
-	% TODO add unravelled image (of macrocomponents for now?)
+	\begin{figure}[h]
+		\includegraphics[width=\textwidth, center]{img/integration_strategy/high_level_unravelled.png}
+		\caption{Dependency tree of components: high level view.}
+	\end{figure}
+	\begin{figure}[h]
+		\includegraphics[width=\textwidth, center]{img/integration_strategy/complete_unravelled.png}
+		\caption{Dependency tree of components: complete system.}
+	\end{figure}
+	\FloatBarrier
 
 	This strategy allows for a close interaction between the development phase and the proper testing phase, with a benefit for the quality of the software-to-be as well as for the project management. The goal set with this choice is to make development and testing actually going in parallel during standard operating periods. %% a regime, come si dice!!
 	% TODO sth more about it?
