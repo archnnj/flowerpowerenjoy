@@ -2,10 +2,7 @@
 %	We will follow the bottom-up approach (with partial critical-first approach) as we mentioned in the integration strategy.
 
 	\subsubsection{Employment}
-		
-		%TODO Parking manager, car location & sensors manager intra sections, so left for later
-		%TODO HOW DO WE DIVIDE THE INTRA-SECTIONS DEPENDENCIES?
-		
+			
 		\subsubsection*{Manager, Parking Manager}
 		
 			\begin{tabular}{ |l|l| }
@@ -132,6 +129,8 @@
 	
 	
 	
+	
+	
 	\subsubsection{Money Saving Option}
 		
 		
@@ -163,4 +162,132 @@
 			\end{tabular}
 			\\
 		
+	
+	
+	
+	
+	\subsubsection{Backend}
+	
+		\subsubsection*{Operators Handler, Operator Location Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{LocateUser(genericUser: Credentials): Location}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Given credentials belong to an Admin or a User & A IllegalArgumentException is raised\\ \hline
+				Valid credentials & The location of the Operator\\ \hline
+			\end{tabular}
+			\\
 		
+		
+		
+		\subsubsection*{Dispatch Manager, Operators Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{FindOperator(location: Location, radius: float): List$<Operator>$}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				Null location parameter & A NullArgumentException is raised\\ \hline
+				$radius \leq 0$ & A IllegalArgumentException is raised\\ \hline
+				Valid parameters & A list of operators in a radius around the location\\ \hline
+			\end{tabular}
+			\\
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{CheckAvailability(operator: Credentials): bool}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Given credentials belong to an Admin or a User & A IllegalArgumentException is raised\\ \hline
+				Available operator & True\\ \hline
+				Unavailable operator & False\\ \hline
+			\end{tabular}
+			\\
+			
+		
+		
+		\subsubsection*{Operators Handler, Emergency Report Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{CheckStatus(report: Report): Status}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter & The complete status information of the report\\ \hline
+			\end{tabular}
+			\\
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{UpdateRecord(report: Report, newStatus: Status)}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				One or more null parameters & A NullArgumentException is raised\\ \hline
+				Valid parameters & The status of the report gets updated\\ \hline
+			\end{tabular}
+			\\
+		
+		
+		
+		\subsubsection*{Emergency Report Handler, Report Status Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{CloseReport(report: Report, operator: Credentials)}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				One or more null parameters & A NullArgumentException is raised\\ \hline
+				Given credentials belong to an Admin or a User & A IllegalArgumentException is raised\\ \hline
+				The operator is not assigned to the record & A IllegalArgumentException is raised\\ \hline
+				Valid parameters & The reports becomes \textit{closed}\\ \hline
+			\end{tabular}
+			\\
+		
+		
+		
+		\subsubsection*{Exceptional Payment Handler, Report Status Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{CheckStatus(report: Report): Status}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter & The complete status information of the report\\ \hline
+			\end{tabular}
+			\\
+			%TODO add also ChangeStatus for closing reports that require a payment from the user?
+		
+		
+		
+		\subsubsection*{Admin Handler, Dispatch Manager}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{AssignOperator(report: Report, operator: Credentials}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				One or more null parameters & A NullArgumentException is raised\\ \hline
+				Valid parameters & The operator is assigned to the report\\ \hline
+			\end{tabular}
+			\\
+		
+		
+		
+		\subsubsection*{AdminHandler, Backend Manager}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{ChangeParameter(paramToChange: Parameter, newValue: Parameter)}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				One or more null parameters & A NullArgumentException is raised\\ \hline
+				Valid parameters & The new value is assigned to the parameter\\ \hline
+			\end{tabular}
+			\\
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{CheckParameter(paramToChange: Parameter, newValue: Parameter): bool}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				One or more null parameters & A NullArgumentException is raised\\ \hline
+				The new value is within the acceptable range for the parameter & True\\ \hline
+				The new value is not within the acceptable range for the parameter & False\\ \hline
+			\end{tabular}
+			\\
