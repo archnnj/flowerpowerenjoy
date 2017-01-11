@@ -72,7 +72,7 @@ The Component Diagram shown below describes the logical components of the system
 		\subsubsection*{Maintenance Manager}
 		
 		
-		\paragraph{} The Maintenance Manager deals with emergencies and daily maintenance of the cars. For this purpose, it has an interface with the operators, the Operator Handler; the operators are dispatched by the admins and are associated to some emergency report. The Dispatcher Manager handles the availability and the tasks associated with each operator; the Emergency Report Handler on the other hand manages the emergency reports, associating them with a user, a car and an operator, and keeping track of their status thanks to the Report Status Handler.
+		\paragraph{} The Maintenance Manager deals with emergencies and daily maintenance of the cars. For this purpose, it has an interface with the operators, the Operator Handler; the operators are dispatched by the admins and are associated to some emergency report. The Dispatcher Manager handles the availability and the tasks associated with each operator; the Emergency Report Handler on the other hand manages the emergency reports, associating them with a user, a car and an operator, and keeping track of their status thanks to the Report Status Handler. Through the Operator Handler, operators can update the reports assigned to them.
 		\begin{figure}[h]
 			\includegraphics[scale=0.4, center]{img/component_diagrams/06_maintenance_manager.png}
 			\caption{Component Maintenance Manager}
