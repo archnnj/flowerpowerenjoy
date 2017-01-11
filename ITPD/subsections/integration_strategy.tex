@@ -91,6 +91,116 @@
 			\end{figure}
 		\FloatBarrier
 
+		\paragraphnewline{Car Manager}
+			\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+				\item \textit{Internal integration strategy:} critical-first.
+				\item \textit{Integration order:}
+					\begin{itemize}[noitemsep]
+						\item Sensors Manager
+						\item Car Handler
+					\end{itemize}
+				\item \textit{Notes: } The integration starts from the Sensors Manager because most of the criticality is related to the communication and management of the system's hardware, functionalities provided by it.
+			\end{itemize}
+			\begin{figure}[h]
+				\includegraphics[width=250pt, center]{img/integration_strategy/subcomponents/car_manager.png}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Parking Manager}
+			This component is atomic and thus does not require internal integration.
+
+		\paragraphnewline{Access Manager}
+			\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+				\item \textit{Internal integration strategy:} bottom-up.
+				\item \textit{Integration order:}
+					\begin{itemize}[noitemsep]
+						\item Login
+						\item Registration
+					\end{itemize}
+				\item \textit{Notes: } The integration starts from the Login because it must be subsequently integrated to the rest of the system, while Registration is independent from it.
+			\end{itemize}
+			\begin{figure}[h]
+				\includegraphics[width=150pt, center]{img/integration_strategy/subcomponents/access_manager.png}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Car Employment Manager}
+			\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+				\item \textit{Internal integration strategy:} bottom-up.
+				\item \textit{Integration order:}
+				\begin{itemize}[noitemsep]
+					\item Time Manager
+					\item Reservation Handler
+					\item Ride Handler
+				\end{itemize}
+			\end{itemize}
+			\begin{figure}[h]
+				\includegraphics[width=250pt, center]{img/integration_strategy/subcomponents/car_employment_manager.png}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Money Saving Option}
+			\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+				\item \textit{Internal integration strategy:} critical-first.
+				\item \textit{Integration order:}
+					\begin{itemize}[noitemsep]
+						\item Parking Distribution Handler
+						\item MSO Handler
+					\end{itemize}
+				\item \textit{Notes: } The Parking Distribution Handler is considered to be the most critical component between the two, since it has to deal with the core MSO algorithm, moreover exploiting not completely supported tools (as FCL for the fuzzy system).
+			\end{itemize}
+			\begin{figure}[h]
+				\includegraphics[width=250pt, center]{img/integration_strategy/subcomponents/money_saving_option_manager.png}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Maintenance Manager}
+			\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+				\item \textit{Internal integration strategy:} bottom-up.
+				\item \textit{Integration order:}
+					\begin{itemize}[noitemsep]
+						\item Report Status Handler
+						\item Emergency Report Handler
+						\item Operators Handler
+						\item Dispatch Manager
+					\end{itemize}
+			\end{itemize}
+			\begin{figure}[h]
+				\includegraphics[width=250pt, center]{img/integration_strategy/subcomponents/maintenance_manager.png}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Payment Manager}
+			\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+				\item \textit{Internal integration strategy:} critical-first.
+				\item \textit{Integration order:}
+					\begin{itemize}[noitemsep]
+						\item Invoice Manager
+						\item Payment Handler
+						\item Exceptional Payment Handler
+						\item Discount and Sanction Handler
+					\end{itemize}
+				\item \textit{Notes: } invoice Manager is considered to be the most critical for its responsibility to interact with the external \textit{Payment Services Provider}. The two payment handlers are considered then, and the standard one is privileged because of its importance for the core functioning of the system. Finally the Discount and Sanction Handler is considered to require less effort and is associated to an inferior level of criticality.
+			\end{itemize}
+			\begin{figure}[h]
+				\includegraphics[width=250pt, center]{img/integration_strategy/subcomponents/payment_manager.png}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Backend Manager}
+			\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+				\item \textit{Internal integration strategy:} bottom-up.
+				\item \textit{Integration order:}
+					\begin{itemize}[noitemsep]
+						\item Backend Manager
+						\item Admin Handler
+					\end{itemize}
+			\end{itemize}
+			\begin{figure}[h]
+				\includegraphics[width=250pt, center]{img/integration_strategy/subcomponents/backend_manager.png}
+			\end{figure}
+		\FloatBarrier
+
 	\subsubsection{Subsystem  integration  sequence}
 	\label{sec:subsystem_integration_sequence}
 		% TODO
