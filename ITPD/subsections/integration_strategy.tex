@@ -73,8 +73,182 @@
 	\label{sec:software_integration_sequence}
 		% TODO
 		% - paragraph for each subsystem (macro component) --> list of images and description (without separations) for the steps, from 2 subcomponents to the whole completed subsystem.
+		\paragraphnewline{Localization Manager}
+			This component does not require internal integration and will only function as an helper for other components.
 
-	\subsubsection{Subsystem  integration  sequence}
+		\paragraphnewline{User Manager}
+			\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+				\item \textit{Internal integration strategy:} bottom-up.
+				\item \textit{Integration order:}
+					\begin{itemize}[noitemsep]
+						\item Profile Manager
+						\item License Manager
+						\item User Handler
+					\end{itemize}
+			\end{itemize}
+			\begin{figure}[h]
+				\includegraphics[width=250pt, center]{img/integration_strategy/subcomponents/user_manager.png}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Car Manager}
+			\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+				\item \textit{Internal integration strategy:} critical-first.
+				\item \textit{Integration order:}
+					\begin{itemize}[noitemsep]
+						\item Sensors Manager
+						\item Car Handler
+					\end{itemize}
+				\item \textit{Notes: } The integration starts from the Sensors Manager because most of the criticality is related to the communication and management of the system's hardware, functionalities provided by it.
+			\end{itemize}
+			\begin{figure}[h]
+				\includegraphics[width=250pt, center]{img/integration_strategy/subcomponents/car_manager.png}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Parking Manager}
+			This component is atomic and thus does not require internal integration.
+
+		\paragraphnewline{Access Manager}
+			\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+				\item \textit{Internal integration strategy:} bottom-up.
+				\item \textit{Integration order:}
+					\begin{itemize}[noitemsep]
+						\item Login
+						\item Registration
+					\end{itemize}
+				\item \textit{Notes: } The integration starts from the Login because it must be subsequently integrated to the rest of the system, while Registration is independent from it.
+			\end{itemize}
+			\begin{figure}[h]
+				\includegraphics[width=150pt, center]{img/integration_strategy/subcomponents/access_manager.png}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Car Employment Manager}
+			\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+				\item \textit{Internal integration strategy:} bottom-up.
+				\item \textit{Integration order:}
+				\begin{itemize}[noitemsep]
+					\item Time Manager
+					\item Reservation Handler
+					\item Ride Handler
+				\end{itemize}
+			\end{itemize}
+			\begin{figure}[h]
+				\includegraphics[width=250pt, center]{img/integration_strategy/subcomponents/car_employment_manager.png}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Money Saving Option}
+			\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+				\item \textit{Internal integration strategy:} critical-first.
+				\item \textit{Integration order:}
+					\begin{itemize}[noitemsep]
+						\item Parking Distribution Handler
+						\item MSO Handler
+					\end{itemize}
+				\item \textit{Notes: } The Parking Distribution Handler is considered to be the most critical component between the two, since it has to deal with the core MSO algorithm, moreover exploiting not completely supported tools (as FCL for the fuzzy system).
+			\end{itemize}
+			\begin{figure}[h]
+				\includegraphics[width=250pt, center]{img/integration_strategy/subcomponents/money_saving_option_manager.png}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Maintenance Manager}
+			\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+				\item \textit{Internal integration strategy:} bottom-up.
+				\item \textit{Integration order:}
+					\begin{itemize}[noitemsep]
+						\item Report Status Handler
+						\item Emergency Report Handler
+						\item Operators Handler
+						\item Dispatch Manager
+					\end{itemize}
+			\end{itemize}
+			\begin{figure}[h]
+				\includegraphics[width=250pt, center]{img/integration_strategy/subcomponents/maintenance_manager.png}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Payment Manager}
+			\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+				\item \textit{Internal integration strategy:} critical-first.
+				\item \textit{Integration order:}
+					\begin{itemize}[noitemsep]
+						\item Invoice Manager
+						\item Payment Handler
+						\item Exceptional Payment Handler
+						\item Discount and Sanction Handler
+					\end{itemize}
+				\item \textit{Notes: } invoice Manager is considered to be the most critical for its responsibility to interact with the external \textit{Payment Services Provider}. The two payment handlers are considered then, and the standard one is privileged because of its importance for the core functioning of the system. Finally the Discount and Sanction Handler is considered to require less effort and is associated to an inferior level of criticality.
+			\end{itemize}
+			\begin{figure}[h]
+				\includegraphics[width=250pt, center]{img/integration_strategy/subcomponents/payment_manager.png}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Backend Manager}
+			\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+				\item \textit{Internal integration strategy:} bottom-up.
+				\item \textit{Integration order:}
+					\begin{itemize}[noitemsep]
+						\item Backend Manager
+						\item Admin Handler
+					\end{itemize}
+			\end{itemize}
+			\begin{figure}[h]
+				\includegraphics[width=250pt, center]{img/integration_strategy/subcomponents/backend_manager.png}
+			\end{figure}
+		\FloatBarrier
+
+	\subsubsection{Subsystem integration sequence}
 	\label{sec:subsystem_integration_sequence}
-		% TODO
 		% - list of integration steps for each subsystem until the whole system is completed
+		% - images for each level only with components already integrated (progress status)
+		% - at the end image with all levels highlighted (in a single image)
+		The integration of the macro-components is performed, as said, in a bottom-up fashion. Below are the 5 steps in which this process has been divided for scheduling reasons. Inside a single step, multiple components participate in the integration, each one relying on the components in the previous levels.
+
+		\paragraphnewline{Step 0: Localization Manager}
+			The localization manager been developed and unit tested is the starting point for the integration.
+			\begin{figure}[h]
+				\includegraphics[width=100pt,center]{img/integration_strategy/steps/high_level_components_lv0.png}
+				\caption{Subsystem integration sequence: step 0.}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Step 1: User Manager, Car Manager}
+			\begin{figure}[h]
+				\includegraphics[width=300pt,center]{img/integration_strategy/steps/high_level_components_lv1.png}
+				\caption{Subsystem integration sequence: step 1.}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Step 2: Access Manager, Parking Manager}
+			\begin{figure}[h]
+				\includegraphics[width=400pt,center]{img/integration_strategy/steps/high_level_components_lv2.png}
+				\caption{Subsystem integration sequence: step 2.}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Step 3: Maintenance Manager, Car Employment Manager, Money Saving Option Manager}
+			\begin{figure}[h]
+				\includegraphics[width=\textwidth,center]{img/integration_strategy/steps/high_level_components_lv3.png}
+				\caption{Subsystem integration sequence: step 3.}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Step 4: Backend Manager, Payment Manager}
+			\begin{figure}[h]
+				\includegraphics[width=\textwidth,center]{img/integration_strategy/steps/high_level_components_lv4.png}
+				\caption{Subsystem integration sequence: step 4.}
+			\end{figure}
+		\FloatBarrier
+
+		\paragraphnewline{Complete system}
+			The complete system integration is summarized in the following image, displaying also the internal structure of each macro-component.
+			\begin{figure}[h]
+				\includegraphics[width=\textwidth,center]{img/integration_strategy/complete_unravelled-steps.png}
+				\caption{Complete system and integration steps.}
+			\end{figure}
+		\FloatBarrier
+\hphantom{spaces} % FIXME tempfix for pushing section 3 to new page

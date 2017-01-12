@@ -1,0 +1,216 @@
+	\label{sec: individual_steps}
+	\subsubsection{User Manager}
+		\subsubsection*{User Handler, Profile Manager }
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{CheckData(user: Credentials):bool}\\
+				\hline 
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Right credentials & True\\ \hline
+				Wrong credentials & False\\ \hline
+			\end{tabular}
+			\\
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{ChangeData(user: Credentials, changedData: Credentials)}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Old credentials and New credentials are the same & An IllegalArgumentException is raised \\ \hline
+				New credentials are not valid & An IllegalArgumentException is raised\\ \hline
+				New credentials are valid & User's credentials are changed \\ \hline
+			\end{tabular}
+			\\		
+			
+		\subsubsection*{User Handler, License Manager}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{CheckLicenseValidity(user: Credentials): bool}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid driving license & True\\ \hline
+				Not valid driving license & False\\ \hline
+			\end{tabular}
+			\\
+			
+			\subsubsection*{User Handler, User Location Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{SelectZone(location: Location, radius: float)}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Zone selected & Boundaries are defined \\ \hline
+			\end{tabular}
+			\\
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{LocateUser(genericUser: Credentials):Location}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter  &  Information about User's location \\ \hline
+			\end{tabular} 
+			\\
+			\begin{tabular}{ |l|l| } %TODO
+				\hline
+				\multicolumn{2}{|c|}{LocateAddress(address: String):Location}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & \\ \hline
+				Valid parameter  &  \\ \hline
+			\end{tabular}
+			\\
+			\subsubsection*{Emergency Report Handler, User Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{Notify(command: Command)}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter & Notification is recieved \\ \hline
+			\end{tabular}
+			\\			
+			
+			\subsubsection*{Reservation Handler, User Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{ReserveCar(car: Car)}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter & Car is picked for reservation process \\ \hline
+			\end{tabular}
+			\\
+			
+			\subsubsection*{Ride Handler, User Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{PickupCar(car: Car)}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter & The \textit{pickup process} is started \\ \hline
+			\end{tabular}
+			\\	
+			
+			\subsubsection*{License Manager, Profile Manager}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{CheckData(user: Credentials):bool}\\
+				\hline 
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Right credentials & True\\ \hline
+				Wrong credentials & False\\ \hline
+			\end{tabular}
+			\\
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{ChangeData(user: Credentials, changedData: Credentials)}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Old credentials and New credentials are the same & An IllegalArgumentException is raised \\ \hline
+				New credentials are not valid & An IllegalArgumentException is raised\\ \hline
+				New credentials are valid & User's credentials are changed \\ \hline
+			\end{tabular}
+			\\	
+		
+		\subsubsection{Car Manager}		
+			\subsubsection*{Reservation Handler, Car Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{CheckCar():Status}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Nothing & Information about car status \\ \hline
+			\end{tabular}
+			\\
+			
+			\subsubsection*{Ride Handler, Car Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{ChangeState(state: State)}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter & The car's state is changed \\ \hline
+			\end{tabular}
+			\\
+			
+			\subsubsection*{Car Location Handler, Car Handler} %Changed dependency
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{NotifyEmergency(signal: Stream)}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter &  \\ \hline
+			\end{tabular}
+			\\		
+			
+			\subsubsection*{Car Handler, Sensors Manager} 
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{LockCar()}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter & Car is locked  \\ \hline
+			\end{tabular}
+			\\
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{UnlockCar()}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter & Car is unlocked  \\ \hline
+			\end{tabular}
+			\\
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{NotifyIgnition()}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter & Notification is recieved  \\ \hline
+			\end{tabular}
+			\\
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{NotifyIgnition()}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Nothing & Number of detected passengers  \\ \hline
+			\end{tabular}
+			\\
+			
+			\subsubsection*{Car Handler, Emergency Report Handler} %Changed dependency
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{ReportError(error: String)}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter &  Error is reported \\ \hline
+			\end{tabular}
+			\\
+			
+			
+			
+			
+			
+				
+			
+			
+			
+			
+			
+			
+			
+			
+			

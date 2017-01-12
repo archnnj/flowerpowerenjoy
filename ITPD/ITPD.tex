@@ -12,6 +12,9 @@
 \usepackage[ruled, vlined]{algorithm2e} % algorithms
 \usepackage[export]{adjustbox}
 \usepackage{multirow}
+\usepackage{enumitem}
+
+\newcommand{\paragraphnewline}[1]{\paragraph{#1}\mbox{}\\}
 
 
 \title{Integration Test Plan Document}
@@ -55,7 +58,9 @@
 
 	\newpage
 	\section{Individual steps and test description}
+		\input{subsections/individual_steps_1.tex}
 		\input{subsections/individual_steps.tex}
+		\input{subsections/individual_steps_4.tex}
 		% TODO
 
 	\newpage
