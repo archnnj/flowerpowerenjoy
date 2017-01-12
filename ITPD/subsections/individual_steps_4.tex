@@ -1,0 +1,82 @@
+	\label{sec: individual_steps_4}
+	\subsubsection{Authentication}
+		\subsubsection*{Login, User Handler }
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{Notify()}\\
+				\hline 
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter & A notification is sent \\ \hline
+			\end{tabular}
+			\\
+	%TODO login(), signup()
+	 \subsubsection{Payment}
+		 \subsubsection*{Payment Handler, Discounts and Sanctions Handler }
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{ApplyDiscounts(discount: float, payment: Payment)}\\
+				\hline 
+				\textit{Input}&\textit{Effect}\\ \hline
+				One or more null parameters & A NullArgumentException is raised\\ \hline
+				Valid parameters & Discounts are applied to the payment \\ \hline
+			\end{tabular}
+			\\
+			
+		\subsubsection*{Invoice Manager, Payment Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{Invoice(paymentService: External Interface, payment: Payment, creditCardInfo: Credentials):bool}\\
+				\hline 
+				\textit{Input}&\textit{Effect}\\ \hline
+				One or more null parameters & A NullArgumentException is raised\\ \hline
+				Valid parameters & True \\ \hline
+				Not valid parameters & False \\ \hline
+			\end{tabular}
+			\\
+			
+		\subsubsection*{Invoice Manager, Exceptional Payment Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{AssignFineForReport(fine: float, report: Report)}\\
+				\hline 
+				\textit{Input}&\textit{Effect}\\ \hline
+				One or more null parameters & A NullArgumentException is raised\\ \hline
+				Valid parameters & %TODO 
+				\\ \hline
+			\end{tabular}
+			\\
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{AssignFineForReservation(fine: float, reservation: Reservation)}\\
+				\hline 
+				\textit{Input}&\textit{Effect}\\ \hline
+				One or more null parameters & A NullArgumentException is raised\\ \hline
+				Valid parameters & %TODO 
+				\\ \hline
+			\end{tabular}
+			\\	
+			
+		\subsubsection*{Emergency Report Handler, Report Status Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{UpdateRecord(report: Report, newStatus: Status)}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				One or more null parameters & A NullArgumentException is raised\\ \hline
+				Valid parameters & Status of the report is upadated \\ \hline
+			\end{tabular}
+			\\
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{CheckStatus(report: Report): Status}\\
+				\hline
+				\textit{Input} & \textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter & The status information of the report\\ \hline
+			\end{tabular}
+			\\	
+					
+					
+			
+			
