@@ -9,7 +9,7 @@
 		\subsubsection{Employment}
 		
 		\begin{itemize}
-			\item A list of valid and invalid \textbf{Reservations}. The set should contain instances exhibiting the following issues:
+			\item A list of valid and invalid \textbf{Reservations}. The set should contain instances exhibiting the following cases:
 				\begin{itemize}
 					\item Null object
 					\item Null fields
@@ -21,7 +21,7 @@
 		\end{itemize}
 		
 		\begin{itemize}
-			\item A list of valid and invalid \textbf{Rides}. The set should contain instances exhibiting the following issues:
+			\item A list of valid and invalid \textbf{Rides}. The set should contain instances exhibiting the following cases:
 				\begin{itemize}
 					\item Null object
 					\item Null fields
@@ -33,13 +33,15 @@
 		\end{itemize}
 		
 		\begin{itemize}
-			\item A list of valid and invalid \textbf{ParkingAreas}. The set should contain instances exhibiting the following issues:
+			\item A list of valid and invalid \textbf{ParkingAreas}. The set should contain instances exhibiting the following cases:
 				\begin{itemize}
 					\item Null object
 					\item Null fields
 					\item ParkingAreas containing a car that is located somewhere else
 					\item ParkingArea outside city boundaries
 					\item ParkingArea with more parked cars than slots
+					\item Full ParkingArea
+					\item Empty ParkingArea
 				\end{itemize}
 		\end{itemize}
 		
@@ -47,7 +49,40 @@
 		
 		\subsubsection{Money Saving Option}
 		
+		\begin{itemize}
+			\item A list of valid and invalid \textbf{destinations}. The set should contain instances exhibiting the following cases:
+				\begin{itemize}
+					\item Null object
+					\item Null fields
+					\item Destination is outside city boundaries
+					\item Destination has no parking areas within the radius requested by the MSO
+					\item Destination doesn't exist
+					\item Destination is the car's current location
+				\end{itemize}
+		\end{itemize}
 		
 		
 		
 		\subsubsection{Backend}
+		
+		\begin{itemize}
+			\item A list of valid and invalid \textbf{Parameters}. The set should contain instances exhibiting the following cases:
+				\begin{itemize}
+					\item Null object
+					\item Null fields
+					\item Parameter value outside allowed range
+				\end{itemize}
+		\end{itemize}
+		
+		\begin{itemize}
+			\item A list of valid and invalid \textbf{Emergency Reports}. The set should contain instances exhibiting the following cases:
+				\begin{itemize}
+					\item Null object
+					\item Null fields
+					\item Report closed
+					\item Report without User assigned
+					\item Report without Car assigned
+					\item Report without Operator assigned
+					\item Report with an available Operator assigned
+				\end{itemize}
+		\end{itemize}
