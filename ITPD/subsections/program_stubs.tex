@@ -14,26 +14,46 @@
 		
 		Here follows a list of drivers needed by the system to perform testing according to our strategy. Following the bottom-up approach, drivers for subcomponents will be provided when needed as well as drivers emulating macrocomponents.
 		
-		\begin{itemize}
-			\item \textbf{User Manager Driver} %TODO user mgmt driver
-			\item \textbf{Car Manager Driver} %TODO car mgmt driver
-			\item \textbf{Access Manager Driver} %TODO 
-			\item \textbf{Parking Manager Driver}: this testing module will invoke the methods exposed by the \textbf{Sensors Manager} and \textbf{Car Location Handler} subcomponents. %written too little??
-			\item \textbf{MSO Manager Driver}: this testing module will invoke the methods exposed by the \textbf{Parking  Manager} and \textbf{Car Location Handler} subcomponents.
-			\item \textbf{Car Employment Manager}: this testing module will invoke the methods exposed by the \textbf{Parking  Manager}, \textbf{Car Location Handler}, \textbf{User Handler} and \textbf{Car Handler} subcomponents.
-			\item \textbf{Reservation Handler}: this testing module will invoke the methods exposed by the \textbf{Time   Manager} subcomponent.
-			\item \textbf{Reservation Handler}: this testing module will invoke the methods exposed by the \textbf{Time   Manager} and \textbf{Reservation Handler} subcomponents.
-			\item \textbf{Emergency Report Handler}: this testing module will invoke the methods exposed by the \textbf{Report Status Handler} subcomponent.
-			\item \textbf{Operators Handler}: this testing module will invoke the methods exposed by the \textbf{Emergency Report Handler} subcomponent.
-			\item \textbf{Dispatch Manager}: this testing module will invoke the methods exposed by the \textbf{Operators Handler} subcomponent.
-			\textbf{Admin Handler}: this testing module will invoke the methods exposed by the \textbf{Dispatch Manager} and \textbf{Backend Manager} subcomponents.
-			\textbf{Payment Manager}: %TODO
-		\end{itemize}
-		
-		
-		\begin{itemize}
-		
-		\end{itemize}
+		\begin{description}
+		\item[Localisation Manager]~\\
+			\begin{itemize}
+				\item \textbf{Localisation Driver} this testing module will invoke the methods exposed by the \textbf{Localisation Manager} component.
+			\end{itemize}
+		\item[User Manager]~\\ %TODO
+		\item[Car Manager]~\\
+			\begin{itemize}
+				\item \textbf{Car Handler Driver} this testing module will invoke the methods exposed by the \textbf{Car Handler} subcomponent.
+				\item \textbf{Car Manager Driver} this testing module will invoke the methods exposed by the \textbf{Car Manager} component.
+			\end{itemize}
+		\item[Parking Manager]~\\
+			\begin{itemize}
+				\item \textbf{Parking Manager Driver} this testing module will invoke the methods exposed by the \textbf{Parking Manager} component.
+			\end{itemize}
+		\item[Access Manager]~\\ %TODO
+		\item[MSO Manager]~\\
+			\begin{itemize}
+				\item \textbf{Parking Distribution Driver} this testing module will invoke the methods exposed by the \textbf{Parking Distribution Handler} subcomponent.
+				\item \textbf{MSO Driver} this testing module will invoke the methods exposed by the \textbf{MSO Manager} component.
+			\end{itemize}
+		\item[Car Employment Manager]~\\
+			\begin{itemize}
+				\item \textbf{Time Manager Driver} this testing module will invoke the methods exposed by the \textbf{Time Manager} subcomponent.
+				\item \textbf{Reservation Driver} this testing module will invoke the methods exposed by the \textbf{Reservation Handler} subcomponent.
+				\item \textbf{Employment Driver} this testing module will invoke the methods exposed by the \textbf{Car Employment Manager} component.
+			\end{itemize}
+		\item[Maintenance Manager]~\\
+			\begin{itemize}
+				\item \textbf{Report Status Driver} this testing module will invoke the methods exposed by the \textbf{Report Status Handler} subcomponent.
+				\item \textbf{Report Driver} this testing module will invoke the methods exposed by the \textbf{Emergency Report Handler} subcomponent.
+				\item \textbf{Operators Driver} this testing module will invoke the methods exposed by the \textbf{Operators Handler} subcomponent.
+				\item \textbf{Maintenance Driver} this testing module will invoke the methods exposed by the \textbf{Maintenance Manager} component.
+			\end{itemize}	
+		\item[BackEnd Manager]~\\
+			\begin{itemize}
+				\item \textbf{Backend Driver} this testing module will invoke the methods exposed by the \textbf{BackEnd Manager} subcomponent.
+			\end{itemize}
+		\item[Payment Manager]~\\ %TODO
+		\end{description}
 		
 	
 	
