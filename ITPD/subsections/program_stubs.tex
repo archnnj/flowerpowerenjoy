@@ -1,15 +1,11 @@
 	\subsection{Program Stubs and Drivers}
 	
-	As we mentioned in \autoref{sec:integration_testing_strategy}, we are going to use a bottom-up approach to integrate and test all macro-components of the system. This means that on the one hand we need a series of drivers to perform the method invocations while the higher-level components still haven't been developed. On the other hand, while it's true that in general we don't need stubs since the lower-level components will have been developed before testing the following level, in \autoref{sec:integration_testing_strategy} we specified that three macro-components needed a critical-first approach: these are the \textbf{Money Saving Option Manager}, the \textbf{Car Manager} and the \textbf{Payment Manager}. In the developing of these components we will not integrate their sub-components with the bottom-up approach, hence we will need stubs to simulate the potential invoked function.
+	As we mentioned in \autoref{sec:integration_testing_strategy}, we are going to use a bottom-up approach to integrate and test all macro-components of the system. This means that on the one hand we need a series of drivers to perform the method invocations while the higher-level components still haven't been developed. On the other hand, while it's true that in general we don't need stubs since the lower-level components will have been developed before testing the following level, in \autoref{sec:integration_testing_strategy} we specified that three macro-components needed a critical-first approach: these are the \textbf{Money Saving Option Manager}, the \textbf{Car Manager} and the \textbf{Payment Manager}. In the developing of these components we will start by integrating the most critical subcomponent and then the remaining ones. For these reason, the \textbf{Car Manager} integration and the \textbf{Money Saving Option Manager} integration will require drivers (since their critical component is the most low-level one); on the contrary, the \textbf{Payment Manager} will require the definition of stubs to simulate the potential invoked functions.
 	For the specifics of each method invocation performed by the drivers, please refer to \autoref{sec: individual_steps}.
 		
 		\subsubsection{Stubs}
-		
-		Here follows a list of stubs needed by the system to perform testing according to our strategy.
-		
+				
 			\begin{itemize}
-				\item \textbf{Sensors Stub}: this stub will simulate every possible answer to a method invocation by the \textbf{Car Handler}, which is the most critical. %are we sure??? It's the sensors manager that interacts with the car afterall
-				\item \textbf{Parking Distribution Stub}: this stub will simulate every answer to a method invocation performed by the \textbf{MSO Handler}: since it's the Handler that deals with the brunt of the computation for the Money Saving Option, it must be able to deal with every possible criticality and wrong data coming from the Parking Distribution Handler.
 				\item \textbf{•} %TODO PAYMENT MANAGER
 			\end{itemize}
 		
@@ -32,6 +28,11 @@
 			\item \textbf{Dispatch Manager}: this testing module will invoke the methods exposed by the \textbf{Operators Handler} subcomponent.
 			\textbf{Admin Handler}: this testing module will invoke the methods exposed by the \textbf{Dispatch Manager} and \textbf{Backend Manager} subcomponents.
 			\textbf{Payment Manager}: %TODO
+		\end{itemize}
+		
+		
+		\begin{itemize}
+		
 		\end{itemize}
 		
 	
