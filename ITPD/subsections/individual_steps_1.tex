@@ -54,13 +54,13 @@
 				Valid parameter  &  Information about User's location \\ \hline
 			\end{tabular} 
 			\\
-			\begin{tabular}{ |l|l| } %TODO
+			\begin{tabular}{ |l|l| } 
 				\hline
 				\multicolumn{2}{|c|}{LocateAddress(address: String):Location}\\
 				\hline
 				\textit{Input}&\textit{Effect}\\ \hline
-				Null parameter & \\ \hline
-				Valid parameter  &  \\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter  & Location of the entered address \\ \hline
 			\end{tabular}
 			\\
 			\subsubsection*{Emergency Report Handler, User Handler}
@@ -88,7 +88,7 @@
 			\subsubsection*{Ride Handler, User Handler}
 			\begin{tabular}{ |l|l| }
 				\hline
-				\multicolumn{2}{|c|}{PickupCar(car: Car)}\\
+				\multicolumn{2}{|c|}{PickupCar(car: Car)}\\ %
 				\hline
 				\textit{Input}&\textit{Effect}\\ \hline
 				Null parameter & A NullArgumentException is raised\\ \hline
@@ -119,6 +119,10 @@
 			\end{tabular}
 			\\	
 		
+		
+		
+		
+		
 		\subsubsection{Car Manager}		
 			\subsubsection*{Reservation Handler, Car Handler}
 			\begin{tabular}{ |l|l| }
@@ -140,15 +144,13 @@
 				Valid parameter & The car's state is changed \\ \hline
 			\end{tabular}
 			\\
-			
-			\subsubsection*{Car Location Handler, Car Handler} %Changed dependency
 			\begin{tabular}{ |l|l| }
 				\hline
 				\multicolumn{2}{|c|}{NotifyEmergency(signal: Stream)}\\
 				\hline
 				\textit{Input}&\textit{Effect}\\ \hline
-				Null parameter & A NullArgumentException is raised\\ \hline
-				Valid parameter &  \\ \hline
+				Null parameter & A NullArgumentException is raised \\ \hline
+				Valid parameter &  Notification about the emergency \\ \hline
 			\end{tabular}
 			\\		
 			
@@ -158,8 +160,7 @@
 				\multicolumn{2}{|c|}{LockCar()}\\
 				\hline
 				\textit{Input}&\textit{Effect}\\ \hline
-				Null parameter & A NullArgumentException is raised\\ \hline
-				Valid parameter & Car is locked  \\ \hline
+				Nothing & Car is locked  \\ \hline
 			\end{tabular}
 			\\
 			\begin{tabular}{ |l|l| }
@@ -167,8 +168,7 @@
 				\multicolumn{2}{|c|}{UnlockCar()}\\
 				\hline
 				\textit{Input}&\textit{Effect}\\ \hline
-				Null parameter & A NullArgumentException is raised\\ \hline
-				Valid parameter & Car is unlocked  \\ \hline
+				Nothing & Car is unlocked  \\ \hline
 			\end{tabular}
 			\\
 			\begin{tabular}{ |l|l| }
@@ -176,29 +176,76 @@
 				\multicolumn{2}{|c|}{NotifyIgnition()}\\
 				\hline
 				\textit{Input}&\textit{Effect}\\ \hline
-				Null parameter & A NullArgumentException is raised\\ \hline
-				Valid parameter & Notification is recieved  \\ \hline
+				Nothing & Notification is recieved  \\ \hline
 			\end{tabular}
 			\\
 			\begin{tabular}{ |l|l| }
 				\hline
-				\multicolumn{2}{|c|}{NotifyIgnition()}\\
+				\multicolumn{2}{|c|}{PassengersDetection()}\\
 				\hline
 				\textit{Input}&\textit{Effect}\\ \hline
 				Nothing & Number of detected passengers  \\ \hline
 			\end{tabular}
 			\\
 			
-			\subsubsection*{Car Handler, Emergency Report Handler} %Changed dependency
+			\subsubsection*{Car Handler, Emergency Report Handler} 
 			\begin{tabular}{ |l|l| }
 				\hline
-				\multicolumn{2}{|c|}{ReportError(error: String)}\\
+				\multicolumn{2}{|c|}{NotifyEmergency(signal: Stream)}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised \\ \hline
+				Valid parameter &  Notification about the emergency \\ \hline
+			\end{tabular}
+			\\	
+			
+			\subsubsection*{Ride, Car Location Handler}
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{IsCarOutOfBoundaries(location: Location):bool}\\
 				\hline
 				\textit{Input}&\textit{Effect}\\ \hline
 				Null parameter & A NullArgumentException is raised\\ \hline
-				Valid parameter &  Error is reported \\ \hline
+				Car's location is inside the selected zone & True  \\ \hline
+				Car's location is outside the selected zone & False  \\ \hline
 			\end{tabular}
 			\\
+			
+			\subsubsection*{Reservation Handler, Car Location Handler} 
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{LocateSelectedCar(car: Car): Location}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid parameter &  Location of the selected car \\ \hline
+			\end{tabular}
+			\\
+			
+			\subsubsection*{Parking Manager, Car Location Handler} 
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{ FindAreas(location: Location, radius: float): ParkingArea}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid input & The parking area near the location \\ \hline
+			\end{tabular}
+			\\
+			
+			\subsubsection*{MSO Handler, Car Location Handler} 
+			\begin{tabular}{ |l|l| }
+				\hline
+				\multicolumn{2}{|c|}{ FindAreas(location: Location, radius: float): ParkingArea}\\
+				\hline
+				\textit{Input}&\textit{Effect}\\ \hline
+				Null parameter & A NullArgumentException is raised\\ \hline
+				Valid input & The parking area neat the location where the user should park\\ \hline
+			\end{tabular}
+			\\
+			
+			
+			
 			
 			
 			
