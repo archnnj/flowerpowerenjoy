@@ -52,7 +52,7 @@
 				\textit{Input} & \textit{Effect}\\ \hline
 				One or more null parameters & A NullArgumentException is raised\\ \hline
 				The reservation already has an existing expiration time 0& A IllegalArgumentException is raised \\ \hline %FIXIT should it be another exception?
-				The reservation doesn't have an expiration time & The expiration time of the reservation is set as $time$\\ \hline
+				The reservation doesn't have an expiration time & The expiration time of the reservation\\ & is set as $time$\\ \hline
 			\end{tabular}
 			\\
 			\begin{tabular}{ |l|l| }
@@ -289,7 +289,7 @@
 				\multicolumn{2}{|c|}{CheckParameter(paramToChange: Parameter, newValue: Parameter): bool}\\
 				\hline
 				\textit{Input} & \textit{Effect}\\ \hline
-				One or more null parameters & A NullArgumentException is raised\\ \hline
+				One or more null parameters & A NullArgumentException\\& is raised\\ \hline
 				The new value is within the acceptable range for the parameter & True\\ \hline
 				The new value is not within the acceptable range for the parameter & False\\ \hline
 			\end{tabular}
