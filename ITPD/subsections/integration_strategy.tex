@@ -9,6 +9,7 @@
 	Once begun, the integration testing follows and guides the development, as explained in \autoref{sec:integration_testing_strategy}. % FIXME check correctness and add link
 
 \subsection{Elements to be integrated}
+\label{sec:elements_to_be_integrated}
 	As explained in the DD, the three layers in which the system is divided are characterized as follows.
 	\begin{description}
 		\item[Data] A database holds and gives access to all the data needed by the application. As anticipated in \autoref{sec:entry_criteria}, this layer does not participate actively in the integration process. Indeed, since its development isn't particularly demanding in terms of resources, it is assumed to be already completed once the integration begins. This way, every logic component will be able to access the data layer during the unit testing phase, and integrate with it as a prerequisite for the proper integration phase.

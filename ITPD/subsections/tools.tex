@@ -1,0 +1,82 @@
+\subsection{Tools}
+	The testing activities will be performed with the help of various tools, each one designed for a particular task or application domain. In this section, a summary of their capabilities and the ways they are planned to be used is presented. Since they usually are designed to work on a specific platform and/or technology, a distinction will be made on this parameter.
+
+	\subsubsection*{Application Server}
+		\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+			\item \textit{Technology used} JEE
+			\item \textit{Testing tools}
+				\begin{itemize}[label={},noitemsep]
+					\item \textbf{Mockito} A framework for creating mocks object, useful in integration testing (besides basic unit testing). The mocks can be used to efficiently define stubs to support the scaffolding and test if a component interacts properly with the interfaces on which it depends. In particular, we will use it in the testing of the sub-components integrated with critical-first approach, as exposed in \autoref{sec:stubs}.
+					\item \textbf{JUnit} Besides for unit testing, JUnit can be exploited to create drivers not only to test a single component, but also it's integration with the underlying portion of the system. It will be used in fact for every driver specified in \autoref{sec:drivers}.
+					\item \textbf{Arquillian} An integration testing framework to execute test cases against the containers of a JEE application. It will be used to verify the correctness of the dependency injections of the components, as well as the injection of the database resources.
+					\item \textbf{JMeter} A tool to perform performance analysis on the interconnection of a system's components. In particular, it will be exploited to evaluate the non-functional requirements specified in \textit{section 3.2} of the RASD.
+				\end{itemize}
+		\end{itemize}
+
+	\subsubsection*{Mobile apps - Android, Car app}
+	\label{sec:tools_android_apps}
+	\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+		\item \textit{Technology used} Java for Android
+		\item \textit{Testing tools}
+			\begin{itemize}[label={},noitemsep]
+				\item \textbf{Android Testing Support Library} A framework that provides a set of APIs for testing Android application, including JUnit 4 and UI tests. It will be used in particular to test the integration of the logic components residing on the client. It should be noted that for all the applications, the components physically deployed on the clients are a small set, since the main application logic is located on the server. For this reason, here the integration testing will not be particularly demanding.
+				\item \textbf{Android Device Monitor, Android Studio tools, SDK tools} The performance test will be executed using the set of tools provided by Android Studio and the Android SDK, as the Android Device Monitor.
+				\item \textbf{Manual testing} The view of the Android mobile apps will be verified with manual testing. In fact, as explained in \autoref{sec:elements_to_be_integrated}, the testing  will require only simple operations and would not justify the overhead introduced by complicated UI analysis tools.
+			\end{itemize}
+	\end{itemize}
+
+	\subsubsection*{Mobile apps - iOS}
+		\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+			\item \textit{Technology used} Objective-C.
+			\item \textit{Testing tools}
+				\begin{itemize}[label={},noitemsep]
+					\item \textbf{Xcode IDE, XCTest, OCmock} The development IDE provides also analysis tools which will be exploited to test the application and analyze its performances. In addition, external tools such as XCTest and OCmock will be used.
+					\item \textbf{Manual testing} As for the \textit{Android mobile app}, the view will be manual tested.
+				\end{itemize}
+		\end{itemize}
+
+	\subsubsection*{Mobile apps - Windows Phone}
+		\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+			\item \textit{Technology used} C\#.
+			\item \textit{Testing tools}
+				\begin{itemize}[label={},noitemsep]
+					\item \textbf{Visual Studio tools, WindowsPhoneTestFramework, other external tools} The integration testing and performance evaluation will be conducted with the set of tools provided by Microsoft, as well as some external tools such as WindowsPhoneTestFramework. 
+					\item \textbf{Manual testing} As for the \textit{Android mobile app}, the view will be manual tested.
+				\end{itemize}
+		\end{itemize}
+
+	\subsubsection*{Admin application}
+		\begin{itemize}[label={},leftmargin=*,noitemsep,topsep=0pt]
+			\item \textit{Technology used} JEE.
+			\item \textit{Testing tools}
+				\begin{itemize}[label={},noitemsep]
+					\item \textbf{JUnit} As for the \textit{application server}, Junit will be used to setup the drivers mentioned in \autoref{sec:drivers}.
+					\item \textbf{Arquillian} As for the \textit{application server}, Arquillian will be used to verify the the dependency injections system.
+					\item \textbf{Manual testing} As for the \textit{Android mobile app}, the view of the Admin application will be verified with manual testing, since the functionalities it provides are very limited.
+				\end{itemize}
+		\end{itemize}
+
+\subsection{Test equipment}
+	% tablet
+		% screen size and dpi of all OS (Android diff versions to be taken care)
+	% desktop
+		% normal computer (PC?)
+	% server
+		% tools from cloud platform (Amazon, whatever) --> check DD: cloud platform?
+	In order to perform the actual tests on an environment similar to the production one, a proper equipment is required. Here is a list of what we plan to use in the integration phase and, more importantly, in the system testing phase.
+
+	\subsection*{Mobile apps}
+		The most frequent cause of issues in mobile application is the screen size and density. Therefore, the app must be verified on multiple devices. In particular:
+			\begin{itemize}
+				\item \textbf{User mobile app} For its criticity, it must be tested on at least one device per screen size: 4.5", 5", 6". If possible, different screen densities must be verified as well.
+				\item \textbf{Operator mobile app} Less effort can be allocated here, testing at least on a 5" smartphone and on a 10" tablet, since this app is for internal use only.
+				\item \textbf{Car client} Since the cars embed only one type of device, the test should be performed mainly on it. Anyway, from time to time the application should be verified to work with other similar tablets as well, to be prepared for an eventual change of the embedded devices (i.e. for economical reasons, deterioration, etc.).
+			\end{itemize}
+		To overcome eventual issues related to specific vendors' devices or hardware components, the applications that make use of Bluetooth or GPS must be tested on devices of different brands (in particular for Android).
+
+	\subsection*{Admin application}
+		The desktop application can be tested on a desktop similar to the ones used by the administrators. Even if JEE is mostly platform-independent, it is mandatory that the testing is performed on machines running the same OS, to ensure complete compatibility.
+
+	\subsection*{App server}
+		Depending on the actual environment on which the app server will run, different testing options are available. In particular, cloud services companies usually provide tools and consoles to manage this aspect.
+		In any case, we require that a proper testing environment is set up and made accessible to the developers team to constantly test the application-to-be. The test environment must present the same main characteristics of the production environment (same OS, same JEE implementation, etc.), but may have a more limited amount of resources allocated.
