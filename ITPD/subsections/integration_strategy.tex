@@ -13,12 +13,12 @@
 	As explained in the DD, the three layers in which the system is divided are characterized as follows.
 	\begin{description}
 		\item[Data] A database holds and gives access to all the data needed by the application. As anticipated in \autoref{sec:entry_criteria}, this layer does not participate actively in the integration process. Indeed, since its development isn't particularly demanding in terms of resources, it is assumed to be already completed once the integration begins. This way, every logic component will be able to access the data layer during the unit testing phase, and integrate with it as a prerequisite for the proper integration phase.
-		\item[Application logic] The components on which most of the integration effort will be spent are those intensively described in section \textit{2.2 - Component view} of the DD. These represent the main software components of the system and are responsible to provide the functionalities required by it. In particular, the integration will proceed on two different abstraction layers (one considering only macro-components, the other considering the internal interactions among sub-components), and a particular attention will be paid for the sub-components residing on different machines (e.g.: server and client).
+		\item[Application logic] The components on which most of the integration effort will be spent are those intensively described in section \textit{2.2 - Component view} of the DD. These represent the main software components of the system and are responsible to provide the functionalities required by it. In particular, the integration will proceed on two different abstraction layers (one considering only macrocomponents, the other considering the internal interactions among subcomponents), and a particular attention will be paid for the subcomponents residing on different machines (e.g.: server and client).
 		\item[View] The view layer won't be affected by the integration process. It will be unit tested during its development, and since its instances are each connected only with a single application logic component, their integration will be straightforward and won't need a delicate testing. The view functioning will be however tested during the more general \textit{system testing} phase. % FIXME ok? Old notes: view unit tested, integration done at the end??, but then why not tested? / main focus on application logic, view just unit tested because dumbly integrated to the rest.
 	\end{description}
 	In this analysis, the website, for its simple and self-contained nature, will not be taken into account as it will not need an integration phase, jumping directly to the system testing phase.	\newline
 
-	As a result, the set of macro-components to be considered for the integration testing becomes definite. Following are enlisted the macro-components on which the integration will be performed (at an internal-level first, and at a system-level after):
+	As a result, the set of macrocomponents to be considered for the integration testing becomes definite. Following are enlisted the macrocomponents on which the integration will be performed (at an internal-level first, and at a system-level after):
 	\begin{itemize}
 		\item \textbf{User Location Handler}
 		\item \textbf{User Management server-side} with subcomponents: Profile Manager, License Manager
@@ -40,7 +40,7 @@
 
 \subsection{Integration testing strategy}
 \label{sec:integration_testing_strategy}
-	The integration of the system will be guided by a bottom-up approach. This strictly comes from an analysis of the dependency structure of the components diagram provided in the DD, here restructured to better highlight the key subsystems and their connections.
+	The integration of the system will be guided by a bottom-up approach. This strictly comes from an analysis of the dependency structure of the components diagram provided in the DD, here restructured to better highlight the key modules and their connections.sub
 	\begin{figure}[h]
 		\includegraphics[width=\textwidth, center]{img/integration_strategy/high_level_unravelled.png}
 		\caption{Dependency tree of components: high level view.}
@@ -53,23 +53,23 @@
 
 	This strategy allows for a close interaction between the development phase and the proper testing phase, with a benefit for the quality of the software-to-be as well as for the project management. The goal set with this choice is to make development and testing actually going in parallel during standard operating periods. %% a regime, come si dice!!
 	% TODO sth more about it?
-	The approach used to integrate the different subcomponents inside a single component is instead selected according to its level of criticality; in particular, the choice revolves around a "nested" bottom-up approach on one hand, and a more complex critical-first approach on the other.
-	A criticality analysis underlines the following critical components.
+	The approach used to integrate the different subcomponents inside a single macrocomponent is instead selected according to its level of criticality; in particular, the choice revolves around a "nested" bottom-up approach on one hand, and a more complex critical-first approach on the other.
+	A criticality analysis underlines the following critical macrocomponents.
 	\begin{itemize}
 		\item \textbf{Car Manager.} The integration of the car system software with the underlying hardware and the sensors it is managing involves a moderate number of uncontrollable variables and introduces with them a certain amount of risk. In fact, it is the only point of contact with the actual car, thus becoming the contact point between two rather complex systems.
-		\item \textbf{Money Saving Option Manager.} Even if not crucial for the basic functioning of the system, this component is responsible for a large amount of computations, carried on by means of complex algorithms. These must be tested as soon as possible in order to obtain the desired results. In addition, the main algorithm provided by the \textit{Parking Distribution Handler} is designed to be implemented with the not-so-common paradigm of fuzzy logic (see DD \textit{section 3}), and as any not-well-spread development tool, this may suffer for less stability and minor flaws, which must be discovered and managed as soon as possible.
+		\item \textbf{Money Saving Option Manager.} Even if not crucial for the basic functioning of the system, this macrocomponent is responsible for a large amount of computations, carried on by means of complex algorithms. These must be tested as soon as possible in order to obtain the desired results. In addition, the main algorithm provided by the \textit{Parking Distribution Handler} is designed to be implemented with the not-so-common paradigm of fuzzy logic (see DD \textit{section 3}), and as any not-well-spread development tool, this may suffer for less stability and minor flaws, which must be discovered and managed as soon as possible.
 		\item \textbf{Payment Manager.} The payment handling is known to be one of the most critical activities since it involves money transactions. In particular, since the system relies on an external company for the actual payment realizations, its most critical subcomponent is the Invoice Manager, responsible for the interactions with the external \textit{Payment Services Provider}.
 	\end{itemize}
-	As a result, when the said components are to be developed, their integration will follow a critical-first approach. This increases the chances that any significant problem is found as soon as possible, and therefore should provide benefits in the project management (rescheduling of tasks, reallocation of resources, etc.) aside from the integration process itself.
+	As a result, when the said macrocomponents are to be developed, their internal integration will follow a critical-first approach. This increases the chances that any significant problem is found as soon as possible, and therefore should provide benefits in the project management (rescheduling of tasks, reallocation of resources, etc.) aside from the integration process itself.
 	% TODO should say here which is the order for these? or in section 2.4?
 
-	The rest of the components, given their less risky nature, will be internally developed following a bottom-up strategy, where the subcomponents are considered all equally-critical and only the "need" dependencies will drive the process.
+	The rest of the macrocomponents, given their less risky nature, will be internally developed following a bottom-up strategy, where the subcomponents are considered all equally-critical and only the "need" dependencies will drive the process.
 
 \subsection{Sequence of component/function integration}
 	% see assignment pdf for a non mandatory guide on the structure of this subsection
 	% - image of the division bottom up, maybe just with macrocomponents, and explaination
 	% - [before or after] details on the single integrations?
-	In the present section, the general criteria outlined before are translated to the actual sequence of integration steps to follow in the development and testing of the system. Their presentation will be made exploiting two levels of detail, in a bottom-up fashion: \autoref{sec:software_integration_sequence} refers to the integration of the various sub-components in the context of a particular macro-component, while \autoref{sec:subsystem_integration_sequence} increases the abstraction level, focusing on how the different macro-components will be assembled to form the whole system.
+	In the present section, the general criteria outlined before are translated to the actual sequence of integration steps to follow in the development and testing of the system. Their presentation will be made exploiting two levels of detail, in a bottom-up fashion: \autoref{sec:software_integration_sequence} refers to the integration of the various subcomponents in the context of a particular macrocomponent, while \autoref{sec:subsystem_integration_sequence} increases the abstraction level, focusing on how the different macrocomponents will be assembled to form the whole system.
 
 	\subsubsection{Software integration sequence}
 	\label{sec:software_integration_sequence}
@@ -149,7 +149,7 @@
 						\item Parking Distribution Handler
 						\item MSO Handler
 					\end{itemize}
-				\item \textit{Notes: } The Parking Distribution Handler is considered to be the most critical component between the two, since it has to deal with the core MSO algorithm, moreover exploiting not completely supported tools (as FCL for the fuzzy system).
+				\item \textit{Notes: } The Parking Distribution Handler is considered to be the most critical subcomponent between the two, since it has to deal with the core MSO algorithm, moreover exploiting not completely supported tools (as FCL for the fuzzy system).
 			\end{itemize}
 			\begin{figure}[h]
 				\includegraphics[width=250pt, center]{img/integration_strategy/subcomponents/money_saving_option_manager.png}
@@ -208,7 +208,7 @@
 		% - list of integration steps for each subsystem until the whole system is completed
 		% - images for each level only with components already integrated (progress status)
 		% - at the end image with all levels highlighted (in a single image)
-		The integration of the macro-components is performed, as said, in a bottom-up fashion. Below are the 5 steps in which this process has been divided for scheduling reasons. Inside a single step, multiple components participate in the integration, each one relying on the components in the previous levels.
+		The integration of the macrocomponents is performed, as said, in a bottom-up fashion. Below are the 5 steps in which this process has been divided for scheduling reasons. Inside a single step, multiple macrocomponents participate in the integration, each one relying on the macrocomponents in the previous levels.
 
 		\paragraphnewline{Step 0: Localization Manager}
 			The localization manager been developed and unit tested is the starting point for the integration.
@@ -247,7 +247,7 @@
 		\FloatBarrier
 
 		\paragraphnewline{Complete system}
-			The complete system integration is summarized in the following image, displaying also the internal structure of each macro-component.
+			The complete system integration is summarized in the following image, displaying also the internal structure of each macrocomponent.
 			\begin{figure}[h]
 				\includegraphics[width=\textwidth,center]{img/integration_strategy/complete_unravelled-steps.png}
 				\caption{Complete system and integration steps.}
