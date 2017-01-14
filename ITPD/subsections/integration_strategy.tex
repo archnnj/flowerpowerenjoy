@@ -40,16 +40,17 @@
 
 \subsection{Integration testing strategy}
 \label{sec:integration_testing_strategy}
-	The integration of the system will be guided by a bottom-up approach. This strictly comes from an analysis of the dependency structure of the components diagram provided in the DD, here restructured to better highlight the key modules and their connections.sub
+	The integration of the system will be guided by a bottom-up approach. This strictly comes from an analysis of the dependency structure of the components diagram provided in the DD, restructured in \autoref{fig:dependency_tree_high} and \autoref{fig:dependency_tree_complete} to better highlight the key modules and their connections.
 	\begin{figure}[h]
 		\includegraphics[width=\textwidth, center]{img/integration_strategy/high_level_unravelled.png}
 		\caption{Dependency tree of components: high level view.}
+		\label{fig:dependency_tree_high}
 	\end{figure}
 	\begin{figure}[h]
 		\includegraphics[width=\textwidth, center]{img/integration_strategy/complete_unravelled.png}
 		\caption{Dependency tree of components: complete system.}
+		\label{fig:dependency_tree_complete}
 	\end{figure}
-	\FloatBarrier
 
 	This strategy allows for a close interaction between the development phase and the proper testing phase, with a benefit for the quality of the software-to-be as well as for the project management. The goal set with this choice is to make development and testing actually going in parallel during standard operating periods. %% a regime, come si dice!!
 	% TODO sth more about it?
@@ -64,6 +65,7 @@
 	% TODO should say here which is the order for these? or in section 2.4?
 
 	The rest of the macrocomponents, given their less risky nature, will be internally developed following a bottom-up strategy, where the subcomponents are considered all equally-critical and only the "need" dependencies will drive the process.
+\FloatBarrier
 
 \subsection{Sequence of component/function integration}
 	% see assignment pdf for a non mandatory guide on the structure of this subsection
@@ -210,47 +212,52 @@
 		% - at the end image with all levels highlighted (in a single image)
 		The integration of the macrocomponents is performed, as said, in a bottom-up fashion. Below are the 5 steps in which this process has been divided for scheduling reasons. Inside a single step, multiple macrocomponents participate in the integration, each one relying on the macrocomponents in the previous levels.
 
-		\paragraphnewline{Step 0: Localization Manager}
+		\begin{figure}[h]
+			\paragraphnewline{Step 0: Localization Manager}
 			The localization manager been developed and unit tested is the starting point for the integration.
-			\begin{figure}[h]
-				\includegraphics[width=100pt,center]{img/integration_strategy/steps/high_level_components_lv0.png}
-				\caption{Subsystem integration sequence: step 0.}
-			\end{figure}
+			\par\bigskip
+			\includegraphics[width=100pt,center]{img/integration_strategy/steps/high_level_components_lv0.png}
+			\caption{Subsystem integration sequence: step 0.}
+		\end{figure}
 		\FloatBarrier
 
-		\paragraphnewline{Step 1: User Manager, Car Manager}
-			\begin{figure}[h]
-				\includegraphics[width=300pt,center]{img/integration_strategy/steps/high_level_components_lv1.png}
-				\caption{Subsystem integration sequence: step 1.}
-			\end{figure}
+		\begin{figure}[h]
+			\paragraphnewline{Step 1: User Manager, Car Manager}
+			\par\bigskip
+			\includegraphics[width=300pt,center]{img/integration_strategy/steps/high_level_components_lv1.png}
+			\caption{Subsystem integration sequence: step 1.}
+		\end{figure}
 		\FloatBarrier
 
-		\paragraphnewline{Step 2: Access Manager, Parking Manager}
-			\begin{figure}[h]
-				\includegraphics[width=400pt,center]{img/integration_strategy/steps/high_level_components_lv2.png}
-				\caption{Subsystem integration sequence: step 2.}
-			\end{figure}
+		\begin{figure}[h]
+			\paragraphnewline{Step 2: Access Manager, Parking Manager}
+			\par\bigskip
+			\includegraphics[width=400pt,center]{img/integration_strategy/steps/high_level_components_lv2.png}
+			\caption{Subsystem integration sequence: step 2.}
+		\end{figure}
 		\FloatBarrier
 
-		\paragraphnewline{Step 3: Maintenance Manager, Car Employment Manager, Money Saving Option Manager}
-			\begin{figure}[h]
+		\begin{figure}[h]
+				\paragraphnewline{Step 3: Maintenance Manager, Car Employment Manager, Money Saving Option Manager}
+				\par\bigskip
 				\includegraphics[width=\textwidth,center]{img/integration_strategy/steps/high_level_components_lv3.png}
 				\caption{Subsystem integration sequence: step 3.}
 			\end{figure}
 		\FloatBarrier
 
-		\paragraphnewline{Step 4: Backend Manager, Payment Manager}
-			\begin{figure}[h]
-				\includegraphics[width=\textwidth,center]{img/integration_strategy/steps/high_level_components_lv4.png}
-				\caption{Subsystem integration sequence: step 4.}
-			\end{figure}
+		\begin{figure}[h]
+			\paragraphnewline{Step 4: Backend Manager, Payment Manager}
+			\par\bigskip
+			\includegraphics[width=\textwidth,center]{img/integration_strategy/steps/high_level_components_lv4.png}
+			\caption{Subsystem integration sequence: step 4.}
+		\end{figure}
 		\FloatBarrier
 
-		\paragraphnewline{Complete system}
+		\begin{figure}[h]
+			\paragraphnewline{Complete system}
 			The complete system integration is summarized in the following image, displaying also the internal structure of each macrocomponent.
-			\begin{figure}[h]
-				\includegraphics[width=\textwidth,center]{img/integration_strategy/complete_unravelled-steps.png}
-				\caption{Complete system and integration steps.}
-			\end{figure}
+			\par\bigskip
+			\includegraphics[width=\textwidth,center]{img/integration_strategy/complete_unravelled-steps.png}
+			\caption{Complete system and integration steps.}
+		\end{figure}
 		\FloatBarrier
-\hphantom{spaces} % FIXME tempfix for pushing section 3 to new page
