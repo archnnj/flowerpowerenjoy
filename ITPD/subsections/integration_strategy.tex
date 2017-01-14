@@ -16,8 +16,9 @@
 		\item[Application logic] The components on which most of the integration effort will be spent are those intensively described in section \textit{2.2 - Component view} of the DD. These represent the main software components of the system and are responsible to provide the functionalities required by it. In particular, the integration will proceed on two different abstraction layers (one considering only macro-components, the other considering the internal interactions among sub-components), and a particular attention will be paid for the sub-components residing on different machines (e.g.: server and client).
 		\item[View] The view layer won't be affected by the integration process. It will be unit tested during its development, and since its instances are each connected only with a single application logic component, their integration will be straightforward and won't need a delicate testing. The view functioning will be however tested during the more general \textit{system testing} phase. % FIXME ok? Old notes: view unit tested, integration done at the end??, but then why not tested? / main focus on application logic, view just unit tested because dumbly integrated to the rest.
 	\end{description}
+	In this analysis, the website, for its simple and self-contained nature, will not be taken into account as it will not need an integration phase, jumping directly to the system testing phase.	\newline
 
-	As a result, the set of components to be considered for the integration testing becomes definite:
+	As a result, the set of macro-components to be considered for the integration testing becomes definite. Following are enlisted the macro-components on which the integration will be performed (at an internal-level first, and at a system-level after):
 	\begin{itemize}
 		\item \textbf{User Location Handler}
 		\item \textbf{User Management server-side} with subcomponents: Profile Manager, License Manager
