@@ -5,16 +5,12 @@
 		
 		\subsubsection{Stubs}
 		\label{sec:stubs}
-			For \textbf{Payment Manager} integration we will need some program stubs to be required:
+			For the \textbf{Invoice Manager} integration we will need some program stubs:
 			\begin{itemize}
-				\item \textbf{Car Employment Manager} with at least one Ride and one Reservation 
-				\item \textbf{Maintenance Manager} with at least one Report
-				\item \textbf{Money Saving Option Manager}
+				\item \textbf{Payment Handler Stub}: this testing module will emulate the invoked functions belonging to the \textbf{Payment Handler} subcomponent.
+				\item \textbf{Exceptional Payment Handler stub}: this testing module will emulate the invoked functions belonging to the \textbf{Exceptional Payment Handler} subcomponent.
 			\end{itemize} 	
-			
-			%\begin{itemize}
-			%	\item \textbf{•}  
-			%\end{itemize}
+
 		
 		
 		\subsubsection{Drivers}
@@ -25,59 +21,59 @@
 		\begin{description}
 		\item[Localisation Manager]~\\
 			\begin{itemize}
-				\item \textbf{Localisation Driver} this testing module will invoke the methods exposed by the \textbf{Localisation Manager} component.
+				\item \textbf{Localization Driver}: this testing module will invoke the methods exposed by the \textbf{Localization Manager} component.
 			\end{itemize}
 		\item[User Manager]~\\ 
 			\begin{itemize}
-				\item \textbf{User Handler Driver} this testing module will invoke the methods exposed by the \textbf{User Handler} subcomponent.
-				\item \textbf{License Manager Driver} this testing module will invoke the methods exposed by the \textbf{License Manager} subcomponent.
-				\item \textbf{Profile Manager Driver} this testing module will invoke the methods exposed by the \textbf{Profile Manager} subcomponent.
-				\item \textbf{User Manager Driver} this testing module will invoke the methods exposed by the \textbf{User Manager} component.
+				\item \textbf{User Handler Driver}: this testing module will invoke the methods exposed by the \textbf{User Handler} subcomponent.
+				\item \textbf{License Manager Driver}: this testing module will invoke the methods exposed by the \textbf{License Manager} subcomponent.
+				\item \textbf{Profile Manager Driver}: this testing module will invoke the methods exposed by the \textbf{Profile Manager} subcomponent.
+				\item \textbf{User Manager Driver}: this testing module will invoke the methods exposed by the \textbf{User Manager} component.
 			\end{itemize}
 		\item[Car Manager]~\\
 			\begin{itemize}
-				\item \textbf{Car Handler Driver} this testing module will invoke the methods exposed by the \textbf{Car Handler} subcomponent.
-				\item \textbf{Car Manager Driver} this testing module will invoke the methods exposed by the \textbf{Car Manager} component.
+				\item \textbf{Car Handler Driver}: this testing module will invoke the methods exposed by the \textbf{Car Handler} subcomponent.
+				\item \textbf{Car Manager Driver}: this testing module will invoke the methods exposed by the \textbf{Car Manager} component.
 			\end{itemize}
 		\item[Parking Manager]~\\
 			\begin{itemize}
-				\item \textbf{Parking Manager Driver} this testing module will invoke the methods exposed by the \textbf{Parking Manager} component.
+				\item \textbf{Parking Manager Driver}: this testing module will invoke the methods exposed by the \textbf{Parking Manager} component.
 			\end{itemize}
 		\item[Access Manager]~\\ 
 			\begin{itemize}
-				\item \textbf{Registration Driver} this testing module will invoke the methods exposed by the \textbf{Registration} subcomponent.
-				\item \textbf{Login Driver} this testing module will invoke the methods exposed by the \textbf{Login} subcomponent.
-				\item \textbf{Access Manager Driver} this testing module will invoke the methods exposed by the \textbf{Access Manager} component.
+				\item \textbf{Registration Driver}: this testing module will invoke the methods exposed by the \textbf{Registration} subcomponent.
+				\item \textbf{Login Driver}: this testing module will invoke the methods exposed by the \textbf{Login} subcomponent.
+				\item \textbf{Access Manager Driver}: this testing module will invoke the methods exposed by the \textbf{Access Manager} component.
 			\end{itemize}
 		\item[MSO Manager]~\\
 			\begin{itemize}
-				\item \textbf{Parking Distribution Driver} this testing module will invoke the methods exposed by the \textbf{Parking Distribution Handler} subcomponent.
-				\item \textbf{MSO Driver} this testing module will invoke the methods exposed by the \textbf{MSO Manager} component.
+				\item \textbf{Parking Distribution Driver}: this testing module will invoke the methods exposed by the \textbf{Parking Distribution Handler} subcomponent.
+				\item \textbf{MSO Driver}: this testing module will invoke the methods exposed by the \textbf{MSO Manager} component.
 			\end{itemize}
 		\item[Car Employment Manager]~\\
 			\begin{itemize}
-				\item \textbf{Time Manager Driver} this testing module will invoke the methods exposed by the \textbf{Time Manager} subcomponent.
-				\item \textbf{Reservation Driver} this testing module will invoke the methods exposed by the \textbf{Reservation Handler} subcomponent.
-				\item \textbf{Employment Driver} this testing module will invoke the methods exposed by the \textbf{Car Employment Manager} component.
+				\item \textbf{Time Manager Driver}: this testing module will invoke the methods exposed by the \textbf{Time Manager} subcomponent.
+				\item \textbf{Reservation Driver}: this testing module will invoke the methods exposed by the \textbf{Reservation Handler} subcomponent.
+				\item \textbf{Employment Driver}: this testing module will invoke the methods exposed by the \textbf{Car Employment Manager} component.
 			\end{itemize}
 		\item[Maintenance Manager]~\\
 			\begin{itemize}
-				\item \textbf{Report Status Driver} this testing module will invoke the methods exposed by the \textbf{Report Status Handler} subcomponent.
-				\item \textbf{Report Driver} this testing module will invoke the methods exposed by the \textbf{Emergency Report Handler} subcomponent.
-				\item \textbf{Operators Driver} this testing module will invoke the methods exposed by the \textbf{Operators Handler} subcomponent.
-				\item \textbf{Maintenance Driver} this testing module will invoke the methods exposed by the \textbf{Maintenance Manager} component.
+				\item \textbf{Report Status Driver}: this testing module will invoke the methods exposed by the \textbf{Report Status Handler} subcomponent.
+				\item \textbf{Report Driver}: this testing module will invoke the methods exposed by the \textbf{Emergency Report Handler} subcomponent.
+				\item \textbf{Operators Driver}: this testing module will invoke the methods exposed by the \textbf{Operators Handler} subcomponent.
+				\item \textbf{Maintenance Driver}: this testing module will invoke the methods exposed by the \textbf{Maintenance Manager} component.
 			\end{itemize}	
 		\item[BackEnd Manager]~\\
 			\begin{itemize}
-				\item \textbf{Backend Driver} this testing module will invoke the methods exposed by the \textbf{BackEnd Manager} subcomponent.
+				\item \textbf{Backend Driver}: this testing module will invoke the methods exposed by the \textbf{BackEnd Manager} subcomponent.
 			\end{itemize}
 		\item[Payment Manager]~\\ 
 			\begin{itemize}
-				\item \textbf{Payment Handler Driver} this testing module will invoke the methods exposed by the \textbf{Payment Handler} subcomponent.
-				\item \textbf{Dicounts and Sanctions Handler Driver} this testing module will invoke the methods exposed by the \textbf{Dicounts and Sanctions Handler} subcomponent.
-				\item \textbf{Exceptional Handler Driver} this testing module will invoke the methods exposed by the \textbf{Exceptional Payment Handler} subcomponent.
-				\item \textbf{Invoice Manager Driver} this testing module will invoke the methods exposed by the \textbf{Invoice Manager} subcomponent.
-				\item \textbf{Payment Manager Driver} this testing module will invoke the methods exposed by the \textbf{Payment Manager} component.
+				\item \textbf{Payment Handler Driver}: this testing module will invoke the methods exposed by the \textbf{Payment Handler} subcomponent.
+				\item \textbf{Dicounts and Sanctions Handler Driver}: this testing module will invoke the methods exposed by the \textbf{Dicounts and Sanctions Handler} subcomponent.
+				\item \textbf{Exceptional Handler Driver}: this testing module will invoke the methods exposed by the \textbf{Exceptional Payment Handler} subcomponent.
+				\item \textbf{Invoice Manager Driver}: this testing module will invoke the methods exposed by the \textbf{Invoice Manager} subcomponent.
+				\item \textbf{Payment Manager Driver}: this testing module will invoke the methods exposed by the \textbf{Payment Manager} component.
 			\end{itemize}
 		
 		\end{description}
