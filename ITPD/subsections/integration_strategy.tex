@@ -54,24 +54,24 @@
 
 	This strategy allows for a close interaction between the development phase and the proper testing phase, with a benefit for the quality of the software-to-be as well as for the project management. The goal set with this choice is to make development and testing actually going in parallel during standard operating periods. %% a regime, come si dice!!
 	% TODO sth more about it?
-	The approach used to integrate the different subcomponents inside a single macrocomponent is instead selected according to its level of criticality; in particular, the choice revolves around a "nested" bottom-up approach on one hand, and a more complex critical-first approach on the other.
-	A criticality analysis underlines the following critical macrocomponents.
+	The approach used to integrate the different subcomponents inside a single macro-component is instead selected according to its level of criticality; in particular, the choice revolves around a "nested" bottom-up approach on one hand, and a more complex critical-first approach on the other.
+	A criticality analysis underlines the following critical macro-components.
 	\begin{itemize}
 		\item \textbf{Car Manager.} The integration of the car system software with the underlying hardware and the sensors it is managing involves a moderate number of uncontrollable variables and introduces with them a certain amount of risk. In fact, it is the only point of contact with the actual car, thus becoming the contact point between two rather complex systems.
-		\item \textbf{Money Saving Option Manager.} Even if not crucial for the basic functioning of the system, this macrocomponent is responsible for a large amount of computations, carried on by means of complex algorithms. These must be tested as soon as possible in order to obtain the desired results. In addition, the main algorithm provided by the \textit{Parking Distribution Handler} is designed to be implemented with the not-so-common paradigm of fuzzy logic (see DD \textit{section 3}), and as any not-well-spread development tool, this may suffer for less stability and minor flaws, which must be discovered and managed as soon as possible.
+		\item \textbf{Money Saving Option Manager.} Even if not crucial for the basic functioning of the system, this macro-component is responsible for a large amount of computations, carried on by means of complex algorithms. These must be tested as soon as possible in order to obtain the desired results. In addition, the main algorithm provided by the \textit{Parking Distribution Handler} is designed to be implemented with the not-so-common paradigm of fuzzy logic (see DD \textit{section 3}), and as any not-well-spread development tool, this may suffer for less stability and minor flaws, which must be discovered and managed as soon as possible.
 		\item \textbf{Payment Manager.} The payment handling is known to be one of the most critical activities since it involves money transactions. In particular, since the system relies on an external company for the actual payment realizations, its most critical subcomponent is the Invoice Manager, responsible for the interactions with the external \textit{Payment Services Provider}.
 	\end{itemize}
-	As a result, when the said macrocomponents are to be developed, their internal integration will follow a critical-first approach. This increases the chances that any significant problem is found as soon as possible, and therefore should provide benefits in the project management (rescheduling of tasks, reallocation of resources, etc.) aside from the integration process itself.
+	As a result, when the said macro-components are to be developed, their internal integration will follow a critical-first approach. This increases the chances that any significant problem is found as soon as possible, and therefore should provide benefits in the project management (rescheduling of tasks, reallocation of resources, etc.) aside from the integration process itself.
 	% TODO should say here which is the order for these? or in section 2.4?
 
-	The rest of the macrocomponents, given their less risky nature, will be internally developed following a bottom-up strategy, where the subcomponents are considered all equally-critical and only the "need" dependencies will drive the process.
+	The rest of the macro-components, given their less risky nature, will be internally developed following a bottom-up strategy, where the subcomponents are considered all equally-critical and only the "need" dependencies will drive the process.
 \FloatBarrier
 
 \subsection{Sequence of component/function integration}
 	% see assignment pdf for a non mandatory guide on the structure of this subsection
 	% - image of the division bottom up, maybe just with macrocomponents, and explaination
 	% - [before or after] details on the single integrations?
-	In the present section, the general criteria outlined before are translated to the actual sequence of integration steps to follow in the development and testing of the system. Their presentation will be made exploiting two levels of detail, in a bottom-up fashion: \autoref{sec:software_integration_sequence} refers to the integration of the various subcomponents in the context of a particular macrocomponent, while \autoref{sec:subsystem_integration_sequence} increases the abstraction level, focusing on how the different macrocomponents will be assembled to form the whole system.
+	In the present section, the general criteria outlined before are translated to the actual sequence of integration steps to follow in the development and testing of the system. Their presentation will be made exploiting two levels of detail, in a bottom-up fashion: \autoref{sec:software_integration_sequence} refers to the integration of the various subcomponents in the context of a particular macro-component, while \autoref{sec:subsystem_integration_sequence} increases the abstraction level, focusing on how the different macro-components will be assembled to form the whole system.
 
 	\subsubsection{Software integration sequence}
 	\label{sec:software_integration_sequence}
@@ -210,7 +210,7 @@
 		% - list of integration steps for each subsystem until the whole system is completed
 		% - images for each level only with components already integrated (progress status)
 		% - at the end image with all levels highlighted (in a single image)
-		The integration of the macrocomponents is performed, as said, in a bottom-up fashion. Below are the 5 steps in which this process has been divided for scheduling reasons. Inside a single step, multiple macrocomponents participate in the integration, each one relying on the macrocomponents in the previous levels.
+		The integration of the macro-components is performed, as said, in a bottom-up fashion. Below are the 5 steps in which this process has been divided for scheduling reasons. Inside a single step, multiple macro-components participate in the integration, each one relying on the macro-components in the previous levels.
 
 		\begin{figure}[h]
 			\paragraphnewline{Step 0: Localization Manager}
@@ -255,7 +255,7 @@
 
 		\begin{figure}[h]
 			\paragraphnewline{Complete system}
-			The complete system integration is summarized in the following image, displaying also the internal structure of each macrocomponent.
+			The complete system integration is summarized in the following image, displaying also the internal structure of each macro-component.
 			\par\bigskip
 			\includegraphics[width=\textwidth,center]{img/integration_strategy/complete_unravelled-steps.png}
 			\caption{Complete system and integration steps.}
