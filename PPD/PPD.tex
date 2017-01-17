@@ -1,0 +1,85 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % to embed images
+\usepackage{rotating}
+\usepackage{hyperref} % to link the table of contents
+\usepackage{subcaption} %complex images
+\usepackage{placeins} %floating
+\usepackage{pdflscape} %to allow single pages in landscape mode
+\usepackage[top=1.25in, bottom=1.25in, left=1in, right=1in]{geometry}
+\usepackage{verbatim} % include raw text file (for Alloy)
+\usepackage[ruled, vlined]{algorithm2e} % algorithms
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{enumitem}
+
+
+\title{Project Plan Document}
+\date{2017-01-15}
+\author{
+	Patricia Abbud
+	\and
+	Maddalena Andreoli Andreoni
+	\and
+	Paolo Cudrano
+}
+
+\begin{document}
+	%%% titlepage %%%
+	\begin{titlepage}
+		\centering
+		\includegraphics[width=5cm]{img/polimi_logo.png} % also works with logo.pdf
+		\vfill
+		{\bfseries\Large
+			PowerEnJoy\\
+			Project Plan Document\\
+			Version 1
+			\vskip4cm
+			Patricia Abbud\\
+			Maddalena Andreoli Andreoni\\
+			Paolo Cudrano\\
+		}
+		\vfill
+		\vfill
+	\end{titlepage}
+
+	%%% table of contents %%%
+	\tableofcontents
+	\newpage
+
+	\section{Introduction}
+%		\input{subsections/introduction.tex}
+
+%TODO acronyms: LOC, COCOMO, FP
+
+	\newpage
+	\section{Project Size, Cost and Effort Estimation}
+		\input{subsections/size_cost_effort_estimation.tex}
+
+	\newpage
+	\section{Schedule}
+%		\input{subsections/schedule.tex}	
+
+	\newpage
+	\section{Resource allocation}
+%		\input{subsections/resources.tex}
+
+	\newpage
+	\section{Risk management}
+%		\input{subsections/risk_management.tex}
+
+
+	\newpage
+	\section{Effort spent}
+		\begin{description}
+%			\item[Abbud, Patricia] around xx hours of work;
+%			\item[Andreoli Andreoni, Maddalena] around xx hours of work;
+%			\item[Cudrano, Paolo] around xx hours of work.
+		\end{description}
+
+	\newpage
+	\section{Appendix}
+	\listoffigures
+
+\end{document}
