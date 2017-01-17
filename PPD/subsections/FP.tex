@@ -10,7 +10,7 @@ The system of \textit{PowerEnJoy} will require a series of ILFs to provide the r
 	\item \textbf{Operators and Admins}: the system needs to store information also about the back-end users, i.e. the operators and the admins: those will be characterized with a username, a password, their full name and email address, and their role.
 	\item \textbf{Emergency Reports}: for the system to work even in case of emergencies, it needs to track emergency reports. They will be linked to a particular ride (and a car and a user through it) and an Operator.
 	\item \textbf{Parameters}: the admins must be able to modify some of the parameters of the system; those parameters will have a name, a description and a value.
-%	\item \textbf{Fees}???
+	\item \textbf{Fees}: all fees must be linked to a user and a particular ride.
 \end{itemize}
 
 Using the previosly defined tables, we obtain the following FP count: %TODO previously defined tables
@@ -26,11 +26,32 @@ Using the previosly defined tables, we obtain the following FP count: %TODO prev
 		Operators/Admins & Low & 7\\ \hline
 		Emergency Reports & Average & 10\\ \hline
 		Parameters & Low & 7\\ \hline
-		\multicolumn{2}{|l|}{\textbf{Total:}}& 81 \\ \hline
+		Fees & Average & 10\\ \hline
+		\multicolumn{2}{|l|}{\textbf{Total:}}& 91 \\ \hline
 	\end{tabular}
 
 
 \subsubsection{External Interface Files (ELFs)}
+\textit{PowerEnJoy} relies on one external data source, that is the Location Services Provider. 
+There are a series of interactions between the system and the Location Services Provider:
+
+	\begin{itemize}
+		\item Given an address, return the coordinates of said address;
+		\item Given a user's GPS, return the coordinates of their position;
+		\item Given two locations, return the approximate distance between the two;
+		\item Retrieve the graphical representation of the map on the user's phone (i.e. on a client).
+	\end{itemize}
+
+We thus obtain the following FP count: 
+
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{ELF} & \textbf{Complexity} & \textbf{FP}\\ \hline
+		Distance computation & High & 10 \\ \hline
+		Geolocation & High & 10
+		Map retrieval & Average & 7
+		\multicolumn{2}{|l|}{\textbf{Total:}}& 27 \\ \hline
+	\end{tabular}
 
 \subsubsection{External Input (EIs)}
 
