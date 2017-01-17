@@ -1,4 +1,34 @@
 \subsubsection{Internal Logic Files (ILFs)}
+The system of \textit{PowerEnJoy} will require a series of ILFs to provide the required functionalities. In this section we will quickly list them and then offer an overall evaluation.
+
+\begin{itemize}
+	\item \textbf{Users}: the system needs to store information about all users in order to correctly function. These data all belong to a set of three tables containing their payment information (credit card number, expiration date, CVV), driving license information (driving license number, expiration date, issued date) and account information (full name, username, password, telephone number, email). %FIXIT is this right??? Can we talk about tables even if the DB haven't been designed yet, technically?
+	\item \textbf{Parking areas}: we will need to store all the information about parking areas. In particular, whether they are recharging areas, how many slots they have and their location. The system will also have to know the number of available slots at a given time.
+	\item \textbf{Cars}: the system will need to store information about its cars, most notably their plate number, their location and their status.
+	\item \textbf{Rides}: the system will need to keep track of the rides; rides will be linked to a car and a user, and will have a duration and applied discounts or sanctions. 
+	\item \textbf{Reservations}: the system will also need to keep track of the reservations; those will be linked to a car and a user as well, and they will have a time period. 
+	\item \textbf{Operators and Admins}: the system needs to store information also about the back-end users, i.e. the operators and the admins: those will be characterized with a username, a password, their full name and email address, and their role.
+	\item \textbf{Emergency Reports}: for the system to work even in case of emergencies, it needs to track emergency reports. They will be linked to a particular ride (and a car and a user through it) and an Operator.
+	\item \textbf{Parameters}: the admins must be able to modify some of the parameters of the system; those parameters will have a name, a description and a value.
+%	\item \textbf{Fees}???
+\end{itemize}
+
+Using the previosly defined tables, we obtain the following FP count: %TODO previously defined tables
+
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{ILF} & \textbf{Complexity} & \textbf{FP}\\ \hline
+		Users & Average & 10\\ \hline
+		Parking Areas & Average & 10\\ \hline
+		Cars & Low & 7\\ \hline
+		Rides & High & 15\\ \hline
+		Reservations & High & 15\\ \hline
+		Operators/Admins & Low & 7\\ \hline
+		Emergency Reports & Average & 10\\ \hline
+		Parameters & Low & 7\\ \hline
+		\multicolumn{2}{|l|}{\textbf{Total:}}& 81 \\ \hline
+	\end{tabular}
+
 
 \subsubsection{External Interface Files (ELFs)}
 
