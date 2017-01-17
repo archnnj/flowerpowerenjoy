@@ -17,7 +17,7 @@ Using the previosly defined tables, we obtain the following FP count:\\ %TODO pr
 
 	\begin{tabular}{|l|l|l|}
 		\hline
-		\textbf{ILF} & \textbf{Complexity} & \textbf{FP}\\ \hline
+		\textbf{ILF} & \textbf{Complexity} & \textbf{FPs}\\ \hline
 		Users & Average & 10\\ \hline
 		Parking Areas & Average & 10\\ \hline
 		Cars & Low & 7\\ \hline
@@ -46,7 +46,7 @@ We thus obtain the following FP count: \\
 
 	\begin{tabular}{|l|l|l|}
 		\hline
-		\textbf{ELF} & \textbf{Complexity} & \textbf{FP}\\ \hline
+		\textbf{ELF} & \textbf{Complexity} & \textbf{FPs}\\ \hline
 		Distance computation & High & 10 \\ \hline
 		Geolocation & High & 10\\ \hline
 		Map retrieval & Average & 7\\ \hline
@@ -54,6 +54,46 @@ We thus obtain the following FP count: \\
 	\end{tabular}
 
 \subsubsection{External Input (EIs)}
+This section will recite and evaluate the interactions between \textit{PowerEnJoy}'s system and users. \\
+
+All users:\\
+	\begin{itemize}
+		\item \textbf{Login/Logout}: these are farily simple operations, so we can adopt the simple weight for both of them: it contributes $2\times3=6 FPs$ .
+		%LOCATION??? 
+	\end{itemize}
+
+Front-end users (and guests):\\ %front-end users??
+	\begin{itemize}
+		\item \textbf{Register}: this operation is fairly complex as it requires a lot of external input to be submittet: it contributes $6 FPs$.
+		\item \textbf{Change account settings}: this operation is elementary, hence we apply the simple weight for it: it contributes $3 FPs$.
+		\item \textbf{Reserve a car}: this is a very complex operation that involves a large number of components: it contributes $6 FPs$.
+	\end{itemize}
+
+Operators:\\
+	\begin{itemize}
+		\item \textbf{Change emergency report status}: this is an average operation since the status of an emergency report has consequences for the car and the ride, hence it contributes $4 FPs$.
+		%something else?
+	\end{itemize}
+
+Administrators:\\
+	\begin{itemize}
+		\item \textbf{Change system parameters}: this is an average operation, because it involves a number of checks in the field validity. So it contributes $4 FPs$.
+	\end{itemize}
+
+So, to summarize: \\
+
+\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{EI} & \textbf{Complexity} & \textbf{FPs}\\ \hline
+		Login/Logout & Low & $2\times3=6$\\ \hline
+		Register & High & 6\\ \hline
+		Change account settings & Low & 3\\ \hline
+		Reserve a car & High & 6\\ \hline
+		Change Emergency report status & Average & 4\\ \hline
+		Change system parameters & Agerage & 4\\ \hline
+		\multicolumn{2}{|l|}{\textbf{Total:}}& 29 \\ \hline
+	\end{tabular}
+
 
 \subsubsection{External Inquiries (EIQs)}
 
