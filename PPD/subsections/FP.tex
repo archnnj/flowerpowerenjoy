@@ -82,7 +82,7 @@ Administrators:\\
 
 So, to summarize: \\
 
-\begin{tabular}{|l|l|l|}
+	\begin{tabular}{|l|l|l|}
 		\hline
 		\textbf{EI} & \textbf{Complexity} & \textbf{FPs}\\ \hline
 		Login/Logout & Low & $2\times3=6$\\ \hline
@@ -96,6 +96,50 @@ So, to summarize: \\
 
 
 \subsubsection{External Inquiries (EIQs)}
+\textit{PowerEnJoy} supports many possible external inquiries performed by various users:\\
+
+%Location here??
+Users: \\
+	\begin{itemize}
+		\item Retrieve information about available cars;
+		\item Retrieve information about parking areas nearby;
+		\item Retrieve information about their ride;
+		\item See their profile.
+		%more?
+	\end{itemize}
+
+Operators: \\
+	\begin{itemize}
+		\item Retrieve information about a selected car;
+		\item Retrieve information about an emergency report;
+		\item See their profile.
+	\end{itemize}
+	
+Administrators:\\
+ 	\begin{itemize}
+ 		\item Retrieve information about a selected car;
+ 		\item Retrieve information about operators;
+ 		\item Retrieve information about parameters;
+ 		%surely there's more
+ 	\end{itemize}
+ 	
+Here is how we evaluated the complexity of each of these functionalities:\\
+
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{EIQ} & \textbf{Complexity} & \textbf{FPs}\\ \hline
+		Available cars & High & 6\\ \hline
+		Parking areas & High & 6\\ \hline
+		Ride & Average & 4\\ \hline
+		Profile & Low & 3\\ \hline
+		Selected car & Average & 4\\ \hline
+		Emergency Report & Average & 4\\ \hline
+		Operators & Average & 4\\ \hline
+		Parameters & Low & 3\\ \hline
+		\multicolumn{2}{|l|}{\textbf{Total:}}& 34 \\ \hline
+	\end{tabular}
+
+
 
 \subsubsection{External Outputs (EOs)}
 
