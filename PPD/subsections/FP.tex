@@ -142,7 +142,38 @@ Here is how we evaluated the complexity of each of these functionalities:\\
 
 
 \subsubsection{External Outputs (EOs)}
+The system is also expected to communicate with the user even outside inquiries. There are a few occasions in which this happens, most notably:
 
-\subsubsection{Un-adjusted function points (UFPs)}
+	\begin{enumerate}
+		\item Notify the user when a payment has been invoiced (normal fees or fines) and how much;
+		\item Notify the user that he is driving out of city boundaries;
+		\item Notify the administrators that a car requires assistance; %is this right??
+		\item Nofity the operators that they have been dispatched.
+	\end{enumerate}
 
-\subsubsection{Adjusted function points}
+While the last three are operations of average complexity, the first one is fairly complex because it requires interactions also with the Payment Services Provider. So, to make the sum:\\
+
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{EOs} & \textbf{Complexity} & \textbf{FPs}\\ \hline
+		Payment notification & High & 7\\ \hline
+		Out of boundary notification & Average & 5\\ \hline
+		Assistance notification & Average & 5\\ \hline
+		Dispatch notification & Average & 5\\ \hline
+		\multicolumn{2}{|l|}{\textbf{Total:}}& 22 \\ \hline
+	\end{tabular}
+
+
+\subsubsection{Overall estimate: Unadjusted and adjusted function points}
+The following table summarizes the sum of the so-called UFP, i.e. the unadjusted function points:\\
+
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Function Type} & \textbf{Value}\\ \hline
+		Internal Logic Files & 91\\
+		External Logic Files & 27\\
+		External Inputs & 29\\
+		External Inquiries & 34\\
+		External Outputs & 22\\ \hline
+		Total & 203FPs\\ \hline
+	\end{tabular}
