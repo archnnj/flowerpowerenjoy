@@ -1,0 +1,21 @@
+In this section we will use the COCOMO II approach in order to estimate the cost and effort required by \textit{PowerEnJoy}'s development. \\
+
+We will use the results drawn in \autoref{sec:FP} and the estimated Source Lines of Code to use as values in COCOMO II equations. To decide on the values of scale factors and cost drivers, we will refer to the official COCOMO II manual (see \autoref{sec:references} for hyperlink and further detail). The reference tables will be re-drawn for readability in each section, referencing them as \textit{"CII modelman"}.\\
+
+The following equations will be used to calculate the effort (in persons month) and duration (in months) of our project:
+
+		\paragraph{}\(Effort = A \times EAF \times KSLOC^E\)\\
+wherein
+		\paragraph{}\(E = B + 0.01 \times \sum_{j=1}^{5}SF_j\)\\
+is the exponent (B is a constant that in COCOMO II has value $B=0.91$), A is a constant that in COCOMO II has value $A=2.94$, and
+		\paragraph{}\(EAF = \prod_{i=1}^{17}CD_i \).\\
+
+For the duration, we will use the following formula:
+		\paragraph{}\(Duration = C \times Effort^F\)\\
+where $C=3.67$ and
+		\paragraph{}\(F = D + 0.2 \times (E - B) = 0.28 + 0.2 \times ( E - 0.91 )\).
+
+
+\subsubsection{Scale Factors}
+
+Scale factors (SF) are used to "account for the relative economies or diseconomies of scale encountered for software projects of different sizes" [Banker et al. 1994]. They are used to calculate 
