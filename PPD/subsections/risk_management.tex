@@ -1,1 +1,39 @@
 % TODO
+
+% Outline: (see also slides "advanced")
+% look at their example + at slides examples!
+% proactive strategy
+% for each risk:
+	% description
+	% category? (maybe not, less risks to make mistake)
+	% probability: {L,M,H} + expl
+	% impact: {negligible, marginal, critical, catastrophic} + expl
+	% contingency plan if needed
+% risks list - contextualize them a little maybe:
+% - (T) data loss (db, code?) --> backups, versioning, cloud for documents
+% - (P/B) people sick * or fired or quit (Personnel shortfall) --> shit, not much we can do; we should organize our team so that we all understand each other's work and at least 2 people have enough knowledge of the same part/domain + reorganize as much as possible + keep connected so that we can quickly reschedule stuffs
+% - (B) changes in laws (eg. ...)? --> keep up to date and prepare in advance where rumors heard
+% - (P) errors in schedule or budget --> take care of estimate + contigencies, and in case evaulate buy-in solutions, also in advance (to be prepared).
+% - (B) budget changes * --> can't do a lot: change from internal decision, ok, guess it's considered that i won't finish this; change from external decision (clients) --> make sure I have a contract to be paid anyway
+% - (P) wrong functionality --> suppose the RASD has been validated --> each change is charged to the clients
+% - (P?) Wrong user interface --> mockups validated, same as before + usability tested in (alpha)/beta, may cause little delays --> validated multiple times during the development
+% - (P) Goldplating (refine to much stuffs and not do actual requirements) --> schedules defined and updated, requirements checked, policy to avoid going too forth (eg. when req met, no more than 2 hours spent refining, otherwise contracted with clients for special ideas)
+% - Requirements volatility --> every schedule based on RASD, whatever changes may change the schedule, the clients know and accept this at beginning --> not a real risk
+% - Bad external components --> BIG issue! we assume everything fine with cars, sensors, payment, map service! In particular, map ok, payment should be too (both well spread and tested), but what about the car and the sensors system? No one (or so) uses it, and it's a really important part for us! --> do tests and check them before and more often; do check also payment at beginning, even if not implem yet + explore if there are assistance plans in case we need them
+% - Bad external tasks --> payment/maps goes here maybe? same as before
+% - Real-time shortfalls (lack of time?) --> exagerate the estimate a little bit to have enough contingency time; avoid inserting new people on late projects for brooke's law, eventually try to have backup people from the beginning! Here, we are just 3 --> anything can create delays, so just have a good contingency and pray!
+% - Capability shortfalls --> feasibility accurate, with tests to actual external services, components, also the sensors system (if not in feasibility at least in requirements or early design, as a branch of the main documentational activity), plan/design accurately and make sure people know what they're going to do; use languages/technology already known if possible since we're a small team. JEE known, I know Android and sth Obj-C and good web, and also others knows web, so main issues can arise with Windows Phone --> take that into account, at most we can publish the other and reduce the risks to just this one.
+
+% - It is impossible to recruit staff with the skills required for the project. --> tell the customers in advance that i may have to hire people; if it happens, tell them and investigate buying-in components.
+% - Faults in reusable software components have to be repaired before these components are reused. --> issues with libraries and frameworks for example, particular for the ones not many use. Before chosing them, make a good analysis on internet of criticalities and reviews, in particular open issues. If issues with my previous projects software, estimate time to fix and in case look for buy alternatives 
+% - Changes to requirements that require major design rework are proposed --> proper design should allow for little modifications without restructuring a lot the system; traceability should be done while designing --> I guess I'll not mention this point xD
+% - The organization is restructured so that different management are responsible for the project --> skip, it's our company(?) v.v
+% - The database used in the system cannot process as many transactions per second as expected --> scalability issue!! estimates done + time and money contingency has been considered for testing the production resources with real world data and in case buying more resources (cloud is really easy, but it costs --> must be considered for budget)
+
+% - changes to external providers interfaces --> for some we maybe don't even have a contract (google maps) --> they are completely free to change goddamit! --> contingency time for these parts, be aware that this may happen the most when updating libraries (for dependency chains) so plan the updates!, always keep an eye on possible alternatives!
+% - changes in costs of cloud plans, especially while in prod --> evaulate if convenient to stay or change provider --> code must be portable!
+
+% for unpredictable risks not considered, have a time contingency
+
+% in addition, to prevent:
+% - Encourage all stakeholders and users to point out risks at any time
