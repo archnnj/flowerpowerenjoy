@@ -26,27 +26,54 @@ Being able to manage and properly recover from any issue that may arise working 
 			\end{itemize}
 	\end{description}
 
+\subsection*{Data loss}
+	\begin{description}
+		\item[Description] Some loss of data or code might happen due to the failure of one or more machines.
+		\item[Probability] Low: modern hardware has a very low failure ratio.
+		\item[Impact] Catastrophic: a loss of important data about the employment of the cars can lead to important economic consequences.
+		\item[Contingency] This is a very standard problem to tackle. Data are preserved using a backup system, often included in the cloud services solution. The backup interval will be scaled on the average frequency of changes to the data itself: for instance, a daily backup is considered to be sufficient for static users' and cars' data, while a hourly backup is more suited for the actual employment data.\newline
+		The software code will be preserved instead adopting cloud repositories as storage and versioning systems. Occasional backups of the developers machines may be programmed.
+	\end{description}
+
+\subsection*{Changes in laws or regulations}
+	\begin{description}
+		\item[Description] National traffic laws and car sharing regulations may change in the future. Besides, the procedures used to validate the licenses may be subjected to modifications.
+		\item[Probability] Low: an analysis of the past variations to this subjects reveals that only few and rare modifications have been made in the past years, and almost all of them do not affect our application domain.
+		\item[Impact] Serious/Catastrophic: highly dependent on the nature of the changes, it may require from few modifications to a general reorganization of our system. It may also require us to withdraw our system from the market.
+		\item[Contingency] The only precaution we can take is to constantly keep ourselves updated on the matter and analyze the eventual modifications as soon as they are proposed. In addition, a good design and development will help to perform quick and low-cost modifications if needed.
+	\end{description}
+
+\subsection*{Wrong functionalities or user interface}
+	\begin{description}
+		\item[Description] After the development, the functionalities or the user interface for accessing them do not fulfill the needs of the stakeholders.
+		\item[Probability] Low: since an explicit validation is required for the feasibility study and the RASD, there is less probability for this to happen.
+		\item[Impact] Serious: some parts of the system and its UI might be restructured or completely redesigned, causing considerable delays in the delivery of the system.
+		\item[Contingency] A validation is requested not only for the RASD, but also for the DD, organizing if needed a meeting to explain our main stakeholders the key points and especially the limits of the proposed architecture. After this phase, periodical meeting are scheduled, to get internal validations of the components already implemented. This meetings will be more frequent as the project progresses, in order to have feedbacks on working pieces of the system.\newline
+		The UI will also be validated, firstly with the mockups presented in the RASD, and later in the same meetings described before.\newline
+		Alpha and beta testing will be planned as well, to tackle also possible usability issues.
+	\end{description}
+
 % Outline: (see also slides "advanced")
 % look at their example + at slides examples!
 % proactive strategy
 % for each risk:
 	% description
-	% category? (maybe not, less risks to make mistake)
+	% category? (maybe not, less risks to make mistake) --> no
 	% probability: {L,M,H} + expl
 	% impact: {negligible, marginal, critical, catastrophic} + expl
 	% contingency plan if needed
 % risks list - contextualize them a little maybe:
-% - (T) data loss (db, code?) --> backups, versioning, cloud for documents
+% x (T) data loss (db, code?) --> backups, versioning, cloud for documents
 % x (P/B) people sick * or fired or quit (Personnel shortfall) --> shit, not much we can do; we should organize our team so that we all understand each other's work and at least 2 people have enough knowledge of the same part/domain + reorganize as much as possible + keep connected so that we can quickly reschedule stuffs
-% - (B) changes in laws (eg. ...)? --> keep up to date and prepare in advance where rumors heard
-% - (P) errors in schedule or budget --> take care of estimate + contigencies, and in case evaulate buy-in solutions, also in advance (to be prepared).
+% x (B) changes in laws (eg. ...)? --> keep up to date and prepare in advance where rumors heard
+% - (P) schedule or budget --> take care of estimate + contigencies, and in case evaulate buy-in solutions, also in advance (to be prepared).
 % - (B) budget changes * --> can't do a lot: change from internal decision, ok, guess it's considered that i won't finish this; change from external decision (clients) --> make sure I have a contract to be paid anyway
-% - (P) wrong functionality --> suppose the RASD has been validated --> each change is charged to the clients
-% - (P?) Wrong user interface --> mockups validated, same as before + usability tested in (alpha)/beta, may cause little delays --> validated multiple times during the development
+% x (P) wrong functionality --> suppose the RASD has been validated --> each change is charged to the clients
+% x Requirements volatility --> every schedule based on RASD, whatever changes may change the schedule, the clients know and accept this at beginning --> not a real risk
+% x (P?) Wrong user interface --> mockups validated, same as before + usability tested in (alpha)/beta, may cause little delays --> validated multiple times during the development
 % - (P) Goldplating (refine to much stuffs and not do actual requirements) --> schedules defined and updated, requirements checked, policy to avoid going too forth (eg. when req met, no more than 2 hours spent refining, otherwise contracted with clients for special ideas)
-% - Requirements volatility --> every schedule based on RASD, whatever changes may change the schedule, the clients know and accept this at beginning --> not a real risk
 % x Bad external components --> BIG issue! we assume everything fine with cars, sensors, payment, map service! In particular, map ok, payment should be too (both well spread and tested), but what about the car and the sensors system? No one (or so) uses it, and it's a really important part for us! --> do tests and check them before and more often; do check also payment at beginning, even if not implem yet + explore if there are assistance plans in case we need them
-% - Bad external tasks --> payment/maps goes here maybe? same as before
+% x Bad external tasks --> payment/maps goes here maybe? same as before
 % - Real-time shortfalls (lack of time?) --> exagerate the estimate a little bit to have enough contingency time; avoid inserting new people on late projects for brooke's law, eventually try to have backup people from the beginning! Here, we are just 3 --> anything can create delays, so just have a good contingency and pray!
 % - Capability shortfalls --> feasibility accurate, with tests to actual external services, components, also the sensors system (if not in feasibility at least in requirements or early design, as a branch of the main documentational activity), plan/design accurately and make sure people know what they're going to do; use languages/technology already known if possible since we're a small team. JEE known, I know Android and sth Obj-C and good web, and also others knows web, so main issues can arise with Windows Phone --> take that into account, at most we can publish the other and reduce the risks to just this one.
 
