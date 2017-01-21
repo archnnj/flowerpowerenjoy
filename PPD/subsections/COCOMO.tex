@@ -79,6 +79,8 @@ There are seventeen post-architecture cost drivers, which are multipliers used i
 	\subsubsection*{Product Factors}
 	Product factors are needed to account for the variations in the effort required caused by the characteristics of the software under development. There are five of them:
 	
+	
+	
 		\begin{itemize}
 			\item \textbf{RELY}: RELY measures the "extent to which the software must perform its intended
 function over a period of time"\footnote{CII modelman, page 25}. We decided to set it to \textbf{High} in order to keep into consideration the potential finantial losses caused by an accident in the car (even though the car itself is not driven by the system, a failure in notifying some problems with it may have undesired effects) and consequent risks to the driver. 
@@ -96,8 +98,11 @@ function over a period of time"\footnote{CII modelman, page 25}. We decided to s
 		\end{center}
 		
 		
+		
+		
 		\begin{itemize}
-			\item \textbf{DATA} %TODO
+			\item \textbf{DATA}: this cost driver tries to "capture the effect large test data requirements have on
+product development"\footnote{CII modelman, page 26}. It is determined by calculating D/P, i.e. the size of the test database in bytes on the SLOC of the program. We have estimated our test database to be in the order of magnitude of 10 megabytes ($10^7 bytes$). Even if we count our SLOC with the average estimation of $\sim 9K SLOC$, the result is greater than 1000. Hence, the value of the cost driver DATA for us is \textbf{Very High}.
 		\end{itemize}
 		
 		\begin{center}
@@ -108,5 +113,114 @@ function over a period of time"\footnote{CII modelman, page 25}. We decided to s
 				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
 			
 				\textbf{Effort multipliers} & n/a & 0.90 & 1.00 & 1.14 & 1.28 & n/a\\ \hline
+			\end{tabular}
+		\end{center}
+		
+		
+		
+		
+		\begin{itemize}
+			\item \textbf{CPLX}: Product Complexity is evaluated based on 5 factors, which are control operations, computational operations, device-dependent operations, data management operations, user interface management operations. Since we expect to have fairly complex operations concerning computation, devices, data management and user interface management, the complexity is set to \textbf{High}.
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & 0.73 & 0.87 & 1.00 & 1.17 & 1.34 & 1.74\\ \hline
+			\end{tabular}
+		\end{center}
+		
+		
+		
+		
+		\begin{itemize}
+			\item \textbf{RUSE}: RUSE means Developed for Reusability. This cost driver was set to \textbf{Nominal} since we probably won't need the additional effort required to develop components for reusability outside of the project itself.
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{RUSE Descriptors} & & none & across project & across program & across product line & across multiple product lines\\ \hline
+			
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & n/a & 0.95 & 1.00 & 1.07 & 1.15 & 1.24\\ \hline
+			\end{tabular}
+		\end{center}
+		
+		
+		
+
+		\begin{itemize}
+			\item \textbf{DOCU}: the DOCU cost driver accounts for the dimensioning of the documentation with respect to the life-cycle needs. This driver is set to very low if the documentation is next to none and very high if the documentation is excessive. We set this value to \textbf{Nominal}.
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{DOCU Descriptors} & Many life-cycle needs uncovered & Some life-cycle needs uncovered & Right-sized to life-cycle needs & Excessive for life-cycle needs & Very excessive for life-cycle needs & \\ \hline
+			
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & 0.81 & 0.91 & 1.00 & 1.11 & 1.23 & n/a\\ \hline
+			\end{tabular}
+		\end{center}
+		
+	
+	
+	\subsubsection*{Platform Factors}
+	Platform Factors take in consideration the complexity of hardware and infrastructure software needed for the system. 
+	
+	
+		\begin{itemize}
+			\item \textbf{TIME}: the TIME factor measures the Execution Time Constraint imposed upon a software system. Since \textit{PowerEnJoy} is quite a complex system, we expect %TODO choose a value!
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{TIME Descriptors} & & & $\leq$50\% use of available execution time & 70\% use of available execution time & 85\% use of available execution time & 95\% use of available execution time\\ \hline
+			
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & n/a & n/a & 1.00 & 1.11 & 1.29 & 1.63\\ \hline
+			\end{tabular}
+		\end{center}
+		
+		
+		
+		
+		\begin{itemize}
+			\item \textbf{STOR}: it represents the degree of Main Storage Constraint imposed on a system. Having a relatively small test database and being commercially available many storage units that can contain Terabytes of data, we don't believe storage will be a serious matter for us. Hence, this driver is set to \textbf{Nominal}.
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{STOR Descriptors} & & & $\leq$50\% use of available storage & 70\% use of available storage & 85\% use of available storage & 95\% use of available storage\\ \hline
+			
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & n/a & n/a & 1.00 & 1.05 & 1.17 & 1.46\\ \hline
+			\end{tabular}
+		\end{center}
+		
+		
+		
+		
+		\begin{itemize}
+			\item \textbf{PVOL}: The PVOL accounts for the volatility of the platforms on which the system is deployed. We believe that the clients operating systems may perform major updates than once a year; it is also true that we don't expect our other platforms to change often. For these reasons, we decided to set the PVOL value to \textbf{Nominal}.
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{STOR Descriptors} & & Major change every 12 mo.; minor change every 1 mo. & Major: 6 mo; minor: 2 wk. & Major: 2 mo; minor: 1 wk. & Major: 2 wk.; minor: 2 days & \\ \hline
+			
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & n/a & 0.87 & 1.00 & 1.15 & 1.30 & n/a\\ \hline
 			\end{tabular}
 		\end{center}
