@@ -15,6 +15,12 @@
 \usepackage{enumitem}
 \usepackage{mathtools}
 
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
 
 \title{Project Plan Document}
 \date{2017-01-15}
@@ -52,7 +58,7 @@
 	\section{Introduction}
 %		\input{subsections/introduction.tex}
 		\label{sec:references} %remember to put this in the reference document subsection!
-
+%TODO specify post-architecture
 %TODO acronyms: LOC, COCOMO, FP
 %TODO source material: http://www.softwaremetrics.com/fpafund.htm
 % http://www.qsm.com/resources/function-point-languages-table

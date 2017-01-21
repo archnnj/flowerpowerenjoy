@@ -18,4 +18,55 @@ where $C=3.67$ and
 
 \subsubsection{Scale Factors}
 
-Scale factors (SF) are used to "account for the relative economies or diseconomies of scale encountered for software projects of different sizes" [Banker et al. 1994]. They are used to calculate 
+Scale factors (SF) are used to "account for the relative economies or diseconomies of scale encountered for software projects of different sizes" [Banker et al. 1994]. They are used to calculate the exponent E and there are five of them:\\
+
+\begin{center}
+	\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+		\multicolumn{7}{c}{\textbf{Scale Factor values, $SF_j$}}\\
+		\hline
+		\textbf{Scale Factors} & \textbf{Very Low} & \textbf{Low} & \textbf{Nominal} & \textbf{High} & \textbf{Very High} & \textbf{Extra High}\\ \hline
+		
+		\textbf{PREC} & thoroughly unprecedented & largely unprecedented & somewhat unprecedented & generally familiar & largely familiar & thoroughly familiar \\
+		$SF_j$ & 6.20 & 4.96 & 3.72 & 2.48 & 1.24 & 0.00\\ \hline
+		
+		\textbf{FLEX} & rigorous & occasional relaxation & some relaxation & general conformity & some conformity & general goals\\
+		$SF_j$ & 5.07 & 4.05 & 3.04 & 2.03 & 1.01 & 0.00\\ \hline
+		
+		\textbf{RESL} & little (20\%) & some (40\%) & often (60\%) & generally (75\%) & mostly (90\%) & full (100\%)\\
+		$SF_j$ & 7.07 & 5.65 & 4.24 & 2.83 & 1.41 & 0.00\\ \hline
+		
+		\textbf{TEAM} & very difficult interactions & some difficult interactions & basically cooperative interactions & largely cooperative & highly cooperative & seamless interactions\\
+		$SF_j$ & 5.48 & 4.38 & 3.29 & 2.19 & 1.10 & 0.00\\ \hline
+		
+		\textbf{PMAT} & Level 1 Lower & Level 1 Upper & Level 2 & Level 3 & Level 4 & Level 5\\
+		$SF_j$ & 7.80 & 6.24 & 4.68 & 3.12 & 1.56 & 0.00\\ \hline
+	\end{tabular}
+\end{center}
+
+
+Here is an explanation of each Scale Factor and our choices:
+
+\begin{itemize}
+	\item \textbf{PREC}: Precedentedness describes "if a product is similar to several previously developed projects"\footnote{CII modelman, page 18}. While on the one hand we have no experience with this kind of system, it is also true that we won't need particular innovation and that similar system have been developed before. For these reasons, this factor is set to \textbf{Nominal}.
+	\item \textbf{FLEX}: Flexibility describes the need for the software to conform to pre-established requirements and law. This factor is set to \textbf{Very Low}, meaning we have close to no flexibility in regards of either our requirements or state law regarding car driving and payments. Some (very) occasional relaxation may occur in the development of the company requirements. 
+	\item \textbf{RESL}: Architecture/Risk Resolution describes our awareness and preparedness with respect to risks; in particular it focuses on architecture and how much interest it has been given to its design and its uncertainties. We believe we have analysed as best as possible the risks inherent to our architecture, hence the value is set to \textbf{High}.
+	\item \textbf{TEAM}: Team Cohesion accounts for "the sources of project turbulence and entropy because of difficulties in synchronizing the project’s stakeholders"\footnote{CII modelman, page 20}. We believe our team is cohesive, although it presents a language barrier problem. So this factor is set to \textbf{Very High}.
+	\item \textbf{PMAT}: We believe that our inexperience in this kind of project allows for a pretty low project maturity. On the other hand we had only little problems during the planning stages of the project. To account for both those aspects, we set the value of this factor to \textbf{Low}. 
+\end{itemize}
+
+
+To sum up our decisions, here is the following summary table:\\
+
+\begin{center}
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{Scale Driver} & \textbf{Factor} & \textbf{Value}\\ \hline
+		
+		PREC & Nominal & 3.72\\
+		FLEX & Very Low & 5.07\\
+		RESL & High & 2.83\\
+		TEAM & Very High & 1.10\\
+		PMAT & Low & 6.24\\ \hline
+		\multicolumn{2}{|l|}{Total:} & 18.96\\ \hline
+	\end{tabular}
+\end{center}
