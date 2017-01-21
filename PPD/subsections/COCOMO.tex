@@ -175,7 +175,7 @@ product development"\footnote{CII modelman, page 26}. It is determined by calcul
 	
 	
 		\begin{itemize}
-			\item \textbf{TIME}: the TIME factor measures the Execution Time Constraint imposed upon a software system. Since \textit{PowerEnJoy} is quite a complex system, we expect %TODO choose a value!
+			\item \textbf{TIME}: the TIME factor measures the Execution Time Constraint imposed upon a software system. Since \textit{PowerEnJoy} is quite a complex system, we expect a high execution time needed; on the other hand, our intention is to choose the dimentions of the CPU so that our system will use 85\% of available execution time at operating time. For this reason the value is set to \textbf{High}.
 		\end{itemize}
 		
 		\begin{center}
@@ -394,3 +394,47 @@ software"\footnote{CII modelman, page 34}. This value is set to \textbf{High}, b
 				\textbf{Effort multipliers} & 1.43 & 1.14 & 1.00 & 1.00 & 1.00 & n/a\\ \hline
 			\end{tabular}
 		\end{center}
+		
+		
+\vspace{2cm}
+
+
+Our results are expressed in the summary table below: 
+
+
+	\begin{center}
+		\begin{tabular}{|l|l|l|}
+			\hline
+			\textbf{Scale Driver} & \textbf{Factor} & \textbf{Value}\\ \hline
+		
+			RELY & High & 1.10\\
+			DATA & Very High & 1.28\\
+			COMPLEXITY & High & 1.17\\
+			RUSE & Nominal & 1.00\\
+			DOCU & Nominal & 1.00\\ \hline
+			
+			TIME & Very High & 1.29\\
+			STOR & Nominal & 1.00\\
+			PVOL & Nominal & 1.00\\ \hline
+			
+			ACAP & High & 0.85\\
+			PCAP & Nominal & 1.00\\
+			PCON & Very High & 0.81\\
+			APEX & Low & 1.10\\
+			PLEX & Low & 1.09\\
+			LTEX & Nominal & 1.00\\ \hline
+			
+			TOOL & Very High & 0.78\\
+			SITE & High & 0.93\\
+			SCED & High & 1.00\\ \hline	
+			
+			\multicolumn{2}{|l|}{Total (multiplication):} & 1.27256\\ \hline
+		\end{tabular}
+	\end{center}
+	
+	
+	\subsubsection{Final results}
+	
+	Basing ourselves on the values calculated above and on the equations shown at the beginning of the chapter, these are our final results: \\
+	
+	
