@@ -70,3 +70,43 @@ To sum up our decisions, here is the following summary table:\\
 		\multicolumn{2}{|l|}{Total:} & 18.96\\ \hline
 	\end{tabular}
 \end{center}
+
+
+
+\subsubsection{Post-Architecture Cost Drivers}
+There are seventeen post-architecture cost drivers, which are multipliers used in COCOMO II in order to adjust the "nominal" effort in person-months in order to take into consideration the software under development. Nominal effort is defined as the effort estimated only using scale factors. 
+
+	\subsubsection*{Product Factors}
+	Product factors are needed to account for the variations in the effort required caused by the characteristics of the software under development. There are five of them:
+	
+		\begin{itemize}
+			\item \textbf{RELY}: RELY measures the "extent to which the software must perform its intended
+function over a period of time"\footnote{CII modelman, page 25}. We decided to set it to \textbf{High} in order to keep into consideration the potential finantial losses caused by an accident in the car (even though the car itself is not driven by the system, a failure in notifying some problems with it may have undesired effects) and consequent risks to the driver. 
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{RELY Descriptors} & slight inconvenience & low, easily recoverable losses & moderate, easily recoverable losses & high financial loss & risk to human life & \\ \hline
+			
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & 0.82 & 0.92 & 1.00 & 1.10 & 1.26 & n/a\\ \hline
+			\end{tabular}
+		\end{center}
+		
+		
+		\begin{itemize}
+			\item \textbf{DATA} %TODO
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{DATA Descriptors} & & $D/P < 10 $ & $ 10 \leq D/P < 100$ & $ 100 \leq D/P < 1000$ & $DP \geq 1000$ & \\ \hline
+			
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & n/a & 0.90 & 1.00 & 1.14 & 1.28 & n/a\\ \hline
+			\end{tabular}
+		\end{center}
