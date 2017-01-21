@@ -217,10 +217,180 @@ product development"\footnote{CII modelman, page 26}. It is determined by calcul
 		\begin{center}
 			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
 				\hline
-				\textbf{STOR Descriptors} & & Major change every 12 mo.; minor change every 1 mo. & Major: 6 mo; minor: 2 wk. & Major: 2 mo; minor: 1 wk. & Major: 2 wk.; minor: 2 days & \\ \hline
+				\textbf{PVOL Descriptors} & & Major change every 12 mo.; minor change every 1 mo. & Major: 6 mo; minor: 2 wk. & Major: 2 mo; minor: 1 wk. & Major: 2 wk.; minor: 2 days & \\ \hline
 			
 				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
 			
 				\textbf{Effort multipliers} & n/a & 0.87 & 1.00 & 1.15 & 1.30 & n/a\\ \hline
+			\end{tabular}
+		\end{center}
+		
+		
+	
+	\subsubsection*{Personnel Factors}
+	These cost drivers try to consider the personnel's abilities, experience and skills to put into the effort estimation. These are some of the most influential cost drivers, since the team's productivity and experience considerably changes the effort required to develop a project. 
+	
+	
+		\begin{itemize}
+			\item \textbf{ACAP}: ACAP evaluates the capabilities of analysts, i.e. people working on requirements and design. The attributes to consider while evaluating ACAP are thoroughness, efficiency, ability, and the will to communicate and cooperate. We believe our team has worked well while drawing up requirements and deciding the design for the system, so we set this factor to \textbf{High}.
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{ACAP Descriptors} & 15th percentile & 35th percentile & 55th percentile & 75th percentile & 90th percentile & \\ \hline
+			
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & 1.42 & 1.19 & 1.00 & 0.85 & 0.71 & n/a\\ \hline
+			\end{tabular}
+		\end{center}
+		
+		
+		
+		
+		\begin{itemize}
+			\item \textbf{PCAP}: PCAP evaluates the capabilities of the programmers as a team. The experience of the programmers is not rated here, since that will be evaluated later; factors to be considered during the evaluation are instead ability, thoroughness, efficiency and cooperation. Our team is cohesive and hard-working, but we believe that, since we're students, we may be lacking some knowledge and abilities. Hence this value is set to \textbf{Nominal}.
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{PCAP Descriptors} & 15th percentile & 35th percentile & 55th percentile & 75th percentile & 90th percentile & \\ \hline
+			
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & 1.34 & 1.15 & 1.00 & 0.88 & 0.76 & n/a\\ \hline
+			\end{tabular}
+		\end{center}
+		
+		
+		
+		
+		\begin{itemize}
+			\item \textbf{PCON}: Personnel Continuity stands for the annual turnover of personnel working on the project. We set it to \textbf{Very High} since we don't expect we will ask new people to help us or that some of us will leave the project.
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{PCON Descriptors} & 48\% / year & 24\% / year & 12\% / year & 6\% / year & 3\% / year & \\ \hline
+			
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & 1.29 & 1.12 & 1.00 & 0.90 & 0.81 & n/a\\ \hline
+			\end{tabular}
+		\end{center}
+		
+		
+		
+		
+		\begin{itemize}
+			\item \textbf{APEX}: this cost driver evaluates the experience that the project team has with similar types of applications. We've never worked on similar projects before, neither with regards to the domain (i.e. car rentals) nor with its scope and dimentions; on the other hand we've been acquainting ourselves with the project system itself for the past few months, so we've decided to set this value to \textbf{Low}.
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{APEX Descriptors} & $\leq$ 2 months & 6 months & 1 year & 3 years & 6 years & \\ \hline
+			
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & 1.22 & 1.10 & 1.00 & 0.88 & 0.81 & n/a\\ \hline
+			\end{tabular}
+		\end{center}
+		
+		
+		
+		
+		\begin{itemize}
+			\item \textbf{PLEX}: PLEX evaluates the same thing as APEX, but with respect to the platforms instead of the application. The team has been acquainting itself with the clients operating system, the cars' management system and so on for the duration of the project, and for this reason we set this cost driver to \textbf{Low}.
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{PLEX Descriptors} & $\leq$ 2 months & 6 months & 1 year & 3 years & 6 years & \\ \hline
+			
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & 1.19 & 1.09 & 1.00 & 0.91 & 0.85 & n/a\\ \hline
+			\end{tabular}
+		\end{center}
+		
+		
+		
+		
+		\begin{itemize}
+			\item \textbf{LTEX}: LTEX evaluate the languages and tools experience the team has. We are all fairly acquainted with Java and DBMS languages; however we'd never worked with JEE before, nor with the tools related to it, so we set this value to \textbf{Nominal}.
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{LTEX Descriptors} & $\leq$ 2 months & 6 months & 1 year & 3 years & 6 years & \\ \hline
+			
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & 1.20 & 1.09 & 1.00 & 0.91 & 0.84 & n/a\\ \hline
+			\end{tabular}
+		\end{center}
+		
+		
+		
+		
+	\subsubsection*{Project Factors}
+	This set of cost drivers account for the use of modern software tools, location of the development team, compression of the project schedule. 
+	
+		\begin{itemize}
+			\item \textbf{TOOL}: the TOOL rating changes based on the complexity, efficiency and timeliness of the development tools used. We have been using the most updated tools available open source, so this value is set to \textbf{Very High}.
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{TOOL Descriptors} & edit, code, debug & simple frontend, backend, CASE, little integration & basic life-cycle tools, moderately integrated & strong, mature life-cycle tools, moderately integrated & strong, mature, proactive life-cycle tools, well integrated with processes, methods, reuse & \\ \hline
+			
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & 1.17 & 1.09 & 1.00 & 0.90 & 0.78 & n/a\\ \hline
+			\end{tabular}
+		\end{center}
+		
+		
+		
+		\begin{itemize}
+			\item \textbf{SITE}: SITE accounts on the collocation and communication support between teams (or team members, in our case). We all live in the same city and use occasional audio conferences and in general wide band electronic communication, so we set this driver to \textbf{High}.
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{SITE: Collocation Descriptors} & International & Multi-city and multi-company & Multi-city or multi-company & Same city or metro area & Same building or complex & Fully collocated \\ \hline
+				
+				\textbf{SITE: Communications Descriptors} & some phone, mail & Individual phone, FAX & Narrow band email & Wideband electronic communication & Wideband electronic communication, occasional video conf. & Interactive multimedia\\ \hline
+			
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & 1.22 & 1.09 & 1.00 & 0.93 & 0.86 & 0.80\\ \hline
+			\end{tabular}
+		\end{center}
+		
+		
+
+		
+		\begin{itemize}
+			\item \textbf{SCED}: this rating "measures the schedule constraint imposed on the project team developing the
+software"\footnote{CII modelman, page 34}. This value is set to \textbf{High}, because while we tried as much as possible to distribute the developing process, it is also true that the team members had other obligations with the university. So the compression of the schedule was high.
+		\end{itemize}
+		
+		\begin{center}
+			\begin{tabular}{ | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | C{2cm} | }
+				\hline
+				\textbf{SCED Descriptors} & 75\% of nominal & 85\% of nominal & 100\% of nominal & 130\% of nominal & 160\% of nominal & \\ \hline
+				
+				\textbf{Rating levels} & Very Low & Low & Nominal & High & Very High & Extra High\\ \hline
+			
+				\textbf{Effort multipliers} & 1.43 & 1.14 & 1.00 & 1.00 & 1.00 & n/a\\ \hline
 			\end{tabular}
 		\end{center}
