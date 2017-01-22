@@ -1,0 +1,92 @@
+Being able to manage and properly recover from any issue that may arise working on a project is a particularly important activity to consider. In order to be prepared, a proactive strategy is chosen to be applied, where as much plan is evaluated to handle them. In particular, what follows is a survey of the identified risks, with details about their probability to happen (Low, Moderate, High) and the magnitude of their impact (Negligible, Marginal, Serious, Catastrophic). With these parameters it is possible to focus on the most critical issues and the contingency that has to be devised for them.
+
+\subsection*{Personnel shortfall}
+	\begin{description}
+		\item[Description] It may happen that one of the team members becomes unavailable for a certain amount of time, mainly due to:
+			\begin{itemize}
+				\item temporary illness;
+				\item resignation presented to the company.
+			\end{itemize}
+		\item[Probability] Moderate: it is not a frequent situation, but at least once in the project lifespan an illness situation is likely to happen.
+		\item[Impact] Serious: the project schedule is likely to be adapted and if it happens close to a critical phase an improper handling may cause important damages to the project itself.
+		\item[Contingency] In general, the team should be organized such that every task is known enough by more than one person, so that even in case of an absence, people can be reassigned to cover all the tasks. However, since our team is very restricted, we know it may become more difficult to address this requirement, and some more extra time should be allocated to the project in order to recover from this situations. Another important precaution is that the group should be kept up to date with any difficulty and delays each member encounters, so that the work could be rescheduled as soon as possible.
+	\end{description}
+
+\subsection*{Bad external frameworks/libraries}
+	\begin{description}
+		\item[Description] For the development of the system, many frameworks and libraries will be taken or bought from online repositories or other providers. Doing this, we rely on those components to properly work. It may therefore happen that some unexpected fault related to them happens, at any point of the development.
+		\item[Probability] Moderate: almost every external component, especially if open-source, has major and minor issues.
+		\item[Impact] Serious: the development has to stop or slow down and the bug must be fixed, by its provider or directly by us. If this is impossible or takes too much time, the component must be substituted and/or the functionalities it provided must be re-developed. Note that a substitution with another bought component implies its integration and an eventual adjustment of the software components connected to it.
+		\item[Contingency] The external components that will be used for the project must be properly checked as soon as possible for every needed functionality. This of course is not enough to solve the problem, since testing can never be complete. For this reason, two strategies are combined: on one hand, when an external component is chosen, a list of some possible alternatives should be draft, evaluating them on the functionalities provided and on the smoothness with which they can substitute the chosen one. On the other hand, an extensive check on the open and reported issues for the chosen component must be performed before its insertion, in order to discover and analyse potential issues in advance. In addition, we must always take into account if an assistance plan is offered by the providers.\newline
+		In a macro-analysis, the following components have been identified as critical:
+			\begin{itemize}
+				\item \textbf{Localization service.} We rely on an external localization service for critical operations, such as the tracking of the company's car, and a fault can cause large economic damages. However, this services are well spread and widely used by many applications and offer a very high reliability, so we don't expect big issues to get raised.
+				\item \textbf{Payment service.} The payment service results critical too since it handles the customers' money. However, as for the localization service, it is a well spread and used service, thus no big issues are expected.
+				\item \textbf{Car sensors system.} Being the core element of our system, the cars need to have the lowest error probability possible. For this reason, a particular attention must be paid to the car sensors system. In addition, we must consider that this is not a wide-spread system, so on one hand a particularly accurate testing must be performed during the whole development, while on the other hand an assistance plan with the provider company will be subscribed.
+			\end{itemize}
+	\end{description}
+
+\subsection*{Data loss}
+	\begin{description}
+		\item[Description] Some loss of data or code might happen due to the failure of one or more machines.
+		\item[Probability] Low: modern hardware has a very low failure ratio.
+		\item[Impact] Catastrophic: a loss of important data about the employment of the cars can lead to important economic consequences.
+		\item[Contingency] This is a very standard problem to tackle. Data are preserved using a backup system, often included in the cloud services solution. The backup interval will be scaled on the average frequency of changes to the data itself: for instance, a daily backup is considered to be sufficient for static users' and cars' data, while a hourly backup is more suited for the actual employment data.\newline
+		The software code will be preserved instead adopting cloud repositories as storage and versioning systems. Occasional backups of the developers machines may be programmed.
+	\end{description}
+
+\subsection*{Changes in laws or regulations}
+	\begin{description}
+		\item[Description] National traffic laws and car sharing regulations may change in the future. Besides, the procedures used to validate the licenses may be subjected to modifications.
+		\item[Probability] Low: an analysis of the past variations to this subjects reveals that only few and rare modifications have been made in the past years, and almost all of them do not affect our application domain.
+		\item[Impact] Serious/Catastrophic: highly dependent on the nature of the changes, it may require from few modifications to a general reorganization of our system. It may also require us to withdraw our system from the market.
+		\item[Contingency] The only precaution we can take is to constantly keep ourselves updated on the matter and analyze the eventual modifications as soon as they are proposed. In addition, a good design and development will help to perform quick and low-cost modifications if needed.
+	\end{description}
+
+\subsection*{Wrong functionalities or user interface}
+	\begin{description}
+		\item[Description] After the development, the functionalities or the user interface for accessing them do not fulfill the needs of the stakeholders.
+		\item[Probability] Low: since an explicit validation is required for the feasibility study and the RASD, there is less probability for this to happen.
+		\item[Impact] Serious: some parts of the system and its UI might be restructured or completely redesigned, causing considerable delays in the delivery of the system.
+		\item[Contingency] A validation is requested not only for the RASD, but also for the DD, organizing if needed a meeting to explain our main stakeholders the key points and especially the limits of the proposed architecture. After this phase, periodical meeting are scheduled, to get internal validations of the components already implemented. This meetings will be more frequent as the project progresses, in order to have feedbacks on working pieces of the system.\newline
+		The UI will also be validated, firstly with the mockups presented in the RASD, and later in the same meetings described before.\newline
+		Alpha and beta testing will be planned as well, to tackle also possible usability issues.
+	\end{description}
+
+% Outline: (see also slides "advanced")
+% look at their example + at slides examples!
+% proactive strategy
+% for each risk:
+	% description
+	% category? (maybe not, less risks to make mistake) --> no
+	% probability: {L,M,H} + expl
+	% impact: {negligible, marginal, critical, catastrophic} + expl
+	% contingency plan if needed
+% risks list - contextualize them a little maybe:
+% x (T) data loss (db, code?) --> backups, versioning, cloud for documents
+% x (P/B) people sick * or fired or quit (Personnel shortfall) --> shit, not much we can do; we should organize our team so that we all understand each other's work and at least 2 people have enough knowledge of the same part/domain + reorganize as much as possible + keep connected so that we can quickly reschedule stuffs
+% x (B) changes in laws (eg. ...)? --> keep up to date and prepare in advance where rumors heard
+% - (P) schedule or budget --> take care of estimate + contigencies, and in case evaulate buy-in solutions, also in advance (to be prepared).
+% - (B) budget changes * --> can't do a lot: change from internal decision, ok, guess it's considered that i won't finish this; change from external decision (clients) --> make sure I have a contract to be paid anyway
+% x (P) wrong functionality --> suppose the RASD has been validated --> each change is charged to the clients
+% x Requirements volatility --> every schedule based on RASD, whatever changes may change the schedule, the clients know and accept this at beginning --> not a real risk
+% x (P?) Wrong user interface --> mockups validated, same as before + usability tested in (alpha)/beta, may cause little delays --> validated multiple times during the development
+% - (P) Goldplating (refine to much stuffs and not do actual requirements) --> schedules defined and updated, requirements checked, policy to avoid going too forth (eg. when req met, no more than 2 hours spent refining, otherwise contracted with clients for special ideas)
+% x Bad external components --> BIG issue! we assume everything fine with cars, sensors, payment, map service! In particular, map ok, payment should be too (both well spread and tested), but what about the car and the sensors system? No one (or so) uses it, and it's a really important part for us! --> do tests and check them before and more often; do check also payment at beginning, even if not implem yet + explore if there are assistance plans in case we need them
+% x Bad external tasks --> payment/maps goes here maybe? same as before
+% - Real-time shortfalls (lack of time?) --> exagerate the estimate a little bit to have enough contingency time; avoid inserting new people on late projects for brooke's law, eventually try to have backup people from the beginning! Here, we are just 3 --> anything can create delays, so just have a good contingency and pray!
+% - Capability shortfalls --> feasibility accurate, with tests to actual external services, components, also the sensors system (if not in feasibility at least in requirements or early design, as a branch of the main documentational activity), plan/design accurately and make sure people know what they're going to do; use languages/technology already known if possible since we're a small team. JEE known, I know Android and sth Obj-C and good web, and also others knows web, so main issues can arise with Windows Phone --> take that into account, at most we can publish the other and reduce the risks to just this one.
+
+% - It is impossible to recruit staff with the skills required for the project. --> tell the customers in advance that i may have to hire people; if it happens, tell them and investigate buying-in components.
+% - Faults in reusable software components have to be repaired before these components are reused. --> issues with libraries and frameworks for example, particular for the ones not many use. Before chosing them, make a good analysis on internet of criticalities and reviews, in particular open issues. If issues with my previous projects software, estimate time to fix and in case look for buy alternatives 
+% - Changes to requirements that require major design rework are proposed --> proper design should allow for little modifications without restructuring a lot the system; traceability should be done while designing --> I guess I'll not mention this point xD
+% - The organization is restructured so that different management are responsible for the project --> skip, it's our company(?) v.v
+% - The database used in the system cannot process as many transactions per second as expected --> scalability issue!! estimates done + time and money contingency has been considered for testing the production resources with real world data and in case buying more resources (cloud is really easy, but it costs --> must be considered for budget)
+
+% - changes to external providers interfaces --> for some we maybe don't even have a contract (google maps) --> they are completely free to change goddamit! --> contingency time for these parts, be aware that this may happen the most when updating libraries (for dependency chains) so plan the updates!, always keep an eye on possible alternatives!
+% - changes in costs of cloud plans, especially while in prod --> evaulate if convenient to stay or change provider --> code must be portable!
+
+% for unpredictable risks not considered, have a time contingency
+
+% in addition, to prevent:
+% - Encourage all stakeholders and users to point out risks at any time

@@ -1,0 +1,96 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx} % to embed images
+\usepackage{rotating}
+\usepackage{hyperref} % to link the table of contents
+\usepackage{subcaption} %complex images
+\usepackage{placeins} %floating
+\usepackage{pdflscape} %to allow single pages in landscape mode
+\usepackage[top=1.25in, bottom=1.25in, left=1in, right=1in]{geometry}
+\usepackage{verbatim} % include raw text file (for Alloy)
+\usepackage[ruled, vlined]{algorithm2e} % algorithms
+\usepackage[export]{adjustbox}
+\usepackage{multirow}
+\usepackage{enumitem}
+\usepackage{mathtools}
+
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+
+
+
+\title{Project Plan Document}
+\date{2017-01-15}
+\author{
+	Patricia Abbud
+	\and
+	Maddalena Andreoli Andreoni
+	\and
+	Paolo Cudrano
+}
+
+\begin{document}
+	%%% titlepage %%%
+	\begin{titlepage}
+		\centering
+		\includegraphics[width=5cm]{img/polimi_logo.png} % also works with logo.pdf
+		\vfill
+		{\bfseries\Large
+			PowerEnJoy\\
+			Project Plan Document\\
+			Version 1
+			\vskip4cm
+			Patricia Abbud\\
+			Maddalena Andreoli Andreoni\\
+			Paolo Cudrano\\
+		}
+		\vfill
+		\vfill
+	\end{titlepage}
+
+	%%% table of contents %%%
+	\tableofcontents
+	\newpage
+
+	\section{Introduction}
+%		\input{subsections/introduction.tex}
+		\label{sec:references} %remember to put this in the reference document subsection!
+%TODO specify post-architecture
+%TODO acronyms: LOC, COCOMO, FP
+%TODO source material: http://www.softwaremetrics.com/fpafund.htm
+% http://www.qsm.com/resources/function-point-languages-table
+% http://csse.usc.edu/csse/research/COCOMOII/cocomo2000.0/CII_modelman2000.0.pdf
+
+	\newpage
+	\section{Project Size, Cost and Effort Estimation}
+		\input{subsections/size_cost_effort_estimation.tex}
+
+	\newpage
+	\section{Schedule}
+%		\input{subsections/schedule.tex}	
+
+	\newpage
+	\section{Resource allocation}
+%		\input{subsections/resources.tex}
+
+	\newpage
+	\section{Risk management}
+		\input{subsections/risk_management.tex}
+
+
+	\newpage
+	\section{Effort spent}
+%		\begin{description}
+%			\item[Abbud, Patricia] around xx hours of work;
+%			\item[Andreoli Andreoni, Maddalena] around xx hours of work;
+%			\item[Cudrano, Paolo] around xx hours of work.
+%		\end{description}
+
+	\newpage
+	\section{Appendix}
+	\listoffigures
+
+\end{document}

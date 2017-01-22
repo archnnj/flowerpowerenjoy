@@ -1,0 +1,193 @@
+\label{sec:FP}
+
+%TODO add general tables from here: http://www.softwaremetrics.com/fpafund.htm
+
+
+\subsubsection{Internal Logic Files (ILFs)}
+The system of \textit{PowerEnJoy} will require a series of ILFs to provide the required functionalities. In this section we will quickly list them and then offer an overall evaluation.
+
+\begin{itemize}
+	\item \textbf{Users}: the system needs to store information about all users in order to correctly function. These data all belong to a set of three tables containing their payment information (credit card number, expiration date, CVV), driving license information (driving license number, expiration date, issued date) and account information (full name, username, password, telephone number, email). %FIXIT is this right??? Can we talk about tables even if the DB haven't been designed yet, technically?
+	\item \textbf{Parking areas}: we will need to store all the information about parking areas. In particular, whether they are recharging areas, how many slots they have and their location. The system will also have to know the number of available slots at a given time.
+	\item \textbf{Cars}: the system will need to store information about its cars, most notably their plate number, their location and their status.
+	\item \textbf{Rides}: the system will need to keep track of the rides; rides will be linked to a car and a user, and will have a duration and applied discounts or sanctions. 
+	\item \textbf{Reservations}: the system will also need to keep track of the reservations; those will be linked to a car and a user as well, and they will have a time period. 
+	\item \textbf{Operators and Admins}: the system needs to store information also about the back-end users, i.e. the operators and the admins: those will be characterized with a username, a password, their full name and email address, and their role.
+	\item \textbf{Emergency Reports}: for the system to work even in case of emergencies, it needs to track emergency reports. They will be linked to a particular ride (and a car and a user through it) and an Operator.
+	\item \textbf{Parameters}: the admins must be able to modify some of the parameters of the system; those parameters will have a name, a description and a value.
+	\item \textbf{Fees}: all fees must be linked to a user and a particular ride.
+\end{itemize}
+
+Using the previosly defined tables, we obtain the following FP count:\\ %TODO previously defined tables
+
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{ILF} & \textbf{Complexity} & \textbf{FPs}\\ \hline
+		Users & Average & 10\\ \hline
+		Parking Areas & Average & 10\\ \hline
+		Cars & Low & 7\\ \hline
+		Rides & High & 15\\ \hline
+		Reservations & High & 15\\ \hline
+		Operators/Admins & Low & 7\\ \hline
+		Emergency Reports & Average & 10\\ \hline
+		Parameters & Low & 7\\ \hline
+		Fees & Average & 10\\ \hline
+		\multicolumn{2}{|l|}{\textbf{Total:}}& 91 \\ \hline
+	\end{tabular}
+
+
+\subsubsection{External Interface Files (ELFs)}
+\textit{PowerEnJoy} relies on one external data source, that is the Location Services Provider. 
+There are a series of interactions between the system and the Location Services Provider:
+
+	\begin{itemize}
+		\item Given an address, return the coordinates of said address;
+		\item Given a user's GPS, return the coordinates of their position;
+		\item Given two locations, return the approximate distance between the two;
+		\item Retrieve the graphical representation of the map on the user's phone (i.e. on a client).
+	\end{itemize}
+
+We thus obtain the following FP count: \\
+
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{ELF} & \textbf{Complexity} & \textbf{FPs}\\ \hline
+		Distance computation & High & 10 \\ \hline
+		Geolocation & High & 10\\ \hline
+		Map retrieval & Average & 7\\ \hline
+		\multicolumn{2}{|l|}{\textbf{Total:}}& 27 \\ \hline
+	\end{tabular}
+
+\subsubsection{External Input (EIs)}
+This section will recite and evaluate the interactions between \textit{PowerEnJoy}'s system and users. \\
+
+All users:\\
+	\begin{itemize}
+		\item \textbf{Login/Logout}: these are farily simple operations, so we can adopt the simple weight for both of them: it contributes $2\times3=6 FPs$ .
+		%LOCATION??? 
+	\end{itemize}
+
+Front-end users (and guests):\\ %front-end users??
+	\begin{itemize}
+		\item \textbf{Register}: this operation is fairly complex as it requires a lot of external input to be submittet: it contributes $6 FPs$.
+		\item \textbf{Change account settings}: this operation is elementary, hence we apply the simple weight for it: it contributes $3 FPs$.
+		\item \textbf{Reserve a car}: this is a very complex operation that involves a large number of components: it contributes $6 FPs$.
+	\end{itemize}
+
+Operators:\\
+	\begin{itemize}
+		\item \textbf{Change emergency report status}: this is an average operation since the status of an emergency report has consequences for the car and the ride, hence it contributes $4 FPs$.
+		%something else?
+	\end{itemize}
+
+Administrators:\\
+	\begin{itemize}
+		\item \textbf{Change system parameters}: this is an average operation, because it involves a number of checks in the field validity. So it contributes $4 FPs$.
+	\end{itemize}
+
+So, to summarize: \\
+
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{EI} & \textbf{Complexity} & \textbf{FPs}\\ \hline
+		Login/Logout & Low & $2\times3=6$\\ \hline
+		Register & High & 6\\ \hline
+		Change account settings & Low & 3\\ \hline
+		Reserve a car & High & 6\\ \hline
+		Change Emergency report status & Average & 4\\ \hline
+		Change system parameters & Agerage & 4\\ \hline
+		\multicolumn{2}{|l|}{\textbf{Total:}}& 29 \\ \hline
+	\end{tabular}
+
+
+\subsubsection{External Inquiries (EIQs)}
+\textit{PowerEnJoy} supports many possible external inquiries performed by various users:\\
+
+%Location here??
+Users: \\
+	\begin{itemize}
+		\item Retrieve information about available cars;
+		\item Retrieve information about parking areas nearby;
+		\item Retrieve information about their ride;
+		\item See their profile.
+		%more?
+	\end{itemize}
+
+Operators: \\
+	\begin{itemize}
+		\item Retrieve information about a selected car;
+		\item Retrieve information about an emergency report;
+		\item See their profile.
+	\end{itemize}
+	
+Administrators:\\
+ 	\begin{itemize}
+ 		\item Retrieve information about a selected car;
+ 		\item Retrieve information about operators;
+ 		\item Retrieve information about parameters;
+ 		%surely there's more
+ 	\end{itemize}
+ 	
+Here is how we evaluated the complexity of each of these functionalities:\\
+
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{EIQ} & \textbf{Complexity} & \textbf{FPs}\\ \hline
+		Available cars & High & 6\\ \hline
+		Parking areas & High & 6\\ \hline
+		Ride & Average & 4\\ \hline
+		Profile & Low & 3\\ \hline
+		Selected car & Average & 4\\ \hline
+		Emergency Report & Average & 4\\ \hline
+		Operators & Average & 4\\ \hline
+		Parameters & Low & 3\\ \hline
+		\multicolumn{2}{|l|}{\textbf{Total:}}& 34 \\ \hline
+	\end{tabular}
+
+
+
+\subsubsection{External Outputs (EOs)}
+The system is also expected to communicate with the user even outside inquiries. There are a few occasions in which this happens, most notably:
+
+	\begin{enumerate}
+		\item Notify the user when a payment has been invoiced (normal fees or fines) and how much;
+		\item Notify the user that he is driving out of city boundaries;
+		\item Notify the administrators that a car requires assistance; %is this right??
+		\item Nofity the operators that they have been dispatched.
+	\end{enumerate}
+
+While the last three are operations of average complexity, the first one is fairly complex because it requires interactions also with the Payment Services Provider. So, to make the sum:\\
+
+	\begin{tabular}{|l|l|l|}
+		\hline
+		\textbf{EOs} & \textbf{Complexity} & \textbf{FPs}\\ \hline
+		Payment notification & High & 7\\ \hline
+		Out of boundary notification & Average & 5\\ \hline
+		Assistance notification & Average & 5\\ \hline
+		Dispatch notification & Average & 5\\ \hline
+		\multicolumn{2}{|l|}{\textbf{Total:}}& 22 \\ \hline
+	\end{tabular}
+
+
+\subsubsection{Overall estimate: Unadjusted and adjusted function points}
+The following table summarizes the sum of the so-called UFP, i.e. the unadjusted function points:\\
+
+	\begin{tabular}{|l|l|}
+		\hline
+		\textbf{Function Type} & \textbf{Value}\\ \hline
+		Internal Logic Files & 91\\
+		External Logic Files & 27\\
+		External Inputs & 29\\
+		External Inquiries & 34\\
+		External Outputs & 22\\ \hline
+		Total & 203FPs\\ \hline
+	\end{tabular}\\
+	
+We can estimate the number of lines of code by taking into account that our system will be developed using JEE and disregarding for the sake of simplicity the client's implementation (mobile application), which can be considered as presentation with a modicum of business logic. \\
+Using the J2EE conversion rates, we obtain an average of: \\
+
+$SLOC\_avg = 203 \times 46 = 9338$\\
+
+And a higher bound of:\\
+
+$SLOC\_high = 203 \times 67 = 13601$
