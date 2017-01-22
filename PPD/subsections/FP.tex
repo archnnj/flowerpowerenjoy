@@ -1,24 +1,78 @@
 \label{sec:FP}
+The Function Point approach provides an estimation of the source lines of code (i.e. of the dimension of the project) based on the functionalities that need to be developed and their complexity. This estimation is made as objective as possible by a series of tables that provide normalized values for different levels of complexity. However, it is necessary to remember that the final choice of complexity belongs to the analyst, that may underestimate or overestimate the effort required for a particular functionality. The COCOMO estimation will also account for the degree of error the analyst will be subject to. 
 
-%TODO add general tables from here: http://www.softwaremetrics.com/fpafund.htm
+The following tables are those we reference while choosing values for our function points:\\
+
+	\begin{center}
+		Record Element Types for ILFs and ELFs:
+		
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			\textbf{RET's} & \multicolumn{3}{|c|}{\textbf{DATA ELEMENTS}} \\ \cline{2-4}
+			 & 1-19 & 20-50 & $>$50\\ \hline
+			 1 & Low & Low & Avg\\ \hline
+			 2-5 & Low & Avg & High\\ \hline
+			 $>$5 & Avg & High & High\\ \hline
+		\end{tabular}
+		
+		\vspace{1cm}
+		
+		Function points for ILFs and ELFs:
+		
+		\begin{tabular}{|l|l|l|}
+			\hline
+			\textbf{Rating} & \multicolumn{2}{|c|}{\textbf{VALUES}} \\ \cline{2-3}
+			 & ILFs & ELFs\\ \hline
+			 Low & 7 & 5\\ \hline
+			 Avg & 10 & 7\\ \hline
+			 High & 15 & 10\\ \hline
+		\end{tabular}
+		
+		\vspace{1cm}
+		
+		Record Element Types for EOs, EIQs, EIs:
+		
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			\textbf{RET's} & \multicolumn{3}{|c|}{\textbf{DATA ELEMENTS}} \\ \cline{2-4}
+			 & 1-5 & 6-19 & $>$19\\ \hline
+			 0-1 & Low & Low & Avg\\ \hline
+			 2-3 & Low & Avg & High\\ \hline
+			 $>$3 & Avg & High & High\\ \hline
+		\end{tabular}
+		
+		\vspace{1cm}
+		
+		Function points for EOs, EIQs, EIs:
+		
+		\begin{tabular}{|l|l|l|l|}
+			\hline
+			\textbf{Rating} & \multicolumn{3}{|c|}{\textbf{VALUES}} \\ \cline{2-4}
+			 & EO & EIQ & EI\\ \hline
+			 Low & 4 & 3 & 3\\ \hline
+			 Avg & 5 & 4 & 4\\ \hline
+			 High & 7 & 6 & 6\\ \hline
+		\end{tabular}
+		
+	\end{center}
 
 
 \subsubsection{Internal Logic Files (ILFs)}
 The system of \textit{PowerEnJoy} will require a series of ILFs to provide the required functionalities. In this section we will quickly list them and then offer an overall evaluation.
 
 \begin{itemize}
-	\item \textbf{Users}: the system needs to store information about all users in order to correctly function. These data all belong to a set of three tables containing their payment information (credit card number, expiration date, CVV), driving license information (driving license number, expiration date, issued date) and account information (full name, username, password, telephone number, email). %FIXIT is this right??? Can we talk about tables even if the DB haven't been designed yet, technically?
-	\item \textbf{Parking areas}: we will need to store all the information about parking areas. In particular, whether they are recharging areas, how many slots they have and their location. The system will also have to know the number of available slots at a given time.
-	\item \textbf{Cars}: the system will need to store information about its cars, most notably their plate number, their location and their status.
-	\item \textbf{Rides}: the system will need to keep track of the rides; rides will be linked to a car and a user, and will have a duration and applied discounts or sanctions. 
-	\item \textbf{Reservations}: the system will also need to keep track of the reservations; those will be linked to a car and a user as well, and they will have a time period. 
-	\item \textbf{Operators and Admins}: the system needs to store information also about the back-end users, i.e. the operators and the admins: those will be characterized with a username, a password, their full name and email address, and their role.
-	\item \textbf{Emergency Reports}: for the system to work even in case of emergencies, it needs to track emergency reports. They will be linked to a particular ride (and a car and a user through it) and an Operator.
+	\item \textbf{Users}: the system needs to store information about all users in order to correctly function. These data all belong to a set of three tables containing their payment information (credit card number, expiration date, CVV), driving license information (driving license number, expiration date, issued date) and account information (full name, username, password, telephone number, email). 
+	\item \textbf{Parking areas}: we need to store all the information about parking areas. In particular, whether they are recharging areas, how many slots they have and their location. The system will also have to know the number of available slots at a given time.
+	\item \textbf{Cars}: the system needs to store information about its cars, most notably their plate number, their location and their status.
+	\item \textbf{Rides}: the system needs to keep track of the rides; these data belong to a table that will need also references to a car and a user, and will have a duration and applied discounts or sanctions. 
+	\item \textbf{Reservations}: the system also needs to keep track of the reservations; those will contain a reference to a car and a user as well, and they will have a time period. 
+	\item \textbf{Operators and Admins}: the system needs to store information also about the back-end users, i.e. the operators and the admins: those are characterized with a username, a password, their full name and email address, and their role.
+	\item \textbf{Emergency Reports}: for the system to work even in case of emergencies, it needs to track emergency reports. They are linked to a particular ride (and a car and a user through it) and an Operator.
 	\item \textbf{Parameters}: the admins must be able to modify some of the parameters of the system; those parameters will have a name, a description and a value.
 	\item \textbf{Fees}: all fees must be linked to a user and a particular ride.
 \end{itemize}
 
-Using the previosly defined tables, we obtain the following FP count:\\ %TODO previously defined tables
+Using the previosly defined tables, we obtain the following FP count:\\
 
 	\begin{tabular}{|l|l|l|}
 		\hline
@@ -186,8 +240,8 @@ The following table summarizes the sum of the so-called UFP, i.e. the unadjusted
 We can estimate the number of lines of code by taking into account that our system will be developed using JEE and disregarding for the sake of simplicity the client's implementation (mobile application), which can be considered as presentation with a modicum of business logic. \\
 Using the J2EE conversion rates, we obtain an average of: \\
 
-$SLOC\_avg = 203 \times 46 = 9338$\\
+$SLOC_{avg} = 203 \times 46 = 9338$\\
 
 And a higher bound of:\\
 
-$SLOC\_high = 203 \times 67 = 13601$
+$SLOC_{high} = 203 \times 67 = 13601$
