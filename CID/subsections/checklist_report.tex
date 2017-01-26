@@ -1,0 +1,33 @@
+In the following section the results of the inspection are presented.\newline
+Each assigned class is analysed in a separate report since they belong to different contexts and have therefore no strict relationships with each other. Inside each section, all the points in the assigned checklist are reported, with proper annotations on the fulfillment of the requirement.
+
+\subsection{BOMTree}
+	\subsubsection{Naming Conventions}
+		\begin{enumerate}
+			\setcounter{enumi}{0}
+			\item \textit{All class names, interface names, method names, class variables, method variables, and constants used should have meaningful names and do what the name suggests.}\newline
+			\begin{itemize}
+				\item \texttt{BOMTree::print()} method: overloaded definition but different semantics. In particular:
+				\begin{itemize}
+					\item \texttt{public void print(StringBuffer sb)}\newline
+					appends information regarding the tree to a \texttt{StringBuffer} object, and has approximately the expected behavior. However, notice that this method is  designed for testing only reasons (as it calls the method \texttt{BOMNode::print()}, expressly denoted as testing and debugging method), which may nullify this report point.
+					\item \texttt{public void print(List<BOMNode> arr)}\newline
+					\texttt{public void print(List<BOMNode> arr, int initialDepth)}\newline
+					\texttt{public void print(List<BOMNode> arr, int initialDepth, boolean excludeWIPs)}\newline
+					\texttt{public void print(List<BOMNode> arr, boolean excludeWIPs)}\newline
+					instead append information about the tree to a list of nodes, which is neither what a \textit{print} method is expected to do nor coherent with the other definition of \texttt{BOMTree::print()}.
+				\end{itemize}
+			\end{itemize}
+			\item \textit{If one-character variables are used, they are used only for temporary “throwaway” variables, such as those used in for loops.}\newline
+			% TODO
+			\item \textit{Class names are nouns, in mixed case, with the first letter of each word in capitalized. Examples: class Raster; class ImageSprite;}\newline
+			% TODO
+			\item \textit{Interface names should be capitalized like classes.}\newline
+			% TODO
+			\item \textit{Method names should be verbs, with the first letter of each addition word capitalized. Examples: getBackground(); computeTemperature().}\newline
+			% TODO
+			\item \textit{Class variables, also called attributes, are mixed case, but might begin with an underscore (‘ ’) followed by a lowercase first letter. All the remaining words in the variable name have their first letter capitalized. Examples: windowHeight, timeSeriesData.}\newline
+			% TODO
+			\item \textit{Constants are declared using all uppercase with words separated by an underscore. Examples: MIN WIDTH; MAX HEIGHT.}\newline
+			% TODO
+		\end{enumerate}
