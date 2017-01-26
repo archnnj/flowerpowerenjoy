@@ -20,19 +20,22 @@ Each assigned class is analysed in a separate report since they belong to differ
 			\end{itemize}
 
 			\item \textit{If one-character variables are used, they are used only for temporary “throwaway” variables, such as those used in for loops.}\newline
-			Nothing to report. % TODO this has been added by Poe, remove it if needed.
+			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
 
 			\item \textit{Class names are nouns, in mixed case, with the first letter of each word in capitalized. Examples: class Raster; class ImageSprite;}\newline
 			\texttt{BOMTree} contains an acronym (\textit{BOM, Bill Of Materials}), and for acronyms no standard convention is defined in the Java world. For this reason, it should be considered accepted, as long as it preserves consistency with the other classes. However, a short analysis of even the same application component denotes that other conventions are adopted too, as for \texttt{org.apache.ofbiz.manufacturing.mrp.MrpServices} (acronym: \textit{MRP, Material Requirements Planning}), highlighting a coherency problem.
 
 			\item \textit{Interface names should be capitalized like classes.}\newline
-			Nothing to report. % TODO this has been added by Poe, remove it if needed.
+			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
 			\item \textit{Method names should be verbs, with the first letter of each addition word capitalized. Examples: getBackground(); computeTemperature().}\newline
-			% TODO
+			\begin{itemize}
+				\item \texttt{private GenericValue manufacturedAsProduct(String productId, Date inDate)}\newline
+				uses a noun as name, generating ambiguity in whether it checks if a product is manufactured or retrieves a manufactured product. In this case, the latter interpretation is the correct one.
+			\end{itemize}
 
 			\item \textit{Class variables, also called attributes, are mixed case, but might begin with an underscore (‘ ’) followed by a lowercase first letter. All the remaining words in the variable name have their first letter capitalized. Examples: windowHeight, timeSeriesData.}\newline
-			% TODO
+			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
 
 			\item \textit{Constants are declared using all uppercase with words separated by an underscore. Examples: MIN WIDTH; MAX HEIGHT.}\newline
-			% TODO
+			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
 		\end{enumerate}
