@@ -63,3 +63,46 @@ Each assigned class is analysed in a separate report since they belong to differ
 				\item \textit{Line 93}, \textit{line 95}, \textit{line 122}, \textit{line 142} present an if statement of a single instruction not surrounded by braces.
 			\end{itemize}
 		\end{enumerate}
+
+	\subsubsection{File Organization}
+		\begin{enumerate}
+			\setcounter{enumi}{11}
+			\item \textit{Blank lines and optional comments are used to separate sections (beginning comments, package/import statements, class/interface declarations which include class variable/attributes declarations, constructors, and methods).}\newline
+			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+
+			\item \textit{Where practical, line length does not exceed 80 characters.}\newline
+			Almost no line wrapping is used, and therefore all the long instruction exceeds the 80 characters, even if they can be easily be wrapped.
+
+			\item \textit{When line length must exceed 80 characters, it does NOT exceed 120 characters.}\newline
+			As reported for the previous point, no line wrapping is used, and therefore some of the lines exceed also the 120 characters limit.
+		\end{enumerate}
+
+	\subsubsection{Wrapping Lines}
+		\begin{enumerate}
+			\setcounter{enumi}{14}
+			\item \textit{Line break occurs after a comma or an operator.}\newline
+			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+
+			\item \textit{Higher-level breaks are used.}\newline
+			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+
+			\item \textit{A new statement is aligned with the beginning of the expression at the same level as the previous line.}\newline
+			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+		\end{enumerate}
+
+	\subsubsection{Comments}
+		\begin{enumerate}
+			\setcounter{enumi}{17}
+			\item \textit{Comments are used to adequately explain what the class, interface, methods, and blocks of code are doing.}
+			\begin{itemize}
+				\item Missing comments for class attributes.
+				\item Some methods are not documented, and it becomes slightly problematic when their names are not completely clear (e.g.\newline
+				\texttt{private GenericValue manufacturedAsProduct(String productId, Date inDate)},\newline
+				\texttt{public void print(List<BOMNode> arr, int initialDepth, boolean excludeWIPs)},\newline
+				\texttt{public void print(List<BOMNode> arr, boolean excludeWIPs)}).
+				% NOTE add/change if needed
+			\end{itemize}
+
+			\item \textit{Commented out code contains a reason for being commented out and a date it can be removed from the source file if determined it is no longer needed.}\newline
+			Nothing to report, no commented out code found. % NOTE this has been added by Poe, remove it if needed.
+		\end{enumerate}
