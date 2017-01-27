@@ -106,3 +106,31 @@ Each assigned class is analysed in a separate report since they belong to differ
 			\item \textit{Commented out code contains a reason for being commented out and a date it can be removed from the source file if determined it is no longer needed.}\newline
 			Nothing to report, no commented out code found. % NOTE this has been added by Poe, remove it if needed.
 		\end{enumerate}
+
+	\subsubsection{Java Source Files}
+		\begin{enumerate}
+			\setcounter{enumi}{19}
+			\item \textit{Each Java source file contains a single public class or interface.}\newline
+			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+
+			\item \textit{The public class is the first class or interface in the file.}\newline
+			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+
+			\item \textit{Check that the external program interfaces are implemented consistently with what is described in the javadoc.}
+			\begin{itemize}
+				\item The Javadoc for\newline
+				\texttt{public BOMTree(String productId, String bomTypeId, Date inDate, Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin)}\newline
+				\texttt{public BOMTree(String productId, String bomTypeId, Date inDate, int type, Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin)}\newline
+				does not describe the parameters \texttt{dispatcher} and \texttt{userLogin} (and the methods make use of them).
+				% NOTE add/change if needed
+			\end{itemize}
+
+			\item \textit{Check that the javadoc is complete (i.e., it covers all classes and files part of the set of classes assigned to you).}\newline
+			The Javadoc is missing for the following components:
+			\begin{itemize}
+				\item class fields and constants;
+				\item \texttt{public void print(List<BOMNode> arr, int initialDepth, boolean excludeWIPs)}
+				\item \texttt{public void print(List<BOMNode> arr, boolean excludeWIPs)}
+				\item \texttt{public void getProductsInPackages(List<BOMNode> arr)}
+			\end{itemize}
+		\end{enumerate}
