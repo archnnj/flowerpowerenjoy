@@ -48,3 +48,18 @@ Each assigned class is analysed in a separate report since they belong to differ
 			\item \textit{No tabs are used to indent.}\newline
 			Nothing to report, spaces are used. % NOTE this has been added by Poe, remove it if needed.
 		\end{enumerate}
+
+	\subsubsection{Braces}
+		\begin{enumerate}
+			\setcounter{enumi}{9}
+			\item \textit{Consistent bracing style is used, either the preferred “Allman” style (first brace goes underneath the opening block) or the “Kernighan and Ritchie” style (first brace is on the same line of the instruction that opens the new block).}\newline
+			The adopted convention seems to be the Kernighan and Ritchie approach, with the addition of braces on the same of methods definitions too. However, the following anomalies have been detected.
+			\begin{itemize}
+				\item \textit{Line 93}, \textit{line 95}, \textit{line 122}, \textit{line 142} present an if statement of a single instruction positioned on the same line instead of in a new line, breaking the nesting practices as a whole.
+			\end{itemize}
+
+			\item \textit{All if, while, do-while, try-catch, and for statements that have only one statement to execute are surrounded by curly braces.}
+			\begin{itemize}
+				\item \textit{Line 93}, \textit{line 95}, \textit{line 122}, \textit{line 142} present an if statement of a single instruction not surrounded by braces.
+			\end{itemize}
+		\end{enumerate}
