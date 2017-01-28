@@ -134,3 +134,69 @@ Each assigned class is analysed in a separate report since they belong to differ
 				\item \texttt{public void getProductsInPackages(List<BOMNode> arr)}
 			\end{itemize}
 		\end{enumerate}
+
+	\subsubsection{Package and Import Statements}
+		\begin{enumerate}
+			\setcounter{enumi}{23}
+			\item \textit{If any package statements are needed, they should be the first non- comment statements. Import statements follow.}\newline
+			Nothing to report.
+		\end{enumerate}
+
+	\subsubsection{Class and Interface Declarations}
+		\begin{enumerate}
+			\setcounter{enumi}{24}
+			\item \begin{itshape}
+				The class or interface declarations shall be in the following order:
+				\begin{enumerate}[label={(\alph*)}]
+					\item class/interface documentation comment;
+					\item class or interface statement;
+					\item class/interface implementation comment, if necessary;
+					\item class (static) variables;
+						\begin{enumerate}[label=\roman*]
+							\item first public class variables;
+							\item next protected class variables;
+							\item next package level (no access modifier);
+							\item last private class variables.
+						\end{enumerate}
+					\item instance variables;
+						\begin{enumerate}[label=\roman*]
+							\item first public instance variables;
+							\item next protected instance variables;
+							\item next package level (no access modifier);
+						\end{enumerate}
+				\end{enumerate}
+			\end{itshape}
+			Nothing to report.
+
+			\item \textit{Methods are grouped by functionality rather than by scope or accessibility.}\newline
+			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+
+			\item \textit{Check that the code is free of duplicates, long methods, big classes, breaking encapsulation, as well as if coupling and cohesion are adequate.}
+			\begin{itemize}
+				\item The constructor \texttt{public BOMTree(String productId, String bomTypeId, Date inDate, int type, Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin)} is quite long (68 lines) and is well suitable for being split in at least three methods.
+				\item Many accesses are made to methods in other classes of the same package, in particular to \texttt{BOMNode}, but since this class represents a tree o \texttt{BOMNode}s it is considered quite normal.
+				% NOTE add/change if needed
+			\end{itemize}
+		\end{enumerate}
+
+\subsubsection{Initialization and Declarations}
+	\begin{enumerate}
+		\setcounter{enumi}{27}
+		\item \textit{Check that variables and class members are of the correct type. Check that they have the right visibility (public/private/protected).}\newline
+		All of the instance attributes have protected or package level access but can be made private: in fact, they either are not used outside the class or have adequate getters and setters.
+
+		\item \textit{Check that variables are declared in the proper scope.}\newline
+		Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+
+		\item \textit{Check that constructors are called when a new object is desired.}\newline
+		Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+
+		\item \textit{Check that all object references are initialized before use.}\newline
+		Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+
+		\item \textit{Variables are initialized where they are declared, unless dependent upon a computation.}\newline
+		Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+
+		\item \textit{Declarations appear at the beginning of blocks (A block is any code surrounded by curly braces ‘{’ and ‘}’). The exception is a variable can be declared in a for loop.}\newline
+		In \texttt{public BOMTree(String productId, String bomTypeId, Date inDate, int type, Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin)} all of the variables are declared when needed and not at the beginning of the block. % NOTE add/change if needed
+	\end{enumerate}
