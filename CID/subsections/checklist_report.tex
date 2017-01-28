@@ -2,7 +2,7 @@ In the following section the results of the inspection are presented.\newline
 Each assigned class is analysed in a separate report since they belong to different contexts and have therefore no strict relationships with each other. Inside each section, all the points in the assigned checklist are reported, with proper annotations on the fulfillment of the requirement.
 
 \subsection{BOMTree}
-	\subsubsection{Naming Conventions}
+	\subsubsection{Naming conventions}
 		\begin{enumerate}
 			\setcounter{enumi}{0}
 			\item \textit{All class names, interface names, method names, class variables, method variables, and constants used should have meaningful names and do what the name suggests.}
@@ -64,7 +64,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 			\end{itemize}
 		\end{enumerate}
 
-	\subsubsection{File Organization}
+	\subsubsection{File organization}
 		\begin{enumerate}
 			\setcounter{enumi}{11}
 			\item \textit{Blank lines and optional comments are used to separate sections (beginning comments, package/import statements, class/interface declarations which include class variable/attributes declarations, constructors, and methods).}\newline
@@ -77,7 +77,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 			As reported for the previous point, no line wrapping is used, and therefore some of the lines exceed also the 120 characters limit.
 		\end{enumerate}
 
-	\subsubsection{Wrapping Lines}
+	\subsubsection{Wrapping lines}
 		\begin{enumerate}
 			\setcounter{enumi}{14}
 			\item \textit{Line break occurs after a comma or an operator.}\newline
@@ -107,7 +107,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 			Nothing to report, no commented out code found. % NOTE this has been added by Poe, remove it if needed.
 		\end{enumerate}
 
-	\subsubsection{Java Source Files}
+	\subsubsection{Java source files}
 		\begin{enumerate}
 			\setcounter{enumi}{19}
 			\item \textit{Each Java source file contains a single public class or interface.}\newline
@@ -135,14 +135,14 @@ Each assigned class is analysed in a separate report since they belong to differ
 			\end{itemize}
 		\end{enumerate}
 
-	\subsubsection{Package and Import Statements}
+	\subsubsection{Package and import statements}
 		\begin{enumerate}
 			\setcounter{enumi}{23}
 			\item \textit{If any package statements are needed, they should be the first non- comment statements. Import statements follow.}\newline
 			Nothing to report.
 		\end{enumerate}
 
-	\subsubsection{Class and Interface Declarations}
+	\subsubsection{Class and interface declarations}
 		\begin{enumerate}
 			\setcounter{enumi}{24}
 			\item \begin{itshape}
@@ -179,24 +179,24 @@ Each assigned class is analysed in a separate report since they belong to differ
 			\end{itemize}
 		\end{enumerate}
 
-\subsubsection{Initialization and Declarations}
-	\begin{enumerate}
-		\setcounter{enumi}{27}
-		\item \textit{Check that variables and class members are of the correct type. Check that they have the right visibility (public/private/protected).}\newline
-		All of the instance attributes have protected or package level access but can be made private: in fact, they either are not used outside the class or have adequate getters and setters.
+	\subsubsection{Initialization and declarations}
+		\begin{enumerate}
+			\setcounter{enumi}{27}
+			\item \textit{Check that variables and class members are of the correct type. Check that they have the right visibility (public/private/protected).}\newline
+			All of the instance attributes have protected or package level access but can be made private: in fact, they either are not used outside the class or have adequate getters and setters.
 
-		\item \textit{Check that variables are declared in the proper scope.}\newline
-		Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+			\item \textit{Check that variables are declared in the proper scope.}\newline
+			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
 
-		\item \textit{Check that constructors are called when a new object is desired.}\newline
-		Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+			\item \textit{Check that constructors are called when a new object is desired.}\newline
+			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
 
-		\item \textit{Check that all object references are initialized before use.}\newline
-		Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+			\item \textit{Check that all object references are initialized before use.}\newline
+			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
 
-		\item \textit{Variables are initialized where they are declared, unless dependent upon a computation.}\newline
-		Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+			\item \textit{Variables are initialized where they are declared, unless dependent upon a computation.}\newline
+			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
 
-		\item \textit{Declarations appear at the beginning of blocks (A block is any code surrounded by curly braces ‘{’ and ‘}’). The exception is a variable can be declared in a for loop.}\newline
-		In \texttt{public BOMTree(String productId, String bomTypeId, Date inDate, int type, Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin)} all of the variables are declared when needed and not at the beginning of the block. % NOTE add/change if needed
-	\end{enumerate}
+			\item \textit{Declarations appear at the beginning of blocks (A block is any code surrounded by curly braces ‘{’ and ‘}’). The exception is a variable can be declared in a for loop.}\newline
+			In \texttt{public BOMTree(String productId, String bomTypeId, Date inDate, int type, Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin)} all of the variables are declared when needed and not at the beginning of the block. % NOTE add/change if needed
+		\end{enumerate}
