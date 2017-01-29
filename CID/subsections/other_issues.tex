@@ -1,0 +1,17 @@
+A list of possible issues not caught by the checklist or resident on other files is reported below.
+\begin{itemize}
+	\item In the BOMTree constructor (\textit{lines 148-152}), according to the type of BOM tree to be constructed (implosion or explosion), the recursion is triggered calling the following methods:\newline
+	\texttt{void BOMNode::loadParents(String partBomTypeId, Date inDate, List<GenericValue> productFeatures)} for implosion,\newline
+	\texttt{void BOMNode::loadChildren(String partBomTypeId, Date inDate, List<GenericValue> productFeatures, int type)} for explosion.
+	The tree type is not passed to the former method, since only one kind of implosion is implemented at the moment (while multiple kinds of explosions are available). However, it could be added for flexibility, in case other implosion visits are implemented.
+
+	\item The method \texttt{public boolean BOMTree::isConfigured()} makes use at \textit{line 187} of \texttt{void BOMNode::isConfigured(List<BOMNode> arr)}. This method receives an empty list of nodes as input and recursively populates it with all the children node that are configured (the meaning of "configured" is not needed in this analysis). The issues detected on this method are:
+		\begin{itemize}
+			\item The name is misleading with respect to its return value: methods called "is\textless Property\textgreater" are conventionally associated with boolean return values. Its name should be changed to "getConfiguredChildren", or something similar.
+
+			\item Its need for the empty list as input parameter is unclear, until the implementation is analyzed: the method is used recursively to inspect all the nodes in the tree and uses the list as accumulator. However, this is not a good reason to expect an empty list from an external caller: the method should be overloaded with
+			\texttt{public void BOMNode::isConfigured()}, that generates the empty list itself, starts the recursion by calling the method under analysis and finally returns the list as a return value.
+		\end{itemize}
+
+	% TODO add others if needed
+\end{itemize}
