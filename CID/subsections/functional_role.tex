@@ -1,0 +1,22 @@
+As reported on the official website\footnote{\url{https://ofbiz.apache.org/index.html}}, \say{Apache OFBiz® is an open source product for the automation of enterprise processes that includes framework components and business applications for ERP (Enterprise Resource Planning), CRM (Customer Relationship Management), E-Business / E-Commerce, SCM (Supply Chain Management), MRP (Manufacturing Resource Planning), MMS/EAM (Maintenance Management System/Enterprise Asset Management)}.\newline
+%The suite is divided in several functional area: Common Data, Content, Security, Party, Product, Order, Facility, Shipment, Accounting, Marketing, Work Effort and Human Resources.
+The suite is composed of several interconnected applications:
+accounting,
+% commonext, % not actually an application
+content,
+% datamodel, % not actually an application
+humanres,
+manufacturing,
+marketing,
+order,
+party,
+product,
+% securityext, % not actually an application
+workeffort.\newline
+In particular, the assigned classes belong to the content and manufacturing applications.
+
+% NOTE BOMTree: Bill of Material tree, in section manufacturing, represents the dependency tree for manufacturing a product (to do A I need B and C, but to have B I need D, and so on).
+\paragraph{BOM Tree} is part of the manufacturing application and represents a Bill Of Material, as intended in Business Management\footnote{More information on the technical definition of BOM can be found at \url{https://en.wikipedia.org/wiki/Bill_of_materials}.}. In particular, starting from a given product in the manufacturing or selling chain, it constructs and represents the tree of the other products (assemblies, raw materials, etc.) on which it depends to be produced. The dependency tree can be built top-down (BOM "explosion"), breaking apart each assembly into its component parts, or bottom-up (BOM "implosion"), linking component pieces to major assemblies up to the end products.\newline
+A general understanding of the mechanics of the class has been deduced with an actual demo of the manufacturing application, following the official demo guide to compile and execute the software\footnote{\url{https://cwiki.apache.org/confluence/display/OFBIZ/Demo+and+Test+Setup+Guide}}. Further details on the structure of the class and its functioning has been understood thanks to a well detailed code documentation (Javadoc and other comments).
+
+% TODO ContentPermissionServices
