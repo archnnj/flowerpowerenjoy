@@ -74,7 +74,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 			Almost no line wrapping is used, and therefore all the long instruction exceeds the 80 characters, even if they can be easily be wrapped.
 
 			\item \textit{When line length must exceed 80 characters, it does NOT exceed 120 characters.}\newline
-			As reported for the previous point, no line wrapping is used, and therefore some of the lines exceed also the 120 characters limit.
+			As reported for the previous point, no line wrapping is used, and therefore some of the lines exceed also the 120 characters limit. In particular, \textit{line 328} reaches 273 characters, with no wrappings.  
 		\end{enumerate}
 
 	\subsubsection{Wrapping lines}
@@ -89,6 +89,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 			\item \textit{A new statement is aligned with the beginning of the expression at the same level as the previous line.}\newline
 			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
 		\end{enumerate}
+	It is important to note that the lack of report in this section is caused by the complete dearth of wrapping and not by any means by the quality of said wrapping. 
 
 	\subsubsection{Comments}
 		\begin{enumerate}
@@ -99,7 +100,8 @@ Each assigned class is analysed in a separate report since they belong to differ
 				\item Some methods are not documented, and it becomes slightly problematic when their names are not completely clear (e.g.\newline
 				\texttt{private GenericValue manufacturedAsProduct(String productId, Date inDate)},\newline
 				\texttt{public void print(List<BOMNode> arr, int initialDepth, boolean excludeWIPs)},\newline
-				\texttt{public void print(List<BOMNode> arr, boolean excludeWIPs)}).
+				\texttt{public void print(List<BOMNode> arr, boolean excludeWIPs)},\newline
+				\texttt{public void getProductsInPackages(List<BOMNode> arr)}).
 				% NOTE add/change if needed
 			\end{itemize}
 
@@ -174,7 +176,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 			\item \textit{Check that the code is free of duplicates, long methods, big classes, breaking encapsulation, as well as if coupling and cohesion are adequate.}
 			\begin{itemize}
 				\item The constructor \texttt{public BOMTree(String productId, String bomTypeId, Date inDate, int type, Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin)} is quite long (68 lines) and is well suitable for being split in at least three methods.
-				\item Many accesses are made to methods in other classes of the same package, in particular to \texttt{BOMNode}, but since this class represents a tree o \texttt{BOMNode}s it is considered quite normal.
+				\item Many accesses are made to methods in other classes of the same package, in particular to \texttt{BOMNode}, but since this class represents a tree of \texttt{BOMNode}s it is considered quite normal.
 				% NOTE add/change if needed
 			\end{itemize}
 		\end{enumerate}
@@ -195,10 +197,11 @@ Each assigned class is analysed in a separate report since they belong to differ
 			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
 
 			\item \textit{Variables are initialized where they are declared, unless dependent upon a computation.}\newline
-			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+			In \texttt{String createManufacturingOrders(String facilityId, Date date, String workEffortName, String description, String routingId, String orderId, String orderItemSeqId, String shipGroupSeqId, String shipmentId, GenericValue userLogin)} this happens to the detriment of timely declaration of the variable itself (see next point).
 
 			\item \textit{Declarations appear at the beginning of blocks (A block is any code surrounded by curly braces ‘{’ and ‘}’). The exception is a variable can be declared in a for loop.}\newline
-			In \texttt{public BOMTree(String productId, String bomTypeId, Date inDate, int type, Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin)} all of the variables are declared when needed and not at the beginning of the block. % NOTE add/change if needed
+			In \texttt{public BOMTree(String productId, String bomTypeId, Date inDate, int type, Delegator delegator, LocalDispatcher dispatcher, GenericValue userLogin)} all of the variables are declared when needed and not at the beginning of the block.\\
+			Also in \texttt{String createManufacturingOrders(String facilityId, Date date, String workEffortName, String description, String routingId, String orderId, String orderItemSeqId, String shipGroupSeqId, String shipmentId, GenericValue userLogin)} some variables are declared when needed (for example \texttt{Map<String, Object> tmpMap}, \textit{line 348}) and not at the beginning of the block. % NOTE add/change if needed
 		\end{enumerate}
 
 	\subsubsection{Method Calls}
@@ -260,7 +263,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 			\end{itemize}
 
 			\item \textit{Check order of computation/evaluation, operator precedence and parenthesizing.}\newline
-			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+			\textit{Line 307} has redundant parentheses within the \texttt{add()} call. However they do not excessively impede readability and follow the method calls order, so it is not a major issue. Other than that, nothing to report.
 
 			\item \textit{Check the liberal use of parenthesis is used to avoid operator precedence problems.}\newline
 			In ternary operators, no parenthesis are used to delimit the condition and the operands.
@@ -288,7 +291,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{51}
 			\item \textit{Check that the relevant exceptions are caught.}\newline
-			Nothing to report. % NOTE this has been added by Poe, remove it if needed.
+			The method \texttt{public String createManufacturingOrders(String facilityId, Date date, String workEffortName, String description, String routingId, String orderId, String orderItemSeqId, String shipGroupSeqId, String shipmentId, GenericValue userLogin)} throws a \texttt{GenericEntityException} without trying to catch it. Moreover, it manages its computation by encapsulating the whole method into an \texttt{if} statement that, if false, causes the method to return a null value instead of throwing an exception. It would be useful to address this issue with a try/catch block; in any case, a log message would be helpful for debugging. %TODO correct?
 
 			\item \textit{Check that the appropriate action are taken for each catch block.}
 			\begin{itemize}
