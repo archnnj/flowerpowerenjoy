@@ -350,18 +350,26 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{0}
 			\item \textit{All class names, interface names, method names, class variables, method variables, and constants used should have meaningful names and do what the name suggests.}
+			The method \texttt{checkAssocPermission()} has a name that, while partially meaningful, does not clarify the difference between itself and \texttt{checkContentPermission}. The lack of documentation for this method does not help in clarifying its use. 
+			% NOTE add/change if needed
 
 			\item \textit{If one-character variables are used, they are used only for temporary “throwaway” variables, such as those used in for loops.}\newline
+			Nothing to report: the only one-character variables found were the exception variables handled in the catch blocks. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Class names are nouns, in mixed case, with the first letter of each word in capitalized. Examples: class Raster; class ImageSprite;}\newline
-
+			Nothing to report.
+			
 			\item \textit{Interface names should be capitalized like classes.}\newline
-
+			Nothing to report.
+			
 			\item \textit{Method names should be verbs, with the first letter of each addition word capitalized. Examples: getBackground(); computeTemperature().}\newline
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Class variables, also called attributes, are mixed case, but might begin with an underscore (‘ ’) followed by a lowercase first letter. All the remaining words in the variable name have their first letter capitalized. Examples: windowHeight, timeSeriesData.}\newline
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Constants are declared using all uppercase with words separated by an underscore. Examples: MIN WIDTH; MAX HEIGHT.}\newline
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 		\end{enumerate}
 
@@ -369,8 +377,10 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{7}
 			\item \textit{Three or four spaces are used for indentation and done so consistently.}\newline
+			Four spaces are used consistently for indentation. 
 
 			\item \textit{No tabs are used to indent.}\newline
+			Nothing to report, tabs are not used. 
 
 		\end{enumerate}
 
@@ -378,8 +388,10 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{9}
 			\item \textit{Consistent bracing style is used, either the preferred “Allman” style (first brace goes underneath the opening block) or the “Kernighan and Ritchie” style (first brace is on the same line of the instruction that opens the new block).}\newline
+			The preferred style is the "Kerninghan and Ritchie", and is used consistently throughout the document. %TODO modify if pat finds something different.
 
 			\item \textit{All if, while, do-while, try-catch, and for statements that have only one statement to execute are surrounded by curly braces.}
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 			
 		\end{enumerate}
 
@@ -387,10 +399,13 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{11}
 			\item \textit{Blank lines and optional comments are used to separate sections (beginning comments, package/import statements, class/interface declarations which include class variable/attributes declarations, constructors, and methods).}\newline
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Where practical, line length does not exceed 80 characters.}\newline
+			In \texttt{checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)} the line length nearly always exceeds 80 characters, with the exception of variable declarations and a few sparse lines of code. However it must be noted that it rarely exceeds 90 characters.
 
 			\item \textit{When line length must exceed 80 characters, it does NOT exceed 120 characters.}\newline
+			\textit{Lines 256} and \textit{274} exceed 120 characters by two or three (they are 122 and 123 characters respectively). 
 
 		\end{enumerate}
 
@@ -398,10 +413,13 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{14}
 			\item \textit{Line break occurs after a comma or an operator.}\newline
+			Nothing to report, wrapping is always done after a comma. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Higher-level breaks are used.}\newline
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{A new statement is aligned with the beginning of the expression at the same level as the previous line.}\newline
+			Nothing to report, this is always done. % NOTE this has been added by Madda, remove it if needed.
 
 		\end{enumerate}
 
@@ -409,8 +427,11 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{17}
 			\item \textit{Comments are used to adequately explain what the class, interface, methods, and blocks of code are doing.}
+			The method \texttt{public static Map<String, Object> checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)} does not have any comment explaining its use. 
+			% NOTE add/change if needed
 
 			\item \textit{Commented out code contains a reason for being commented out and a date it can be removed from the source file if determined it is no longer needed.}\newline
+			Nothing to report, no commented out code found. % NOTE this has been added by Madda, remove it if needed.
 
 		\end{enumerate}
 
@@ -418,12 +439,16 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{19}
 			\item \textit{Each Java source file contains a single public class or interface.}\newline
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{The public class is the first class or interface in the file.}\newline
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check that the external program interfaces are implemented consistently with what is described in the javadoc.}
-
+			%TODO madda: no javadoc in my section
+	
 			\item \textit{Check that the javadoc is complete (i.e., it covers all classes and files part of the set of classes assigned to you).}\newline
+			The method \texttt{public static Map<String, Object> checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)} is completely devoid of any explanation, javadoc or otherwise. 
 
 		\end{enumerate}
 
@@ -431,6 +456,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{23}
 			\item \textit{If any package statements are needed, they should be the first non- comment statements. Import statements follow.}\newline
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 		\end{enumerate}
 
@@ -458,10 +484,13 @@ Each assigned class is analysed in a separate report since they belong to differ
 						\end{enumerate}
 				\end{enumerate}
 			\end{itshape}
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Methods are grouped by functionality rather than by scope or accessibility.}\newline
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check that the code is free of duplicates, long methods, big classes, breaking encapsulation, as well as if coupling and cohesion are adequate.}
+			This is a class that only contains two very long methods: the first one is 159 lines long, and the second one 76 lines long. As for the method \texttt{public static Map<String, Object> checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)}, it could easily be divided in two methods, one of which with a higher level of abstraction and the same name and the other doing the information retrieval from the database. %TODO add about other classes methods?
 			
 		\end{enumerate}
 
