@@ -377,7 +377,8 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{7}
 			\item \textit{Three or four spaces are used for indentation and done so consistently.}\newline
-			Four spaces are used consistently for indentation. 
+			Four spaces are used consistently for indentation. \\
+			\textit{Line 111} extra spaces are used to start a new block.
 
 			\item \textit{No tabs are used to indent.}\newline
 			Nothing to report, tabs are not used. 
@@ -399,12 +400,14 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{11}
 			\item \textit{Blank lines and optional comments are used to separate sections (beginning comments, package/import statements, class/interface declarations which include class variable/attributes declarations, constructors, and methods).}\newline
-			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
+			Nothing to report, athough textit{line 137} is an extra blank line between sections. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Where practical, line length does not exceed 80 characters.}\newline
+			\textit{Lines 95 and 96} exceeds 80 characters. 
 			In \texttt{checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)} the line length nearly always exceeds 80 characters, with the exception of variable declarations and a few sparse lines of code. However it must be noted that it rarely exceeds 90 characters.
 
 			\item \textit{When line length must exceed 80 characters, it does NOT exceed 120 characters.}\newline
+			\textit{Lines 124, 153, 166 169, 208} exceed 120 characters.
 			\textit{Lines 256} and \textit{274} exceed 120 characters by two or three (they are 122 and 123 characters respectively). 
 
 		\end{enumerate}
@@ -427,6 +430,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{17}
 			\item \textit{Comments are used to adequately explain what the class, interface, methods, and blocks of code are doing.}
+			Comments in \textit{lines 140-143} can be written more briefly. 
 			The method \texttt{public static Map<String, Object> checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)} does not have any comment explaining its use. 
 			% NOTE add/change if needed
 
@@ -445,6 +449,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check that the external program interfaces are implemented consistently with what is described in the javadoc.}
+			%%%%
 			%TODO madda: no javadoc in my section
 	
 			\item \textit{Check that the javadoc is complete (i.e., it covers all classes and files part of the set of classes assigned to you).}\newline
@@ -491,6 +496,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 
 			\item \textit{Check that the code is free of duplicates, long methods, big classes, breaking encapsulation, as well as if coupling and cohesion are adequate.}
 			This is a class that only contains two very long methods: the first one is 159 lines long, and the second one 76 lines long. As for the method \texttt{public static Map<String, Object> checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)}, it could easily be divided in two methods, one of which with a higher level of abstraction and the same name and the other doing the information retrieval from the database. %TODO add about other classes methods?
+			%%%%
 			
 		\end{enumerate}
 
@@ -498,7 +504,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{27}
 			\item \textit{Check that variables and class members are of the correct type. Check that they have the right visibility (public/private/protected).}\newline
-			%TODO pat's part; attributes public?
+			All of the instance attributes have public level of access. 
 
 			\item \textit{Check that variables are declared in the proper scope.}\newline
 			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
@@ -513,6 +519,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Declarations appear at the beginning of blocks (A block is any code surrounded by curly braces ‘{’ and ‘}’). The exception is a variable can be declared in a for loop.}\newline
+			In the \textit{line 139} variable \textit{passed} is declared upon necessety.
 			In the method \texttt{public static Map<String, Object> checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)}, many variables are declared when they are needed instead of the beginning of the block (see \textit{lines 284-89}). 
 
 		\end{enumerate}
@@ -551,7 +558,6 @@ Each assigned class is analysed in a separate report since they belong to differ
 			\item \textit{Check that all objects (including Strings) are compared with equals and not with ==.}\newline
 			Nothing to report, the == comparisons are only used to check whether Strings or other non-primitive objects are null. 
 			% NOTE add/change if needed
-
 		\end{enumerate}
 
 	\subsubsection{Output Format}
