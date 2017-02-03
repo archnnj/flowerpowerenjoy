@@ -388,10 +388,10 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{9}
 			\item \textit{Consistent bracing style is used, either the preferred “Allman” style (first brace goes underneath the opening block) or the “Kernighan and Ritchie” style (first brace is on the same line of the instruction that opens the new block).}\newline
-			The preferred style is the "Kerninghan and Ritchie", and is used consistently throughout the document. %TODO modify if pat finds something different.
+			The preferred style is the "Kerninghan and Ritchie", and is used consistently throughout the document, with the exception of \textit{line 267} (see below). %TODO modify if pat finds something different.
 
 			\item \textit{All if, while, do-while, try-catch, and for statements that have only one statement to execute are surrounded by curly braces.}
-			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
+			\textit{Line 267} has a one-statement if statement that is not surrounded by curly brackets. 
 			
 		\end{enumerate}
 
@@ -431,7 +431,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 			% NOTE add/change if needed
 
 			\item \textit{Commented out code contains a reason for being commented out and a date it can be removed from the source file if determined it is no longer needed.}\newline
-			Nothing to report, no commented out code found. % NOTE this has been added by Madda, remove it if needed.
+			\textit{Line 258} is commented out without explanation. Since it is a variable declaration, it stands to reason to think that it's commented out because it's not used; however, it begs the question as to why it was not deleted in the first place, and there is no reason nor date to explain its presence.
 
 		\end{enumerate}
 
@@ -549,6 +549,8 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{39}
 			\item \textit{Check that all objects (including Strings) are compared with equals and not with ==.}\newline
+			\textit{Line 267} contains the comparison \texttt{entityAction == null}, \texttt{entityAction} being a String. This seems to be a repeated issue in the code: == comparisons of Strings and other non-primitive types happen again at \textit{line 279, 302, 303, 318 and 321}.
+			% NOTE add/change if needed
 
 		\end{enumerate}
 
@@ -556,11 +558,15 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{40}
 			\item \textit{Check that displayed output is free of spelling and grammatical errors.}\newline
-
+			Nothing to report, all output (which is only logging) is correctly written.
+			% NOTE add/change if needed	
+			
 			\item \textit{Check that error messages are comprehensive and provide guidance as to how to correct the problem.}\newline
+			Error messages are diversified based on the reason for the error; however they do not elaborate on how to fix it or why it happened.
 
 			\item \textit{Check that the output is formatted correctly in terms of line stepping and spacing.}\newline
-
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
+			
 		\end{enumerate}
 
 	\subsubsection{Computation, Comparisons and Assignments}
