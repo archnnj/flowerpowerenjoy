@@ -549,7 +549,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{39}
 			\item \textit{Check that all objects (including Strings) are compared with equals and not with ==.}\newline
-			\textit{Line 267} contains the comparison \texttt{entityAction == null}, \texttt{entityAction} being a String. This seems to be a repeated issue in the code: == comparisons of Strings and other non-primitive types happen again at \textit{line 279, 302, 303, 318 and 321}.
+			Nothing to report, the == comparisons are only used to check whether Strings or other non-primitive objects are null. 
 			% NOTE add/change if needed
 
 		\end{enumerate}
@@ -575,20 +575,28 @@ Each assigned class is analysed in a separate report since they belong to differ
 			\item \begin{itshape}
 				Check that the implementation avoids “brutish programming”: (see \url{http://users.csc.calpoly.edu/~jdalbey/SWE/CodeSmells/bonehead.html}).
 				\end{itshape}
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check order of computation/evaluation, operator precedence and parenthesizing.}\newline
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check the liberal use of parenthesis is used to avoid operator precedence problems.}\newline
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check that all denominators of a division are prevented from being zero.}\newline
+			Nothing to report, no divisions found. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check that integer arithmetic, especially division, are used appropriately to avoid causing unexpected truncation/rounding.}\newline
+			Nothing to report, no arithmetics found. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check that the comparison and Boolean operators are correct.}\newline
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check throw-catch expressions, and check that the error condition is actually legitimate.}
-
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
+			
 			\item \textit{Check that the code is free of any implicit type conversions.}\newline
+			Nothing to report: type conversions, when needed, are explicit. % NOTE this has been added by Madda, remove it if needed.
 
 		\end{enumerate}
 
@@ -596,8 +604,10 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{51}
 			\item \textit{Check that the relevant exceptions are caught.}\newline
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check that the appropriate action are taken for each catch block.}
+			The try/catch expression on \textit{lines 296, 312} only log the error in the catch block without actually handling it in the current computation. Since both of those are needed to catch exceptions thrown by the dispatcher that actually returns the permission status, the computation cannot run smoothly if it fails. 
 
 		\end{enumerate}
 
@@ -605,10 +615,13 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{53}
 			\item \textit{In a switch statement, check that all cases are addressed by break or return.}\newline
+			Nothing to report, no switch statements found. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check that all switch statements have a default branch.}\newline
+			Nothing to report, no switch statements found. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check that all loops are correctly formed, with the appropriate initialization, increment and termination expressions.}\newline
+			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 		\end{enumerate}
 
@@ -616,11 +629,15 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{56}
 			\item \textit{Check that all files are properly declared and opened.}\newline
+			Nothing to report, no files used. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check that all files are closed properly, even in the case of an error.}\newline
+			Nothing to report, no files used. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check that EOF conditions are detected and handled correctly.}\newline
+			Nothing to report, no files used. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check that all file exceptions are caught and dealt with accordingly}\newline
+			Nothing to report, no files used. % NOTE this has been added by Madda, remove it if needed.
 
 		\end{enumerate}
