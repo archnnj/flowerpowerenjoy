@@ -430,7 +430,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{17}
 			\item \textit{Comments are used to adequately explain what the class, interface, methods, and blocks of code are doing.}
-			Comments in \textit{lines 140-143} can be written more briefly. 
+			Comments in \textit{lines 140-143} can be written in a more briefly way. 
 			The method \texttt{public static Map<String, Object> checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)} does not have any comment explaining its use. 
 			% NOTE add/change if needed
 
@@ -449,8 +449,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check that the external program interfaces are implemented consistently with what is described in the javadoc.}
-			%%%%
-			%TODO madda: no javadoc in my section
+			Javadoc for method \textit{public static Map<String, Object> checkContentPermission(DispatchContext dctx, Map<String, ? extends Object> context)} describes all needed parameters. Although there is no javadoc for method  \texttt{public static Map<String, Object> checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)}.
 	
 			\item \textit{Check that the javadoc is complete (i.e., it covers all classes and files part of the set of classes assigned to you).}\newline
 			The method \texttt{public static Map<String, Object> checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)} is completely devoid of any explanation, javadoc or otherwise. 
@@ -495,8 +494,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check that the code is free of duplicates, long methods, big classes, breaking encapsulation, as well as if coupling and cohesion are adequate.}
-			This is a class that only contains two very long methods: the first one is 159 lines long, and the second one 76 lines long. As for the method \texttt{public static Map<String, Object> checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)}, it could easily be divided in two methods, one of which with a higher level of abstraction and the same name and the other doing the information retrieval from the database. %TODO add about other classes methods?
-			%%%%
+			This is a class that only contains two very long methods: the first one is 159 lines long, and the second one 76 lines long. Method \textit{Map<String, Object> checkContentPermission(DispatchContext dctx, Map<String, ? extends Object> context)} can be divided to several methods, where each method is a testing event. As for the method \texttt{public static Map<String, Object> checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)}, it could easily be divided in two methods, one of which with a higher level of abstraction and the same name and the other doing the information retrieval from the database. 
 			
 		\end{enumerate}
 
@@ -564,7 +562,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{40}
 			\item \textit{Check that displayed output is free of spelling and grammatical errors.}\newline
-			Nothing to report, all output (which is only logging) is correctly written.
+			Nothing to report, all output is correctly written.% (which is only logging) 
 			% NOTE add/change if needed	
 			
 			\item \textit{Check that error messages are comprehensive and provide guidance as to how to correct the problem.}\newline
