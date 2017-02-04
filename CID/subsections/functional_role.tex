@@ -20,4 +20,4 @@ In particular, the assigned classes belong to the content and manufacturing appl
 A general understanding of the mechanics of the class has been deduced with an actual demo of the manufacturing application, following the official demo guide to compile and execute the software\footnote{\url{https://cwiki.apache.org/confluence/display/OFBIZ/Demo+and+Test+Setup+Guide}}. Further details on the structure of the class and its functioning has been understood thanks to a well detailed code documentation (Javadoc and other comments).
 
 
-\paragraph{Conten Permission Services} %TODO
+\paragraph{Content Permission Services} class is divided into two methods, where first method\textit{checkContentPermission} defines whether the user has permission to perform required operations. The method makes several different checks to determine the permission status of the user, if it is \textit{granted} or \textit{rejected} with further error messages.  The second method \textit{checkAssocPermission} retain the response of calling resource and called resource (the result about permission status) so that later probably to show it to the user.  
