@@ -429,8 +429,8 @@ Each assigned class is analysed in a separate report since they belong to differ
 	\subsubsection{Comments}
 		\begin{enumerate}
 			\setcounter{enumi}{17}
-			\item \textit{Comments are used to adequately explain what the class, interface, methods, and blocks of code are doing.}
-			Comments in \textit{lines 140-143} can be written in a more briefly way. 
+			\item \textit{Comments are used to adequately explain what the class, interface, methods, and blocks of code are doing.}\newline
+			Comments in \textit{lines 140-143} can be written in a briefer way. 
 			The method \texttt{public static Map<String, Object> checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)} does not have any comment explaining its use. 
 			% NOTE add/change if needed
 
@@ -448,8 +448,8 @@ Each assigned class is analysed in a separate report since they belong to differ
 			\item \textit{The public class is the first class or interface in the file.}\newline
 			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
-			\item \textit{Check that the external program interfaces are implemented consistently with what is described in the javadoc.}
-			Javadoc for method \textit{public static Map<String, Object> checkContentPermission(DispatchContext dctx, Map<String, ? extends Object> context)} describes all needed parameters. Although there is no javadoc for method  \texttt{public static Map<String, Object> checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)}.
+			\item \textit{Check that the external program interfaces are implemented consistently with what is described in the javadoc.}\newline
+			Javadoc for method \textit{public static Map<String, Object> checkContentPermission(DispatchContext dctx, Map<String, ? extends Object> context)} describes all needed parameters. However there is no javadoc for method  \texttt{public static Map<String, Object> checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)}.
 	
 			\item \textit{Check that the javadoc is complete (i.e., it covers all classes and files part of the set of classes assigned to you).}\newline
 			The method \texttt{public static Map<String, Object> checkAssocPermission(DispatchContext dctx, Map<String, ? extends Object> context)} is completely devoid of any explanation, javadoc or otherwise. 
@@ -579,7 +579,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 			\setcounter{enumi}{43}
 			\item \begin{itshape}
 				Check that the implementation avoids “brutish programming”: (see \url{http://users.csc.calpoly.edu/~jdalbey/SWE/CodeSmells/bonehead.html}).
-				\end{itshape}
+				\end{itshape}\newline
 			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
 			\item \textit{Check order of computation/evaluation, operator precedence and parenthesizing.}\newline
@@ -611,7 +611,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 			\item \textit{Check that the relevant exceptions are caught.}\newline
 			Nothing to report. % NOTE this has been added by Madda, remove it if needed.
 
-			\item \textit{Check that the appropriate action are taken for each catch block.}
+			\item \textit{Check that the appropriate action are taken for each catch block.}\newline
 			The try/catch expression on \textit{lines 123, 207, 296, 312} only log the error in the catch block without actually handling it in the current computation. Since both of those are needed to catch exceptions thrown by the dispatcher that actually returns the permission status, the computation cannot run smoothly if it fails. 
 
 		\end{enumerate}
