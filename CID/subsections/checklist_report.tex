@@ -291,7 +291,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{51}
 			\item \textit{Check that the relevant exceptions are caught.}\newline
-			The method \texttt{public String createManufacturingOrders(String facilityId, Date date, String workEffortName, String description, String routingId, String orderId, String orderItemSeqId, String shipGroupSeqId, String shipmentId, GenericValue userLogin)} throws a \texttt{GenericEntityException} without trying to catch it. Moreover, it manages its computation by encapsulating the whole method into an \texttt{if} statement that, if false, causes the method to return a null value instead of throwing an exception. It would be useful to address this issue with a try/catch block; in any case, a log message would be helpful for debugging. %TODO correct?
+			The method \texttt{public String createManufacturingOrders(String facilityId, Date date, String workEffortName, String description, String routingId, String orderId, String orderItemSeqId, String shipGroupSeqId, String shipmentId, GenericValue userLogin)} throws a \texttt{GenericEntityException} without trying to catch it. Moreover, it manages its computation by encapsulating the whole method into an \texttt{if} statement that, if false, causes the method to return a null value instead of throwing an exception. It would be useful to address this issue with a try/catch block; in any case, a log message would be helpful for debugging.
 
 			\item \textit{Check that the appropriate action are taken for each catch block.}
 			\begin{itemize}
@@ -389,7 +389,7 @@ Each assigned class is analysed in a separate report since they belong to differ
 		\begin{enumerate}
 			\setcounter{enumi}{9}
 			\item \textit{Consistent bracing style is used, either the preferred “Allman” style (first brace goes underneath the opening block) or the “Kernighan and Ritchie” style (first brace is on the same line of the instruction that opens the new block).}\newline
-			The preferred style is the "Kerninghan and Ritchie", and is used consistently throughout the document, with the exception of \textit{line 267} (see below). %TODO modify if pat finds something different.
+			The preferred style is the "Kerninghan and Ritchie", and is used consistently throughout the document, with the exception of \textit{line 267} (see below).
 
 			\item \textit{All if, while, do-while, try-catch, and for statements that have only one statement to execute are surrounded by curly braces.}
 			\textit{Line 267} has a one-statement if statement that is not surrounded by curly brackets. 
